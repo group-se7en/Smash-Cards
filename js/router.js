@@ -2,6 +2,7 @@ import Backbone from 'backbone';
 import React from 'react';
 import ReactDom from 'react-dom';
 
+// Routes for page views
 let Router = Backbone.Router.extend({
   routes: {
     "login": "home",  
