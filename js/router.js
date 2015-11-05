@@ -87,7 +87,6 @@ let Router = Backbone.Router.extend({
   home(){
     this.render(<SignIn
       onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el)
-      // onSignInClick={}
   },
 
   logIn(username, pass) {
