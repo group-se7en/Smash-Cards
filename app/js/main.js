@@ -165,11 +165,44 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   addDeck: function addDeck() {
-    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], null), el);
+    var _this = this;
+
+    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      onSubmitClick: function (title) {
+        var newDeck = new DeckModel({
+          Title: title
+        });
+
+        newDeck.save().then(function () {
+          _this.goto('user/:id/deck/:id/card');
+        });
+      },
+      onCancelClick: function () {
+        return goto('user/:id');
+      } }), el);
+  },
+
+  addCard: function addCard() {
+    var _this2 = this;
+
+    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      onSubmitClick: function (question, answer) {
+        var newCard = new CardModel({
+          card_question: question,
+          card_answer: answer
+        });
+
+        newCard.save().then(function () {
+          _this2.goto('user/:id/deck/:id/card');
+        });
+      },
+      onFinishClick: function () {
+        return goto('user/:id');
+      } }), el);
   },
 
   home: function home() {
-    var _this = this;
+    var _this3 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
@@ -194,7 +227,7 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this.goto('user/' + data.username);
+      _this3.goto('user/' + data.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
@@ -230,16 +263,42 @@ var _react2 = _interopRequireDefault(_react);
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_deck',
 
+  submitHandler: function submitHandler() {
+    event.preventDefault();
+    this.props.onSubmitClick(this.state.deck_title);
+  },
+
+  cancelClickHandler: function cancelClickHandler() {
+    this.props.onCancelClick();
+  },
+
+  updateTitle: function updateTitle(event) {
+    var newTitle = event.currentTarget.value;
+
+    this.setState({
+      deck_title: newTitle
+    });
+  },
+
   render: function render() {
     return _react2['default'].createElement(
       'div',
       null,
-      _react2['default'].createElement('h2', null),
-      _react2['default'].createElement('input', null),
+      _react2['default'].createElement(
+        'h2',
+        null,
+        'Create a deck!'
+      ),
+      _react2['default'].createElement('input', { onChange: this.updateTitle }),
       _react2['default'].createElement(
         'button',
-        null,
-        'Testing'
+        { onClick: this.submitHandler },
+        'Submit'
+      ),
+      _react2['default'].createElement(
+        'button',
+        { onClick: this.cancelClickHandler },
+        'Cancel'
       )
     );
   }

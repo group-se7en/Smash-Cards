@@ -2,10 +2,15 @@
 @import "neat";
 @import "font-awesome";
 
-body {
-  background: #e2ebf3;
-}
+$background-color: #B39C84;
+$adminBack-color: #3B424C;
+$text-color: #1D171F;
+$smallBtn-color: #FF522A;
+$bigBtn-color: #2D6E74;
 
+body {
+  background: $background-color;
+}
 
 .playViewWrapper {
   margin: 20px auto;
