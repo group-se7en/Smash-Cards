@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import $ from 'jquery';
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
+import SignIn from './views/admin/GameLoginCreate/sign_in';
 
 // Routes for page views
 let Router = Backbone.Router.extend({
@@ -84,6 +85,9 @@ let Router = Backbone.Router.extend({
   },
 
   home(){
+    this.render(<SignIn/>, this.el)
+      // onSignInClick={}
+  
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
@@ -92,7 +96,7 @@ let Router = Backbone.Router.extend({
         password: 'brucelee'
       }
     });
-
+    
     $('.app').html('loading...');
 
     request.then((data) => {
