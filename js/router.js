@@ -34,7 +34,6 @@ let Router = Backbone.Router.extend({
   },
 
   addDeck() {
-    
     render(<AddDeck_View/>, el);
   },
 
