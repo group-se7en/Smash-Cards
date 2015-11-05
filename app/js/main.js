@@ -291,7 +291,13 @@ var _react2 = _interopRequireDefault(_react);
 exports["default"] = _react2["default"].createClass({
   displayName: "admin_component",
 
+  logOut: function logOut() {
+    console.log("logOut");
+  },
+
   render: function render() {
+    var _this = this;
+
     return _react2["default"].createElement(
       "div",
       { className: "admin" },
@@ -299,6 +305,23 @@ exports["default"] = _react2["default"].createClass({
         "h1",
         null,
         "Admin"
+      ),
+      _react2["default"].createElement(
+        "h3",
+        null,
+        "User Name"
+      ),
+      _react2["default"].createElement(
+        "button",
+        { onClick: function () {
+            return _this.logOut();
+          } },
+        "Log out"
+      ),
+      _react2["default"].createElement(
+        "p",
+        null,
+        "copyright 2015"
       )
     );
   }
