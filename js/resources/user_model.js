@@ -5,7 +5,7 @@ export default Backbone.Model.extend({
 
   urlRoot: APP_URL_User,
 
-  idAttribute: 'objectId',
+  idAttribute: 'id',
 
 
 

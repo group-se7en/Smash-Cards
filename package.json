@@ -37,6 +37,7 @@
     "backbone": "^1.2.3",
     "font-awesome": "^4.4.0",
     "jquery": "^2.1.4",
+    "js-cookie": "^2.0.4",
     "moment": "^2.10.6",
     "normalize.css": "^3.0.3",
     "react": "^0.14.2",
