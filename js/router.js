@@ -6,15 +6,13 @@ import Cookies from 'js-cookie';
 import $ from 'jquery';
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
-<<<<<<< HEAD
+
 import Score_View from './views/gameplay/score_view';
-=======
 import AddCard_View from './views/admin/add_cards';
 import EditCard_View from './views/admin/edit_cards';
 import SignIn from './views/admin/GameLoginCreate/sign_in';
 import CreateAccount from './views/admin/GameLoginCreate/create_account';
 
->>>>>>> bc7a51d96e3c41aa72f3baa7f3356faf255f7985
 // Routes for page views
 let Router = Backbone.Router.extend({
   routes: {
@@ -57,7 +55,7 @@ let Router = Backbone.Router.extend({
     render(<AddDeck_View 
       onSubmitClick={(title) => {
         let newDeck = new DeckModel ({
-          Title: title
+          title: title
         });
 
         newDeck.save().then(() => {
@@ -104,20 +102,17 @@ let Router = Backbone.Router.extend({
 
   home(){
     this.render(<SignIn
-      onSignInClick={() => this.logIn()}/>, this.el)
+      onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el)
   },
 
-  logIn() {
-    let userName = document.querySelector("#userName").value;
-    let passWord = document.querySelector("#passWord").value;
+  logIn(username, password) {
 
-      console.log(userName);
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
       data: {
-        username: userName,
-        password: passWord
+        username: username,
+        password: password
       }
     });
     
@@ -158,14 +153,14 @@ let Router = Backbone.Router.extend({
       id      :2
     }
  ];
- // console.log(data);
+
   this.render(
     <SelectDeck
-    decks={data}
-    onHome={() => this.goto('login')}
-    onPlay={(id) => this.goto('user/:id/deck' + id)}
-    onAdd={(id) => this.goto('user/:id/deck' + id)}
-    onEdit={(id) => this.goto('user/:id/deck/:id/edit' + id)}/>,
+      decks={data}
+      onHome={() => this.goto('login')}
+      onPlay={(id) => this.goto('user/:id/deck' + id)}
+      onAdd={(id) => this.goto('user/:id/deck' + id)}
+      onEdit={(id) => this.goto('user/:id/deck/:id/edit' + id)}/>,
     );
   
   },

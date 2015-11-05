@@ -217,7 +217,7 @@ var Router = _backbone2['default'].Router.extend({
     render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
       onSubmitClick: function (title) {
         var newDeck = new DeckModel({
-          Title: title
+          title: title
         });
 
         newDeck.save().then(function () {
@@ -278,24 +278,20 @@ var Router = _backbone2['default'].Router.extend({
     var _this5 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], {
-      onSignInClick: function () {
-        return _this5.logIn();
+      onSignInClick: function (username, password) {
+        return _this5.logIn(username, password);
       } }), this.el);
   },
 
-  logIn: function logIn() {
+  logIn: function logIn(username, password) {
     var _this6 = this;
 
-    var userName = document.querySelector("#userName").value;
-    var passWord = document.querySelector("#passWord").value;
-
-    console.log(userName);
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
       data: {
-        username: userName,
-        password: passWord
+        username: username,
+        password: password
       }
     });
 
@@ -331,7 +327,7 @@ var Router = _backbone2['default'].Router.extend({
       title: "Japanese",
       id: 2
     }];
-    // console.log(data);
+
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
       onHome: function () {
