@@ -130,17 +130,42 @@ var Play_View = _react2['default'].createClass({
   render: function render() {
     return _react2['default'].createElement(
       'div',
-      { className: 'wrapper' },
-      _react2['default'].createElement('div', { className: 'deckTitle' }),
-      _react2['default'].createElement('div', { className: 'question' }),
+      { className: 'playViewWrapper' },
+      _react2['default'].createElement(
+        'div',
+        { className: 'deckTitle' },
+        'Deck Title'
+      ),
+      _react2['default'].createElement(
+        'div',
+        { className: 'mainPlay' },
+        _react2['default'].createElement(
+          'div',
+          { className: 'countDownTimerLeft' },
+          'Countdown Clock'
+        ),
+        _react2['default'].createElement(
+          'div',
+          { className: 'question' },
+          'Question Stuffs Here'
+        ),
+        _react2['default'].createElement(
+          'div',
+          { className: 'countDownTimerRight' },
+          'Countdown Clock'
+        )
+      ),
       _react2['default'].createElement('input', { type: 'text', placeholder: 'Your Answer Here', className: 'answerField' }),
       _react2['default'].createElement(
         'button',
-        { onClick: this.submitAnswer, className: 'submit' },
+        { onClick: this.submitAnswer, className: 'submitAnswer' },
         'Submit Answer'
       ),
-      _react2['default'].createElement('div', { className: 'score' }),
-      _react2['default'].createElement('div', { className: 'timer' })
+      _react2['default'].createElement(
+        'div',
+        { className: 'score' },
+        'Score Value'
+      )
     );
   }
 });

@@ -5,3 +5,59 @@
 body {
   background: #e2ebf3;
 }
+
+
+.playViewWrapper {
+  margin: 20px auto;
+  text-align: center;
+  .deckTitle{
+    font-size: 3em;
+  }
+  .mainPlay{
+    font-size: 2em;
+    width: 100%;
+    height: 300px;
+    div{
+      display: inline-block;
+    }
+  }
+  .question{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    height: 100%;
+  }
+  .countDownTimerLeft{
+    padding-right: 1%;
+  }
+  .countDownTimerRight{
+    padding-left: 1%;
+  }
+  .answerField{
+    width: 40%;
+    margin: 20px auto;
+    display: block;
+  }
+
+  .score{
+    margin: 20px auto;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .deckTitle{
+      font-size: 2em;
+    }
+    .mainPlay{
+      font-size: 1.2em;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .deckTitle{
+      font-size: 1.4em;
+    }
+    .mainPlay{
+      font-size: 0.8em;
+    }
+  }
+}
