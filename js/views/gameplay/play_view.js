@@ -31,15 +31,23 @@ let Play_View = React.createClass({
 
 
   render() {
+   
     return (
       <div className="playViewWrapper">
+
+
+       
+
+        return 
         <div className="deckTitle">
           Deck Title
+          <p>Are you any good, <span>{this.props.firstName}</span> <span>{this.props.lastName}</span>?</p>
         </div>
 
         <div className="mainPlay">
           <div className="countDownTimerLeft">
             Countdown Clock
+
           </div>
           <div className="question">
             Question Stuffs Here
