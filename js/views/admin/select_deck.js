@@ -15,10 +15,11 @@ export default React.createClass({
 
  editDeck(){
   console.log('editDeck');
-  this.props.onHome();
+  
  },
  logOut(){
   console.log('logOut please');
+  this.props.onHome();
 
  },
 
@@ -38,7 +39,7 @@ export default React.createClass({
     return (
     <div>
       <div className="admin">
-       <AdminComponent />
+       <AdminComponent onLogOut={this.logOut}/>
       </div>
       <div className="deckList">
         <h2>Select a deck or create a custom one</h2>
