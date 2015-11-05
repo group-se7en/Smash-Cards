@@ -4,6 +4,7 @@ import ReactDom from 'react-dom';
 import Play_View from './views/gameplay/play_view';
 import Cookies from 'js-cookie';
 import $ from 'jquery';
+import AddDeck_View from './views/admin/add_deck';
 
 // Routes for page views
 let Router = Backbone.Router.extend({
@@ -19,7 +20,7 @@ let Router = Backbone.Router.extend({
 
 
   initialize() {
-    let element = this.element;
+    let el = document.querySelector('.app');
   },
 
   goto(route) {
@@ -28,8 +29,13 @@ let Router = Backbone.Router.extend({
     });
   },
 
-  play() {
-    ReactDom.render(<Play_View/>, document.querySelector('.app'));
+  render(component) {
+    ReactDom.render(component, el);
+  },
+
+  addDeck() {
+    
+    render(<AddDeck_View/>, el);
   },
 
   home(){
@@ -60,7 +66,10 @@ let Router = Backbone.Router.extend({
     }).fail(() => {
       $('.app').html('Oops..');
     });
+  },
 
+  play() {
+    render(<Play_View/>, el);
   },
 
   start() {
