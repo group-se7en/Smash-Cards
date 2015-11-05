@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import AdminComponent from './admin_component';
+
 
 export default React.createClass({
  
  addDeck(){
   console.log('addDeck');
-  
  },
 
  playDeck(){
@@ -33,9 +34,12 @@ export default React.createClass({
   render() {
     return (
     <div>
-      <h2>Select a deck or create a custom one</h2>
-      <ul>{this.props.decks.map(this.formatData)}</ul>
-      <button onClick={() => this.addDeck()}>Add a deck</button>
+      <div className="admin"><AdminComponent/></div>
+      <div className="deckList">
+        <h2>Select a deck or create a custom one</h2>
+        <ul>{this.props.decks.map(this.formatData)}</ul>
+        <button onClick={() => this.addDeck()}>Add a deck</button>
+      </div>
 
     </div>
     );
