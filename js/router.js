@@ -12,10 +12,10 @@ import SignIn from './views/admin/GameLoginCreate/sign_in';
 let Router = Backbone.Router.extend({
   routes: {
     "login": "home",  
-    "user/:id": "selectDeck",
-    "user/:id/deck/": "addDeck",
-    "user/:id/deck/:id/card": "addCard",
-    "user/:id/deck/:id/edit": "editCard",
+    "user/:username": "selectDeck",
+    "user/:username/decks/": "addDeck",
+    "user/:username/decks/:id/cards": "addCard",
+    "user/:username/decks/:id/edit": "editCard",
     "play": "play",
     "score": "score",
   },
@@ -43,7 +43,7 @@ let Router = Backbone.Router.extend({
         });
 
         newDeck.save().then(() => {
-          this.goto('user/:id/deck/:id/card');
+          this.goto('user/:username/decks/:id/cards');
         });
       }}
       onCancelClick={() => goto('user/:id')}/>, el);
@@ -59,10 +59,10 @@ let Router = Backbone.Router.extend({
         });
 
         newCard.save().then(() => {
-          this.goto('user/:id/deck/:id/card');
+          this.goto('user/:username/decks/:id/cards');
         });
       }}
-      onFinishClick={() => goto('user/:id')}/>, el);
+      onFinishClick={() => goto('user/:username')}/>, el);
   },
 
   editCard(id) {
@@ -72,7 +72,7 @@ let Router = Backbone.Router.extend({
     render(<AddDeck_View 
       data={data.toJSON()}
       onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
-      onCancelClick={() => goto('user/:id')}/>, el);
+      onCancelClick={() => goto('user/:username')}/>, el);
   },
 
   saveCard(question, answer, id) {
@@ -80,7 +80,7 @@ let Router = Backbone.Router.extend({
       card_question: qustion,
       card_answer: answer
     }).then(() => {
-      this.goto('user/:id');
+      this.goto('user/:username');
     });
   },
 
