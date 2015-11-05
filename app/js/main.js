@@ -260,33 +260,29 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
-<<<<<<< HEAD
-    var _this2 = this;
 
-    var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks',
-      method: 'POST',
-      data: {
-        auth_token: 'a50111d48c38dda4355f0f640870ebce'
-      }
-    });
+    // let request = $.ajax({
+    //   url: 'https://morning-temple-4972.herokuapp.com/decks',
+    //   method: 'POST',
+    //   data: {
+    //     auth_token: 'a50111d48c38dda4355f0f640870ebce',
+    //   }
+    // });
 
-    (0, _jquery2['default'])('.app').html('loading...');
+    // $('.app').html('loading...');
 
-    request.then(function (data) {
-      _jsCookie2['default'].set('user', data);
+    // request.then((data) => {
+    //   Cookies.set('user', data);
 
-      _jquery2['default'].ajaxSetup({
-        headers: {
-          id: data.id,
-          title: data.title
-        }
-      });
-      _this2.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { firstName: data.firstname, lastName: data.lastname }), _this2.el);
-    });
-=======
+    //   $.ajaxSetup({
+    //     headers: {
+    // Auth-Token: '29384792384'
+    //       id: data.id,
+    //       title: data.title
+    //     }
+    //   });
     this.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), this.el);
->>>>>>> 4b4d96be2e188d851b3b135ab5f81113aeb4634d
+    // })
   },
 
   start: function start() {
@@ -382,11 +378,13 @@ var Play_View = _react2['default'].createClass({
 
   getInitialState: function getInitialState() {
     return {
-      secondsRemaining: 0
+      secondsRemaining: 0,
+      question: 'stringy string'
     };
   },
 
   ticking: function ticking() {
+    var wat = document.querySelector('.submitAnswer');
     this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
     if (this.state.secondsRemaining <= 0) {
       clearInterval(this.interval);
@@ -402,45 +400,41 @@ var Play_View = _react2['default'].createClass({
     clearInterval(this.interval);
   },
 
-  // submitAnswer() {
+  submitAnswer: function submitAnswer() {
+    var time = this.state.secondsRemaining;
+    var timeNumber = Number(time);
+    var userAnswer = document.querySelector('.answerField').value;
+    var correctAnswer = 'something';
+    var score = document.querySelector('.score');
+    var scoreValue = score.value;
+    this.setState({
+      secondsRemaining: 1
+    });
+    console.log(userAnswer);
+    if (userAnswer === 'taco') {
+      score.innerHTML = timeNumber * 10 + Number(score.innerHTML);
+    } else {
+      alert('wrong');
+    }
+  },
 
-  // },
+  nextCard: function nextCard() {
+    this.setState({
+      secondsRemaining: 10,
+      question: 'you is so dumb'
 
-  // checkAnswer() {
-
-  // },
-
-  // scoreFunction() {
-
-  // },
+    });
+  },
 
   render: function render() {
 
     return _react2['default'].createElement(
       'div',
       { className: 'playViewWrapper' },
-      'return',
       _react2['default'].createElement(
         'div',
         { className: 'deckTitle' },
-        'Deck Title',
-        _react2['default'].createElement(
-          'p',
-          null,
-          'Are you any good, ',
-          _react2['default'].createElement(
-            'span',
-            null,
-            this.props.firstName
-          ),
-          ' ',
-          _react2['default'].createElement(
-            'span',
-            null,
-            this.props.lastName
-          ),
-          '?'
-        )
+        'Deck Title'
       ),
       _react2['default'].createElement(
         'div',
@@ -462,7 +456,7 @@ var Play_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'div',
           { className: 'question' },
-          'Question Stuffs Here'
+          this.state.question
         ),
         _react2['default'].createElement(
           'div',
@@ -486,9 +480,19 @@ var Play_View = _react2['default'].createClass({
         'Submit Answer'
       ),
       _react2['default'].createElement(
+        'button',
+        { onClick: this.nextCard, className: 'nextCard' },
+        'Next Card'
+      ),
+      _react2['default'].createElement(
         'div',
-        { className: 'score' },
-        'Score Value'
+        { className: 'scoreDiv' },
+        'Score Value: ',
+        _react2['default'].createElement(
+          'span',
+          { className: 'score' },
+          '0'
+        )
       )
     );
   }
