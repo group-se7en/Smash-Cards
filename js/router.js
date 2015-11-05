@@ -4,6 +4,7 @@ import ReactDom from 'react-dom';
 import Play_View from './views/gameplay/play_view';
 import Cookies from 'js-cookie';
 import $ from 'jquery';
+import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
 
 // Routes for page views
@@ -36,8 +37,7 @@ let Router = Backbone.Router.extend({
   addDeck() {
     
     render(<AddDeck_View 
-        onSubmitClick={() => this.goto('user/:id/deck/:id/card')}
-    />, el);
+        onSubmitClick={() => this.goto('user/:id/deck/:id/card')}/>, el);
   },
 
   home(){
@@ -68,6 +68,30 @@ let Router = Backbone.Router.extend({
     }).fail(() => {
       $('.app').html('Oops..');
     });
+  },
+
+  selectDeck(){
+    let data = [
+    {
+      title  :"Magic",
+       id    :1
+    },
+
+    {
+      title   : "Japanese", 
+      id      :2
+    }
+ ];
+
+ // console.log(data);
+
+  ReactDom.render(
+    <SelectDeck
+    decks={data}/>,
+
+    document.querySelector('.app')
+    );
+  
   },
 
   play() {
