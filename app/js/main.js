@@ -142,6 +142,10 @@ var _viewsAdminAdd_deck = require('./views/admin/add_deck');
 
 var _viewsAdminAdd_deck2 = _interopRequireDefault(_viewsAdminAdd_deck);
 
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
 var _viewsGameplayScore_view = require('./views/gameplay/score_view');
 
 var _viewsGameplayScore_view2 = _interopRequireDefault(_viewsGameplayScore_view);
@@ -331,12 +335,11 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
-    var _this8 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
       method: 'GET',
-      data: {
+      headers: {
         auth_token: 'a50111d48c38dda4355f0f640870ebce'
       }
     });
@@ -350,10 +353,14 @@ var Router = _backbone2['default'].Router.extend({
         headers: {
 
           id: data.id,
-          title: data.title
+          title: data.title,
+          user_id: data.user_id
         }
       });
-      _this8.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this8.el);
+      console.log(data);
+      _underscore2['default'].each(data, function (y) {
+        _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10, deckTitle: y.title }), document.querySelector('.app'));
+      });
     });
   },
 
@@ -371,7 +378,7 @@ var Router = _backbone2['default'].Router.extend({
 exports['default'] = Router;
 module.exports = exports['default'];
 
-},{"./views/admin/GameLoginCreate/create_account":6,"./views/admin/GameLoginCreate/sign_in":7,"./views/admin/add_cards":8,"./views/admin/add_deck":9,"./views/admin/edit_cards":11,"./views/admin/select_deck":12,"./views/gameplay/play_view":13,"./views/gameplay/score_view":14,"backbone":15,"jquery":17,"js-cookie":18,"react":176,"react-dom":20}],6:[function(require,module,exports){
+},{"./views/admin/GameLoginCreate/create_account":6,"./views/admin/GameLoginCreate/sign_in":7,"./views/admin/add_cards":8,"./views/admin/add_deck":9,"./views/admin/edit_cards":11,"./views/admin/select_deck":12,"./views/gameplay/play_view":13,"./views/gameplay/score_view":14,"backbone":15,"jquery":17,"js-cookie":18,"react":176,"react-dom":20,"underscore":177}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1101,7 +1108,11 @@ var Play_View = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'deckTitle' },
-        'Deck Title'
+        _react2['default'].createElement(
+          'span',
+          null,
+          this.props.deckTitle
+        )
       ),
       _react2['default'].createElement(
         'div',

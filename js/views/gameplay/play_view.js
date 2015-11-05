@@ -65,8 +65,7 @@ let Play_View = React.createClass({
     return (
       <div className="playViewWrapper">
         <div className="deckTitle">
-          Deck Title
-          
+          <span>{this.props.deckTitle}</span>
         </div>
 
         <div className="mainPlay">

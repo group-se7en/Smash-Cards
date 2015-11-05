@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import $ from 'jquery';
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
-
+import _ from 'underscore';
 import Score_View from './views/gameplay/score_view';
 import AddCard_View from './views/admin/add_cards';
 import EditCard_View from './views/admin/edit_cards';
@@ -171,7 +171,7 @@ let Router = Backbone.Router.extend({
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
       method: 'GET',
-      data: {
+      headers: {
         auth_token: 'a50111d48c38dda4355f0f640870ebce',
       }
     });
@@ -185,10 +185,15 @@ let Router = Backbone.Router.extend({
         headers: {
          
           id: data.id,
-          title: data.title
+          title: data.title,
+          user_id: data.user_id
         }
       });
-      this.render(<Play_View secondsRemaining={10}/>, this.el);
+      console.log(data);
+      _.each(data, function(y){
+        ReactDom.render(<Play_View secondsRemaining={10} deckTitle={y.title}/>, document.querySelector('.app'));
+      })
+      
     })
  
     
