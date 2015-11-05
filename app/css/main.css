@@ -2027,4 +2027,42 @@ html {
 body {
   background: #e2ebf3; }
 
+.playViewWrapper {
+  margin: 20px auto;
+  text-align: center; }
+  .playViewWrapper .deckTitle {
+    font-size: 3em; }
+  .playViewWrapper .mainPlay {
+    font-size: 2em;
+    width: 100%;
+    height: 300px; }
+    .playViewWrapper .mainPlay div {
+      display: inline-block; }
+  .playViewWrapper .question {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    height: 100%; }
+  .playViewWrapper .countDownTimerLeft {
+    padding-right: 1%; }
+  .playViewWrapper .countDownTimerRight {
+    padding-left: 1%; }
+  .playViewWrapper .answerField {
+    width: 40%;
+    margin: 20px auto;
+    display: block; }
+  .playViewWrapper .score {
+    margin: 20px auto; }
+  @media screen and (max-width: 1100px) {
+    .playViewWrapper .deckTitle {
+      font-size: 2em; }
+    .playViewWrapper .mainPlay {
+      font-size: 1.2em; } }
+  @media screen and (max-width: 800px) {
+    .playViewWrapper .deckTitle {
+      font-size: 1.4em; }
+    .playViewWrapper .mainPlay {
+      font-size: 0.8em; } }
+
 /*# sourceMappingURL=main.css.map */

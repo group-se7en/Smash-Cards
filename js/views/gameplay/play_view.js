@@ -32,26 +32,31 @@ let Play_View = React.createClass({
 
   render() {
     return (
-      <div className="wrapper">
+      <div className="playViewWrapper">
         <div className="deckTitle">
-
+          Deck Title
         </div>
 
-        <div className="question">
-
+        <div className="mainPlay">
+          <div className="countDownTimerLeft">
+            Countdown Clock
+          </div>
+          <div className="question">
+            Question Stuffs Here
+          </div>
+          <div className="countDownTimerRight">
+            Countdown Clock
+          </div>
         </div>
 
         <input type="text" placeholder="Your Answer Here" className="answerField"/>
 
-        <button onClick={this.submitAnswer} className="submit">Submit Answer</button>
+        <button onClick={this.submitAnswer} className="submitAnswer">Submit Answer</button>
 
         <div className="score">
-
+          Score Value
         </div>
 
-        <div className="timer">
-
-        </div>
       </div>
     );
   }
