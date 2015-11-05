@@ -79,6 +79,7 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   addDeck: function addDeck() {
+
     render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], null), el);
   },
 
