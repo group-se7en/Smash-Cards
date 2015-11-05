@@ -550,6 +550,7 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       null,
+      _react2['default'].createElement(AdminComponent, null),
       _react2['default'].createElement(
         'h2',
         null,
@@ -610,6 +611,7 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       null,
+      _react2['default'].createElement(AdminComponent, null),
       _react2['default'].createElement(
         'h2',
         null,
@@ -648,10 +650,14 @@ var _react2 = _interopRequireDefault(_react);
 exports["default"] = _react2["default"].createClass({
   displayName: "admin_component",
 
+  adminLogOut: function adminLogOut() {
+    this.props.onLogOut();
+  },
+
   render: function render() {
     return _react2["default"].createElement(
       "div",
-      { className: "admin" },
+      { className: "admin-items" },
       _react2["default"].createElement(
         "h1",
         null,
@@ -664,7 +670,7 @@ exports["default"] = _react2["default"].createClass({
       ),
       _react2["default"].createElement(
         "button",
-        null,
+        { onClick: this.adminLogOut },
         "Log out"
       ),
       _react2["default"].createElement(
@@ -730,6 +736,7 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       null,
+      _react2['default'].createElement(AdminComponent, null),
       _react2['default'].createElement(
         'h2',
         null,
@@ -791,6 +798,7 @@ exports['default'] = _react2['default'].createClass({
   },
   logOut: function logOut() {
     console.log('logOut please');
+    this.props.onHome();
   },
 
   formatData: function formatData(deck) {
@@ -832,7 +840,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'admin' },
-        _react2['default'].createElement(_admin_component2['default'], null)
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut })
       ),
       _react2['default'].createElement(
         'div',
