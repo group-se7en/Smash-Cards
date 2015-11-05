@@ -6,11 +6,14 @@ import Cookies from 'js-cookie';
 import $ from 'jquery';
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
+import AddCard_View from './views/admin/add_cards';
+import EditCard_View from './views/admin/edit_cards';
 import SignIn from './views/admin/GameLoginCreate/sign_in';
 
 // Routes for page views
 let Router = Backbone.Router.extend({
   routes: {
+    "" : "redirectToLogin",
     "login": "home",  
     "user/:username": "selectDeck",
     "user/:username/decks/": "addDeck",
@@ -33,6 +36,15 @@ let Router = Backbone.Router.extend({
 
   render(component) {
     ReactDom.render(component, this.el);
+  },
+
+  redirectToLogin() {
+    this.navigate('login', {
+      replace: true,
+      trigger: true
+    });
+
+
   },
 
   addDeck() {
