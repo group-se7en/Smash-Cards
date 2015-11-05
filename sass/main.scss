@@ -6,6 +6,7 @@ body {
   background: #e2ebf3;
 }
 
+/******** Play View Styling ***********/
 
 .playViewWrapper {
   margin: 20px auto;
@@ -13,51 +14,58 @@ body {
   .deckTitle{
     font-size: 3em;
   }
-  .mainPlay{
+}
+.mainPlay{
+  @include outer-container;
+  font-size: 2em;
+  width: 100%;
+  height: 300px;
+  margin-top: 20px;
+}
+
+.question{
+  @include span-columns(6);
+  @include omega(3n);
+  border: 1px solid black;
+  height: 100%;
+}
+.countDownTimerLeft{
+  @include span-columns(3);
+}
+.countDownTimerRight{
+  @include span-columns(3);
+}
+.answerField{
+  display: block;
+  width: 40%;
+  margin: 20px auto;
+}
+.score{
+  margin: 20px auto;
+}
+.timeValue{
+  font-size: 8em;
+}
+
+@media screen and (max-width: 1100px) {
+  .deckTitle{
     font-size: 2em;
-    width: 100%;
-    height: 300px;
-    div{
-      display: inline-block;
-    }
   }
-  .question{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
-    height: 100%;
+  .mainPlay{
+    font-size: 1.2em;
   }
-  .countDownTimerLeft{
-    padding-right: 1%;
+  .timeValue{
+    font-size: 7em;
   }
-  .countDownTimerRight{
-    padding-left: 1%;
+}
+@media screen and (max-width: 800px) {
+  .deckTitle{
+    font-size: 1.4em;
   }
-  .answerField{
-    width: 40%;
-    margin: 20px auto;
-    display: block;
+  .mainPlay{
+    font-size: 0.8em;
   }
-
-  .score{
-    margin: 20px auto;
-  }
-
-  @media screen and (max-width: 1100px) {
-    .deckTitle{
-      font-size: 2em;
-    }
-    .mainPlay{
-      font-size: 1.2em;
-    }
-  }
-  @media screen and (max-width: 800px) {
-    .deckTitle{
-      font-size: 1.4em;
-    }
-    .mainPlay{
-      font-size: 0.8em;
-    }
+  .timeValue{
+    font-size: 6em;
   }
 }

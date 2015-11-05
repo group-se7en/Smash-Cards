@@ -201,7 +201,7 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
-    this.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], null), this.el);
+    this.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), this.el);
   },
 
   start: function start() {
@@ -269,19 +269,31 @@ var _moment2 = _interopRequireDefault(_moment);
 var Play_View = _react2['default'].createClass({
   displayName: 'Play_View',
 
-  // getInitialState() {
+  getInitialState: function getInitialState() {
+    return {
+      secondsRemaining: 0
+    };
+  },
+
+  ticking: function ticking() {
+    this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
+    if (this.state.secondsRemaining <= 0) {
+      clearInterval(this.interval);
+    }
+  },
+
+  componentDidMount: function componentDidMount() {
+    this.setState({ secondsRemaining: this.props.secondsRemaining });
+    this.interval = setInterval(this.ticking, 1000);
+  },
+
+  componentWillUnmount: function componentWillUnmount() {
+    clearInterval(this.interval);
+  },
+
+  // submitAnswer() {
 
   // },
-
-  // setState() {
-
-  // },
-
-  // timerFunction() {
-
-  // },
-
-  submitAnswer: function submitAnswer() {},
 
   // checkAnswer() {
 
@@ -306,7 +318,16 @@ var Play_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'div',
           { className: 'countDownTimerLeft' },
-          'Countdown Clock'
+          _react2['default'].createElement(
+            'div',
+            null,
+            'Time Remaining:'
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: 'timeValue' },
+            this.state.secondsRemaining
+          )
         ),
         _react2['default'].createElement(
           'div',
@@ -316,7 +337,16 @@ var Play_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'div',
           { className: 'countDownTimerRight' },
-          'Countdown Clock'
+          _react2['default'].createElement(
+            'div',
+            null,
+            'Time Remaining: '
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: 'timeValue' },
+            this.state.secondsRemaining
+          )
         )
       ),
       _react2['default'].createElement('input', { type: 'text', placeholder: 'Your Answer Here', className: 'answerField' }),

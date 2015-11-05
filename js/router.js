@@ -68,7 +68,7 @@ let Router = Backbone.Router.extend({
   },
 
   play() {
-    this.render(<Play_View/>, this.el);
+    this.render(<Play_View secondsRemaining={10}/>, this.el);
   },
 
   start() {
