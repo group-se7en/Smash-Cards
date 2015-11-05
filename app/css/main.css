@@ -2053,7 +2053,8 @@ body {
   margin-right: 2.35765%;
   width: 48.82117%;
   border: 1px solid black;
-  height: 100%; }
+  height: 100%;
+  background-color: white; }
   .question:last-child {
     margin-right: 0; }
   .question:nth-child(3n) {

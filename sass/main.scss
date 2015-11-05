@@ -34,6 +34,7 @@ body {
   @include omega(3n);
   border: 1px solid black;
   height: 100%;
+  background-color: white;
 }
 .countDownTimerLeft{
   @include span-columns(3);
