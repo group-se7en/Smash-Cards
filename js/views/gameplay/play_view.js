@@ -6,15 +6,17 @@ let Play_View = React.createClass({
 
   getInitialState() {
     return {
-      secondsRemaining: 0
+      secondsRemaining: 0,
+      question: 'stringy string'
     };
   },
 
   ticking() {
+    let wat = document.querySelector('.submitAnswer')
     this.setState({secondsRemaining: this.state.secondsRemaining - 1});
     if (this.state.secondsRemaining <= 0) {
       clearInterval(this.interval);
-    }
+    } 
   },
 
   componentDidMount() {
@@ -26,27 +28,40 @@ let Play_View = React.createClass({
     clearInterval(this.interval);
   },
 
-  // submitAnswer() {
+  submitAnswer() {
+    let time = this.state.secondsRemaining;
+    let timeNumber = Number(time);
+    let userAnswer = document.querySelector('.answerField').value;
+    let correctAnswer = 'something';
+    let score = document.querySelector('.score');
+    let scoreValue = score.value;
+    this.setState({
+      secondsRemaining: 1
+    })
+    console.log(userAnswer);
+    if (userAnswer === 'taco'){
+      score.innerHTML= timeNumber*10 + Number(score.innerHTML)
+    } else{
+      alert ('wrong');
+    }
 
-  // },
+    
+  },
 
-  // checkAnswer() {
+  nextCard(){
+    this.setState({
+      secondsRemaining: 10,
+      question: 'you is so dumb'
 
-  // },
+    })
+  },
 
-  // scoreFunction() {
-
-  // },
+  
 
   render() {
    
     return (
       <div className="playViewWrapper">
-
-
-       
-
-        return 
         <div className="deckTitle">
           Deck Title
           
@@ -55,17 +70,13 @@ let Play_View = React.createClass({
         <div className="mainPlay">
 
           <div className="countDownTimerLeft">
-
-            Countdown Clock
-
-
             <div>Time Remaining:</div>
             <div className="timeValue">{this.state.secondsRemaining}</div>
 
           </div>
 
           <div className="question">
-            Question Stuffs Here
+            {this.state.question}
           </div>
 
           <div className="countDownTimerRight">
@@ -77,9 +88,9 @@ let Play_View = React.createClass({
         <input type="text" placeholder="Your Answer Here" className="answerField"/>
 
         <button onClick={this.submitAnswer} className="submitAnswer">Submit Answer</button>
-
-        <div className="score">
-          Score Value
+        <button onClick={this.nextCard} className="nextCard">Next Card</button>
+        <div className="scoreDiv">
+          Score Value: <span className="score">0</span>
         </div>
 
       </div>
