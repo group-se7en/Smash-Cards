@@ -645,7 +645,7 @@ exports["default"] = _react2["default"].createClass({
 
     return _react2["default"].createElement(
       "div",
-      { className: "admin" },
+      { className: "admin-items" },
       _react2["default"].createElement(
         "h1",
         null,

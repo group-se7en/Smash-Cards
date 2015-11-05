@@ -2025,7 +2025,14 @@ html {
   content: ""; }
 
 body {
-  background: #B39C84; }
+  background: #B39C84;
+  height: 100%; }
+
+.app {
+  height: 100%; }
+
+.admin {
+  border: 1px solid black; }
 
 /******** Play View Styling ***********/
 .playViewWrapper {
