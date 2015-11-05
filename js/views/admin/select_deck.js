@@ -4,17 +4,23 @@ import AdminComponent from './admin_component';
 
 
 export default React.createClass({
+
+ playDeck(){
+  console.log('playDeck');
+ },
  
  addDeck(){
   console.log('addDeck');
  },
 
- playDeck(){
-  console.log('playDeck');
- },
-
  editDeck(){
   console.log('editDeck');
+  
+ },
+ logOut(){
+  console.log('logOut please');
+  this.props.onHome();
+
  },
 
  formatData(deck){
@@ -26,13 +32,15 @@ export default React.createClass({
       Play </button>
       <button className="edit" onClick={() => this.editDeck()}>Edit Deck</button>    
     </div>
-      )
+    );
  },
 
   render() {
     return (
     <div>
-      <div className="admin"><AdminComponent/></div>
+      <div className="admin">
+       <AdminComponent onLogOut={this.logOut}/>
+      </div>
       <div className="deckList">
         <h2>Select a deck or create a custom one</h2>
         <ul>{this.props.decks.map(this.formatData)}</ul>

@@ -22,6 +22,7 @@ export default React.createClass({
   render() {
     return (
       <div>
+        <AdminComponent/>
         <h2>Create a deck!</h2>
         <input onChange={this.updateTitle}></input>
         <button onClick={this.submitHandler}>Submit</button>

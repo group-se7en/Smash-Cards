@@ -6,12 +6,19 @@ import Cookies from 'js-cookie';
 import $ from 'jquery';
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
+
+import Score_View from './views/gameplay/score_view';
+import AddCard_View from './views/admin/add_cards';
+import EditCard_View from './views/admin/edit_cards';
 import SignIn from './views/admin/GameLoginCreate/sign_in';
+import CreateAccount from './views/admin/GameLoginCreate/create_account';
 
 // Routes for page views
 let Router = Backbone.Router.extend({
   routes: {
+    "" : "redirectToLogin",
     "login": "home",  
+    "register": "createAccount",  
     "user/:username": "selectDeck",
     "user/:username/decks/": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
@@ -35,11 +42,20 @@ let Router = Backbone.Router.extend({
     ReactDom.render(component, this.el);
   },
 
+  redirectToLogin() {
+    this.navigate('login', {
+      replace: true,
+      trigger: true
+    });
+
+
+  },
+
   addDeck() {
     render(<AddDeck_View 
       onSubmitClick={(title) => {
         let newDeck = new DeckModel ({
-          Title: title
+          title: title
         });
 
         newDeck.save().then(() => {
@@ -89,15 +105,13 @@ let Router = Backbone.Router.extend({
       onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el)
   },
 
-  logIn(username, pass) {
-    let name = username;
-    let password = pass;
+  logIn(username, password) {
 
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
       data: {
-        username: name,
+        username: username,
         password: password
       }
     });
@@ -123,6 +137,10 @@ let Router = Backbone.Router.extend({
 
   },
 
+  createAccount(){
+
+  },
+
   selectDeck(){
     let data = [
     {
@@ -136,16 +154,17 @@ let Router = Backbone.Router.extend({
     }
  ];
 
- // console.log(data);
-
-  ReactDom.render(
+  this.render(
     <SelectDeck
-    decks={data}/>,
-
-    document.querySelector('.app')
+      decks={data}
+      onHome={() => this.goto('login')}
+      onPlay={(id) => this.goto('user/:id/deck' + id)}
+      onAdd={(id) => this.goto('user/:id/deck' + id)}
+      onEdit={(id) => this.goto('user/:id/deck/:id/edit' + id)}/>,
     );
   
   },
+ 
 
   play() {
 
@@ -175,6 +194,10 @@ let Router = Backbone.Router.extend({
     
 
 
+  },
+
+  score() {
+    this.render(<Score_View/>,this.el);
   },
 
   start() {
