@@ -4,17 +4,22 @@ import AdminComponent from './admin_component';
 
 
 export default React.createClass({
+
+ playDeck(){
+  console.log('playDeck');
+ },
  
  addDeck(){
   console.log('addDeck');
  },
 
- playDeck(){
-  console.log('playDeck');
- },
-
  editDeck(){
   console.log('editDeck');
+  this.props.onHome();
+ },
+ logOut(){
+  console.log('logOut please');
+
  },
 
  formatData(deck){
@@ -32,7 +37,9 @@ export default React.createClass({
   render() {
     return (
     <div>
-      <div className="admin"><AdminComponent/></div>
+      <div className="admin">
+       <AdminComponent />
+      </div>
       <div className="deckList">
         <h2>Select a deck or create a custom one</h2>
         <ul>{this.props.decks.map(this.formatData)}</ul>
