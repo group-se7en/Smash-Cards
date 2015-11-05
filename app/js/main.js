@@ -90,18 +90,16 @@ var _backbone = require('backbone');
 
 var _backbone2 = _interopRequireDefault(_backbone);
 
-var _parse_data = require('../parse_data');
-
 exports['default'] = _backbone2['default'].Model.extend({
 
-  urlRoot: _parse_data.APP_URL_User,
+  urlRoot: 'https://morning-temple-4972.herokuapp.com/signup',
 
-  idAttribute: 'id'
+  idAttribute: 'auth_token'
 
 });
 module.exports = exports['default'];
 
-},{"../parse_data":2,"backbone":15}],5:[function(require,module,exports){
+},{"backbone":15}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -162,6 +160,10 @@ var _viewsAdminGameLoginCreateCreate_account = require('./views/admin/GameLoginC
 
 var _viewsAdminGameLoginCreateCreate_account2 = _interopRequireDefault(_viewsAdminGameLoginCreateCreate_account);
 
+var _resourcesUser_model = require('./resources/user_model');
+
+var _resourcesUser_model2 = _interopRequireDefault(_resourcesUser_model);
+
 // Routes for page views
 var Router = _backbone2['default'].Router.extend({
   routes: {
@@ -191,7 +193,7 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   redirectToLogin: function redirectToLogin() {
-    this.navigate('login', {
+    this.navigate('register', {
       replace: true,
       trigger: true
     });
@@ -301,10 +303,56 @@ var Router = _backbone2['default'].Router.extend({
     });
   },
 
-  createAccount: function createAccount() {},
+  createAccount: function createAccount() {
+    var _this7 = this;
+
+    this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], {
+      onSubmitClick: function (first, last, email, user, password) {
+        return _this7.newUser(first, last, email, user, password);
+      },
+
+      onCancelClick: function () {
+        return goto('login');
+      } }), this.el);
+  },
+
+  newUser: function newUser(first, last, email, user, password) {
+    var _this8 = this;
+
+    var request = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/signup',
+      method: 'POST',
+      data: {
+        firstname: first,
+        lastname: last,
+        email: email,
+        username: user,
+        password: password
+      }
+    });
+
+    (0, _jquery2['default'])('.app').html('loading...');
+
+    request.then(function (data) {
+      _jsCookie2['default'].set('user', data);
+
+      _jquery2['default'].ajaxSetup({
+        headers: {
+          auth_token: data.access_token,
+          firstname: data.firstname,
+          lastname: data.lastname,
+          email: data.email,
+          username: data.username
+        }
+      });
+      _this8.goto('login');
+    }).fail(function () {
+      (0, _jquery2['default'])('.app').html('Oops..');
+    });
+  },
 
   selectDeck: function selectDeck() {
-    var _this7 = this;
+    var _this9 = this;
 
     var data = [{
       title: "Magic",
@@ -317,21 +365,21 @@ var Router = _backbone2['default'].Router.extend({
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
       onHome: function () {
-        return _this7.goto('login');
+        return _this9.goto('login');
       },
       onPlay: function (id) {
-        return _this7.goto('user/:id/deck' + id);
+        return _this9.goto('user/:id/deck' + id);
       },
       onAdd: function (id) {
-        return _this7.goto('user/:id/deck' + id);
+        return _this9.goto('user/:id/deck' + id);
       },
       onEdit: function (id) {
-        return _this7.goto('user/:id/deck/:id/edit' + id);
+        return _this9.goto('user/:id/deck/:id/edit' + id);
       } }));
   },
 
   play: function play() {
-    var _this8 = this;
+    var _this10 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -353,7 +401,7 @@ var Router = _backbone2['default'].Router.extend({
           title: data.title
         }
       });
-      _this8.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this8.el);
+      _this10.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this10.el);
     });
   },
 
@@ -371,7 +419,7 @@ var Router = _backbone2['default'].Router.extend({
 exports['default'] = Router;
 module.exports = exports['default'];
 
-},{"./views/admin/GameLoginCreate/create_account":6,"./views/admin/GameLoginCreate/sign_in":7,"./views/admin/add_cards":8,"./views/admin/add_deck":9,"./views/admin/edit_cards":11,"./views/admin/select_deck":12,"./views/gameplay/play_view":13,"./views/gameplay/score_view":14,"backbone":15,"jquery":17,"js-cookie":18,"react":176,"react-dom":20}],6:[function(require,module,exports){
+},{"./resources/user_model":4,"./views/admin/GameLoginCreate/create_account":6,"./views/admin/GameLoginCreate/sign_in":7,"./views/admin/add_cards":8,"./views/admin/add_deck":9,"./views/admin/edit_cards":11,"./views/admin/select_deck":12,"./views/gameplay/play_view":13,"./views/gameplay/score_view":14,"backbone":15,"jquery":17,"js-cookie":18,"react":176,"react-dom":20}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -387,53 +435,94 @@ var _react2 = _interopRequireDefault(_react);
 exports['default'] = _react2['default'].createClass({
   displayName: 'create_account',
 
-  getStatus: function getStatus() {
-    var fistName = this.props.fistName;
-    if (firstName) {
-      // add code here for input values to only be letter
-      return;
-    }
+  // getStatus() {
+  //   let fistName = this.props.fistName;
+  //   if (firstName) {
+  //     // add code here for input values to only be letter
+  //     return;
+  //   }
 
-    var lastName = this.props.lastName;
-    if (lasttName) {
-      // add code here for input values to only be letter
-      return;
-    }
+  //   let lastName = this.props.lastName;
+  //   if (lasttName) {
+  //    // add code here for input values to only be letter
+  //     return;
+  //   }
 
-    var email = this.props.email;
-    if (email) {
-      // add code here for email address to have the @ in it
-      return;
-    }
+  //   let email = this.props.email;
+  //   if (email) {
+  //     // add code here for email address to have the @ in it
+  //     return;
+  //   }
 
-    var user = this.props.user;
-    if (user) {
-      // add code here for minimum username size to be a certain amount
-      return;
-    }
+  //   let user = this.props.user;
+  //   if (user) {
+  //    // add code here for minimum username size to be a certain amount
+  //     return;
+  //   }
 
-    var password = this.props.password;
-    if (password) {
-      // add code here for password to be case sensitive and with numbers
-      return;
-    }
+  //   let password = this.props.password;
+  //   if (password) {
+  //     // add code here for password to be case sensitive and with numbers
+  //     return;
+  //   }
 
-    var repassword = this.props.repassword;
-    if (password - again) {
-      // add code here for it to check and be identical with the text that got put in for the password
-      return;
-    }
+  //   let repassword = this.props.repassword;
+  //   if (password-again) {
+  //    // add code here for it to check and be identical with the text that got put in for the password
+  //     return;
+  //   }
 
-    var goToAdminProfle = this.props.goToAdminProfle;
-    if (goToAdminProfle) {
-      // add code her to check the whole form to see if things are all in order with all of the properties
-      return;
-    }
+  //   let goToAdminProfle = this.props.goToAdminProfle;
+  //   if (goToAdminProfle) {
+  //     // add code her to check the whole form to see if things are all in order with all of the properties
+  //     return;
+  //   }
+  // },
+
+  updateFirst: function updateFirst(event) {
+    var newFirst = event.currentTarget.value;
+
+    this.setState({
+      firstname: newFirst
+    });
+  },
+  updateLast: function updateLast(event) {
+    var newLast = event.currentTarget.value;
+
+    this.setState({
+      lastname: newLast
+    });
+  },
+  updateEmail: function updateEmail(event) {
+    var newEmail = event.currentTarget.value;
+
+    this.setState({
+      email: newEmail
+    });
+  },
+  updateUsername: function updateUsername(event) {
+    var newUser = event.currentTarget.value;
+
+    this.setState({
+      username: newUser
+    });
+  },
+  updatePassword: function updatePassword(event) {
+    var newPass = event.currentTarget.value;
+
+    this.setState({
+      password: newPass
+    });
   },
 
-  createAccount: function createAccount() {
-    console.log('You a newbie to the tribe');
-    this.props.onCreactAccountClick();
+  createAccount: function createAccount(event) {
+    event.preventDefault();
+    console.log('account was made');
+    this.props.onSubmitClick(this.state.firstname, this.state.lastname, this.state.email, this.state.username, this.state.password);
+  },
+
+  cancelHandler: function cancelHandler() {
+    this.props.onCancelClick();
   },
 
   render: function render() {
@@ -464,42 +553,41 @@ exports['default'] = _react2['default'].createClass({
             'label',
             null,
             'Your First Name: ',
-            _react2['default'].createElement('input', { type: 'text', className: 'firstName' })
+            _react2['default'].createElement('input', { type: 'text', className: 'firstName', onChange: this.updateFirst })
           ),
           _react2['default'].createElement(
             'label',
             null,
             'Your Last Name: ',
-            _react2['default'].createElement('input', { type: 'text', className: 'lastName' })
+            _react2['default'].createElement('input', { type: 'text', className: 'lastName', onChange: this.updateLast })
           ),
           _react2['default'].createElement(
             'label',
             null,
             'Your Email: ',
-            _react2['default'].createElement('input', { type: 'text', className: 'email' })
+            _react2['default'].createElement('input', { type: 'text', className: 'email', onChange: this.updateEmail })
           ),
           _react2['default'].createElement(
             'label',
             null,
             'Your Username: ',
-            _react2['default'].createElement('input', { type: 'text', className: 'user' })
+            _react2['default'].createElement('input', { type: 'text', className: 'user', onChange: this.updateUsername })
           ),
           _react2['default'].createElement(
             'label',
             null,
             'Your Password: ',
-            _react2['default'].createElement('input', { type: 'text', className: 'password' })
-          ),
-          _react2['default'].createElement(
-            'label',
-            null,
-            'Re-Enter Your Password: ',
-            _react2['default'].createElement('input', { type: 'text', className: 'repassword' })
+            _react2['default'].createElement('input', { type: 'text', className: 'password', onChange: this.updatePassword })
           ),
           _react2['default'].createElement(
             'button',
             { onClick: this.createAccount },
             'Create Account'
+          ),
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.cancelHandler },
+            'Cancel'
           )
         )
       )
