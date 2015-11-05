@@ -1070,7 +1070,6 @@ var Play_View = _react2['default'].createClass({
     var userAnswer = document.querySelector('.answerField').value;
     var correctAnswer = 'something';
     var score = document.querySelector('.score');
-    var scoreValue = score.value;
     this.setState({
       secondsRemaining: 1
     });
@@ -1165,95 +1164,63 @@ exports['default'] = Play_View;
 module.exports = exports['default'];
 
 },{"moment":19,"react":176}],14:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var Score_View = _react2["default"].createClass({
-  displayName: "Score_View",
+var _play_view = require('./play_view');
 
-  //newgame
-  //play again
-  getInitialState: function getInitialState() {
-    return {
-      gameOver: "Game Over"
-    };
-  },
+var _play_view2 = _interopRequireDefault(_play_view);
 
-  ticking: function ticking() {
-    this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
-    if (this.state.secondsRemaining <= 0) {
-      clearInterval(this.interval);
-    }
-  },
-
-  componentDidMount: function componentDidMount() {
-    this.setState({ secondsRemaining: this.props.secondsRemaining });
-    this.interval = setInterval(this.ticking, 1000);
-  },
-
-  componentWillUnmount: function componentWillUnmount() {
-    clearInterval(this.interval);
-  },
-
-  // submitAnswer() {
-
-  // },
-
-  // checkAnswer() {
-
-  // },
-
-  // scoreFunction() {
-
-  // },
+var Score_View = _react2['default'].createClass({
+  displayName: 'Score_View',
 
   render: function render() {
-    return _react2["default"].createElement(
-      "div",
-      { className: "gameOverWrapper" },
-      _react2["default"].createElement(
-        "div",
-        { className: "gameOver" },
-        "Game Over"
+    return _react2['default'].createElement(
+      'div',
+      { className: 'gameOverWrapper' },
+      _react2['default'].createElement(
+        'div',
+        { className: 'gameOver' },
+        'Game Over'
       ),
-      _react2["default"].createElement(
-        "div",
-        { className: "score" },
-        "Your score on the Hungarian Cabinet Making deck is ...",
-        _react2["default"].createElement("br", null),
-        _react2["default"].createElement(
-          "p",
-          { className: "scoreNumber" },
-          "75"
+      _react2['default'].createElement(
+        'div',
+        { className: 'finalScore' },
+        'Your score on the Hungarian Cabinet Making deck is ...',
+        _react2['default'].createElement('br', null),
+        _react2['default'].createElement(
+          'p',
+          { className: 'scoreNumber' },
+          this.score
         )
       ),
-      _react2["default"].createElement(
-        "button",
-        { onClick: this.playAgain, className: "playAgain" },
-        "Play Again"
+      _react2['default'].createElement(
+        'button',
+        { onClick: this.playAgain, className: 'playAgain' },
+        'Play Again'
       ),
-      _react2["default"].createElement(
-        "button",
-        { onClick: this.changeGame, className: "changeGame" },
-        "Play a different Game"
+      _react2['default'].createElement(
+        'button',
+        { onClick: this.changeGame, className: 'changeGame' },
+        'Play a different Game'
       )
     );
   }
 });
 
-exports["default"] = Score_View;
-module.exports = exports["default"];
+exports['default'] = Score_View;
+module.exports = exports['default'];
 
-},{"react":176}],15:[function(require,module,exports){
+},{"./play_view":13,"react":176}],15:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 

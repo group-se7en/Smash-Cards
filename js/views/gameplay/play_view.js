@@ -33,7 +33,6 @@ let Play_View = React.createClass({
     let userAnswer = document.querySelector('.answerField').value;
     let correctAnswer = 'something';
     let score = document.querySelector('.score');
-    let scoreValue = score.value;
     this.setState({
       secondsRemaining: 1
     })

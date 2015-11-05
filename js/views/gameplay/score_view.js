@@ -1,43 +1,10 @@
 import React from 'react';
+import Play_View from './play_view';
 
 let Score_View = React.createClass({
 
   
-//newgame
-//play again
-getInitialState() {
-    return {
-      gameOver: "Game Over"
-    };
-  },
 
-  ticking() {
-    this.setState({secondsRemaining: this.state.secondsRemaining - 1});
-    if (this.state.secondsRemaining <= 0) {
-      clearInterval(this.interval);
-    }
-  },
-
-  componentDidMount() {
-    this.setState({ secondsRemaining: this.props.secondsRemaining });
-    this.interval = setInterval(this.ticking, 1000);
-  },
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  },
-
-  // submitAnswer() {
-
-  // },
-
-  // checkAnswer() {
-
-  // },
-
-  // scoreFunction() {
-
-  // },
 
   render() {
     return (
@@ -46,10 +13,10 @@ getInitialState() {
           Game Over
         </div>
 
-        <div className="score">
+        <div className="finalScore">
           Your score on the Hungarian Cabinet Making deck is ...<br/>
 
-          <p className="scoreNumber">75</p>
+          <p className="scoreNumber">{this.score}</p>
         </div>
 
         <button onClick={this.playAgain} className="playAgain">Play Again</button>
