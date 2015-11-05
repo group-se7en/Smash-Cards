@@ -2,6 +2,38 @@ import React from 'react';
 
 export default React.createClass({
 
+  getStatus() {
+    let user = this.props.user;
+    if (user) {
+      // add code here to check the username in the 
+      // back-end and confirm that it is the same 
+      // that the user is inputing into the form
+      return (
+        // input code here that which lets them pass to the admin profile
+      );
+    },
+
+    let password = this.props.password;
+     if (password) {
+      // add code here to check the password in the 
+      // back-end and confirm that it is the same 
+      // that the user is inputing into the form
+      return (
+        // input code here that which lets them pass to the admin profile
+      );
+    }
+
+    let goToAdminProfle = this.props.goToAdminProfle;
+      if (goToAdminProfle) {
+        // add code here to check with the back end if both the 
+        // username and password match with what the 
+        // user is typing
+        return (
+          // allow the user to go to the admin profile
+        )
+      } 
+  },
+
   signIn() {
     console.log('You got me signed in');
   this.props.onSignInClick();
