@@ -150,8 +150,8 @@ var Router = _backbone2['default'].Router.extend({
     "score": "score"
   },
 
-  initialize: function initialize() {
-    var el = document.querySelector('.app');
+  initialize: function initialize(appElement) {
+    this.el = appElement;
   },
 
   goto: function goto(route) {
@@ -161,7 +161,7 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   render: function render(component) {
-    _reactDom2['default'].render(component, el);
+    _reactDom2['default'].render(component, this.el);
   },
 
   addDeck: function addDeck() {
@@ -202,7 +202,7 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
-    render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], null), el);
+    this.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], null), this.el);
   },
 
   start: function start() {
