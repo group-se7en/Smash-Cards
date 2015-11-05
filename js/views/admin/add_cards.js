@@ -30,6 +30,7 @@ export default React.createClass({
   render() {
     return (
       <div>
+        <AdminComponent/>
         <h2>Add Card</h2>
         <input onChange={this.updateQuestion}></input>
         <input onChange={this.updateAnswer}></input>

@@ -8,10 +8,6 @@ export default Backbone.Collection.extend({
 
   model: Card,
 
-  // parse: function(data) {
-  //   return data.results;
-  // },
-
   parse(data) {
     return data.results;
   }
