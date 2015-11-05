@@ -1050,12 +1050,8 @@ var Play_View = _react2['default'].createClass({
   },
 
   ticking: function ticking() {
-<<<<<<< HEAD
-    this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
-=======
     this.setState({
       secondsRemaining: this.state.secondsRemaining - 1 });
->>>>>>> master
     if (this.state.secondsRemaining <= 0) {
       clearInterval(this.interval);
     }
@@ -1171,11 +1167,7 @@ exports['default'] = Play_View;
 module.exports = exports['default'];
 
 },{"moment":19,"react":176}],14:[function(require,module,exports){
-<<<<<<< HEAD
 'use strict';
-=======
-"use strict";
->>>>>>> master
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -1231,11 +1223,7 @@ var Score_View = _react2['default'].createClass({
 exports['default'] = Score_View;
 module.exports = exports['default'];
 
-<<<<<<< HEAD
 },{"./play_view":13,"react":176}],15:[function(require,module,exports){
-=======
-},{"react":176}],15:[function(require,module,exports){
->>>>>>> master
 (function (global){
 //     Backbone.js 1.2.3
 
