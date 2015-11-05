@@ -314,9 +314,8 @@ var Router = _backbone2['default'].Router.extend({
       onSubmitClick: function (first, last, email, user, password) {
         return _this7.newUser(first, last, email, user, password);
       },
-
       onCancelClick: function () {
-        return goto('login');
+        return _this7.goto('login');
       } }), this.el);
   },
 

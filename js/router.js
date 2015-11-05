@@ -141,8 +141,7 @@ let Router = Backbone.Router.extend({
   createAccount(){
     this.render(<CreateAccount 
       onSubmitClick={(first, last, email, user, password) => this.newUser(first, last, email, user, password)}
-
-      onCancelClick={() => goto('login')}/>, this.el);
+      onCancelClick={() => this.goto('login')}/>, this.el);
   },
 
   newUser(first, last, email, user, password) {
