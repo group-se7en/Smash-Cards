@@ -32,7 +32,7 @@ export default React.createClass({
       Play </button>
       <button className="edit" onClick={() => this.editDeck()}>Edit Deck</button>    
     </div>
-      )
+    );
  },
 
   render() {

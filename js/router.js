@@ -53,7 +53,7 @@ let Router = Backbone.Router.extend({
     render(<AddDeck_View 
       onSubmitClick={(title) => {
         let newDeck = new DeckModel ({
-          Title: title
+          title: title
         });
 
         newDeck.save().then(() => {
@@ -100,20 +100,17 @@ let Router = Backbone.Router.extend({
 
   home(){
     this.render(<SignIn
-      onSignInClick={() => this.logIn()}/>, this.el)
+      onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el)
   },
 
-  logIn() {
-    let userName = document.querySelector("#userName").value;
-    let passWord = document.querySelector("#passWord").value;
+  logIn(username, password) {
 
-      console.log(userName);
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
       data: {
-        username: userName,
-        password: passWord
+        username: username,
+        password: password
       }
     });
     
@@ -154,14 +151,14 @@ let Router = Backbone.Router.extend({
       id      :2
     }
  ];
- // console.log(data);
+
   this.render(
     <SelectDeck
-    decks={data}
-    onHome={() => this.goto('login')}
-    onPlay={(id) => this.goto('user/:id/deck' + id)}
-    onAdd={(id) => this.goto('user/:id/deck' + id)}
-    onEdit={(id) => this.goto('user/:id/deck/:id/edit' + id)}/>,
+      decks={data}
+      onHome={() => this.goto('login')}
+      onPlay={(id) => this.goto('user/:id/deck' + id)}
+      onAdd={(id) => this.goto('user/:id/deck' + id)}
+      onEdit={(id) => this.goto('user/:id/deck/:id/edit' + id)}/>,
     );
   
   },
