@@ -1,11 +1,11 @@
 import Backbone from 'backbone';
-import {APP_URL_User} from '../parse_data';
+
 
 export default Backbone.Model.extend({
 
-  urlRoot: APP_URL_User,
+  urlRoot: 'https://morning-temple-4972.herokuapp.com/signup',
 
-  idAttribute: 'id',
+  idAttribute: 'auth_token',
 
 
 
