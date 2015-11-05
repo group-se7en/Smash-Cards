@@ -35,7 +35,9 @@ let Router = Backbone.Router.extend({
 
   addDeck() {
     
-    render(<AddDeck_View/>, el);
+    render(<AddDeck_View 
+        onSubmitClick={() => this.goto('user/:id/deck/:id/card')}
+    />, el);
   },
 
   home(){
