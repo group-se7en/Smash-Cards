@@ -2,8 +2,14 @@
 @import "neat";
 @import "font-awesome";
 
+$background-color: #B39C84;
+$adminBack-color: #3B424C;
+$text-color: #1D171F;
+$smallBtn-color: #FF522A;
+$bigBtn-color: #2D6E74;
+
 body {
-  background: #e2ebf3;
+  background: $background-color;
 }
 
 /******** Play View Styling ***********/
