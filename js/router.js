@@ -19,8 +19,8 @@ let Router = Backbone.Router.extend({
   },
 
 
-  initialize() {
-    let el = document.querySelector('.app');
+  initialize(appElement) {
+    this.el = appElement;
   },
 
   goto(route) {
@@ -30,7 +30,7 @@ let Router = Backbone.Router.extend({
   },
 
   render(component) {
-    ReactDom.render(component, el);
+    ReactDom.render(component, this.el);
   },
 
   addDeck() {
@@ -68,7 +68,7 @@ let Router = Backbone.Router.extend({
   },
 
   play() {
-    render(<Play_View/>, el);
+    this.render(<Play_View/>, this.el);
   },
 
   start() {
