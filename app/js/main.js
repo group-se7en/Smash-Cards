@@ -145,7 +145,7 @@ var Router = _backbone2['default'].Router.extend({
     "user/:id": "selectDeck",
     "user/:id/deck/": "addDeck",
     "user/:id/deck/:id/card": "addCard",
-    "user/:id/deck/:id/edit": "edit",
+    "user/:id/deck/:id/edit": "editCard",
     "play": "play",
     "score": "score"
   },
@@ -201,8 +201,34 @@ var Router = _backbone2['default'].Router.extend({
       } }), el);
   },
 
-  home: function home() {
+  editCard: function editCard(id) {
     var _this3 = this;
+
+    var data = this.colletion.get(id);
+
+    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      data: data.toJSON(),
+      onSubmitClick: function (question, answer) {
+        return _this3.saveCard(question, answer, id);
+      },
+      onCancelClick: function () {
+        return goto('user/:id');
+      } }), el);
+  },
+
+  saveCard: function saveCard(question, answer, id) {
+    var _this4 = this;
+
+    this.collection.get(id).save({
+      card_question: qustion,
+      card_answer: answer
+    }).then(function () {
+      _this4.goto('user/:id');
+    });
+  },
+
+  home: function home() {
+    var _this5 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
@@ -227,7 +253,7 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this3.goto('user/' + data.username);
+      _this5.goto('user/' + data.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });

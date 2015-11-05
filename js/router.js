@@ -13,7 +13,7 @@ let Router = Backbone.Router.extend({
     "user/:id": "selectDeck",
     "user/:id/deck/": "addDeck",
     "user/:id/deck/:id/card": "addCard",
-    "user/:id/deck/:id/edit": "edit",
+    "user/:id/deck/:id/edit": "editCard",
     "play": "play",
     "score": "score",
   },
@@ -62,6 +62,25 @@ let Router = Backbone.Router.extend({
         });
       }}
       onFinishClick={() => goto('user/:id')}/>, el);
+  },
+
+  editCard(id) {
+
+    let data = this.colletion.get(id);
+    
+    render(<AddDeck_View 
+      data={data.toJSON()}
+      onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
+      onCancelClick={() => goto('user/:id')}/>, el);
+  },
+
+  saveCard(question, answer, id) {
+    this.collection.get(id).save({
+      card_question: qustion,
+      card_answer: answer
+    }).then(() => {
+      this.goto('user/:id');
+    });
   },
 
   home(){
