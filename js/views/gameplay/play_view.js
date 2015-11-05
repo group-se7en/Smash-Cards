@@ -6,13 +6,12 @@ let Play_View = React.createClass({
 
   getInitialState() {
     return {
-      secondsRemaining: 0,
+      secondsRemaining: 10,
       question: 'stringy string'
     };
   },
 
   ticking() {
-    let wat = document.querySelector('.submitAnswer')
     this.setState({secondsRemaining: this.state.secondsRemaining - 1});
     if (this.state.secondsRemaining <= 0) {
       clearInterval(this.interval);
@@ -44,15 +43,12 @@ let Play_View = React.createClass({
     } else{
       alert ('wrong');
     }
-
-    
   },
 
   nextCard(){
     this.setState({
       secondsRemaining: 10,
       question: 'you is so dumb'
-
     })
   },
 

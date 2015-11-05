@@ -718,13 +718,12 @@ var Play_View = _react2['default'].createClass({
 
   getInitialState: function getInitialState() {
     return {
-      secondsRemaining: 0,
+      secondsRemaining: 10,
       question: 'stringy string'
     };
   },
 
   ticking: function ticking() {
-    var wat = document.querySelector('.submitAnswer');
     this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
     if (this.state.secondsRemaining <= 0) {
       clearInterval(this.interval);
@@ -762,7 +761,6 @@ var Play_View = _react2['default'].createClass({
     this.setState({
       secondsRemaining: 10,
       question: 'you is so dumb'
-
     });
   },
 
