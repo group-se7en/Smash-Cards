@@ -264,6 +264,8 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   selectDeck: function selectDeck() {
+    var _this6 = this;
+
     var data = [{
       title: "Magic",
       id: 1
@@ -271,15 +273,25 @@ var Router = _backbone2['default'].Router.extend({
       title: "Japanese",
       id: 2
     }];
-
     // console.log(data);
-
-    _reactDom2['default'].render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
-      decks: data }), document.querySelector('.app'));
+    this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
+      decks: data,
+      onHome: function () {
+        return _this6.goto('login');
+      },
+      onPlay: function (id) {
+        return _this6.goto('user/:id/deck' + id);
+      },
+      onAdd: function (id) {
+        return _this6.goto('user/:id/deck' + id);
+      },
+      onEdit: function (id) {
+        return _this6.goto('user/:id/deck/:id/edit' + id);
+      } }));
   },
 
   play: function play() {
-    var _this6 = this;
+    var _this7 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -300,7 +312,7 @@ var Router = _backbone2['default'].Router.extend({
           title: data.title
         }
       });
-      _this6.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this6.el);
+      _this7.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this7.el);
     });
   },
 
@@ -389,13 +401,7 @@ var _react2 = _interopRequireDefault(_react);
 exports["default"] = _react2["default"].createClass({
   displayName: "admin_component",
 
-  logOut: function logOut() {
-    console.log("logOut");
-  },
-
   render: function render() {
-    var _this = this;
-
     return _react2["default"].createElement(
       "div",
       { className: "admin" },
@@ -411,9 +417,7 @@ exports["default"] = _react2["default"].createClass({
       ),
       _react2["default"].createElement(
         "button",
-        { onClick: function () {
-            return _this.logOut();
-          } },
+        null,
         "Log out"
       ),
       _react2["default"].createElement(
@@ -451,16 +455,20 @@ var _admin_component2 = _interopRequireDefault(_admin_component);
 exports['default'] = _react2['default'].createClass({
   displayName: 'select_deck',
 
-  addDeck: function addDeck() {
-    console.log('addDeck');
-  },
-
   playDeck: function playDeck() {
     console.log('playDeck');
   },
 
+  addDeck: function addDeck() {
+    console.log('addDeck');
+  },
+
   editDeck: function editDeck() {
     console.log('editDeck');
+    this.props.onHome();
+  },
+  logOut: function logOut() {
+    console.log('logOut please');
   },
 
   formatData: function formatData(deck) {

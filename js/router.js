@@ -125,17 +125,18 @@ let Router = Backbone.Router.extend({
       id      :2
     }
  ];
-
  // console.log(data);
-
-  ReactDom.render(
+  this.render(
     <SelectDeck
-    decks={data}/>,
-
-    document.querySelector('.app')
+    decks={data}
+    onHome={() => this.goto('login')}
+    onPlay={(id) => this.goto('user/:id/deck' + id)}
+    onAdd={(id) => this.goto('user/:id/deck' + id)}
+    onEdit={(id) => this.goto('user/:id/deck/:id/edit' + id)}/>,
     );
   
   },
+ 
 
   play() {
 
