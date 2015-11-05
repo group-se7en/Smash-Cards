@@ -75,7 +75,7 @@ let Router = Backbone.Router.extend({
       onCancelClick={() => goto('user/:username')}/>, el);
   },
 
-  saveCard(question, answer, id) {
+  saveCard(question, answer, username) {
     this.collection.get(id).save({
       card_question: qustion,
       card_answer: answer
@@ -85,15 +85,21 @@ let Router = Backbone.Router.extend({
   },
 
   home(){
-    this.render(<SignIn/>, this.el)
+    this.render(<SignIn
+      onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el)
       // onSignInClick={}
-  
+  },
+
+  logIn(username, pass) {
+    let name = username;
+    let password = pass;
+
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
       data: {
-        username: 'brucelee',
-        password: 'brucelee'
+        username: name,
+        password: password
       }
     });
     
@@ -115,6 +121,7 @@ let Router = Backbone.Router.extend({
     }).fail(() => {
       $('.app').html('Oops..');
     });
+
   },
 
   selectDeck(){

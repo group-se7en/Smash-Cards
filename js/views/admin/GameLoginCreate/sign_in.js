@@ -64,12 +64,27 @@ export default React.createClass({
   // },
 
   },
+
+   updateUsername(event) {
+    let newName = event.currentTarget.value;
+    
+    this.setState({
+      username: newName
+    });
+  },
+
+  updatePassword(event) {
+    let newPass = event.currentTarget.value;
+
+    this.setState({
+      password: newPass
+    });
+  },
   
 
   signIn(event) {
     event.preventDefault();
-    console.log('You got me signed in');
-    this.props.onSignInClick();
+    this.props.onSignInClick(this.state.username, this.state.password);
   },
 
   render() {
@@ -81,8 +96,8 @@ export default React.createClass({
         <div className="sign-in">
           <h2>Enter Your Login Credentials</h2>
           <form>
-            <label>Your Username: <input id="userName" type="text" className="user"/></label>
-            <label>Your Password: <input id="passWord" type="text" className="password"/></label>
+            <label>Your Username: <input id="userName" type="text" className="user" onChange={this.updateUsername}/></label>
+            <label>Your Password: <input id="passWord" type="text" className="password" onChange={this.updatePassword}/></label>
             <button onClick={this.signIn}>Sign In</button>
           </form>
         </div>
