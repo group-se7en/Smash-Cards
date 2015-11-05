@@ -39,17 +39,29 @@ let Play_View = React.createClass({
   // },
 
   render() {
+   
     return (
       <div className="playViewWrapper">
+
+
+       
+
+        return 
         <div className="deckTitle">
           Deck Title
+          
         </div>
 
         <div className="mainPlay">
 
           <div className="countDownTimerLeft">
+
+            Countdown Clock
+
+
             <div>Time Remaining:</div>
             <div className="timeValue">{this.state.secondsRemaining}</div>
+
           </div>
 
           <div className="question">

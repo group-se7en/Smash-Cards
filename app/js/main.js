@@ -279,7 +279,29 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
-    this.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), this.el);
+    var _this6 = this;
+
+    var request = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      method: 'POST',
+      data: {
+        auth_token: 'a50111d48c38dda4355f0f640870ebce'
+      }
+    });
+
+    (0, _jquery2['default'])('.app').html('loading...');
+
+    request.then(function (data) {
+      _jsCookie2['default'].set('user', data);
+
+      _jquery2['default'].ajaxSetup({
+        headers: {
+          id: data.id,
+          title: data.title
+        }
+      });
+      _this6.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this6.el);
+    });
   },
 
   start: function start() {
@@ -566,9 +588,11 @@ var Play_View = _react2['default'].createClass({
   // },
 
   render: function render() {
+
     return _react2['default'].createElement(
       'div',
       { className: 'playViewWrapper' },
+      'return',
       _react2['default'].createElement(
         'div',
         { className: 'deckTitle' },
@@ -580,6 +604,7 @@ var Play_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'div',
           { className: 'countDownTimerLeft' },
+          'Countdown Clock',
           _react2['default'].createElement(
             'div',
             null,
