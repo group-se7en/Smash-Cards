@@ -36,8 +36,32 @@ let Router = Backbone.Router.extend({
   addDeck() {
     
     render(<AddDeck_View 
-        onSubmitClick={() => this.goto('user/:id/deck/:id/card')}
-    />, el);
+      onSubmitClick={(title) => {
+        let newDeck = new DeckModel ({
+          Title: title
+        });
+
+        newDeck.save().then(() => {
+          this.goto('user/:id/deck/:id/card');
+        });
+      }}
+      onCancelClick={() => goto('user/:id')}/>, el);
+  },
+
+  addCard() {
+    
+    render(<AddDeck_View 
+      onSubmitClick={(question, answer) => {
+        let newCard = new CardModel ({
+          card_question: question,
+          card_answer: answer
+        });
+
+        newCard.save().then(() => {
+          this.goto('user/:id/deck/:id/card');
+        });
+      }}
+      onFinishClick={() => goto('user/:id')}/>, el);
   },
 
   home(){
