@@ -2,6 +2,8 @@ import Backbone from 'backbone';
 import React from 'react';
 import ReactDom from 'react-dom';
 import Play_View from './views/gameplay/play_view';
+import Cookies from 'js-cookie';
+import $ from 'jquery';
 
 // Routes for page views
 let Router = Backbone.Router.extend({
