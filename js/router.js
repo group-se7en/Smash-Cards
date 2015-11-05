@@ -9,12 +9,14 @@ import AddDeck_View from './views/admin/add_deck';
 import AddCard_View from './views/admin/add_cards';
 import EditCard_View from './views/admin/edit_cards';
 import SignIn from './views/admin/GameLoginCreate/sign_in';
+import CreateAccount from './views/admin/GameLoginCreate/create_account';
 
 // Routes for page views
 let Router = Backbone.Router.extend({
   routes: {
     "" : "redirectToLogin",
     "login": "home",  
+    "register": "createAccount",  
     "user/:username": "selectDeck",
     "user/:username/decks/": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
@@ -98,19 +100,20 @@ let Router = Backbone.Router.extend({
 
   home(){
     this.render(<SignIn
-      onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el)
+      onSignInClick={() => this.logIn()}/>, this.el)
   },
 
-  logIn(username, pass) {
-    let name = username;
-    let password = pass;
+  logIn() {
+    let userName = document.querySelector("#userName").value;
+    let passWord = document.querySelector("#passWord").value;
 
+      console.log(userName);
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
       data: {
-        username: name,
-        password: password
+        username: userName,
+        password: passWord
       }
     });
     
@@ -132,6 +135,10 @@ let Router = Backbone.Router.extend({
     }).fail(() => {
       $('.app').html('Oops..');
     });
+
+  },
+
+  createAccount(){
 
   },
 

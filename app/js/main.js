@@ -77,7 +77,11 @@ exports['default'] = _backbone2['default'].Collection.extend({
 });
 module.exports = exports['default'];
 
+<<<<<<< HEAD
 },{"../parse_data":2,"./user_model":4,"backbone":13}],4:[function(require,module,exports){
+=======
+},{"../parse_data":2,"./user_model":4,"backbone":12}],4:[function(require,module,exports){
+>>>>>>> jeff
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -101,7 +105,11 @@ exports['default'] = _backbone2['default'].Model.extend({
 });
 module.exports = exports['default'];
 
+<<<<<<< HEAD
 },{"../parse_data":2,"backbone":13}],5:[function(require,module,exports){
+=======
+},{"../parse_data":2,"backbone":12}],5:[function(require,module,exports){
+>>>>>>> jeff
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -154,11 +162,16 @@ var _viewsAdminGameLoginCreateSign_in = require('./views/admin/GameLoginCreate/s
 
 var _viewsAdminGameLoginCreateSign_in2 = _interopRequireDefault(_viewsAdminGameLoginCreateSign_in);
 
+var _viewsAdminGameLoginCreateCreate_account = require('./views/admin/GameLoginCreate/create_account');
+
+var _viewsAdminGameLoginCreateCreate_account2 = _interopRequireDefault(_viewsAdminGameLoginCreateCreate_account);
+
 // Routes for page views
 var Router = _backbone2['default'].Router.extend({
   routes: {
     "": "redirectToLogin",
     "login": "home",
+    "register": "createAccount",
     "user/:username": "selectDeck",
     "user/:username/decks/": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
@@ -255,23 +268,24 @@ var Router = _backbone2['default'].Router.extend({
     var _this5 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], {
-      onSignInClick: function (username, password) {
-        return _this5.logIn(username, password);
+      onSignInClick: function () {
+        return _this5.logIn();
       } }), this.el);
   },
 
-  logIn: function logIn(username, pass) {
+  logIn: function logIn() {
     var _this6 = this;
 
-    var name = username;
-    var password = pass;
+    var userName = document.querySelector("#userName").value;
+    var passWord = document.querySelector("#passWord").value;
 
+    console.log(userName);
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
       data: {
-        username: name,
-        password: password
+        username: userName,
+        password: passWord
       }
     });
 
@@ -294,6 +308,8 @@ var Router = _backbone2['default'].Router.extend({
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
+
+  createAccount: function createAccount() {},
 
   selectDeck: function selectDeck() {
     var _this7 = this;
@@ -358,21 +374,164 @@ var Router = _backbone2['default'].Router.extend({
 exports['default'] = Router;
 module.exports = exports['default'];
 
+<<<<<<< HEAD
 },{"./views/admin/GameLoginCreate/sign_in":6,"./views/admin/add_cards":7,"./views/admin/add_deck":8,"./views/admin/edit_cards":10,"./views/admin/select_deck":11,"./views/gameplay/play_view":12,"backbone":13,"jquery":15,"js-cookie":16,"react":174,"react-dom":18}],6:[function(require,module,exports){
 "use strict";
+=======
+},{"./views/admin/GameLoginCreate/create_account":6,"./views/admin/GameLoginCreate/sign_in":7,"./views/admin/add_deck":8,"./views/admin/select_deck":10,"./views/gameplay/play_view":11,"backbone":12,"jquery":15,"js-cookie":16,"react":174,"react-dom":18}],6:[function(require,module,exports){
+'use strict';
+>>>>>>> jeff
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-exports["default"] = _react2["default"].createClass({
-  displayName: "sign_in",
+exports['default'] = _react2['default'].createClass({
+  displayName: 'create_account',
+
+  getStatus: function getStatus() {
+    var fistName = this.props.fistName;
+    if (firstName) {
+      // add code here for input values to only be letter
+      return;
+    }
+
+    var lastName = this.props.lastName;
+    if (lasttName) {
+      // add code here for input values to only be letter
+      return;
+    }
+
+    var email = this.props.email;
+    if (email) {
+      // add code here for email address to have the @ in it
+      return;
+    }
+
+    var user = this.props.user;
+    if (user) {
+      // add code here for minimum username size to be a certain amount
+      return;
+    }
+
+    var password = this.props.password;
+    if (password) {
+      // add code here for password to be case sensitive and with numbers
+      return;
+    }
+
+    var repassword = this.props.repassword;
+    if (password - again) {
+      // add code here for it to check and be identical with the text that got put in for the password
+      return;
+    }
+
+    var goToAdminProfle = this.props.goToAdminProfle;
+    if (goToAdminProfle) {
+      // add code her to check the whole form to see if things are all in order with all of the properties
+      return;
+    }
+  },
+
+  createAccount: function createAccount() {
+    console.log('You a newbie to the tribe');
+    this.props.onCreactAccountClick();
+  },
+
+  render: function render() {
+    return _react2['default'].createElement(
+      'div',
+      null,
+      _react2['default'].createElement(
+        'div',
+        { className: 'header' },
+        _react2['default'].createElement(
+          'h2',
+          null,
+          ' Welcome to Flashcard Game '
+        )
+      ),
+      _react2['default'].createElement(
+        'div',
+        { className: 'sign-in' },
+        _react2['default'].createElement(
+          'h2',
+          null,
+          'Create an Account'
+        ),
+        _react2['default'].createElement(
+          'form',
+          null,
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Your First Name: ',
+            _react2['default'].createElement('input', { type: 'text', className: 'firstName' })
+          ),
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Your Last Name: ',
+            _react2['default'].createElement('input', { type: 'text', className: 'lastName' })
+          ),
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Your Email: ',
+            _react2['default'].createElement('input', { type: 'text', className: 'email' })
+          ),
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Your Username: ',
+            _react2['default'].createElement('input', { type: 'text', className: 'user' })
+          ),
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Your Password: ',
+            _react2['default'].createElement('input', { type: 'text', className: 'password' })
+          ),
+          _react2['default'].createElement(
+            'label',
+            null,
+            'Re-Enter Your Password: ',
+            _react2['default'].createElement('input', { type: 'text', className: 'repassword' })
+          ),
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.createAccount },
+            'Create Account'
+          )
+        )
+      )
+    );
+  }
+
+});
+module.exports = exports['default'];
+
+},{"react":174}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+exports['default'] = _react2['default'].createClass({
+  displayName: 'sign_in',
 
   getStatus: function getStatus() {
 
@@ -453,49 +612,50 @@ exports["default"] = _react2["default"].createClass({
 
   signIn: function signIn(event) {
     event.preventDefault();
+    console.log('Yooo you signed in');
     this.props.onSignInClick(this.state.username, this.state.password);
   },
 
   render: function render() {
-    return _react2["default"].createElement(
-      "div",
+    return _react2['default'].createElement(
+      'div',
       null,
-      _react2["default"].createElement(
-        "div",
-        { className: "header" },
-        _react2["default"].createElement(
-          "h2",
+      _react2['default'].createElement(
+        'div',
+        { className: 'header' },
+        _react2['default'].createElement(
+          'h2',
           null,
-          " Welcome to Flashcard Game "
+          ' Welcome to Flashcard Game '
         )
       ),
-      _react2["default"].createElement(
-        "div",
-        { className: "sign-in" },
-        _react2["default"].createElement(
-          "h2",
+      _react2['default'].createElement(
+        'div',
+        { className: 'sign-in' },
+        _react2['default'].createElement(
+          'h2',
           null,
-          "Enter Your Login Credentials"
+          'Enter Your Login Credentials'
         ),
-        _react2["default"].createElement(
-          "form",
+        _react2['default'].createElement(
+          'form',
           null,
-          _react2["default"].createElement(
-            "label",
+          _react2['default'].createElement(
+            'label',
             null,
-            "Your Username: ",
-            _react2["default"].createElement("input", { id: "userName", type: "text", className: "user", onChange: this.updateUsername })
+            'Your Username: ',
+            _react2['default'].createElement('input', { id: 'userName', type: 'text', className: 'user', onChange: this.updateUsername })
           ),
-          _react2["default"].createElement(
-            "label",
+          _react2['default'].createElement(
+            'label',
             null,
-            "Your Password: ",
-            _react2["default"].createElement("input", { id: "passWord", type: "text", className: "password", onChange: this.updatePassword })
+            'Your Password: ',
+            _react2['default'].createElement('input', { id: 'passWord', type: 'text', className: 'password', onChange: this.updatePassword })
           ),
-          _react2["default"].createElement(
-            "button",
+          _react2['default'].createElement(
+            'button',
             { onClick: this.signIn },
-            "Sign In"
+            'Sign In'
           )
         )
       )
@@ -503,8 +663,9 @@ exports["default"] = _react2["default"].createClass({
   }
 
 });
-module.exports = exports["default"];
+module.exports = exports['default'];
 
+<<<<<<< HEAD
 },{"react":174}],7:[function(require,module,exports){
 'use strict';
 
@@ -573,6 +734,8 @@ exports['default'] = _react2['default'].createClass({
 });
 module.exports = exports['default'];
 
+=======
+>>>>>>> jeff
 },{"react":174}],8:[function(require,module,exports){
 'use strict';
 
@@ -679,6 +842,7 @@ exports["default"] = _react2["default"].createClass({
 module.exports = exports["default"];
 
 },{"react":174}],10:[function(require,module,exports){
+<<<<<<< HEAD
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -754,6 +918,8 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 },{"react":174}],11:[function(require,module,exports){
+=======
+>>>>>>> jeff
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -861,7 +1027,11 @@ exports['default'] = _react2['default'].createClass({
 });
 module.exports = exports['default'];
 
+<<<<<<< HEAD
 },{"./admin_component":9,"react":174,"react-dom":18}],12:[function(require,module,exports){
+=======
+},{"./admin_component":9,"react":174,"react-dom":18}],11:[function(require,module,exports){
+>>>>>>> jeff
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1008,7 +1178,11 @@ var Play_View = _react2['default'].createClass({
 exports['default'] = Play_View;
 module.exports = exports['default'];
 
+<<<<<<< HEAD
 },{"moment":17,"react":174}],13:[function(require,module,exports){
+=======
+},{"moment":17,"react":174}],12:[function(require,module,exports){
+>>>>>>> jeff
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -2907,8 +3081,16 @@ module.exports = exports['default'];
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
+<<<<<<< HEAD
 },{"jquery":15,"underscore":175}],14:[function(require,module,exports){
 // shim for using process in browser
+=======
+},{"jquery":15,"underscore":13}],13:[function(require,module,exports){
+//     Underscore.js 1.8.3
+//     http://underscorejs.org
+//     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+//     Underscore may be freely distributed under the MIT license.
+>>>>>>> jeff
 
 var process = module.exports = {};
 var queue = [];
@@ -3962,6 +4144,7 @@ function createInputPseudo( type ) {
 	};
 }
 
+<<<<<<< HEAD
 /**
  * Returns a function to use in pseudos for buttons
  * @param {String} type
@@ -3972,6 +4155,10 @@ function createButtonPseudo( type ) {
 		return (name === "input" || name === "button") && elem.type === type;
 	};
 }
+=======
+},{}],14:[function(require,module,exports){
+// shim for using process in browser
+>>>>>>> jeff
 
 /**
  * Returns a function to use in pseudos for positionals
@@ -4033,10 +4220,39 @@ setDocument = Sizzle.setDocument = function( node ) {
 		return document;
 	}
 
+<<<<<<< HEAD
 	// Set our document
 	document = doc;
 	docElem = doc.documentElement;
 	parent = doc.defaultView;
+=======
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}],15:[function(require,module,exports){
+/*!
+ * jQuery JavaScript Library v2.1.4
+ * http://jquery.com/
+ *
+ * Includes Sizzle.js
+ * http://sizzlejs.com/
+ *
+ * Copyright 2005, 2014 jQuery Foundation, Inc. and other contributors
+ * Released under the MIT license
+ * http://jquery.org/license
+ *
+ * Date: 2015-04-28T16:01Z
+ */
+
+(function( global, factory ) {
+>>>>>>> jeff
 
 	// Support: IE>8
 	// If iframe document is assigned to "document" variable and if iframe has been reloaded,
@@ -12931,11 +13147,47 @@ return jQuery;
         });
     }
 
+<<<<<<< HEAD
     function addTimeToArrayFromToken(token, input, config) {
         if (input != null && hasOwnProp(tokens, token)) {
             tokens[token](input, config._a, config, token);
         }
     }
+=======
+},{}],16:[function(require,module,exports){
+/*!
+ * JavaScript Cookie v2.0.4
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+(function (factory) {
+	if (typeof define === 'function' && define.amd) {
+		define(factory);
+	} else if (typeof exports === 'object') {
+		module.exports = factory();
+	} else {
+		var _OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = _OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+>>>>>>> jeff
 
     var YEAR = 0;
     var MONTH = 1;
@@ -13060,8 +13312,42 @@ return jQuery;
         }
     }
 
+<<<<<<< HEAD
     function getDaysInMonth () {
         return daysInMonth(this.year(), this.month());
+=======
+},{}],17:[function(require,module,exports){
+//! moment.js
+//! version : 2.10.6
+//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
+//! license : MIT
+//! momentjs.com
+
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    global.moment = factory()
+}(this, function () { 'use strict';
+
+    var hookCallback;
+
+    function utils_hooks__hooks () {
+        return hookCallback.apply(null, arguments);
+    }
+
+    // This is done to register the method called with moment()
+    // without creating circular dependencies.
+    function setHookCallback (callback) {
+        hookCallback = callback;
+    }
+
+    function isArray(input) {
+        return Object.prototype.toString.call(input) === '[object Array]';
+    }
+
+    function isDate(input) {
+        return input instanceof Date || Object.prototype.toString.call(input) === '[object Date]';
+>>>>>>> jeff
     }
 
     function checkOverflow (m) {
@@ -35120,11 +35406,25 @@ module.exports = require('./lib/React');
     return _.unzip(arguments);
   };
 
+<<<<<<< HEAD
   // Complement of _.zip. Unzip accepts an array of arrays and groups
   // each array's elements on shared indices
   _.unzip = function(array) {
     var length = array && _.max(array, getLength).length || 0;
     var result = Array(length);
+=======
+},{"_process":14}],156:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule focusNode
+ */
+>>>>>>> jeff
 
     for (var index = 0; index < length; index++) {
       result[index] = _.pluck(array, index);
@@ -35147,6 +35447,7 @@ module.exports = require('./lib/React');
     return result;
   };
 
+<<<<<<< HEAD
   // Generator function to create the findIndex and findLastIndex functions
   function createPredicateIndexFinder(dir) {
     return function(array, predicate, context) {
@@ -35159,6 +35460,21 @@ module.exports = require('./lib/React');
       return -1;
     };
   }
+=======
+module.exports = focusNode;
+},{}],157:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule getActiveElement
+ * @typechecks
+ */
+>>>>>>> jeff
 
   // Returns the first index on an array-like that passes a predicate test
   _.findIndex = createPredicateIndexFinder(1);
@@ -35202,12 +35518,28 @@ module.exports = require('./lib/React');
     };
   }
 
+<<<<<<< HEAD
   // Return the position of the first occurrence of an item in an array,
   // or -1 if the item is not included in the array.
   // If the array is large and already in sort order, pass `true`
   // for **isSorted** to use binary search.
   _.indexOf = createIndexFinder(1, _.findIndex, _.sortedIndex);
   _.lastIndexOf = createIndexFinder(-1, _.findLastIndex);
+=======
+module.exports = getActiveElement;
+},{}],158:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule getMarkupWrap
+ */
+>>>>>>> jeff
 
   // Generate an integer Array containing an arithmetic progression. A port of
   // the native Python `range()` function. See
@@ -35379,9 +35711,24 @@ module.exports = require('./lib/React');
         context = args = null;
       }
 
+<<<<<<< HEAD
       return result;
     };
   };
+=======
+},{"./ExecutionEnvironment":148,"./invariant":162,"_process":14}],159:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule getUnboundedScrollPosition
+ * @typechecks
+ */
+>>>>>>> jeff
 
   // Returns the first function passed as an argument to the second,
   // allowing you to adjust arguments, run code before and after, and
@@ -35397,6 +35744,7 @@ module.exports = require('./lib/React');
     };
   };
 
+<<<<<<< HEAD
   // Returns a function that is the composition of a list of functions, each
   // consuming the return value of the function that follows.
   _.compose = function() {
@@ -35442,6 +35790,21 @@ module.exports = require('./lib/React');
   var hasEnumBug = !{toString: null}.propertyIsEnumerable('toString');
   var nonEnumerableProps = ['valueOf', 'isPrototypeOf', 'toString',
                       'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString'];
+=======
+module.exports = getUnboundedScrollPosition;
+},{}],160:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule hyphenate
+ * @typechecks
+ */
+>>>>>>> jeff
 
   function collectNonEnumProps(obj, keys) {
     var nonEnumIdx = nonEnumerableProps.length;
@@ -35460,6 +35823,7 @@ module.exports = require('./lib/React');
     }
   }
 
+<<<<<<< HEAD
   // Retrieve the names of an object's own properties.
   // Delegates to **ECMAScript 5**'s native `Object.keys`
   _.keys = function(obj) {
@@ -35471,6 +35835,21 @@ module.exports = require('./lib/React');
     if (hasEnumBug) collectNonEnumProps(obj, keys);
     return keys;
   };
+=======
+module.exports = hyphenate;
+},{}],161:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule hyphenateStyleName
+ * @typechecks
+ */
+>>>>>>> jeff
 
   // Retrieve all the property names of an object.
   _.allKeys = function(obj) {
@@ -35519,6 +35898,7 @@ module.exports = require('./lib/React');
     return pairs;
   };
 
+<<<<<<< HEAD
   // Invert the keys and values of an object. The values must be serializable.
   _.invert = function(obj) {
     var result = {};
@@ -35528,6 +35908,21 @@ module.exports = require('./lib/React');
     }
     return result;
   };
+=======
+module.exports = hyphenateStyleName;
+},{"./hyphenate":160}],162:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule invariant
+ */
+>>>>>>> jeff
 
   // Return a sorted list of the function names available on the object.
   // Aliased as `methods`
@@ -35592,6 +35987,7 @@ module.exports = require('./lib/React');
   // Fill in a given object with default properties.
   _.defaults = createAssigner(_.allKeys, true);
 
+<<<<<<< HEAD
   // Creates an object that inherits from the given prototype object.
   // If additional properties are provided then they will be added to the
   // created object.
@@ -35600,6 +35996,20 @@ module.exports = require('./lib/React');
     if (props) _.extendOwn(result, props);
     return result;
   };
+=======
+},{"_process":14}],163:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule isNode
+ * @typechecks
+ */
+>>>>>>> jeff
 
   // Create a (shallow-cloned) duplicate of an object.
   _.clone = function(obj) {
@@ -35615,6 +36025,7 @@ module.exports = require('./lib/React');
     return obj;
   };
 
+<<<<<<< HEAD
   // Returns whether an object has a given set of `key:value` pairs.
   _.isMatch = function(object, attrs) {
     var keys = _.keys(attrs), length = keys.length;
@@ -35626,6 +36037,21 @@ module.exports = require('./lib/React');
     }
     return true;
   };
+=======
+module.exports = isNode;
+},{}],164:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule isTextNode
+ * @typechecks
+ */
+>>>>>>> jeff
 
 
   // Internal recursive comparison function for `isEqual`.
@@ -35667,6 +36093,7 @@ module.exports = require('./lib/React');
     if (!areArrays) {
       if (typeof a != 'object' || typeof b != 'object') return false;
 
+<<<<<<< HEAD
       // Objects with different constructors are not equivalent, but `Object`s or `Array`s
       // from different frames are.
       var aCtor = a.constructor, bCtor = b.constructor;
@@ -35678,6 +36105,22 @@ module.exports = require('./lib/React');
     }
     // Assume equality for cyclic structures. The algorithm for detecting cyclic
     // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+=======
+module.exports = isTextNode;
+},{"./isNode":163}],165:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule keyMirror
+ * @typechecks static-only
+ */
+>>>>>>> jeff
 
     // Initializing stack of traversed objects.
     // It's done here since we only need them for objects and arrays comparison.
@@ -35726,6 +36169,7 @@ module.exports = require('./lib/React');
     return eq(a, b);
   };
 
+<<<<<<< HEAD
   // Is a given array, string, or object empty?
   // An "empty" object has no enumerable own-properties.
   _.isEmpty = function(obj) {
@@ -35733,6 +36177,19 @@ module.exports = require('./lib/React');
     if (isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj))) return obj.length === 0;
     return _.keys(obj).length === 0;
   };
+=======
+},{"./invariant":162,"_process":14}],166:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule keyOf
+ */
+>>>>>>> jeff
 
   // Is a given value a DOM element?
   _.isElement = function(obj) {
@@ -35766,6 +36223,7 @@ module.exports = require('./lib/React');
     };
   }
 
+<<<<<<< HEAD
   // Optimize `isFunction` if appropriate. Work around some typeof bugs in old v8,
   // IE 11 (#1621), and in Safari 8 (#1929).
   if (typeof /./ != 'function' && typeof Int8Array != 'object') {
@@ -35773,6 +36231,20 @@ module.exports = require('./lib/React');
       return typeof obj == 'function' || false;
     };
   }
+=======
+module.exports = keyOf;
+},{}],167:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule mapObject
+ */
+>>>>>>> jeff
 
   // Is a given object a finite number?
   _.isFinite = function(obj) {
@@ -35789,10 +36261,26 @@ module.exports = require('./lib/React');
     return obj === true || obj === false || toString.call(obj) === '[object Boolean]';
   };
 
+<<<<<<< HEAD
   // Is a given value equal to null?
   _.isNull = function(obj) {
     return obj === null;
   };
+=======
+module.exports = mapObject;
+},{}],168:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule memoizeStringOnly
+ * @typechecks static-only
+ */
+>>>>>>> jeff
 
   // Is a given variable undefined?
   _.isUndefined = function(obj) {
@@ -35805,8 +36293,24 @@ module.exports = require('./lib/React');
     return obj != null && hasOwnProperty.call(obj, key);
   };
 
+<<<<<<< HEAD
   // Utility Functions
   // -----------------
+=======
+module.exports = memoizeStringOnly;
+},{}],169:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule performance
+ * @typechecks
+ */
+>>>>>>> jeff
 
   // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
   // previous owner. Returns a reference to the Underscore object.
@@ -35829,7 +36333,23 @@ module.exports = require('./lib/React');
 
   _.noop = function(){};
 
+<<<<<<< HEAD
   _.property = property;
+=======
+module.exports = performance || {};
+},{"./ExecutionEnvironment":148}],170:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule performanceNow
+ * @typechecks
+ */
+>>>>>>> jeff
 
   // Generates a function for a given object that returns a given property.
   _.propertyOf = function(obj) {
@@ -35864,10 +36384,27 @@ module.exports = require('./lib/React');
     return min + Math.floor(Math.random() * (max - min + 1));
   };
 
+<<<<<<< HEAD
   // A (possibly faster) way to get the current timestamp as an integer.
   _.now = Date.now || function() {
     return new Date().getTime();
   };
+=======
+module.exports = performanceNow;
+},{"./performance":169}],171:[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule shallowEqual
+ * @typechecks
+ * 
+ */
+>>>>>>> jeff
 
    // List of HTML entities for escaping.
   var escapeMap = {
@@ -35941,9 +36478,26 @@ module.exports = require('./lib/React');
 
   var escaper = /\\|'|\r|\n|\u2028|\u2029/g;
 
+<<<<<<< HEAD
   var escapeChar = function(match) {
     return '\\' + escapes[match];
   };
+=======
+module.exports = shallowEqual;
+},{}],172:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule toArray
+ * @typechecks
+ */
+>>>>>>> jeff
 
   // JavaScript micro-templating, similar to John Resig's implementation.
   // Underscore templating handles arbitrary delimiters, preserves whitespace,
@@ -36002,8 +36556,23 @@ module.exports = require('./lib/React');
     var argument = settings.variable || 'obj';
     template.source = 'function(' + argument + '){\n' + source + '}';
 
+<<<<<<< HEAD
     return template;
   };
+=======
+},{"./invariant":162,"_process":14}],173:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2014-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule warning
+ */
+>>>>>>> jeff
 
   // Add a "chain" function. Start chaining a wrapped Underscore object.
   _.chain = function(obj) {
@@ -36066,9 +36635,14 @@ module.exports = require('./lib/React');
   // such as arithmetic and JSON stringification.
   _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
 
+<<<<<<< HEAD
   _.prototype.toString = function() {
     return '' + this._wrapped;
   };
+=======
+},{"./emptyFunction":154,"_process":14}],174:[function(require,module,exports){
+'use strict';
+>>>>>>> jeff
 
   // AMD registration happens at the end for compatibility with AMD loaders
   // that may not enforce next-turn semantics on modules. Even though general
@@ -36084,7 +36658,13 @@ module.exports = require('./lib/React');
   }
 }.call(this));
 
+<<<<<<< HEAD
 },{}]},{},[1])
+=======
+},{"./lib/React":42}],175:[function(require,module,exports){
+arguments[4][13][0].apply(exports,arguments)
+},{"dup":13}]},{},[1])
+>>>>>>> jeff
 
 
 //# sourceMappingURL=main.js.map
