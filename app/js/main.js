@@ -236,38 +236,35 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   home: function home() {
-    var _this5 = this;
-
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], null), this.el);
-    // onSignInClick={}
 
-    var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/login',
-      method: 'POST',
-      data: {
-        username: 'brucelee',
-        password: 'brucelee'
-      }
-    });
+    // let request = $.ajax({
+    //   url: 'https://morning-temple-4972.herokuapp.com/login',
+    //   method: 'POST',
+    //   data: {
+    //     username: 'brucelee',
+    //     password: 'brucelee'
+    //   }
+    // });
 
-    (0, _jquery2['default'])('.app').html('loading...');
+    // $('.app').html('loading...');
 
-    request.then(function (data) {
-      _jsCookie2['default'].set('user', data);
+    // request.then((data) => {
+    //   Cookies.set('user', data);
 
-      _jquery2['default'].ajaxSetup({
-        headers: {
-          auth_token: data.access_token,
-          firstname: data.firstname,
-          lastname: data.lastname,
-          email: data.email,
-          username: data.username
-        }
-      });
-      _this5.goto('user/' + data.username);
-    }).fail(function () {
-      (0, _jquery2['default'])('.app').html('Oops..');
-    });
+    //   $.ajaxSetup({
+    //     headers: {
+    //       auth_token: data.access_token,
+    //       firstname: data.firstname,
+    //       lastname: data.lastname,
+    //       email: data.email,
+    //       username: data.username
+    //     }
+    //   });
+    //   this.goto(`user/${data.username}`);
+    // }).fail(() => {
+    //   $('.app').html('Oops..');
+    // });
   },
 
   selectDeck: function selectDeck() {
@@ -286,7 +283,7 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
-    var _this6 = this;
+    var _this5 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -307,7 +304,7 @@ var Router = _backbone2['default'].Router.extend({
           title: data.title
         }
       });
-      _this6.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this6.el);
+      _this5.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this5.el);
     });
   },
 

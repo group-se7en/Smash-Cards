@@ -86,35 +86,35 @@ let Router = Backbone.Router.extend({
 
   home(){
     this.render(<SignIn/>, this.el)
-      // onSignInClick={}
+      
   
-    let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/login',
-      method: 'POST',
-      data: {
-        username: 'brucelee',
-        password: 'brucelee'
-      }
-    });
+    // let request = $.ajax({
+    //   url: 'https://morning-temple-4972.herokuapp.com/login',
+    //   method: 'POST',
+    //   data: {
+    //     username: 'brucelee',
+    //     password: 'brucelee'
+    //   }
+    // });
     
-    $('.app').html('loading...');
+    // $('.app').html('loading...');
 
-    request.then((data) => {
-      Cookies.set('user', data);
+    // request.then((data) => {
+    //   Cookies.set('user', data);
 
-      $.ajaxSetup({
-        headers: {
-          auth_token: data.access_token,
-          firstname: data.firstname,
-          lastname: data.lastname,
-          email: data.email,
-          username: data.username
-        }
-      });
-      this.goto(`user/${data.username}`);
-    }).fail(() => {
-      $('.app').html('Oops..');
-    });
+    //   $.ajaxSetup({
+    //     headers: {
+    //       auth_token: data.access_token,
+    //       firstname: data.firstname,
+    //       lastname: data.lastname,
+    //       email: data.email,
+    //       username: data.username
+    //     }
+    //   });
+    //   this.goto(`user/${data.username}`);
+    // }).fail(() => {
+    //   $('.app').html('Oops..');
+    // });
   },
 
   selectDeck(){
