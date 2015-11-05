@@ -331,29 +331,30 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
+    var _this8 = this;
 
-    // let request = $.ajax({
-    //   url: 'https://morning-temple-4972.herokuapp.com/decks',
-    //   method: 'POST',
-    //   data: {
-    //     auth_token: 'a50111d48c38dda4355f0f640870ebce',
-    //   }
-    // });
+    var request = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      method: 'GET',
+      data: {
+        auth_token: 'a50111d48c38dda4355f0f640870ebce'
+      }
+    });
 
-    // $('.app').html('loading...');
+    (0, _jquery2['default'])('.app').html('loading...');
 
-    // request.then((data) => {
-    //   Cookies.set('user', data);
+    request.then(function (data) {
+      _jsCookie2['default'].set('user', data);
 
-    //   $.ajaxSetup({
-    //     headers: {
-    // Auth-Token: '29384792384'
-    //       id: data.id,
-    //       title: data.title
-    //     }
-    //   });
-    this.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), this.el);
-    // })
+      _jquery2['default'].ajaxSetup({
+        headers: {
+
+          id: data.id,
+          title: data.title
+        }
+      });
+      _this8.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), _this8.el);
+    });
   },
 
   score: function score() {
@@ -1049,7 +1050,12 @@ var Play_View = _react2['default'].createClass({
   },
 
   ticking: function ticking() {
+<<<<<<< HEAD
     this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
+=======
+    this.setState({
+      secondsRemaining: this.state.secondsRemaining - 1 });
+>>>>>>> master
     if (this.state.secondsRemaining <= 0) {
       clearInterval(this.interval);
     }
@@ -1086,6 +1092,7 @@ var Play_View = _react2['default'].createClass({
       secondsRemaining: 10,
       question: 'you is so dumb'
     });
+    this.componentDidMount();
   },
 
   render: function render() {
@@ -1164,7 +1171,11 @@ exports['default'] = Play_View;
 module.exports = exports['default'];
 
 },{"moment":19,"react":176}],14:[function(require,module,exports){
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> master
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -1220,7 +1231,11 @@ var Score_View = _react2['default'].createClass({
 exports['default'] = Score_View;
 module.exports = exports['default'];
 
+<<<<<<< HEAD
 },{"./play_view":13,"react":176}],15:[function(require,module,exports){
+=======
+},{"react":176}],15:[function(require,module,exports){
+>>>>>>> master
 (function (global){
 //     Backbone.js 1.2.3
 

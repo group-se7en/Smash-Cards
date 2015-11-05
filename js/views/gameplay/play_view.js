@@ -12,7 +12,9 @@ let Play_View = React.createClass({
   },
 
   ticking() {
-    this.setState({secondsRemaining: this.state.secondsRemaining - 1});
+    this.setState({
+      secondsRemaining: this.state.secondsRemaining - 1}
+      );
     if (this.state.secondsRemaining <= 0) {
       clearInterval(this.interval);
     } 
@@ -49,6 +51,7 @@ let Play_View = React.createClass({
       secondsRemaining: 10,
       question: 'you is so dumb'
     })
+    this.componentDidMount();
   },
 
   
