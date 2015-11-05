@@ -5,7 +5,7 @@ import Play_View from './views/gameplay/play_view';
 import Cookies from 'js-cookie';
 import $ from 'jquery';
 import AddDeck_View from './views/admin/add_deck';
-
+import Score_View from './views/gameplay/score_view';
 // Routes for page views
 let Router = Backbone.Router.extend({
   routes: {
@@ -114,6 +114,10 @@ let Router = Backbone.Router.extend({
 
   play() {
     this.render(<Play_View secondsRemaining={10}/>, this.el);
+  },
+
+  score() {
+    this.render(<Score_View/>,this.el);
   },
 
   start() {

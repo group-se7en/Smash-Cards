@@ -2104,4 +2104,29 @@ body {
   .timeValue {
     font-size: 6em; } }
 
+/******** Score View Styling ***********/
+.gameOverWrapper {
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  border: 5px solid;
+  border-radius: 180px; }
+  .gameOverWrapper .gameOver {
+    font-size: 3em;
+    color: red; }
+
+.scoreNumber {
+  font-size: 3em;
+  color: red;
+  border: 3px solid red;
+  margin-left: 400px;
+  margin-right: 400px;
+  background-color: white; }
+
+.playAgain {
+  padding: 5pt; }
+
+.changeGame {
+  padding: 5pt; }
+
 /*# sourceMappingURL=main.css.map */
