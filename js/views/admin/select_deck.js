@@ -15,7 +15,7 @@ export default React.createClass({
 
  editDeck(){
   console.log('editDeck');
-  this.props.onHome();
+  
  },
  logOut(){
   console.log('logOut please');

@@ -794,7 +794,6 @@ exports['default'] = _react2['default'].createClass({
 
   editDeck: function editDeck() {
     console.log('editDeck');
-    this.props.onHome();
   },
   logOut: function logOut() {
     console.log('logOut please');
