@@ -13,7 +13,7 @@ let Router = Backbone.Router.extend({
     "user/:id": "selectDeck",
     "user/:id/deck/": "addDeck",
     "user/:id/deck/:id/card": "addCard",
-    "user/:id/deck/:id/edit": "edit",
+    "user/:id/deck/:id/edit": "editCard",
     "play": "play",
     "score": "score",
   },
@@ -34,8 +34,52 @@ let Router = Backbone.Router.extend({
   },
 
   addDeck() {
+    render(<AddDeck_View 
+      onSubmitClick={(title) => {
+        let newDeck = new DeckModel ({
+          Title: title
+        });
+
+        newDeck.save().then(() => {
+          this.goto('user/:id/deck/:id/card');
+        });
+      }}
+      onCancelClick={() => goto('user/:id')}/>, el);
+  },
+
+  addCard() {
     
-    render(<AddDeck_View/>, el);
+    render(<AddDeck_View 
+      onSubmitClick={(question, answer) => {
+        let newCard = new CardModel ({
+          card_question: question,
+          card_answer: answer
+        });
+
+        newCard.save().then(() => {
+          this.goto('user/:id/deck/:id/card');
+        });
+      }}
+      onFinishClick={() => goto('user/:id')}/>, el);
+  },
+
+  editCard(id) {
+
+    let data = this.colletion.get(id);
+    
+    render(<AddDeck_View 
+      data={data.toJSON()}
+      onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
+      onCancelClick={() => goto('user/:id')}/>, el);
+  },
+
+  saveCard(question, answer, id) {
+    this.collection.get(id).save({
+      card_question: qustion,
+      card_answer: answer
+    }).then(() => {
+      this.goto('user/:id');
+    });
   },
 
   home(){
@@ -69,6 +113,7 @@ let Router = Backbone.Router.extend({
   },
 
   play() {
+
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
       method: 'POST',
@@ -88,10 +133,12 @@ let Router = Backbone.Router.extend({
           title: data.title
         }
       });
-      this.render(<Play_View firstName={data.firstname} lastName={data.lastname}/>, this.el);
+      this.render(<Play_View secondsRemaining={10}/>, this.el);
     })
  
     
+
+
   },
 
   start() {

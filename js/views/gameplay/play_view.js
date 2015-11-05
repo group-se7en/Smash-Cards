@@ -4,22 +4,31 @@ import moment from 'moment';
 
 let Play_View = React.createClass({
 
-  // getInitialState() {
-
-  // },
-
-  // setState() {
-
-  // },
-
-  // timerFunction() {
-
-  // },
-
-
-  submitAnswer() {
-
+  getInitialState() {
+    return {
+      secondsRemaining: 0
+    };
   },
+
+  ticking() {
+    this.setState({secondsRemaining: this.state.secondsRemaining - 1});
+    if (this.state.secondsRemaining <= 0) {
+      clearInterval(this.interval);
+    }
+  },
+
+  componentDidMount() {
+    this.setState({ secondsRemaining: this.props.secondsRemaining });
+    this.interval = setInterval(this.ticking, 1000);
+  },
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  },
+
+  // submitAnswer() {
+
+  // },
 
   // checkAnswer() {
 
@@ -28,7 +37,6 @@ let Play_View = React.createClass({
   // scoreFunction() {
 
   // },
-
 
   render() {
    
@@ -41,19 +49,28 @@ let Play_View = React.createClass({
         return 
         <div className="deckTitle">
           Deck Title
-          <p>Are you any good, <span>{this.props.firstName}</span> <span>{this.props.lastName}</span>?</p>
+          
         </div>
 
         <div className="mainPlay">
+
           <div className="countDownTimerLeft">
+
             Countdown Clock
 
+
+            <div>Time Remaining:</div>
+            <div className="timeValue">{this.state.secondsRemaining}</div>
+
           </div>
+
           <div className="question">
             Question Stuffs Here
           </div>
+
           <div className="countDownTimerRight">
-            Countdown Clock
+            <div>Time Remaining: </div>
+            <div className="timeValue">{this.state.secondsRemaining}</div>
           </div>
         </div>
 

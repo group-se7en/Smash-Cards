@@ -145,7 +145,7 @@ var Router = _backbone2['default'].Router.extend({
     "user/:id": "selectDeck",
     "user/:id/deck/": "addDeck",
     "user/:id/deck/:id/card": "addCard",
-    "user/:id/deck/:id/edit": "edit",
+    "user/:id/deck/:id/edit": "editCard",
     "play": "play",
     "score": "score"
   },
@@ -165,12 +165,70 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   addDeck: function addDeck() {
+    var _this = this;
 
-    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], null), el);
+    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      onSubmitClick: function (title) {
+        var newDeck = new DeckModel({
+          Title: title
+        });
+
+        newDeck.save().then(function () {
+          _this.goto('user/:id/deck/:id/card');
+        });
+      },
+      onCancelClick: function () {
+        return goto('user/:id');
+      } }), el);
+  },
+
+  addCard: function addCard() {
+    var _this2 = this;
+
+    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      onSubmitClick: function (question, answer) {
+        var newCard = new CardModel({
+          card_question: question,
+          card_answer: answer
+        });
+
+        newCard.save().then(function () {
+          _this2.goto('user/:id/deck/:id/card');
+        });
+      },
+      onFinishClick: function () {
+        return goto('user/:id');
+      } }), el);
+  },
+
+  editCard: function editCard(id) {
+    var _this3 = this;
+
+    var data = this.colletion.get(id);
+
+    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      data: data.toJSON(),
+      onSubmitClick: function (question, answer) {
+        return _this3.saveCard(question, answer, id);
+      },
+      onCancelClick: function () {
+        return goto('user/:id');
+      } }), el);
+  },
+
+  saveCard: function saveCard(question, answer, id) {
+    var _this4 = this;
+
+    this.collection.get(id).save({
+      card_question: qustion,
+      card_answer: answer
+    }).then(function () {
+      _this4.goto('user/:id');
+    });
   },
 
   home: function home() {
-    var _this = this;
+    var _this5 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
@@ -195,13 +253,14 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this.goto('user/' + data.username);
+      _this5.goto('user/' + data.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   play: function play() {
+<<<<<<< HEAD
     var _this2 = this;
 
     var request = _jquery2['default'].ajax({
@@ -225,6 +284,9 @@ var Router = _backbone2['default'].Router.extend({
       });
       _this2.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { firstName: data.firstname, lastName: data.lastname }), _this2.el);
     });
+=======
+    this.render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10 }), this.el);
+>>>>>>> 4b4d96be2e188d851b3b135ab5f81113aeb4634d
   },
 
   start: function start() {
@@ -253,16 +315,42 @@ var _react2 = _interopRequireDefault(_react);
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_deck',
 
+  submitHandler: function submitHandler() {
+    event.preventDefault();
+    this.props.onSubmitClick(this.state.deck_title);
+  },
+
+  cancelClickHandler: function cancelClickHandler() {
+    this.props.onCancelClick();
+  },
+
+  updateTitle: function updateTitle(event) {
+    var newTitle = event.currentTarget.value;
+
+    this.setState({
+      deck_title: newTitle
+    });
+  },
+
   render: function render() {
     return _react2['default'].createElement(
       'div',
       null,
-      _react2['default'].createElement('h2', null),
-      _react2['default'].createElement('input', null),
+      _react2['default'].createElement(
+        'h2',
+        null,
+        'Create a deck!'
+      ),
+      _react2['default'].createElement('input', { onChange: this.updateTitle }),
       _react2['default'].createElement(
         'button',
-        null,
-        'Testing'
+        { onClick: this.submitHandler },
+        'Submit'
+      ),
+      _react2['default'].createElement(
+        'button',
+        { onClick: this.cancelClickHandler },
+        'Cancel'
       )
     );
   }
@@ -292,19 +380,31 @@ var _moment2 = _interopRequireDefault(_moment);
 var Play_View = _react2['default'].createClass({
   displayName: 'Play_View',
 
-  // getInitialState() {
+  getInitialState: function getInitialState() {
+    return {
+      secondsRemaining: 0
+    };
+  },
+
+  ticking: function ticking() {
+    this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
+    if (this.state.secondsRemaining <= 0) {
+      clearInterval(this.interval);
+    }
+  },
+
+  componentDidMount: function componentDidMount() {
+    this.setState({ secondsRemaining: this.props.secondsRemaining });
+    this.interval = setInterval(this.ticking, 1000);
+  },
+
+  componentWillUnmount: function componentWillUnmount() {
+    clearInterval(this.interval);
+  },
+
+  // submitAnswer() {
 
   // },
-
-  // setState() {
-
-  // },
-
-  // timerFunction() {
-
-  // },
-
-  submitAnswer: function submitAnswer() {},
 
   // checkAnswer() {
 
@@ -348,7 +448,16 @@ var Play_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'div',
           { className: 'countDownTimerLeft' },
-          'Countdown Clock'
+          _react2['default'].createElement(
+            'div',
+            null,
+            'Time Remaining:'
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: 'timeValue' },
+            this.state.secondsRemaining
+          )
         ),
         _react2['default'].createElement(
           'div',
@@ -358,7 +467,16 @@ var Play_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'div',
           { className: 'countDownTimerRight' },
-          'Countdown Clock'
+          _react2['default'].createElement(
+            'div',
+            null,
+            'Time Remaining: '
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: 'timeValue' },
+            this.state.secondsRemaining
+          )
         )
       ),
       _react2['default'].createElement('input', { type: 'text', placeholder: 'Your Answer Here', className: 'answerField' }),
