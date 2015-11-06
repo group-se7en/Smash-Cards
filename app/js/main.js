@@ -266,6 +266,7 @@ var Router = _backbone2['default'].Router.extend({
     (0, _jquery2['default'])('.app').html('loading...');
 
     request.then(function (data) {
+      _jsCookie2['default'].set('deck', data);
 
       _jquery2['default'].ajaxSetup({
         headers: {
@@ -274,7 +275,7 @@ var Router = _backbone2['default'].Router.extend({
         }
 
       });
-      _this3.goto('user/' + user.username + '/decks/' + data.id + '/cards');
+      _this3.goto('user/' + user.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
@@ -298,6 +299,7 @@ var Router = _backbone2['default'].Router.extend({
     var _this5 = this;
 
     var user = _jsCookie2['default'].getJSON('user');
+    var deck = _jsCookie2['default'].getJSON('deck');
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks/' + deck.id,
@@ -334,13 +336,13 @@ var Router = _backbone2['default'].Router.extend({
   editCard: function editCard(id) {
     var _this6 = this;
 
-    render(_react2['default'].createElement(EditDeck_View, {
+    this.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
       onSubmitClick: function (question, answer) {
         return _this6.saveCard(question, answer);
       },
       onCancelClick: function () {
         return _this6.goto('user/' + data.username);
-      } }), el);
+      } }), this.el);
   },
 
   saveCard: function saveCard(question, answer) {
