@@ -180,10 +180,10 @@ var Router = _backbone2['default'].Router.extend({
     "login": "signIn",
     "register": "createAccount",
     "user/:username": "selectDeck",
-    "user/:username/decks/": "addDeck",
+    "user/:username/decks": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
     "user/:username/decks/:id/edit": "editCard",
-    "play": "play",
+    "user/:username/play": "play",
     "score": "score"
   },
 
@@ -221,25 +221,56 @@ var Router = _backbone2['default'].Router.extend({
   addDeck: function addDeck() {
     var _this = this;
 
-    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
-      onSubmitClick: function (title) {
-        var newDeck = new DeckModel({
-          title: title
-        });
+    var data = _jsCookie2['default'].getJSON('user');
+    console.log(data);
 
-        newDeck.save().then(function () {
-          _this.goto('user/:username/decks/:id/cards');
-        });
+    this.render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      onSubmitClick: function (title) {
+        return _this.newDeck(title);
       },
       onCancelClick: function () {
-        return goto('user/:id');
-      } }), el);
+        return _this.goto('user/' + data.username);
+      } }), this.el);
+  },
+
+  newDeck: function newDeck(title) {
+    var _this2 = this;
+
+    var user = _jsCookie2['default'].getJSON('user');
+    console.log(user.auth_token);
+
+    var request = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      method: 'POST',
+      headers: {
+        auth_token: user.auth_token
+      },
+      data: {
+        title: title
+      }
+    });
+
+    (0, _jquery2['default'])('.app').html('loading...');
+
+    request.then(function (data) {
+
+      _jquery2['default'].ajaxSetup({
+        headers: {
+          id: data.id,
+          title: data.title
+
+        }
+      });
+      _this2.goto('user/' + user.username + '/decks/' + data.id + '/cards');
+    }).fail(function () {
+      (0, _jquery2['default'])('.app').html('Oops..');
+    });
   },
 
   addCard: function addCard() {
-    var _this2 = this;
+    var _this3 = this;
 
-    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+    render(_react2['default'].createElement(_viewsAdminAdd_cards2['default'], {
       onSubmitClick: function (question, answer) {
         var newCard = new CardModel({
           card_question: question,
@@ -247,37 +278,37 @@ var Router = _backbone2['default'].Router.extend({
         });
 
         newCard.save().then(function () {
-          _this2.goto('user/:username/decks/:id/cards');
+          _this3.goto('user/:username/decks/:id/cards');
         });
       },
       onFinishClick: function () {
-        return goto('user/:username');
+        return goto('user/' + data.username);
       } }), el);
   },
 
   editCard: function editCard(id) {
-    var _this3 = this;
+    var _this4 = this;
 
     var data = this.colletion.get(id);
 
     render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
       data: data.toJSON(),
       onSubmitClick: function (question, answer) {
-        return _this3.saveCard(question, answer, id);
+        return _this4.saveCard(question, answer, id);
       },
       onCancelClick: function () {
-        return goto('user/:username');
+        return goto('user/' + data.username);
       } }), el);
   },
 
   saveCard: function saveCard(question, answer, username) {
-    var _this4 = this;
+    var _this5 = this;
 
     this.collection.get(id).save({
       card_question: qustion,
       card_answer: answer
     }).then(function () {
-      _this4.goto('user/:username');
+      _this5.goto('user/:username');
     });
   },
 
@@ -287,7 +318,7 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   logIn: function logIn(username, password) {
-    var _this5 = this;
+    var _this6 = this;
 
     var userLogged = _jsCookie2['default'].getJSON('user');
     console.log(userLogged);
@@ -315,26 +346,26 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this5.goto('user/' + data.username);
+      _this6.goto('user/' + data.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   createAccount: function createAccount() {
-    var _this6 = this;
+    var _this7 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], {
       onSubmitClick: function (first, last, email, user, password) {
-        return _this6.newUser(first, last, email, user, password);
+        return _this7.newUser(first, last, email, user, password);
       },
       onCancelClick: function () {
-        return _this6.goto('login');
+        return _this7.goto('login');
       } }), this.el);
   },
 
   newUser: function newUser(first, last, email, user, password) {
-    var _this7 = this;
+    var _this8 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/signup',
@@ -362,14 +393,14 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this7.goto('login');
+      _this8.goto('login');
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   selectDeck: function selectDeck() {
-    var _this8 = this;
+    var _this9 = this;
 
     var data = [{
       title: "Magic",
@@ -385,19 +416,21 @@ var Router = _backbone2['default'].Router.extend({
       id: 4
     }];
 
+    var userData = _jsCookie2['default'].getJSON('user');
+
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
       onLogOut: function () {
-        return _this8.removeCookies();
+        return _this9.removeCookies();
       },
       onPlay: function () {
-        return _this8.goto('user/' + data.username);
+        return _this9.goto('user/' + userData.username + '/play');
       },
-      onAdd: function () {
-        return _this8.goto('user/' + data.username);
+      onAddDeck: function () {
+        return _this9.goto('user/' + userData.username + '/decks');
       },
       onEdit: function () {
-        return _this8.goto('user/' + data.username);
+        return _this9.goto('user/' + userData.username);
       } }));
   },
 
@@ -444,20 +477,20 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   score: function score() {
-    var _this9 = this;
+    var _this10 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
       onNewClick: function () {
-        return _this9.goto("user/:username");
+        return _this10.goto("user/:username");
       },
       onAddClick: function () {
-        return _this9.goto("addDeck");
+        return _this10.goto("addDeck");
       },
       onHomeClick: function () {
-        return _this9.goto("login");
+        return _this10.goto("login");
       },
       onPlayClick: function () {
-        return _this9.goto('play');
+        return _this10.goto('play');
       } }));
   },
 
@@ -880,6 +913,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _admin_component = require('./admin_component');
+
+var _admin_component2 = _interopRequireDefault(_admin_component);
+
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_cards',
 
@@ -912,7 +949,7 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       null,
-      _react2['default'].createElement(AdminComponent, null),
+      _react2['default'].createElement(_admin_component2['default'], null),
       _react2['default'].createElement(
         'h2',
         null,
@@ -936,7 +973,7 @@ exports['default'] = _react2['default'].createClass({
 });
 module.exports = exports['default'];
 
-},{"react":177}],10:[function(require,module,exports){
+},{"./admin_component":11,"react":177}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -949,12 +986,16 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _admin_component = require('./admin_component');
+
+var _admin_component2 = _interopRequireDefault(_admin_component);
+
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_deck',
 
   submitHandler: function submitHandler() {
     event.preventDefault();
-    this.props.onSubmitClick(this.state.deck_title);
+    this.props.onSubmitClick(this.state.title);
   },
 
   cancelClickHandler: function cancelClickHandler() {
@@ -965,7 +1006,7 @@ exports['default'] = _react2['default'].createClass({
     var newTitle = event.currentTarget.value;
 
     this.setState({
-      deck_title: newTitle
+      title: newTitle
     });
   },
 
@@ -973,7 +1014,7 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       null,
-      _react2['default'].createElement(AdminComponent, null),
+      _react2['default'].createElement(_admin_component2['default'], null),
       _react2['default'].createElement(
         'h2',
         null,
@@ -996,7 +1037,7 @@ exports['default'] = _react2['default'].createClass({
 });
 module.exports = exports['default'];
 
-},{"react":177}],11:[function(require,module,exports){
+},{"./admin_component":11,"react":177}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1159,7 +1200,7 @@ exports['default'] = _react2['default'].createClass({
 
   addDeck: function addDeck() {
     console.log('addDeck');
-    this.props.onAdd();
+    this.props.onAddDeck();
   },
 
   editDeck: function editDeck() {
