@@ -61,8 +61,6 @@ let Router = Backbone.Router.extend({
         trigger: true
       });
     }
-
-
   },
 
   welcome(){
@@ -303,7 +301,6 @@ let Router = Backbone.Router.extend({
       })
       
     }) 
-
 
   },
 
