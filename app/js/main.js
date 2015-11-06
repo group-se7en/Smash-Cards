@@ -443,7 +443,15 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   score: function score() {
-    this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], null), this.el);
+    var _this10 = this;
+
+    this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
+      onplayclick: function () {
+        return _this10.goto('play');
+      },
+      onnewGameclick: function () {
+        return _this10.goto("user/:username");
+      } }));
   },
 
   start: function start() {
@@ -1373,12 +1381,12 @@ var Score_View = _react2["default"].createClass({
       ),
       _react2["default"].createElement(
         "button",
-        { onClick: this.playAgain, className: "playAgain" },
+        { onClick: this.playclickHandler, className: "playAgain" },
         "Play Again"
       ),
       _react2["default"].createElement(
         "button",
-        { onClick: this.changeGame, className: "changeGame" },
+        { onClick: this.newGameclickHandler, className: "changeGame" },
         "Play a different Game"
       )
     );

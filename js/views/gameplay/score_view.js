@@ -52,8 +52,8 @@ getInitialState() {
           <p className="scoreNumber">75</p>
         </div>
 
-        <button onClick={this.playAgain} className="playAgain">Play Again</button>
-        <button onClick={this.changeGame} className="changeGame">Play a different Game</button>
+        <button onClick={this.playclickHandler} className="playAgain">Play Again</button>
+        <button onClick={this.newGameclickHandler} className="changeGame">Play a different Game</button>
         
 
       </div>
