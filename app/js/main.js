@@ -184,12 +184,7 @@ var Router = _backbone2['default'].Router.extend({
     "user/:username/decks": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
     "user/:username/decks/:id/edit": "editCard",
-<<<<<<< HEAD
-    "play": "getDeck",
-    "cards": "getCards",
-=======
     "user/:username/play": "play",
->>>>>>> e4e2748ca2e0f26a397ef4e37f93291c0e9bd8d7
     "score": "score"
   },
 
@@ -468,30 +463,7 @@ var Router = _backbone2['default'].Router.extend({
     this.goto('login');
   },
 
-  getDeck: function getDeck() {
-    //    let x = Cookies.getJSON('user')
-    // console.log(x);
-
-    // let request = $.ajax({
-    //   url: 'https://morning-temple-4972.herokuapp.com/decks',
-    //   method: 'GET',
-    //   headers: {
-    //     auth_token: x.auth_token,
-    //   },
-    //   data: {
-    //     title: x.title
-    //   }
-    // });
-    // request.then((data) => {
-    //     Cookies.set('user', data, {expires: 7});
-    //  $.ajaxSetup({
-    //     headers: {
-    //       auth_token: data.auth_token,
-    //       id: data.id,
-    //       title: data.title,
-    //       user_id: data.user_id
-    //     }
-    //   });
+  play: function play() {
     var x = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
@@ -518,14 +490,18 @@ var Router = _backbone2['default'].Router.extend({
 
       });
       var card = _underscore2['default'].last(x);
+      console.log(card);
 
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
         getQuestion: card.question,
         answer: card.answer }), document.querySelector('.app'));
       (0, _jquery2['default'])('.nextCard').on('click', function () {
-
         x.pop();
         console.log(x);
+        var card = _underscore2['default'].last(x);
+        _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
+          getQuestion: card.question,
+          answer: card.answer }), document.querySelector('.app'));
       });
     });
   },
@@ -1406,7 +1382,7 @@ var Play_View = _react2['default'].createClass({
   nextCard: function nextCard() {
     this.setState({
       secondsRemaining: 10,
-      question: ''
+      question: this.props.newQuestion
     });
     this.componentDidMount();
     // this.props.onNextCardClick();

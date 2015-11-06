@@ -279,29 +279,6 @@ let Router = Backbone.Router.extend({
  
 
   play() {
-    //    let x = Cookies.getJSON('user')
-    // console.log(x);
-   
-    // let request = $.ajax({
-    //   url: 'https://morning-temple-4972.herokuapp.com/decks',
-    //   method: 'GET',
-    //   headers: {
-    //     auth_token: x.auth_token,
-    //   },
-    //   data: {
-    //     title: x.title
-    //   }
-    // });
-    // request.then((data) => {
-    //     Cookies.set('user', data, {expires: 7});
-    //  $.ajaxSetup({
-    //     headers: {
-    //       auth_token: data.auth_token,
-    //       id: data.id,
-    //       title: data.title,
-    //       user_id: data.user_id
-    //     }
-    //   });
     let x = Cookies.getJSON('user')
    
 
@@ -329,16 +306,20 @@ let Router = Backbone.Router.extend({
       
       });
      let card = _.last(x);
-
+     console.log(card)
 
     
      ReactDom.render(<Play_View secondsRemaining={10} 
           getQuestion={card.question}
           answer={card.answer}/>, document.querySelector('.app'));
      $('.nextCard').on('click', function(){
-        
         x.pop();
         console.log(x);
+        let card =_.last(x);
+        ReactDom.render(<Play_View secondsRemaining={10} 
+          getQuestion={card.question}
+          answer={card.answer}/>, document.querySelector('.app'));
+        
      });
     }) 
 

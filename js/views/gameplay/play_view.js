@@ -53,7 +53,7 @@ let Play_View = React.createClass({
   nextCard(){
     this.setState({
       secondsRemaining: 10,
-      question: '',
+      question: this.props.newQuestion
     })
     this.componentDidMount();
     // this.props.onNextCardClick();
