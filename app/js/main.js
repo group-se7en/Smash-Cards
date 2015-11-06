@@ -567,6 +567,10 @@ var Router = _backbone2['default'].Router.extend({
     var _this13 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
+
+      onPlayClick: function () {
+        return _this13.goto("user/:username/play/:id");
+      },
       onNewClick: function () {
         return _this13.goto("user/:username");
       },
@@ -575,9 +579,6 @@ var Router = _backbone2['default'].Router.extend({
       },
       onHomeClick: function () {
         return _this13.goto("welcome");
-      },
-      onPlayClick: function () {
-        return _this13.goto("user/:username/play");
       } }));
   },
 

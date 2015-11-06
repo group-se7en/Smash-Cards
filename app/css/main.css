@@ -2135,9 +2135,17 @@ button {
   margin-left: 10px;
   margin-right: 10px; }
 
+.submitAnswer:hover {
+  color: #344459;
+  border: 2px solid #F7F7F7; }
+
 .nextCard {
   margin-left: 10px;
   margin-right: 10px; }
+
+.nextCard:hover {
+  color: #344459;
+  border: 2px solid #F7F7F7; }
 
 .question {
   float: left;
@@ -2224,14 +2232,16 @@ button {
   margin: 20px;
   padding: 10px;
   text-align: center;
-  box-shadow: 5px 5px 5px black;
-  border: 5px solid;
+  border: 5px solid #ED715C;
   border-radius: 180px;
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1em;
   background-color: #1DABA5; }
   .gameOverWrapper .gameOver {
-    font-size: 3em;
+    font-size: 4em;
     color: #344459; }
+  .gameOverWrapper span {
+    font-size: 1.5em; }
 
 .scoreNumber {
   font-size: 3em;
@@ -2241,10 +2251,18 @@ button {
   margin-right: 400px;
   background-color: white; }
 
-.after {
-  padding: 15px; }
+.gameOverWrapper button {
+  padding: 15pt;
+  margin: 5pt;
+  border-radius: 20px;
+  box-shadow: none; }
 
-.changeGame {
-  padding: 5pt; }
+.gameOverWrapper button:hover {
+  padding: 15pt;
+  margin: 5pt;
+  border-radius: 20px;
+  box-shadow: none;
+  color: #344459;
+  border: 2px solid #F7F7F7; }
 
 /*# sourceMappingURL=main.css.map */
