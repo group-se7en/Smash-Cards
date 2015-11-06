@@ -368,10 +368,10 @@ let Router = Backbone.Router.extend({
   score() {
     this.render(
       <Score_View
+      onPlayClick={() => this.goto("user/:username/play/:id")}
       onNewClick={() => this.goto("user/:username")}
       onAddClick={() => this.goto("user/:username/decks")}
-      onHomeClick={() => this.goto("welcome")}
-      onPlayClick={() => this.goto("user/:username/play")}/>
+      onHomeClick={() => this.goto("welcome")}/>
       );
   },
 
