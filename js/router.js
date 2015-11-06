@@ -34,7 +34,9 @@ let Router = Backbone.Router.extend({
 
   initialize(appElement) {
     this.el = appElement;
+    let router = this;
     // this.on('route', console.log.bind(console))
+
   },
 
   goto(route) {
@@ -74,6 +76,7 @@ let Router = Backbone.Router.extend({
 
   addDeck() {
     let data = Cookies.getJSON('user');
+
 
     this.render(<AddDeck_View 
       onSubmitClick={(title) => this.newDeck(title)}
@@ -135,6 +138,20 @@ let Router = Backbone.Router.extend({
       }
     });
     
+
+    this.render(<AddCard_View 
+      onSubmitClick={(question, answer) => {
+        let newCard = new CardModel ({
+          card_question: question,
+          card_answer: answer
+        });
+
+        newCard.save().then(() => {
+          this.goto('user/:username/decks/:id/cards');
+        });
+      }}
+      onFinishClick={() => goto(`user/${data.username}`)}/>, this.el);
+
     $('.app').html('loading...');
 
     request.then((data) => {
@@ -153,6 +170,7 @@ let Router = Backbone.Router.extend({
     }).fail(() => {
       $('.app').html('Oops..');
     });
+
   },
 
   editCard(id) {
@@ -353,23 +371,38 @@ let Router = Backbone.Router.extend({
         }
       
       });
+     
      let card = _.last(x);
-    
-     ReactDom.render(<Play_View secondsRemaining={10} 
-          getQuestion={card.question}
+
+      ReactDom.render(<Play_View secondsRemaining={10} 
+          questionOne={card.question}
+          onNextCardClick={()=>{
+            x.pop();
+            let card =_.last(x);
+            if (!card) {
+              alert('out of cards');
+              this.goto('score')}}}
+          newQuestion={card.question}
           answer={card.answer}/>, document.querySelector('.app'));
-     $('.nextCard').on('click', function(){
-        x.pop();
-        console.log(x);
-        let card =_.last(x);
-        ReactDom.render(<Play_View secondsRemaining={10} 
-          getQuestion={card.question}
-          answer={card.answer}/>, document.querySelector('.app'));
-        
-     });
+
+     // $('.nextCard').on('click', function(){
+          
+     //      }
+     //      ReactDom.render(<Play_View secondsRemaining={10} 
+     //      getQuestion={card.question}
+     //      answer={card.answer}/>, document.querySelector('.app'));
+     //    })
+     // $('.submitAnswer').on('click', function(){
+            
+     // });
     }) 
+        
+        
 
   },
+        
+
+        
 
   score() {
     this.render(

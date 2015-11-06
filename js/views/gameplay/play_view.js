@@ -9,7 +9,7 @@ let Play_View = React.createClass({
 
     return {
       secondsRemaining: 0,
-      question: ''
+      question: this.props.questionOne
     };
   },
 
@@ -36,7 +36,8 @@ let Play_View = React.createClass({
     let timeNumber = Number(time);
     let userAnswer = document.querySelector('.answerField').value;
     let correctAnswer = this.props.answer;
-    let score = document.querySelector('.score');
+    let score = this.refs.score;
+    let scoreValue = score.value;
     this.setState({
       secondsRemaining: 1
     })
@@ -58,6 +59,7 @@ let Play_View = React.createClass({
     clearInterval(this.state);
     this.componentDidMount();
     document.querySelector('.answerField').value = '';
+
   },
 
 
@@ -78,8 +80,8 @@ let Play_View = React.createClass({
           </div>
 
           <div className="question">
-            {this.state.question}
-            <span>{this.props.getQuestion}</span>
+            
+            <span>{this.state.question}</span>
           </div>
 
           <div className="countDownTimerRight">
@@ -93,7 +95,7 @@ let Play_View = React.createClass({
         <button onClick={this.submitAnswer} className="submitAnswer">Submit Answer</button>
         <button onClick={this.nextCard} className="nextCard">Next Card</button>
         <div className="scoreDiv">
-          Score Value: <span className="score">0</span>
+          Score Value: <span ref='score' className="score">0</span>
         </div>
 
       </div>
