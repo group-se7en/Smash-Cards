@@ -2037,11 +2037,13 @@ button {
 
 .admin {
   border: 1px solid #344459;
+  padding: 2%;
   float: left;
   width: 20%;
   height: 700px;
   margin: 60px 30px;
   color: #344459;
+  box-shadow: 5px 5px 5px black;
   background-color: #1DABA5; }
 
 .deckList {
@@ -2055,14 +2057,16 @@ button {
   margin: 60px 30px 20px 30px;
   padding: 1% 1%;
   color: #344459;
-  background-color: #1DABA5; }
+  background-color: #1DABA5;
+  box-shadow: 5px 5px 5px black; }
 
 .addDeckBtn {
   color: #ED715C;
-  margin: 30px 30px;
-  border: 1px solid #ED715C;
+  margin: 30px 0 30px 200px;
+  border: 2px solid #ED715C;
   border-radius: 2px;
   display: inline-block;
+  box-shadow: 3px 3px 5px black;
   background-color: white; }
 
 .deck {
@@ -2072,16 +2076,19 @@ button {
   border: 1px solid #344459;
   border-radius: 2px;
   float: left;
+  box-shadow: 5px 5px 5px black;
   color: #344459;
   background-color: #1DABA5; }
 
 .play {
   border: 1px solid #344459 #344459;
-  border-radius: 2px; }
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black; }
 
 .edit {
   border: 1px solid #344459 #344459;
-  border-radius: 2px; }
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black; }
 
 /******** Play View Styling ***********/
 .playViewWrapper {

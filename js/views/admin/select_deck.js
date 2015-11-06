@@ -49,7 +49,7 @@ export default React.createClass({
 
       <div className="deckList">
         <h2 className="selectTitle">Select a deck or create a custom one</h2>
-        <button className="addDeckBtn" onClick={() => this.addDeck()}>Add a deck</button>
+        <button className="addDeckBtn" onClick={() => this.addDeck()}><i className="fa fa-plus fa-2x"></i></button>
         <div>{this.props.decks.map(this.formatData)}</div>
         
       </div>

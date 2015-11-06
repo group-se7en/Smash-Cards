@@ -22,14 +22,16 @@ button {
 .app {
   height: 100%;
 }
-//JESSE Edited exiting 
+//JESSE Edited existing 
 .admin {
-  border: 1px solid $text-color; 
+  border: 1px solid $text-color;
+  padding: 2%; 
   float: left;
   width: 20%;
   height: 700px;
   margin: 60px 30px;
   color: $text-color;
+  box-shadow: 5px 5px 5px black;
   background-color: $adminBack-color;
 //JESSE SELECT PAGE
 }
@@ -46,14 +48,17 @@ button {
   padding: 1% 1%;
   color: $text-color;
   background-color: $adminBack-color;
+  box-shadow: 5px 5px 5px black;
+
 }
 
 .addDeckBtn {
   color: $smallBtn-color;
-  margin: 30px 30px;
-  border: 1px solid $smallBtn-color;
+  margin: 30px 0 30px 200px;
+  border: 2px solid $smallBtn-color;
   border-radius: 2px;
   display: inline-block;
+  box-shadow: 3px 3px 5px black;
   background-color: $white;
 }
 .deck {
@@ -63,6 +68,7 @@ button {
   border: 1px solid $text-color;
   border-radius: 2px;
   float: left;
+  box-shadow: 5px 5px 5px black;
   color: $text-color;
   background-color: $adminBack-color;
    
@@ -71,11 +77,15 @@ button {
 .play {
   border: 1px solid $text-color$text-color;
   border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
+
 
 }
 .edit {
   border: 1px solid $text-color$text-color;
   border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
+
 
 }
 // END JESSE SELECT PAGE
