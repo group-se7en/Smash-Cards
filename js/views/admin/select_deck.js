@@ -31,11 +31,12 @@ export default React.createClass({
  formatData(deck){
   return (
     <div key={deck.id} className="deck">
-      <div onClick={() => this.playDeck()}>{deck.title}
+      <div className="deckTitle" onClick={() => this.playDeck()}>{deck.title}
       </div>
       <button className="play" onClick={() => this.playDeck()}>
-      Play </button>
-      <button className="edit" onClick={() => this.editDeck()}>Edit Deck</button>    
+      <p className="buttonTitle">Play</p><i className="fa fa-play"></i>
+      </button>
+      <button className="edit" onClick={() => this.editDeck()}><p className="buttonTitle">Edit Deck</p><i className="fa fa-pencil"></i></button>    
     </div>
     );
  },

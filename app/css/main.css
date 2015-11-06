@@ -2080,6 +2080,10 @@ button {
   color: #344459;
   background-color: #1DABA5; }
 
+.deckTitle {
+  font-size: 1.5em;
+  margin: 1%; }
+
 .play {
   border: 1px solid #344459 #344459;
   border-radius: 2px;
@@ -2089,6 +2093,11 @@ button {
   border: 1px solid #344459 #344459;
   border-radius: 2px;
   box-shadow: 3px 3px 5px black; }
+
+.buttonTitle {
+  margin: 0;
+  margin-right: 5px;
+  padding: 0; }
 
 /******** Play View Styling ***********/
 .playViewWrapper {

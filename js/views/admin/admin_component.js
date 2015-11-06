@@ -12,8 +12,8 @@ export default React.createClass({
       <div className="admin-items">
          <h1>Admin</h1>
          <h3>User Name</h3>
-         <button onClick={this.adminLogOut}>Log out</button>
-         <p>copyright 2015</p>
+         <button  onClick={this.adminLogOut}><p className="buttonTitle">Log out</p><i className="fa fa-sign-out"></i></button>
+         <p><i className="fa fa-copyright"></i>copyright 2015</p>
       </div>
     
     );
