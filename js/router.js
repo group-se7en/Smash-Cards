@@ -225,26 +225,6 @@ let Router = Backbone.Router.extend({
 
   selectDeck(){
 
- //    let data = [
- //    {
- //      title  :"Magic",
- //       id    :1
- //    },
- //     {
- //      title  :"Math",
- //       id    :2
- //    },
- //     {
- //      title  :"History",
- //       id    :3
- //    },
-
- //    {
- //      title   : "Japanese", 
- //      id      :4
- //    }
- // ];
-
   let userData = Cookies.getJSON('user');
   console.log(userData);
 
@@ -261,7 +241,7 @@ let Router = Backbone.Router.extend({
       let decks = data;
       console.log("decks:", decks);
 
-      Cookies.set('user', data, { expires: 7 });
+      // Cookies.set('user', data, { expires: 7 });
 
 
   this.render(

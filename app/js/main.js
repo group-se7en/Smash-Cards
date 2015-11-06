@@ -418,26 +418,6 @@ var Router = _backbone2['default'].Router.extend({
   selectDeck: function selectDeck() {
     var _this11 = this;
 
-    //    let data = [
-    //    {
-    //      title  :"Magic",
-    //       id    :1
-    //    },
-    //     {
-    //      title  :"Math",
-    //       id    :2
-    //    },
-    //     {
-    //      title  :"History",
-    //       id    :3
-    //    },
-
-    //    {
-    //      title   : "Japanese",
-    //      id      :4
-    //    }
-    // ];
-
     var userData = _jsCookie2['default'].getJSON('user');
     console.log(userData);
 
@@ -1266,7 +1246,12 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'deckTitle' },
-        deck.title
+        deck.title,
+        _react2['default'].createElement(
+          'p',
+          null,
+          deck.id
+        )
       ),
       _react2['default'].createElement(
         'button',
