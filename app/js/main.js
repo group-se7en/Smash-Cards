@@ -514,13 +514,13 @@ var Router = _backbone2['default'].Router.extend({
         return _this12.goto("user/:username");
       },
       onAddClick: function () {
-        return _this12.goto("addDeck");
+        return _this12.goto("user/:username/decks");
       },
       onHomeClick: function () {
         return _this12.goto("welcome");
       },
       onPlayClick: function () {
-        return _this12.goto('play');
+        return _this12.goto("user/:username/play");
       } }));
   },
 
@@ -1489,7 +1489,7 @@ var Score_View = _react2['default'].createClass({
   //newgame
   //play again
   getInitialState: function getInitialState() {
-    alert("Thanks for playing!  Click OK to get your score");
+    // alert ("Thanks for playing!  Click OK to get your score")
     return {
       question: "Game Over"
     };
