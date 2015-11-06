@@ -184,7 +184,6 @@ let Router = Backbone.Router.extend({
     });
 
   },
-
   createAccount(){
     this.render(<CreateAccount 
       onSubmitClick={(first, last, email, user, password) => this.newUser(first, last, email, user, password)}
@@ -276,39 +275,57 @@ let Router = Backbone.Router.extend({
 
     this.goto('login');
   },
+
  
 
   play() {
+    let x = Cookies.getJSON('user')
+   
 
-    let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks',
+     let request = $.ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
       method: 'GET',
       headers: {
-        auth_token: 'a50111d48c38dda4355f0f640870ebce',
+        auth_token: x.auth_token,
+      },
+      data: {
+        title: x.title
       }
     });
-
     $('.app').html('loading...');
 
-    request.then((data) => {
-      Cookies.set('user', data);
-
-      $.ajaxSetup({
+      request.then((data) => {
+        Cookies.set('user', data, {expires: 7});
+     $.ajaxSetup({
         headers: {
-         
+          auth_token: data.auth_token,
           id: data.id,
-          title: data.title,
-          user_id: data.user_id
+          question: data.question,
+          answer: data.answer
         }
-      });
-
-      _.each(data, function(y){
-        ReactDom.render(<Play_View secondsRemaining={10} deckTitle={y.title}/>, document.querySelector('.app'));
-      })
       
+      });
+     let card = _.last(x);
+     console.log(card)
+
+    
+     ReactDom.render(<Play_View secondsRemaining={10} 
+          getQuestion={card.question}
+          answer={card.answer}/>, document.querySelector('.app'));
+     $('.nextCard').on('click', function(){
+        x.pop();
+        console.log(x);
+        let card =_.last(x);
+        ReactDom.render(<Play_View secondsRemaining={10} 
+          getQuestion={card.question}
+          answer={card.answer}/>, document.querySelector('.app'));
+        
+     });
     }) 
 
   },
+
+  
 
   score() {
     this.render(

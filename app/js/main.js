@@ -368,7 +368,6 @@ var Router = _backbone2['default'].Router.extend({
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
-
   createAccount: function createAccount() {
     var _this9 = this;
 
@@ -465,31 +464,44 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
+    var x = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
       method: 'GET',
       headers: {
-        auth_token: 'a50111d48c38dda4355f0f640870ebce'
+        auth_token: x.auth_token
+      },
+      data: {
+        title: x.title
       }
     });
-
     (0, _jquery2['default'])('.app').html('loading...');
 
     request.then(function (data) {
-      _jsCookie2['default'].set('user', data);
-
+      _jsCookie2['default'].set('user', data, { expires: 7 });
       _jquery2['default'].ajaxSetup({
         headers: {
-
+          auth_token: data.auth_token,
           id: data.id,
-          title: data.title,
-          user_id: data.user_id
+          question: data.question,
+          answer: data.answer
         }
-      });
 
-      _underscore2['default'].each(data, function (y) {
-        _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10, deckTitle: y.title }), document.querySelector('.app'));
+      });
+      var card = _underscore2['default'].last(x);
+      console.log(card);
+
+      _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
+        getQuestion: card.question,
+        answer: card.answer }), document.querySelector('.app'));
+      (0, _jquery2['default'])('.nextCard').on('click', function () {
+        x.pop();
+        console.log(x);
+        var card = _underscore2['default'].last(x);
+        _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
+          getQuestion: card.question,
+          answer: card.answer }), document.querySelector('.app'));
       });
     });
   },
@@ -1328,7 +1340,7 @@ var Play_View = _react2['default'].createClass({
     alert('Are You Ready?');
     return {
       secondsRemaining: 0,
-      question: 'stringy string'
+      question: ''
     };
   },
 
@@ -1353,14 +1365,14 @@ var Play_View = _react2['default'].createClass({
     var time = this.state.secondsRemaining;
     var timeNumber = Number(time);
     var userAnswer = document.querySelector('.answerField').value;
-    var correctAnswer = 'something';
+    var correctAnswer = this.props.answer;
     var score = document.querySelector('.score');
     var scoreValue = score.value;
     this.setState({
       secondsRemaining: 1
     });
     console.log(userAnswer);
-    if (userAnswer === 'taco') {
+    if (userAnswer === correctAnswer) {
       score.innerHTML = timeNumber * 10 + Number(score.innerHTML);
     } else {
       alert('wrong');
@@ -1370,10 +1382,10 @@ var Play_View = _react2['default'].createClass({
   nextCard: function nextCard() {
     this.setState({
       secondsRemaining: 10,
-      question: 'you is so dumb'
-
+      question: this.props.newQuestion
     });
     this.componentDidMount();
+    // this.props.onNextCardClick();
   },
 
   render: function render() {
@@ -1381,15 +1393,7 @@ var Play_View = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       { className: 'playViewWrapper' },
-      _react2['default'].createElement(
-        'div',
-        { className: 'deckTitle' },
-        _react2['default'].createElement(
-          'span',
-          null,
-          this.props.deckTitle
-        )
-      ),
+      _react2['default'].createElement('div', { className: 'deckTitle' }),
       _react2['default'].createElement(
         'div',
         { className: 'mainPlay' },
@@ -1410,7 +1414,12 @@ var Play_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'div',
           { className: 'question' },
-          this.state.question
+          this.state.question,
+          _react2['default'].createElement(
+            'span',
+            null,
+            this.props.getQuestion
+          )
         ),
         _react2['default'].createElement(
           'div',

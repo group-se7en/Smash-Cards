@@ -8,7 +8,7 @@ let Play_View = React.createClass({
     alert ('Are You Ready?')
     return {
       secondsRemaining: 0,
-      question: 'stringy string'
+      question: ''
     };
   },
 
@@ -34,14 +34,14 @@ let Play_View = React.createClass({
     let time = this.state.secondsRemaining;
     let timeNumber = Number(time);
     let userAnswer = document.querySelector('.answerField').value;
-    let correctAnswer = 'something';
+    let correctAnswer = this.props.answer;
     let score = document.querySelector('.score');
     let scoreValue = score.value;
     this.setState({
       secondsRemaining: 1
     })
     console.log(userAnswer);
-    if (userAnswer === 'taco'){
+    if (userAnswer === correctAnswer){
       score.innerHTML= timeNumber*10 + Number(score.innerHTML)
     } else{
       alert ('wrong');
@@ -53,20 +53,19 @@ let Play_View = React.createClass({
   nextCard(){
     this.setState({
       secondsRemaining: 10,
-      question: 'you is so dumb'
-
+      question: this.props.newQuestion
     })
     this.componentDidMount();
+    // this.props.onNextCardClick();
   },
 
-  
 
   render() {
    
     return (
       <div className="playViewWrapper">
         <div className="deckTitle">
-          <span>{this.props.deckTitle}</span>
+          
         </div>
 
         <div className="mainPlay">
@@ -79,6 +78,7 @@ let Play_View = React.createClass({
 
           <div className="question">
             {this.state.question}
+            <span>{this.props.getQuestion}</span>
           </div>
 
           <div className="countDownTimerRight">

@@ -87,7 +87,6 @@ export default React.createClass({
     this.props.onSignInClick(this.state.username, this.state.password);
   },
 
-
   render() {
     return (
       <div>
