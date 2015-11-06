@@ -1322,6 +1322,7 @@ var Play_View = _react2['default'].createClass({
   displayName: 'Play_View',
 
   getInitialState: function getInitialState() {
+    alert('Are You Ready?');
     return {
       secondsRemaining: 0,
       question: 'stringy string'
@@ -1476,8 +1477,9 @@ var Score_View = _react2['default'].createClass({
   //newgame
   //play again
   getInitialState: function getInitialState() {
+    alert("Thanks for playing!  Click OK to get your score");
     return {
-      gameOver: "Game Over"
+      question: "Game Over"
     };
   },
 
