@@ -3,13 +3,13 @@ import React from 'react';
 export default React.createClass({
 
 
-  SignIn (event) {
+  signIn (event) {
     event.preventDefault();
     console.log("hallo");
     this.props.onSignInClick();
   },
 
-  CreateAccount (event) {
+  createAccount (event) {
     event.preventDefault();
     console.log("Bom Dia");
     this.props.onCreateAccountClick();
@@ -18,7 +18,6 @@ export default React.createClass({
 
 
   render() {
-    console.dir(this.props);
     return (
       <div> 
         <div className="header">
