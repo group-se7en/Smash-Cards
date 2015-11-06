@@ -2025,57 +2025,62 @@ html {
   content: ""; }
 
 body {
-  background: #B39C84;
+  background: #E9E0D5;
   height: 100%; }
+
+button {
+  color: white;
+  background-color: #ED715C; }
 
 .app {
   height: 100%; }
 
 .admin {
-  border: 1px solid black;
+  border: 1px solid #344459;
   float: left;
   width: 20%;
   height: 700px;
   margin: 60px 30px;
-  color: #1D171F;
-  background-color: #3B424C; }
+  color: #344459;
+  background-color: #1DABA5; }
 
 .deckList {
   float: right;
   width: 70%; }
 
 .selectTitle {
-  border: 1px solid black;
+  border: 1px solid #344459;
   border-radius: 2px;
   display: inline-block;
   margin: 60px 30px 20px 30px;
   padding: 1% 1%;
-  color: #1D171F;
-  background-color: #3B424C; }
+  color: #344459;
+  background-color: #1DABA5; }
 
 .addDeckBtn {
-  color: #1D171F;
+  color: #ED715C;
   margin: 30px 30px;
-  border: 1px solid black;
+  border: 1px solid #ED715C;
   border-radius: 2px;
-  display: inline-block; }
+  display: inline-block;
+  background-color: white; }
 
 .deck {
   width: 200px;
   height: 200px;
   margin: 30px 30px;
-  border: 1px solid black;
+  border: 1px solid #344459;
   border-radius: 2px;
   float: left;
-  color: #1D171F;
-  background-color: #3B424C; }
+  color: #344459;
+  background-color: #1DABA5; }
 
 .play {
-  border: 1px solid black;
+  border: 1px solid #344459 #344459;
   border-radius: 2px; }
 
 .edit {
-  border: 1px solid black;
+  border: 1px solid #344459 #344459;
   border-radius: 2px; }
 
 /******** Play View Styling ***********/
@@ -2103,7 +2108,7 @@ body {
   display: block;
   margin-right: 2.35765%;
   width: 48.82117%;
-  border: 1px solid black;
+  border: 1px solid #344459;
   height: 100%; }
   .question:last-child {
     margin-right: 0; }
