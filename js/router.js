@@ -19,7 +19,7 @@ import NoCookie from './views/admin/GameLoginCreate/no_cookie';
 let Router = Backbone.Router.extend({
   routes: {
     "" : "home",
-    "welcome": "start",
+    "welcome": "welcome",
     "login": "signIn",  
     "register": "createAccount",  
     "user/:username": "selectDeck",
@@ -114,6 +114,10 @@ let Router = Backbone.Router.extend({
   },
 
   home(){
+    
+  },
+
+  welcome(){
     this.render(<NoCookie
       onSignInClick={() => {this.render(<SignIn/>)}}
       onCreateAccountClick={() => {this.render(<CreateAccount/>)}}/>, this.el)

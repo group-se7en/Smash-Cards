@@ -176,7 +176,7 @@ var _viewsAdminGameLoginCreateNo_cookie2 = _interopRequireDefault(_viewsAdminGam
 var Router = _backbone2['default'].Router.extend({
   routes: {
     "": "home",
-    "welcome": "start",
+    "welcome": "welcome",
     "login": "signIn",
     "register": "createAccount",
     "user/:username": "selectDeck",
@@ -281,7 +281,9 @@ var Router = _backbone2['default'].Router.extend({
     });
   },
 
-  home: function home() {
+  home: function home() {},
+
+  welcome: function welcome() {
     var _this5 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateNo_cookie2['default'], {
