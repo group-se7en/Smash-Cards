@@ -1,10 +1,11 @@
 import React from 'react';
+import AdminComponent from './admin_component';
 
 export default React.createClass({
 
   submitHandler() {
     event.preventDefault();
-    this.props.onSubmitClick(this.state.deck_title);
+    this.props.onSubmitClick(this.state.title);
   },
 
   cancelClickHandler() {
@@ -15,7 +16,7 @@ export default React.createClass({
     let newTitle = event.currentTarget.value;
 
     this.setState({
-      deck_title: newTitle
+      title: newTitle
     });
   },
 
