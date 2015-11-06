@@ -4,9 +4,10 @@ import moment from 'moment';
 
 let Play_View = React.createClass({
 
-  getInitialState() {
+  getInitialState(event) {
+    alert('are you ready?');
     return {
-      secondsRemaining: 10,
+      secondsRemaining: 0,
       question: 'stringy string'
     };
   },
@@ -38,7 +39,6 @@ let Play_View = React.createClass({
     this.setState({
       secondsRemaining: 1
     })
-    console.log(userAnswer);
     if (userAnswer === 'taco'){
       score.innerHTML= timeNumber*10 + Number(score.innerHTML)
     } else{
@@ -47,6 +47,7 @@ let Play_View = React.createClass({
   },
 
   nextCard(){
+    alert('are you ready?');
     this.setState({
       secondsRemaining: 10,
       question: 'you is so dumb'

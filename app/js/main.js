@@ -120,10 +120,6 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _viewsGameplayPlay_view = require('./views/gameplay/play_view');
-
-var _viewsGameplayPlay_view2 = _interopRequireDefault(_viewsGameplayPlay_view);
-
 var _jsCookie = require('js-cookie');
 
 var _jsCookie2 = _interopRequireDefault(_jsCookie);
@@ -131,6 +127,10 @@ var _jsCookie2 = _interopRequireDefault(_jsCookie);
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
+
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
 
 var _viewsAdminSelect_deck = require('./views/admin/select_deck');
 
@@ -140,9 +140,9 @@ var _viewsAdminAdd_deck = require('./views/admin/add_deck');
 
 var _viewsAdminAdd_deck2 = _interopRequireDefault(_viewsAdminAdd_deck);
 
-var _underscore = require('underscore');
+var _viewsGameplayPlay_view = require('./views/gameplay/play_view');
 
-var _underscore2 = _interopRequireDefault(_underscore);
+var _viewsGameplayPlay_view2 = _interopRequireDefault(_viewsGameplayPlay_view);
 
 var _viewsGameplayScore_view = require('./views/gameplay/score_view');
 
@@ -426,10 +426,8 @@ var Router = _backbone2['default'].Router.extend({
 
     request.then(function (data) {
       _jsCookie2['default'].set('user', data);
-
       _jquery2['default'].ajaxSetup({
         headers: {
-
           id: data.id,
           title: data.title,
           user_id: data.user_id
@@ -1169,9 +1167,10 @@ var _moment2 = _interopRequireDefault(_moment);
 var Play_View = _react2['default'].createClass({
   displayName: 'Play_View',
 
-  getInitialState: function getInitialState() {
+  getInitialState: function getInitialState(event) {
+    alert('are you ready?');
     return {
-      secondsRemaining: 10,
+      secondsRemaining: 0,
       question: 'stringy string'
     };
   },
@@ -1202,7 +1201,6 @@ var Play_View = _react2['default'].createClass({
     this.setState({
       secondsRemaining: 1
     });
-    console.log(userAnswer);
     if (userAnswer === 'taco') {
       score.innerHTML = timeNumber * 10 + Number(score.innerHTML);
     } else {
@@ -1211,6 +1209,7 @@ var Play_View = _react2['default'].createClass({
   },
 
   nextCard: function nextCard() {
+    alert('are you ready?');
     this.setState({
       secondsRemaining: 10,
       question: 'you is so dumb'

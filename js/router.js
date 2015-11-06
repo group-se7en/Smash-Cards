@@ -1,12 +1,13 @@
 import Backbone from 'backbone';
 import React from 'react';
 import ReactDom from 'react-dom';
-import Play_View from './views/gameplay/play_view';
 import Cookies from 'js-cookie';
 import $ from 'jquery';
+import _ from 'underscore';
+
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
-import _ from 'underscore';
+import Play_View from './views/gameplay/play_view';
 import Score_View from './views/gameplay/score_view';
 import AddCard_View from './views/admin/add_cards';
 import EditCard_View from './views/admin/edit_cards';
@@ -209,7 +210,7 @@ let Router = Backbone.Router.extend({
       title   : "Japanese", 
       id      :4
     }
- ];
+  ];
 
   this.render(
     <SelectDeck
@@ -249,10 +250,8 @@ let Router = Backbone.Router.extend({
 
     request.then((data) => {
       Cookies.set('user', data);
-
       $.ajaxSetup({
         headers: {
-         
           id: data.id,
           title: data.title,
           user_id: data.user_id
