@@ -487,8 +487,8 @@ var Router = _backbone2['default'].Router.extend({
 
       // // console.log(data);
       var decks = data;
-      // console.log("decks:", decks);
-      // Cookies.set('user', data, { expires: 7 });
+
+      console.log("decks:", decks);
 
       _this12.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
         decks: decks,
@@ -1239,8 +1239,8 @@ exports['default'] = _react2['default'].createClass({
   displayName: 'select_deck',
 
   playDeck: function playDeck(id) {
-    console.log('playDeck');
     this.props.onPlay(id);
+    console.log('playDeck:', id);
   },
 
   addDeck: function addDeck() {

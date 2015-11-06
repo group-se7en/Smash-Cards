@@ -6,8 +6,8 @@ import AdminComponent from './admin_component';
 export default React.createClass({
 
  playDeck(id){
-  console.log('playDeck');
   this.props.onPlay(id);
+  console.log('playDeck:',id);
 
  },
  
