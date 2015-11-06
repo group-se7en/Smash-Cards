@@ -517,7 +517,7 @@ var Router = _backbone2['default'].Router.extend({
         return _this12.goto("addDeck");
       },
       onHomeClick: function () {
-        return _this12.goto("login");
+        return _this12.goto("welcome");
       },
       onPlayClick: function () {
         return _this12.goto('play');
