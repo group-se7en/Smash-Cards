@@ -947,11 +947,17 @@ exports["default"] = _react2["default"].createClass({
       _react2["default"].createElement(
         "button",
         { onClick: this.adminLogOut },
-        "Log out"
+        _react2["default"].createElement(
+          "p",
+          { className: "buttonTitle" },
+          "Log out"
+        ),
+        _react2["default"].createElement("i", { className: "fa fa-sign-out" })
       ),
       _react2["default"].createElement(
         "p",
         null,
+        _react2["default"].createElement("i", { className: "fa fa-copyright" }),
         "copyright 2015"
       )
     );
@@ -1087,7 +1093,7 @@ exports['default'] = _react2['default'].createClass({
       { key: deck.id, className: 'deck' },
       _react2['default'].createElement(
         'div',
-        { onClick: function () {
+        { className: 'deckTitle', onClick: function () {
             return _this.playDeck();
           } },
         deck.title
@@ -1097,14 +1103,24 @@ exports['default'] = _react2['default'].createClass({
         { className: 'play', onClick: function () {
             return _this.playDeck();
           } },
-        'Play '
+        _react2['default'].createElement(
+          'p',
+          { className: 'buttonTitle' },
+          'Play'
+        ),
+        _react2['default'].createElement('i', { className: 'fa fa-play' })
       ),
       _react2['default'].createElement(
         'button',
         { className: 'edit', onClick: function () {
             return _this.editDeck();
           } },
-        'Edit Deck'
+        _react2['default'].createElement(
+          'p',
+          { className: 'buttonTitle' },
+          'Edit Deck'
+        ),
+        _react2['default'].createElement('i', { className: 'fa fa-pencil' })
       )
     );
   },

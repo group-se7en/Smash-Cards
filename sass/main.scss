@@ -73,20 +73,25 @@ button {
   background-color: $adminBack-color;
    
 }
-
+.deckTitle{
+  font-size: 1.5em;
+  margin: 1%;
+}
 .play {
   border: 1px solid $text-color$text-color;
   border-radius: 2px;
   box-shadow: 3px 3px 5px black;
-
-
 }
 .edit {
   border: 1px solid $text-color$text-color;
   border-radius: 2px;
   box-shadow: 3px 3px 5px black;
-
-
+}
+.buttonTitle {
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+ 
 }
 // END JESSE SELECT PAGE
 
