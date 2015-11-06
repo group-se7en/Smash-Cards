@@ -334,7 +334,7 @@ var Router = _backbone2['default'].Router.extend({
       } }), this.el);
   },
 
-  login: function login(username, password) {
+  logIn: function logIn(username, password) {
     var _this8 = this;
 
     var userLogged = _jsCookie2['default'].getJSON('user');
@@ -716,13 +716,11 @@ exports["default"] = _react2["default"].createClass({
   displayName: "no_cookie",
 
   signIn: function signIn(event) {
-    event.preventDefault();
     console.log("hallo");
     this.props.onSignInClick();
   },
 
   createAccount: function createAccount(event) {
-    event.preventDefault();
     console.log("Bom Dia");
     this.props.onCreateAccountClick();
   },

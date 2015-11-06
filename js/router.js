@@ -153,7 +153,7 @@ let Router = Backbone.Router.extend({
       onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el) 
   },
 
-  login(username, password) {
+  logIn(username, password) {
     let userLogged = Cookies.getJSON('user');
     console.log(userLogged);
 

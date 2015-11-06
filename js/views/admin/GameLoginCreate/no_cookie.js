@@ -4,13 +4,11 @@ export default React.createClass({
 
 
   signIn (event) {
-    event.preventDefault();
     console.log("hallo");
     this.props.onSignInClick();
   },
 
   createAccount (event) {
-    event.preventDefault();
     console.log("Bom Dia");
     this.props.onCreateAccountClick();
 
