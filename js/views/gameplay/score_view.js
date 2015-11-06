@@ -8,8 +8,9 @@ let Score_View = React.createClass({
 //newgame
 //play again
 getInitialState() {
-    return {
-      gameOver: "Game Over"
+    alert ("Thanks for playing!  Click OK to get your score")
+      return {
+      question: "Game Over"
     };
   },
 

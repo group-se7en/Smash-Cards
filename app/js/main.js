@@ -212,7 +212,7 @@ var Router = _backbone2['default'].Router.extend({
         trigger: true
       });
     } else {
-      this.navigate('login', {
+      this.navigate('welcome', {
         replace: true,
         trigger: true
       });
@@ -224,10 +224,10 @@ var Router = _backbone2['default'].Router.extend({
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateNo_cookie2['default'], {
       onSignInClick: function () {
-        _this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], null));
+        return _this.goto('login');
       },
       onCreateAccountClick: function () {
-        _this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], null));
+        return _this.goto('register');
       } }), this.el);
   },
 
@@ -310,7 +310,7 @@ var Router = _backbone2['default'].Router.extend({
         return _this5.saveCard(question, answer, id);
       },
       onCancelClick: function () {
-        return goto('user/' + data.username);
+        return _this5.goto('user/' + data.username);
       } }), el);
   },
 
@@ -334,7 +334,7 @@ var Router = _backbone2['default'].Router.extend({
       } }), this.el);
   },
 
-  login: function login(username, password) {
+  logIn: function logIn(username, password) {
     var _this8 = this;
 
     var userLogged = _jsCookie2['default'].getJSON('user');
@@ -715,20 +715,17 @@ var _react2 = _interopRequireDefault(_react);
 exports["default"] = _react2["default"].createClass({
   displayName: "no_cookie",
 
-  SignIn: function SignIn(event) {
-    event.preventDefault();
+  signIn: function signIn(event) {
     console.log("hallo");
     this.props.onSignInClick();
   },
 
-  CreateAccount: function CreateAccount(event) {
-    event.preventDefault();
+  createAccount: function createAccount(event) {
     console.log("Bom Dia");
     this.props.onCreateAccountClick();
   },
 
   render: function render() {
-    console.dir(this.props);
     return _react2["default"].createElement(
       "div",
       null,
@@ -1327,6 +1324,7 @@ var Play_View = _react2['default'].createClass({
   displayName: 'Play_View',
 
   getInitialState: function getInitialState() {
+    alert('Are You Ready?');
     return {
       secondsRemaining: 0,
       question: 'stringy string'
@@ -1481,8 +1479,9 @@ var Score_View = _react2['default'].createClass({
   //newgame
   //play again
   getInitialState: function getInitialState() {
+    alert("Thanks for playing!  Click OK to get your score");
     return {
-      gameOver: "Game Over"
+      question: "Game Over"
     };
   },
 

@@ -5,6 +5,7 @@ import moment from 'moment';
 let Play_View = React.createClass({
 
   getInitialState() {
+    alert ('Are You Ready?')
     return {
       secondsRemaining: 0,
       question: 'stringy string'

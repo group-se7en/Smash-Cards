@@ -56,19 +56,17 @@ let Router = Backbone.Router.extend({
         trigger: true
       });
     } else {
-      this.navigate('login', {
+      this.navigate('welcome', {
         replace: true,
         trigger: true
       });
     }
-
-
   },
 
   welcome(){
     this.render(<NoCookie
-      onSignInClick={() => {this.render(<SignIn/>)}}
-      onCreateAccountClick={() => {this.render(<CreateAccount/>)}}/>, this.el)
+      onSignInClick={() => this.goto('login')}
+      onCreateAccountClick={() => this.goto('register')}/>, this.el)
   },
 
   addDeck() {
@@ -136,7 +134,7 @@ let Router = Backbone.Router.extend({
     render(<AddDeck_View 
       data={data.toJSON()}
       onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
-      onCancelClick={() => goto(`user/${data.username}`)}/>, el);
+      onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
   },
 
   saveCard(question, answer, username) {
@@ -153,7 +151,7 @@ let Router = Backbone.Router.extend({
       onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el) 
   },
 
-  login(username, password) {
+  logIn(username, password) {
     let userLogged = Cookies.getJSON('user');
     console.log(userLogged);
 
@@ -303,7 +301,6 @@ let Router = Backbone.Router.extend({
       })
       
     }) 
-
 
   },
 
