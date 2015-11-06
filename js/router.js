@@ -183,10 +183,18 @@ let Router = Backbone.Router.extend({
       title  :"Magic",
        id    :1
     },
+     {
+      title  :"Math",
+       id    :2
+    },
+     {
+      title  :"History",
+       id    :3
+    },
 
     {
       title   : "Japanese", 
-      id      :2
+      id      :4
     }
  ];
 

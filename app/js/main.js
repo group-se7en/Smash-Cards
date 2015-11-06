@@ -361,8 +361,14 @@ var Router = _backbone2['default'].Router.extend({
       title: "Magic",
       id: 1
     }, {
-      title: "Japanese",
+      title: "Math",
       id: 2
+    }, {
+      title: "History",
+      id: 3
+    }, {
+      title: "Japanese",
+      id: 4
     }];
 
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
@@ -1054,10 +1060,10 @@ exports['default'] = _react2['default'].createClass({
 
     return _react2['default'].createElement(
       'div',
-      { key: deck.id },
+      { key: deck.id, className: 'deck' },
       _react2['default'].createElement(
         'div',
-        { className: 'deck', onClick: function () {
+        { onClick: function () {
             return _this.playDeck();
           } },
         deck.title
@@ -1095,20 +1101,20 @@ exports['default'] = _react2['default'].createClass({
         { className: 'deckList' },
         _react2['default'].createElement(
           'h2',
-          null,
+          { className: 'selectTitle' },
           'Select a deck or create a custom one'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { className: 'addDeckBtn', onClick: function () {
+              return _this2.addDeck();
+            } },
+          'Add a deck'
         ),
         _react2['default'].createElement(
           'div',
           null,
           this.props.decks.map(this.formatData)
-        ),
-        _react2['default'].createElement(
-          'button',
-          { onClick: function () {
-              return _this2.addDeck();
-            } },
-          'Add a deck'
         )
       )
     );

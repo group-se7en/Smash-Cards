@@ -2032,7 +2032,51 @@ body {
   height: 100%; }
 
 .admin {
-  border: 1px solid black; }
+  border: 1px solid black;
+  float: left;
+  width: 20%;
+  height: 700px;
+  margin: 60px 30px;
+  color: #1D171F;
+  background-color: #3B424C; }
+
+.deckList {
+  float: right;
+  width: 70%; }
+
+.selectTitle {
+  border: 1px solid black;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 60px 30px 20px 30px;
+  padding: 1% 1%;
+  color: #1D171F;
+  background-color: #3B424C; }
+
+.addDeckBtn {
+  color: #1D171F;
+  margin: 30px 30px;
+  border: 1px solid black;
+  border-radius: 2px;
+  display: inline-block; }
+
+.deck {
+  width: 200px;
+  height: 200px;
+  margin: 30px 30px;
+  border: 1px solid black;
+  border-radius: 2px;
+  float: left;
+  color: #1D171F;
+  background-color: #3B424C; }
+
+.play {
+  border: 1px solid black;
+  border-radius: 2px; }
+
+.edit {
+  border: 1px solid black;
+  border-radius: 2px; }
 
 /******** Play View Styling ***********/
 .playViewWrapper {
