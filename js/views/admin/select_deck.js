@@ -18,7 +18,7 @@ export default React.createClass({
  }, 
 
  editDeck(id){
-  console.log('editDeck');
+  console.log('editDeckCOMP:', id);
   this.props.onEdit(id);
   
  },

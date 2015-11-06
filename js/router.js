@@ -26,7 +26,7 @@ let Router = Backbone.Router.extend({
     "user/:username": "selectDeck",
     "user/:username/decks": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
-    "user/:username/decks/:id/edit": "editCard",
+    "user/:username/decks/edit/:id": "editCard",
     "user/:username/play/:id": "play",
     "score": "score",
   },
@@ -34,6 +34,7 @@ let Router = Backbone.Router.extend({
 
   initialize(appElement) {
     this.el = appElement;
+    // this.on('route', console.log.bind(console))
   },
 
   goto(route) {
@@ -50,7 +51,8 @@ let Router = Backbone.Router.extend({
 
     let userLogged = Cookies.getJSON('user');
 
-    if (userLogged != undefined) {
+    if (userLogged) {
+      console.log("userLogged",userLogged);
       this.navigate(`user/${userLogged.username}`, {
         replace: true,
         trigger: true
@@ -128,23 +130,23 @@ let Router = Backbone.Router.extend({
   },
 
   editCard(id) {
-
-    let data = this.colletion.get(id);
+    console.log('editCard:', id);
+    // let data = this.colletion.get(id);
     
-    render(<AddDeck_View 
-      data={data.toJSON()}
-      onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
-      onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
+    // render(<AddDeck_View 
+    //   data={data.toJSON()}
+    //   onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
+    //   onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
   },
 
-  saveCard(question, answer, username) {
-    this.collection.get(id).save({
-      card_question: qustion,
-      card_answer: answer
-    }).then(() => {
-      this.goto('user/:username');
-    });
-  },
+  // saveCard(question, answer, username) {
+  //   this.collection.get(id).save({
+  //     card_question: qustion,
+  //     card_answer: answer
+  //   }).then(() => {
+  //     this.goto('user/:username');
+  //   });
+  // },
 
   signIn(){
     this.render(<SignIn
@@ -226,7 +228,7 @@ let Router = Backbone.Router.extend({
   },
 
   selectDeck(){
-
+  
   let userData = Cookies.getJSON('user');
   console.log(userData);
 
@@ -242,8 +244,8 @@ let Router = Backbone.Router.extend({
       // console.log(data);
       let decks = data;
       console.log("decks:", decks);
+      Cookies.set('user', data, { expires: 7 });
 
-      // Cookies.set('user', data, { expires: 7 });
 
 
   this.render(
@@ -252,7 +254,8 @@ let Router = Backbone.Router.extend({
       onLogOut={() => this.removeCookies()}
       onPlay={(id) => this.goto(`user/${userData.username}/play/${id}`)}
       onAddDeck={() => this.goto(`user/${userData.username}/decks`)}
-      onEdit={(id) => this.goto(`user/${userData.username}/decks/${id}/edit`)}/>,
+      onEdit={(id) => this.goto(`user/${userData.username}/decks/edit/${id}`)}/>,
+
     );
    });//fetch
   
@@ -318,8 +321,6 @@ let Router = Backbone.Router.extend({
     }) 
 
   },
-
-  
 
   score() {
     this.render(
