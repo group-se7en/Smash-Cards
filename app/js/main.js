@@ -535,7 +535,8 @@ var Router = _backbone2['default'].Router.extend({
     (0, _jquery2['default'])('.app').html('loading...');
 
     request.then(function (data) {
-      _jsCookie2['default'].set('user', data, { expires: 7 });
+      // Cookies.set('user', data, {expires: 7});
+
       _jquery2['default'].ajaxSetup({
         headers: {
           auth_token: data.auth_token,

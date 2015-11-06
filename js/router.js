@@ -341,7 +341,8 @@ let Router = Backbone.Router.extend({
     $('.app').html('loading...');
 
       request.then((data) => {
-        Cookies.set('user', data, {expires: 7});
+        // Cookies.set('user', data, {expires: 7});
+
      $.ajaxSetup({
         headers: {
           auth_token: data.auth_token,
@@ -374,11 +375,11 @@ let Router = Backbone.Router.extend({
   score() {
     this.render(
       <Score_View
-      onNewClick={() => this.goto("user/:username")}
-      onAddClick={() => this.goto("user/:username/decks")}
-      onHomeClick={() => this.goto("welcome")}
-      onPlayClick={() => this.goto("user/:username/play")}/>
-      );
+        onNewClick={() => this.goto("user/:username")}
+        onAddClick={() => this.goto("user/:username/decks")}
+        onHomeClick={() => this.goto("welcome")}
+        onPlayClick={() => this.goto("user/:username/play")}/>
+    );
   },
 
   start() {
