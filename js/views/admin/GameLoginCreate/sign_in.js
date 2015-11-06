@@ -87,6 +87,10 @@ export default React.createClass({
     this.props.onSignInClick(this.state.username, this.state.password);
   },
 
+  cancelHandler() {
+    this.props.onCancelClick();
+  },
+
   render() {
     return (
       <div>
@@ -99,6 +103,7 @@ export default React.createClass({
             <label>Your Username: <input id="userName" type="text" className="user" onChange={this.updateUsername}/></label>
             <label>Your Password: <input id="passWord" type="text" className="password" onChange={this.updatePassword}/></label>
             <button onClick={this.signIn}>Sign In</button>
+            <button onClick={this.cancelHandler}>Cancel</button>
           </form>
         </div>
       </div>
