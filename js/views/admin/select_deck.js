@@ -7,26 +7,31 @@ export default React.createClass({
 
  playDeck(){
   console.log('playDeck');
+  this.props.onPlay();
+
  },
  
  addDeck(){
   console.log('addDeck');
+  this.props.onAdd();
+
  },
 
  editDeck(){
   console.log('editDeck');
+  this.props.onEdit();
   
  },
  logOut(){
   console.log('logOut please');
-  this.props.onHome();
+  this.props.onLogOut();
 
  },
 
  formatData(deck){
   return (
-    <div key={deck.id}>
-      <div  className="deck" onClick={() => this.playDeck()}>{deck.title}
+    <div key={deck.id} className="deck">
+      <div onClick={() => this.playDeck()}>{deck.title}
       </div>
       <button className="play" onClick={() => this.playDeck()}>
       Play </button>
@@ -39,12 +44,14 @@ export default React.createClass({
     return (
     <div>
       <div className="admin">
-       <AdminComponent onLogOut={this.logOut}/>
+        <AdminComponent onLogOut={this.logOut}/>
       </div>
+
       <div className="deckList">
-        <h2>Select a deck or create a custom one</h2>
-        <ul>{this.props.decks.map(this.formatData)}</ul>
-        <button onClick={() => this.addDeck()}>Add a deck</button>
+        <h2 className="selectTitle">Select a deck or create a custom one</h2>
+        <button className="addDeckBtn" onClick={() => this.addDeck()}><i className="fa fa-plus fa-2x"></i></button>
+        <div>{this.props.decks.map(this.formatData)}</div>
+        
       </div>
 
     </div>

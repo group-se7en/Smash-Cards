@@ -2,24 +2,93 @@
 @import "neat";
 @import "font-awesome";
 
-$background-color: #B39C84;
-$adminBack-color: #3B424C;
-$text-color: #1D171F;
-$smallBtn-color: #FF522A;
-$bigBtn-color: #2D6E74;
+$background-color: #E9E0D5;
+$adminBack-color: #1DABA5;
+$text-color: #344459;
+$smallBtn-color: #ED715C;
+$bigBtn-color: #1DABA5;
+$white: white;
 
 body {
   background: $background-color;
   height: 100%;
 }
 
+button {
+  color: $white;
+  background-color: $smallBtn-color;
+}
+
 .app {
   height: 100%;
 }
-
+//JESSE Edited existing 
 .admin {
-  border: 1px solid black; 
+  border: 1px solid $text-color;
+  padding: 2%; 
+  float: left;
+  width: 20%;
+  height: 700px;
+  margin: 60px 30px;
+  color: $text-color;
+  box-shadow: 5px 5px 5px black;
+  background-color: $adminBack-color;
+//JESSE SELECT PAGE
 }
+.deckList {
+  float: right;
+  width: 70%;
+
+}
+.selectTitle {
+  border: 1px solid $text-color;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 60px 30px 20px 30px;
+  padding: 1% 1%;
+  color: $text-color;
+  background-color: $adminBack-color;
+  box-shadow: 5px 5px 5px black;
+
+}
+
+.addDeckBtn {
+  color: $smallBtn-color;
+  margin: 30px 0 30px 200px;
+  border: 2px solid $smallBtn-color;
+  border-radius: 2px;
+  display: inline-block;
+  box-shadow: 3px 3px 5px black;
+  background-color: $white;
+}
+.deck {
+  width: 200px;
+  height: 200px;
+  margin: 30px 30px;
+  border: 1px solid $text-color;
+  border-radius: 2px;
+  float: left;
+  box-shadow: 5px 5px 5px black;
+  color: $text-color;
+  background-color: $adminBack-color;
+   
+}
+
+.play {
+  border: 1px solid $text-color$text-color;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
+
+
+}
+.edit {
+  border: 1px solid $text-color$text-color;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
+
+
+}
+// END JESSE SELECT PAGE
 
 /******** Play View Styling ***********/
 
@@ -41,7 +110,7 @@ body {
 .question{
   @include span-columns(6);
   @include omega(3n);
-  border: 1px solid black;
+  border: 1px solid $text-color;
   height: 100%;
   background-color: white;
 }

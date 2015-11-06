@@ -197,10 +197,20 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   redirectToLogin: function redirectToLogin() {
-    this.navigate('register', {
-      replace: true,
-      trigger: true
-    });
+
+    var userLogged = _jsCookie2['default'].getJSON('user');
+
+    if (userLogged != undefined) {
+      this.navigate('user/' + userLogged.username, {
+        replace: true,
+        trigger: true
+      });
+    } else {
+      this.navigate('login', {
+        replace: true,
+        trigger: true
+      });
+    }
   },
 
   addDeck: function addDeck() {
@@ -278,6 +288,9 @@ var Router = _backbone2['default'].Router.extend({
   logIn: function logIn(username, password) {
     var _this6 = this;
 
+    var userLogged = _jsCookie2['default'].getJSON('user');
+    console.log(userLogged);
+
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
       method: 'POST',
@@ -290,7 +303,7 @@ var Router = _backbone2['default'].Router.extend({
     (0, _jquery2['default'])('.app').html('loading...');
 
     request.then(function (data) {
-      _jsCookie2['default'].set('user', data);
+      _jsCookie2['default'].set('user', data, { expires: 7 });
 
       _jquery2['default'].ajaxSetup({
         headers: {
@@ -361,24 +374,42 @@ var Router = _backbone2['default'].Router.extend({
       title: "Magic",
       id: 1
     }, {
-      title: "Japanese",
+      title: "Math",
       id: 2
+    }, {
+      title: "History",
+      id: 3
+    }, {
+      title: "Japanese",
+      id: 4
     }];
 
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
-      onHome: function () {
-        return _this9.goto('login');
+      onLogOut: function () {
+        return _this9.removeCookies();
       },
-      onPlay: function (id) {
-        return _this9.goto('user/:id/deck' + id);
+      onPlay: function () {
+        return _this9.goto('user/' + data.username);
       },
-      onAdd: function (id) {
-        return _this9.goto('user/:id/deck' + id);
+      onAdd: function () {
+        return _this9.goto('user/' + data.username);
       },
-      onEdit: function (id) {
-        return _this9.goto('user/:id/deck/:id/edit' + id);
+      onEdit: function () {
+        return _this9.goto('user/' + data.username);
       } }));
+  },
+
+  removeCookies: function removeCookies(event) {
+
+    _jsCookie2['default'].remove('user');
+    var ajaxNull = _jquery2['default'].ajaxSetup({
+      headers: {
+        auth_token: null
+      }
+    });
+
+    this.goto('login');
   },
 
   play: function play() {
@@ -404,7 +435,7 @@ var Router = _backbone2['default'].Router.extend({
           user_id: data.user_id
         }
       });
-      console.log(data);
+
       _underscore2['default'].each(data, function (y) {
         _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10, deckTitle: y.title }), document.querySelector('.app'));
       });
@@ -604,20 +635,20 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 },{"react":176}],7:[function(require,module,exports){
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-exports['default'] = _react2['default'].createClass({
-  displayName: 'sign_in',
+exports["default"] = _react2["default"].createClass({
+  displayName: "sign_in",
 
   getStatus: function getStatus() {
 
@@ -698,50 +729,49 @@ exports['default'] = _react2['default'].createClass({
 
   signIn: function signIn(event) {
     event.preventDefault();
-    console.log('Yooo you signed in');
     this.props.onSignInClick(this.state.username, this.state.password);
   },
 
   render: function render() {
-    return _react2['default'].createElement(
-      'div',
+    return _react2["default"].createElement(
+      "div",
       null,
-      _react2['default'].createElement(
-        'div',
-        { className: 'header' },
-        _react2['default'].createElement(
-          'h2',
+      _react2["default"].createElement(
+        "div",
+        { className: "header" },
+        _react2["default"].createElement(
+          "h2",
           null,
-          ' Welcome to Flashcard Game '
+          " Welcome to Flashcard Game "
         )
       ),
-      _react2['default'].createElement(
-        'div',
-        { className: 'sign-in' },
-        _react2['default'].createElement(
-          'h2',
+      _react2["default"].createElement(
+        "div",
+        { className: "sign-in" },
+        _react2["default"].createElement(
+          "h2",
           null,
-          'Enter Your Login Credentials'
+          "Enter Your Login Credentials"
         ),
-        _react2['default'].createElement(
-          'form',
+        _react2["default"].createElement(
+          "form",
           null,
-          _react2['default'].createElement(
-            'label',
+          _react2["default"].createElement(
+            "label",
             null,
-            'Your Username: ',
-            _react2['default'].createElement('input', { id: 'userName', type: 'text', className: 'user', onChange: this.updateUsername })
+            "Your Username: ",
+            _react2["default"].createElement("input", { id: "userName", type: "text", className: "user", onChange: this.updateUsername })
           ),
-          _react2['default'].createElement(
-            'label',
+          _react2["default"].createElement(
+            "label",
             null,
-            'Your Password: ',
-            _react2['default'].createElement('input', { id: 'passWord', type: 'text', className: 'password', onChange: this.updatePassword })
+            "Your Password: ",
+            _react2["default"].createElement("input", { id: "passWord", type: "text", className: "password", onChange: this.updatePassword })
           ),
-          _react2['default'].createElement(
-            'button',
+          _react2["default"].createElement(
+            "button",
             { onClick: this.signIn },
-            'Sign In'
+            "Sign In"
           )
         )
       )
@@ -749,7 +779,7 @@ exports['default'] = _react2['default'].createClass({
   }
 
 });
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 },{"react":176}],8:[function(require,module,exports){
 'use strict';
@@ -1032,18 +1062,21 @@ exports['default'] = _react2['default'].createClass({
 
   playDeck: function playDeck() {
     console.log('playDeck');
+    this.props.onPlay();
   },
 
   addDeck: function addDeck() {
     console.log('addDeck');
+    this.props.onAdd();
   },
 
   editDeck: function editDeck() {
     console.log('editDeck');
+    this.props.onEdit();
   },
   logOut: function logOut() {
     console.log('logOut please');
-    this.props.onHome();
+    this.props.onLogOut();
   },
 
   formatData: function formatData(deck) {
@@ -1051,10 +1084,10 @@ exports['default'] = _react2['default'].createClass({
 
     return _react2['default'].createElement(
       'div',
-      { key: deck.id },
+      { key: deck.id, className: 'deck' },
       _react2['default'].createElement(
         'div',
-        { className: 'deck', onClick: function () {
+        { onClick: function () {
             return _this.playDeck();
           } },
         deck.title
@@ -1092,20 +1125,20 @@ exports['default'] = _react2['default'].createClass({
         { className: 'deckList' },
         _react2['default'].createElement(
           'h2',
-          null,
+          { className: 'selectTitle' },
           'Select a deck or create a custom one'
         ),
         _react2['default'].createElement(
-          'ul',
-          null,
-          this.props.decks.map(this.formatData)
-        ),
-        _react2['default'].createElement(
           'button',
-          { onClick: function () {
+          { className: 'addDeckBtn', onClick: function () {
               return _this2.addDeck();
             } },
-          'Add a deck'
+          _react2['default'].createElement('i', { className: 'fa fa-plus fa-2x' })
+        ),
+        _react2['default'].createElement(
+          'div',
+          null,
+          this.props.decks.map(this.formatData)
         )
       )
     );

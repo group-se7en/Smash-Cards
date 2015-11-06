@@ -84,7 +84,6 @@ export default React.createClass({
 
   signIn(event) {
     event.preventDefault();
-    console.log('Yooo you signed in');
     this.props.onSignInClick(this.state.username, this.state.password);
   },
 

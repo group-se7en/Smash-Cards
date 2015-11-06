@@ -44,10 +44,20 @@ let Router = Backbone.Router.extend({
   },
 
   redirectToLogin() {
-    this.navigate('register', {
-      replace: true,
-      trigger: true
-    });
+
+    let userLogged = Cookies.getJSON('user');
+
+    if (userLogged != undefined) {
+      this.navigate(`user/${userLogged.username}`, {
+        replace: true,
+        trigger: true
+      });
+    } else {
+      this.navigate('login', {
+        replace: true,
+        trigger: true
+      });
+    }
 
 
   },
@@ -107,6 +117,8 @@ let Router = Backbone.Router.extend({
   },
 
   logIn(username, password) {
+    let userLogged = Cookies.getJSON('user');
+    console.log(userLogged);
 
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
@@ -120,7 +132,7 @@ let Router = Backbone.Router.extend({
     $('.app').html('loading...');
 
     request.then((data) => {
-      Cookies.set('user', data);
+      Cookies.set('user', data, { expires: 7 });
 
       $.ajaxSetup({
         headers: {
@@ -178,27 +190,48 @@ let Router = Backbone.Router.extend({
   },
 
   selectDeck(){
+
     let data = [
     {
       title  :"Magic",
        id    :1
     },
+     {
+      title  :"Math",
+       id    :2
+    },
+     {
+      title  :"History",
+       id    :3
+    },
 
     {
       title   : "Japanese", 
-      id      :2
+      id      :4
     }
  ];
 
   this.render(
     <SelectDeck
       decks={data}
-      onHome={() => this.goto('login')}
-      onPlay={(id) => this.goto('user/:id/deck' + id)}
-      onAdd={(id) => this.goto('user/:id/deck' + id)}
-      onEdit={(id) => this.goto('user/:id/deck/:id/edit' + id)}/>,
+      onLogOut={() => this.removeCookies()}
+      onPlay={() => this.goto(`user/${data.username}`)}
+      onAdd={() => this.goto(`user/${data.username}`)}
+      onEdit={() => this.goto(`user/${data.username}`)}/>,
     );
   
+  },
+
+  removeCookies(event) {
+    
+    Cookies.remove('user');
+    let ajaxNull = $.ajaxSetup({
+      headers: {
+        auth_token: null
+      }
+    });
+
+    this.goto('login');
   },
  
 
@@ -225,14 +258,12 @@ let Router = Backbone.Router.extend({
           user_id: data.user_id
         }
       });
-      console.log(data);
+
       _.each(data, function(y){
         ReactDom.render(<Play_View secondsRemaining={10} deckTitle={y.title}/>, document.querySelector('.app'));
       })
       
-    })
- 
-    
+    }) 
 
 
   },
