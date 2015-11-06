@@ -212,7 +212,7 @@ var Router = _backbone2['default'].Router.extend({
         trigger: true
       });
     } else {
-      this.navigate('login', {
+      this.navigate('welcome', {
         replace: true,
         trigger: true
       });
@@ -224,10 +224,10 @@ var Router = _backbone2['default'].Router.extend({
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateNo_cookie2['default'], {
       onSignInClick: function () {
-        _this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], null));
+        _this.goto(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], null));
       },
       onCreateAccountClick: function () {
-        _this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], null));
+        _this.goto(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], null));
       } }), this.el);
   },
 
@@ -715,13 +715,13 @@ var _react2 = _interopRequireDefault(_react);
 exports["default"] = _react2["default"].createClass({
   displayName: "no_cookie",
 
-  SignIn: function SignIn(event) {
+  signIn: function signIn(event) {
     event.preventDefault();
     console.log("hallo");
     this.props.onSignInClick();
   },
 
-  CreateAccount: function CreateAccount(event) {
+  createAccount: function createAccount(event) {
     event.preventDefault();
     console.log("Bom Dia");
     this.props.onCreateAccountClick();

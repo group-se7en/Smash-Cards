@@ -56,19 +56,17 @@ let Router = Backbone.Router.extend({
         trigger: true
       });
     } else {
-      this.navigate('login', {
+      this.navigate('welcome', {
         replace: true,
         trigger: true
       });
     }
-
-
   },
 
   welcome(){
     this.render(<NoCookie
-      onSignInClick={() => {this.render(<SignIn/>)}}
-      onCreateAccountClick={() => {this.render(<CreateAccount/>)}}/>, this.el)
+      onSignInClick={() => {this.goto(<SignIn/>)}}
+      onCreateAccountClick={() => {this.goto(<CreateAccount/>)}}/>, this.el)
   },
 
   addDeck() {
@@ -303,7 +301,6 @@ let Router = Backbone.Router.extend({
       })
       
     }) 
-
 
   },
 

@@ -3,13 +3,13 @@ import React from 'react';
 export default React.createClass({
 
 
-  SignIn (event) {
+  signIn (event) {
     event.preventDefault();
     console.log("hallo");
     this.props.onSignInClick();
   },
 
-  CreateAccount (event) {
+  createAccount (event) {
     event.preventDefault();
     console.log("Bom Dia");
     this.props.onCreateAccountClick();
