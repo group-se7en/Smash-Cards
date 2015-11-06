@@ -367,17 +367,17 @@ var Router = _backbone2['default'].Router.extend({
 
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
-      onHome: function () {
+      onLogOut: function () {
         return _this9.goto('login');
       },
-      onPlay: function (id) {
-        return _this9.goto('user/:id/deck' + id);
+      onPlay: function () {
+        return _this9.goto('user/' + data.username);
       },
-      onAdd: function (id) {
-        return _this9.goto('user/:id/deck' + id);
+      onAdd: function () {
+        return _this9.goto('user/' + data.username);
       },
-      onEdit: function (id) {
-        return _this9.goto('user/:id/deck/:id/edit' + id);
+      onEdit: function () {
+        return _this9.goto('user/' + data.username);
       } }));
   },
 
@@ -1032,18 +1032,21 @@ exports['default'] = _react2['default'].createClass({
 
   playDeck: function playDeck() {
     console.log('playDeck');
+    this.props.onPlay();
   },
 
   addDeck: function addDeck() {
     console.log('addDeck');
+    this.props.onAdd();
   },
 
   editDeck: function editDeck() {
     console.log('editDeck');
+    this.props.onEdit();
   },
   logOut: function logOut() {
     console.log('logOut please');
-    this.props.onHome();
+    this.props.onLogOut();
   },
 
   formatData: function formatData(deck) {
@@ -1096,7 +1099,7 @@ exports['default'] = _react2['default'].createClass({
           'Select a deck or create a custom one'
         ),
         _react2['default'].createElement(
-          'ul',
+          'div',
           null,
           this.props.decks.map(this.formatData)
         ),

@@ -193,10 +193,10 @@ let Router = Backbone.Router.extend({
   this.render(
     <SelectDeck
       decks={data}
-      onHome={() => this.goto('login')}
-      onPlay={(id) => this.goto('user/:id/deck' + id)}
-      onAdd={(id) => this.goto('user/:id/deck' + id)}
-      onEdit={(id) => this.goto('user/:id/deck/:id/edit' + id)}/>,
+      onLogOut={() => this.goto('login')}
+      onPlay={() => this.goto(`user/${data.username}`)}
+      onAdd={() => this.goto(`user/${data.username}`)}
+      onEdit={() => this.goto(`user/${data.username}`)}/>,
     );
   
   },
