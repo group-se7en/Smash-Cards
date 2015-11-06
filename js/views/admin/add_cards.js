@@ -12,7 +12,7 @@ export default React.createClass({
     this.props.onFinishClick();
   },
 
-  updateTitle(event) {
+  updateQuestion(event) {
     let newQuestion = event.currentTarget.value;
 
     this.setState({
@@ -20,7 +20,7 @@ export default React.createClass({
     });
   },
 
-  updateTitle(event) {
+  updateAnswer(event) {
     let newAnswer = event.currentTarget.value;
 
     this.setState({
