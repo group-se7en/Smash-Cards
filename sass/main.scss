@@ -158,25 +158,31 @@ button {
   margin: 20px;
   padding: 10px;
   text-align: center;
+  box-shadow: 5px 5px 5px black;
   border: 5px solid;
   border-radius: 180px;
+  
+  background-color: $adminBack-color;
   .gameOver{
     font-size: 3em;
-    color: red;
+    color: #344459;
   }
 }
 .scoreNumber {
   font-size: 3em;
-  color: red;
-  border: 3px solid red;
+  color: #344459;
+  border: 3px solid #ed715C;
   margin-left: 400px;
   margin-right: 400px;
   background-color: white;
 
 }
-.playAgain {
-  padding: 5pt;
+button {
+  padding: 15pt;
+  box-shadow: 5px 5px 5px black;
 }
 .changeGame {
   padding: 5pt;
 }
+
+

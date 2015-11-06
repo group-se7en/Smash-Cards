@@ -1,4 +1,6 @@
 import React from 'react';
+import scoreValue from './play_view';
+import deckTitle from './play_view';
 
 let Score_View = React.createClass({
 
@@ -11,33 +13,25 @@ getInitialState() {
     };
   },
 
-  ticking() {
-    this.setState({secondsRemaining: this.state.secondsRemaining - 1});
-    if (this.state.secondsRemaining <= 0) {
-      clearInterval(this.interval);
-    }
+  
+
+  playclickHandler() {
+    this.props.onPlayClick();
   },
 
-  componentDidMount() {
-    this.setState({ secondsRemaining: this.props.secondsRemaining });
-    this.interval = setInterval(this.ticking, 1000);
+  newclickHandler() {
+    this.props.onNewClick();
   },
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  addclickHandler() {
+    this.props.onAddClick();
   },
 
-  // submitAnswer() {
+  homeclickHandler() {
+    this.props.onHomeClick();
+  },
 
-  // },
-
-  // checkAnswer() {
-
-  // },
-
-  // scoreFunction() {
-
-  // },
+  
 
   render() {
     return (
@@ -47,14 +41,18 @@ getInitialState() {
         </div>
 
         <div className="score">
-          Your score on the Hungarian Cabinet Making deck is ...<br/>
+          Your score on the {this.deckTitle} deck is ...<br/>
 
-          <p className="scoreNumber">75</p>
+          <p className="scoreNumber">{this.scoreValue}</p>
         </div>
 
-        <button onClick={this.playclickHandler} className="playAgain">Play Again</button>
-        <button onClick={this.newGameclickHandler} className="changeGame">Play a different Game</button>
-        
+        <div className="after">
+          <button className="play" onClick={this.playclickHandler}>Play Again</button>
+          <button className="new" onClick={this.newclickHandler}>Play a New Game</button>
+          <button className="add" onClick={this.addclickHandler}>Add Your Own Game</button>
+          <button className="home" onClick={this.homeclickHandler}>Home Page</button>
+
+        </div>
 
       </div>
     );

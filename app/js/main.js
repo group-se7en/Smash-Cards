@@ -446,11 +446,17 @@ var Router = _backbone2['default'].Router.extend({
     var _this10 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
-      onplayclick: function () {
-        return _this10.goto('play');
-      },
-      onnewGameclick: function () {
+      onNewClick: function () {
         return _this10.goto("user/:username");
+      },
+      onAddClick: function () {
+        return _this10.goto("addDeck");
+      },
+      onHomeClick: function () {
+        return _this10.goto("login");
+      },
+      onPlayClick: function () {
+        return _this10.goto('play');
       } }));
   },
 
@@ -1308,20 +1314,26 @@ exports['default'] = Play_View;
 module.exports = exports['default'];
 
 },{"moment":19,"react":176}],14:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var Score_View = _react2["default"].createClass({
-  displayName: "Score_View",
+var _play_view = require('./play_view');
+
+var _play_view2 = _interopRequireDefault(_play_view);
+
+var _play_view3 = _interopRequireDefault(_play_view);
+
+var Score_View = _react2['default'].createClass({
+  displayName: 'Score_View',
 
   //newgame
   //play again
@@ -1331,72 +1343,76 @@ var Score_View = _react2["default"].createClass({
     };
   },
 
-  ticking: function ticking() {
-    this.setState({ secondsRemaining: this.state.secondsRemaining - 1 });
-    if (this.state.secondsRemaining <= 0) {
-      clearInterval(this.interval);
-    }
+  playclickHandler: function playclickHandler() {
+    this.props.onPlayClick();
   },
 
-  componentDidMount: function componentDidMount() {
-    this.setState({ secondsRemaining: this.props.secondsRemaining });
-    this.interval = setInterval(this.ticking, 1000);
+  newclickHandler: function newclickHandler() {
+    this.props.onNewClick();
   },
 
-  componentWillUnmount: function componentWillUnmount() {
-    clearInterval(this.interval);
+  addclickHandler: function addclickHandler() {
+    this.props.onAddClick();
   },
 
-  // submitAnswer() {
-
-  // },
-
-  // checkAnswer() {
-
-  // },
-
-  // scoreFunction() {
-
-  // },
+  homeclickHandler: function homeclickHandler() {
+    this.props.onHomeClick();
+  },
 
   render: function render() {
-    return _react2["default"].createElement(
-      "div",
-      { className: "gameOverWrapper" },
-      _react2["default"].createElement(
-        "div",
-        { className: "gameOver" },
-        "Game Over"
+    return _react2['default'].createElement(
+      'div',
+      { className: 'gameOverWrapper' },
+      _react2['default'].createElement(
+        'div',
+        { className: 'gameOver' },
+        'Game Over'
       ),
-      _react2["default"].createElement(
-        "div",
-        { className: "score" },
-        "Your score on the Hungarian Cabinet Making deck is ...",
-        _react2["default"].createElement("br", null),
-        _react2["default"].createElement(
-          "p",
-          { className: "scoreNumber" },
-          "75"
+      _react2['default'].createElement(
+        'div',
+        { className: 'score' },
+        'Your score on the ',
+        this.deckTitle,
+        ' deck is ...',
+        _react2['default'].createElement('br', null),
+        _react2['default'].createElement(
+          'p',
+          { className: 'scoreNumber' },
+          this.scoreValue
         )
       ),
-      _react2["default"].createElement(
-        "button",
-        { onClick: this.playclickHandler, className: "playAgain" },
-        "Play Again"
-      ),
-      _react2["default"].createElement(
-        "button",
-        { onClick: this.newGameclickHandler, className: "changeGame" },
-        "Play a different Game"
+      _react2['default'].createElement(
+        'div',
+        { className: 'after' },
+        _react2['default'].createElement(
+          'button',
+          { className: 'play', onClick: this.playclickHandler },
+          'Play Again'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { className: 'new', onClick: this.newclickHandler },
+          'Play a New Game'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { className: 'add', onClick: this.addclickHandler },
+          'Add Your Own Game'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { className: 'home', onClick: this.homeclickHandler },
+          'Home Page'
+        )
       )
     );
   }
 });
 
-exports["default"] = Score_View;
-module.exports = exports["default"];
+exports['default'] = Score_View;
+module.exports = exports['default'];
 
-},{"react":176}],15:[function(require,module,exports){
+},{"./play_view":13,"react":176}],15:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
