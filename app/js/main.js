@@ -175,8 +175,8 @@ var _viewsAdminGameLoginCreateNo_cookie2 = _interopRequireDefault(_viewsAdminGam
 // Routes for page views
 var Router = _backbone2['default'].Router.extend({
   routes: {
-    "": "home",
-    "welcome": "start",
+    "": "redirectToWelcome",
+    "welcome": "welcome",
     "login": "signIn",
     "register": "createAccount",
     "user/:username": "selectDeck",
@@ -201,7 +201,7 @@ var Router = _backbone2['default'].Router.extend({
     _reactDom2['default'].render(component, this.el);
   },
 
-  redirectToLogin: function redirectToLogin() {
+  redirectToWelcome: function redirectToWelcome() {
 
     var userLogged = _jsCookie2['default'].getJSON('user');
 
@@ -211,12 +211,14 @@ var Router = _backbone2['default'].Router.extend({
         trigger: true
       });
     } else {
-      this.navigate('welcome', {
+      this.navigate('login', {
         replace: true,
         trigger: true
       });
     }
   },
+
+  welcome: function welcome() {},
 
   addDeck: function addDeck() {
     var _this = this;
@@ -312,13 +314,17 @@ var Router = _backbone2['default'].Router.extend({
     });
   },
 
-  home: function home() {
-    this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateNo_cookie2['default'], null), this.el);
-    // onSignInClick={(username, password) => this.logIn(username, password)}
+  signIn: function signIn() {
+    var _this6 = this;
+
+    this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], {
+      onSignInClick: function (username, password) {
+        return _this6.logIn(username, password);
+      } }), this.el);
   },
 
   logIn: function logIn(username, password) {
-    var _this6 = this;
+    var _this7 = this;
 
     var userLogged = _jsCookie2['default'].getJSON('user');
     console.log(userLogged);
@@ -346,26 +352,26 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this6.goto('user/' + data.username);
+      _this7.goto('user/' + data.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   createAccount: function createAccount() {
-    var _this7 = this;
+    var _this8 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], {
       onSubmitClick: function (first, last, email, user, password) {
-        return _this7.newUser(first, last, email, user, password);
+        return _this8.newUser(first, last, email, user, password);
       },
       onCancelClick: function () {
-        return _this7.goto('login');
+        return _this8.goto('login');
       } }), this.el);
   },
 
   newUser: function newUser(first, last, email, user, password) {
-    var _this8 = this;
+    var _this9 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/signup',
@@ -393,14 +399,14 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this8.goto('login');
+      _this9.goto('login');
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   selectDeck: function selectDeck() {
-    var _this9 = this;
+    var _this10 = this;
 
     var data = [{
       title: "Magic",
@@ -421,16 +427,16 @@ var Router = _backbone2['default'].Router.extend({
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
       onLogOut: function () {
-        return _this9.removeCookies();
+        return _this10.removeCookies();
       },
       onPlay: function () {
-        return _this9.goto('user/' + userData.username + '/play');
+        return _this10.goto('user/' + userData.username + '/play');
       },
       onAddDeck: function () {
-        return _this9.goto('user/' + userData.username + '/decks');
+        return _this10.goto('user/' + userData.username + '/decks');
       },
       onEdit: function () {
-        return _this9.goto('user/' + userData.username);
+        return _this10.goto('user/' + userData.username);
       } }));
   },
 
@@ -477,20 +483,20 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   score: function score() {
-    var _this10 = this;
+    var _this11 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
       onNewClick: function () {
-        return _this10.goto("user/:username");
+        return _this11.goto("user/:username");
       },
       onAddClick: function () {
-        return _this10.goto("addDeck");
+        return _this11.goto("addDeck");
       },
       onHomeClick: function () {
-        return _this10.goto("login");
+        return _this11.goto("login");
       },
       onPlayClick: function () {
-        return _this10.goto('play');
+        return _this11.goto('play');
       } }));
   },
 
@@ -706,12 +712,12 @@ var _create_account2 = _interopRequireDefault(_create_account);
 exports['default'] = _react2['default'].createClass({
   displayName: 'no_cookie',
 
-  SignIn: function SignIn() {
+  signIn: function signIn() {
     console.log('You got me signed in');
     this.props.onSignInClick();
   },
 
-  CreateAccount: function CreateAccount() {
+  createAccount: function createAccount() {
     console.log('You a newbie to the tribe');
     this.props.onCreactAccountClick();
   },
@@ -737,12 +743,12 @@ exports['default'] = _react2['default'].createClass({
           null,
           _react2['default'].createElement(
             'button',
-            { onClick: this.SignIn },
+            { onClick: this.signIn },
             'Sign In'
           ),
           _react2['default'].createElement(
             'button',
-            { onClick: this.CreateAccount },
+            { onClick: this.createAccount },
             'Create Account'
           )
         )

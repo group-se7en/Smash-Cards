@@ -18,8 +18,8 @@ import NoCookie from './views/admin/GameLoginCreate/no_cookie';
 // Routes for page views
 let Router = Backbone.Router.extend({
   routes: {
-    "" : "home",
-    "welcome": "start",
+    "" : "redirectToWelcome",
+    "welcome": "welcome",
     "login": "signIn",  
     "register": "createAccount",  
     "user/:username": "selectDeck",
@@ -45,7 +45,7 @@ let Router = Backbone.Router.extend({
     ReactDom.render(component, this.el);
   },
 
-  redirectToLogin() {
+  redirectToWelcome() {
 
     let userLogged = Cookies.getJSON('user');
 
@@ -55,12 +55,16 @@ let Router = Backbone.Router.extend({
         trigger: true
       });
     } else {
-      this.navigate('welcome', {
+      this.navigate('login', {
         replace: true,
         trigger: true
       });
     }
 
+
+  },
+
+  welcome() {
 
   },
 
@@ -143,9 +147,9 @@ let Router = Backbone.Router.extend({
     });
   },
 
-  home(){
-    this.render(<NoCookie/>, this.el)
-    // onSignInClick={(username, password) => this.logIn(username, password)}
+  signIn(){
+    this.render(<SignIn
+      onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el)
   },
 
   logIn(username, password) {
