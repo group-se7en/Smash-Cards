@@ -236,6 +236,8 @@ var Router = _backbone2['default'].Router.extend({
   addDeck: function addDeck() {
     var _this2 = this;
 
+    var data = _jsCookie2['default'].getJSON('user');
+
     this.render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
       onSubmitClick: function (title) {
         return _this2.newDeck(title);
@@ -287,7 +289,7 @@ var Router = _backbone2['default'].Router.extend({
       onSubmitClick: function (question, answer) {
         return _this4.newCard(question, answer);
       },
-      onCancelClick: function () {
+      onFinishClick: function () {
         return _this4.goto('user/' + data.username);
       } }), this.el);
   },
@@ -330,16 +332,6 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   editCard: function editCard(id) {
-<<<<<<< HEAD
-    console.log('editCard:', id);
-    // let data = this.colletion.get(id);
-
-    //   render(<EditDeck_View
-    //     data={data.toJSON()}
-    //     onSubmitClick={(question, answer) => this.saveCard(question, answer)}
-    //     onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
-    // },
-=======
     var _this6 = this;
 
     render(_react2['default'].createElement(EditDeck_View, {
@@ -350,23 +342,10 @@ var Router = _backbone2['default'].Router.extend({
         return _this6.goto('user/' + data.username);
       } }), el);
   },
->>>>>>> isaac-dev
 
-    // saveCard(question, answer) {
-    //   this.collection.get(id).save({
-    //     card_question: qustion,
-    //     card_answer: answer
-    //   }).then(() => {
-    //     this.goto(`user/${data.username}`);
-    //   });
-    // },
+  saveCard: function saveCard(question, answer) {
+    var _this7 = this;
 
-<<<<<<< HEAD
-    // render(<AddDeck_View
-    //   data={data.toJSON()}
-    //   onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
-    //   onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
-=======
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/cards/' + cardId,
       method: 'PUT',
@@ -397,32 +376,22 @@ var Router = _backbone2['default'].Router.extend({
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
->>>>>>> isaac-dev
   },
 
-  // saveCard(question, answer, username) {
-  //   this.collection.get(id).save({
-  //     card_question: qustion,
-  //     card_answer: answer
-  //   }).then(() => {
-  //     this.goto('user/:username');
-  //   });
-  // },
-
   signIn: function signIn() {
-    var _this6 = this;
+    var _this8 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], {
       onSignInClick: function (username, password) {
-        return _this6.logIn(username, password);
+        return _this8.logIn(username, password);
       },
       onCancelClick: function () {
-        return _this6.goto('welcome');
+        return _this8.goto('welcome');
       } }), this.el);
   },
 
   logIn: function logIn(username, password) {
-    var _this7 = this;
+    var _this9 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
@@ -447,26 +416,26 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this7.goto('user/' + data.username);
+      _this9.goto('user/' + data.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   createAccount: function createAccount() {
-    var _this8 = this;
+    var _this10 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], {
       onSubmitClick: function (first, last, email, user, password) {
-        return _this8.newUser(first, last, email, user, password);
+        return _this10.newUser(first, last, email, user, password);
       },
       onCancelClick: function () {
-        return _this8.goto('welcome');
+        return _this10.goto('welcome');
       } }), this.el);
   },
 
   newUser: function newUser(first, last, email, user, password) {
-    var _this9 = this;
+    var _this11 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/signup',
@@ -493,18 +462,14 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this9.goto('login');
+      _this11.goto('login');
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   selectDeck: function selectDeck() {
-<<<<<<< HEAD
-    var _this10 = this;
-=======
     var _this12 = this;
->>>>>>> isaac-dev
 
     var userData = _jsCookie2['default'].getJSON('user');
 
@@ -519,27 +484,25 @@ var Router = _backbone2['default'].Router.extend({
 
     });
     request.then(function (data) {
-<<<<<<< HEAD
-      // console.log(data);
-      var decks = data;
-      console.log("decks:", decks);
-      _jsCookie2['default'].set('user', data, { expires: 7 });
-=======
->>>>>>> isaac-dev
 
-      _this10.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
+      // // console.log(data);
+      var decks = data;
+      // console.log("decks:", decks);
+      // Cookies.set('user', data, { expires: 7 });
+
+      _this12.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
         decks: decks,
         onLogOut: function () {
-          return _this10.removeCookies();
+          return _this12.removeCookies();
         },
         onPlay: function (id) {
-          return _this10.goto('user/' + userData.username + '/play/' + id);
+          return _this12.goto('user/' + userData.username + '/play/' + id);
         },
         onAddDeck: function () {
-          return _this10.goto('user/' + userData.username + '/decks');
+          return _this12.goto('user/' + userData.username + '/decks');
         },
         onEdit: function (id) {
-          return _this10.goto('user/' + userData.username + '/decks/edit/' + id);
+          return _this12.goto('user/' + userData.username + '/decks/edit/' + id);
         } }));
     }); //fetch
   },
@@ -600,20 +563,20 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   score: function score() {
-    var _this11 = this;
+    var _this13 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
       onNewClick: function () {
-        return _this11.goto("user/:username");
+        return _this13.goto("user/:username");
       },
       onAddClick: function () {
-        return _this11.goto("user/:username/decks");
+        return _this13.goto("user/:username/decks");
       },
       onHomeClick: function () {
-        return _this11.goto("welcome");
+        return _this13.goto("welcome");
       },
       onPlayClick: function () {
-        return _this11.goto("user/:username/play");
+        return _this13.goto("user/:username/play");
       } }));
   },
 
@@ -1074,7 +1037,7 @@ var _admin_component2 = _interopRequireDefault(_admin_component);
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_deck',
 
-  submitHandler: function submitHandler() {
+  submitHandler: function submitHandler(event) {
     event.preventDefault();
     this.props.onSubmitClick(this.state.title);
   },

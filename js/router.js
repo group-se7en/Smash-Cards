@@ -72,6 +72,7 @@ let Router = Backbone.Router.extend({
   },
 
   addDeck() {
+    let data = Cookies.getJSON('user');
 
     this.render(<AddDeck_View 
       onSubmitClick={(title) => this.newDeck(title)}
@@ -115,7 +116,7 @@ let Router = Backbone.Router.extend({
 
     this.render(<AddCard_View 
       onSubmitClick={(question, answer) => this.newCard(question, answer)}
-      onCancelClick={() => this.goto(`user/${data.username}`)}/>, this.el);
+      onFinishClick={() => this.goto(`user/${data.username}`)}/>, this.el);
   },
 
   newCard(question, answer) {
@@ -290,7 +291,7 @@ let Router = Backbone.Router.extend({
     request.then((data) => {
 
       // // console.log(data);
-      // let decks = data;
+      let decks = data;
       // console.log("decks:", decks);
       // Cookies.set('user', data, { expires: 7 });
 
