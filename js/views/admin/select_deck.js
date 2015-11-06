@@ -13,7 +13,7 @@ export default React.createClass({
  
  addDeck(){
   console.log('addDeck');
-  this.props.onAdd();
+  this.props.onAddDeck();
 
  },
 

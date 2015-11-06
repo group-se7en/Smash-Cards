@@ -21,7 +21,7 @@ let Router = Backbone.Router.extend({
     "login": "home",  
     "register": "createAccount",  
     "user/:username": "selectDeck",
-    "user/:username/decks/": "addDeck",
+    "user/:username/decks": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
     "user/:username/decks/:id/edit": "editCard",
     "play": "play",
@@ -63,17 +63,47 @@ let Router = Backbone.Router.extend({
   },
 
   addDeck() {
-    render(<AddDeck_View 
-      onSubmitClick={(title) => {
-        let newDeck = new DeckModel ({
-          title: title
-        });
+    let data = Cookies.getJSON('user');
+    console.log(data);
 
-        newDeck.save().then(() => {
-          this.goto('user/:username/decks/:id/cards');
-        });
-      }}
-      onCancelClick={() => goto('user/:id')}/>, el);
+    this.render(<AddDeck_View 
+      onSubmitClick={(title) => this.newDeck(title)}
+      onCancelClick={() => this.goto(`user/${data.username}`)}/>, this.el);
+
+
+
+  },
+
+  newDeck(title) {
+    let user = Cookies.getJSON('user');
+    console.log(user.auth_token);
+
+    let request = $.ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      method: 'POST',
+      headers: {
+        auth_token: user.auth_token
+      },
+      data: {
+        title: title
+      }
+    });
+    
+    $('.app').html('loading...');
+
+    request.then((data) => {
+      
+      $.ajaxSetup({
+        headers: {
+          id: data.id,
+          title: data.title
+          
+        }
+      });
+      this.goto(`user/${data.username}/decks/${data.id}/cards`);
+    }).fail(() => {
+      $('.app').html('Oops..');
+    });
   },
 
   addCard() {
@@ -89,7 +119,7 @@ let Router = Backbone.Router.extend({
           this.goto('user/:username/decks/:id/cards');
         });
       }}
-      onFinishClick={() => goto('user/:username')}/>, el);
+      onFinishClick={() => goto(`user/${data.username}`)}/>, el);
   },
 
   editCard(id) {
@@ -99,7 +129,7 @@ let Router = Backbone.Router.extend({
     render(<AddDeck_View 
       data={data.toJSON()}
       onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
-      onCancelClick={() => goto('user/:username')}/>, el);
+      onCancelClick={() => goto(`user/${data.username}`)}/>, el);
   },
 
   saveCard(question, answer, username) {
@@ -211,13 +241,15 @@ let Router = Backbone.Router.extend({
     }
  ];
 
+  let userData = Cookies.getJSON('user');
+
   this.render(
     <SelectDeck
       decks={data}
       onLogOut={() => this.removeCookies()}
-      onPlay={() => this.goto(`user/${data.username}`)}
-      onAdd={() => this.goto(`user/${data.username}`)}
-      onEdit={() => this.goto(`user/${data.username}`)}/>,
+      onPlay={() => this.goto(`user/${userData.username}`)}
+      onAddDeck={() => this.goto(`user/${userData.username}/decks`)}
+      onEdit={() => this.goto(`user/${userData.username}`)}/>,
     );
   
   },
