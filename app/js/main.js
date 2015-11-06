@@ -434,6 +434,7 @@ var Router = _backbone2['default'].Router.extend({
     }];
 
     var userData = _jsCookie2['default'].getJSON('user');
+    console.log(userData);
 
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
