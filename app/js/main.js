@@ -184,7 +184,7 @@ var Router = _backbone2['default'].Router.extend({
     "user/:username/decks": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
     "user/:username/decks/:id/edit": "editCard",
-    "user/:username/play": "play",
+    "user/:username/play/:id": "play",
     "score": "score"
   },
 
@@ -419,37 +419,59 @@ var Router = _backbone2['default'].Router.extend({
   selectDeck: function selectDeck() {
     var _this11 = this;
 
-    var data = [{
-      title: "Magic",
-      id: 1
-    }, {
-      title: "Math",
-      id: 2
-    }, {
-      title: "History",
-      id: 3
-    }, {
-      title: "Japanese",
-      id: 4
-    }];
+    //    let data = [
+    //    {
+    //      title  :"Magic",
+    //       id    :1
+    //    },
+    //     {
+    //      title  :"Math",
+    //       id    :2
+    //    },
+    //     {
+    //      title  :"History",
+    //       id    :3
+    //    },
+
+    //    {
+    //      title   : "Japanese",
+    //      id      :4
+    //    }
+    // ];
 
     var userData = _jsCookie2['default'].getJSON('user');
     console.log(userData);
 
-    this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
-      decks: data,
-      onLogOut: function () {
-        return _this11.removeCookies();
-      },
-      onPlay: function () {
-        return _this11.goto('user/' + userData.username + '/play');
-      },
-      onAddDeck: function () {
-        return _this11.goto('user/' + userData.username + '/decks');
-      },
-      onEdit: function () {
-        return _this11.goto('user/' + userData.username);
-      } }));
+    var request = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      method: 'GET',
+      headers: {
+        auth_token: userData.auth_token
+      }
+
+    });
+    request.then(function (data) {
+      // console.log(data);
+      var decks = data;
+      console.log("decks:", decks);
+
+      _jsCookie2['default'].set('user', data, { expires: 7 });
+
+      _this11.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
+        decks: decks,
+        onLogOut: function () {
+          return _this11.removeCookies();
+        },
+        onPlay: function (id) {
+          return _this11.goto('user/' + userData.username + '/play/' + id);
+        },
+        onAddDeck: function () {
+          return _this11.goto('user/' + userData.username + '/decks');
+        },
+        onEdit: function (id) {
+          return _this11.goto('user/' + userData.username + '/decks/' + id + '/edit');
+        } }));
+    }); //fetch
   },
 
   removeCookies: function removeCookies(event) {
@@ -1204,9 +1226,9 @@ var _admin_component2 = _interopRequireDefault(_admin_component);
 exports['default'] = _react2['default'].createClass({
   displayName: 'select_deck',
 
-  playDeck: function playDeck() {
+  playDeck: function playDeck(id) {
     console.log('playDeck');
-    this.props.onPlay();
+    this.props.onPlay(id);
   },
 
   addDeck: function addDeck() {
@@ -1214,9 +1236,9 @@ exports['default'] = _react2['default'].createClass({
     this.props.onAddDeck();
   },
 
-  editDeck: function editDeck() {
+  editDeck: function editDeck(id) {
     console.log('editDeck');
-    this.props.onEdit();
+    this.props.onEdit(id);
   },
   logOut: function logOut() {
     console.log('logOut please');
@@ -1231,15 +1253,13 @@ exports['default'] = _react2['default'].createClass({
       { key: deck.id, className: 'deck' },
       _react2['default'].createElement(
         'div',
-        { className: 'deckTitle', onClick: function () {
-            return _this.playDeck();
-          } },
+        { className: 'deckTitle' },
         deck.title
       ),
       _react2['default'].createElement(
         'button',
         { className: 'play', onClick: function () {
-            return _this.playDeck();
+            return _this.playDeck(deck.id);
           } },
         _react2['default'].createElement(
           'p',
@@ -1251,7 +1271,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'button',
         { className: 'edit', onClick: function () {
-            return _this.editDeck();
+            return _this.editDeck(deck.id);
           } },
         _react2['default'].createElement(
           'p',
