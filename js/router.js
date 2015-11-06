@@ -148,7 +148,9 @@ let Router = Backbone.Router.extend({
 
   signIn(){
     this.render(<SignIn
-      onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el) 
+      onSignInClick={(username, password) => this.logIn(username, password)}
+      onCancelClick={() => this.goto('welcome')}/>, this.el);
+
   },
 
   logIn(username, password) {
@@ -188,7 +190,7 @@ let Router = Backbone.Router.extend({
   createAccount(){
     this.render(<CreateAccount 
       onSubmitClick={(first, last, email, user, password) => this.newUser(first, last, email, user, password)}
-      onCancelClick={() => this.goto('login')}/>, this.el);
+      onCancelClick={() => this.goto('welcome')}/>, this.el);
   },
 
   newUser(first, last, email, user, password) {

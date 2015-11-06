@@ -331,6 +331,9 @@ var Router = _backbone2['default'].Router.extend({
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], {
       onSignInClick: function (username, password) {
         return _this7.logIn(username, password);
+      },
+      onCancelClick: function () {
+        return _this7.goto('welcome');
       } }), this.el);
   },
 
@@ -377,7 +380,7 @@ var Router = _backbone2['default'].Router.extend({
         return _this9.newUser(first, last, email, user, password);
       },
       onCancelClick: function () {
-        return _this9.goto('login');
+        return _this9.goto('welcome');
       } }), this.el);
   },
 
@@ -536,50 +539,6 @@ var _react2 = _interopRequireDefault(_react);
 
 exports['default'] = _react2['default'].createClass({
   displayName: 'create_account',
-
-  // getStatus() {
-  //   let fistName = this.props.fistName;
-  //   if (firstName) {
-  //     // add code here for input values to only be letter
-  //     return;
-  //   }
-
-  //   let lastName = this.props.lastName;
-  //   if (lasttName) {
-  //    // add code here for input values to only be letter
-  //     return;
-  //   }
-
-  //   let email = this.props.email;
-  //   if (email) {
-  //     // add code here for email address to have the @ in it
-  //     return;
-  //   }
-
-  //   let user = this.props.user;
-  //   if (user) {
-  //    // add code here for minimum username size to be a certain amount
-  //     return;
-  //   }
-
-  //   let password = this.props.password;
-  //   if (password) {
-  //     // add code here for password to be case sensitive and with numbers
-  //     return;
-  //   }
-
-  //   let repassword = this.props.repassword;
-  //   if (password-again) {
-  //    // add code here for it to check and be identical with the text that got put in for the password
-  //     return;
-  //   }
-
-  //   let goToAdminProfle = this.props.goToAdminProfle;
-  //   if (goToAdminProfle) {
-  //     // add code her to check the whole form to see if things are all in order with all of the properties
-  //     return;
-  //   }
-  // },
 
   updateFirst: function updateFirst(event) {
     var newFirst = event.currentTarget.value;
@@ -860,6 +819,10 @@ exports["default"] = _react2["default"].createClass({
     this.props.onSignInClick(this.state.username, this.state.password);
   },
 
+  cancelHandler: function cancelHandler() {
+    this.props.onCancelClick();
+  },
+
   render: function render() {
     return _react2["default"].createElement(
       "div",
@@ -900,6 +863,11 @@ exports["default"] = _react2["default"].createClass({
             "button",
             { onClick: this.signIn },
             "Sign In"
+          ),
+          _react2["default"].createElement(
+            "button",
+            { onClick: this.cancelHandler },
+            "Cancel"
           )
         )
       )
