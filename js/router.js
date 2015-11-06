@@ -287,7 +287,7 @@ let Router = Backbone.Router.extend({
       // console.log(data);
       let decks = data;
       console.log("decks:", decks);
-      Cookies.set('user', data, { expires: 7 });
+      
 
 
 
