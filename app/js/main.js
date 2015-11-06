@@ -535,7 +535,6 @@ var Router = _backbone2['default'].Router.extend({
 
       });
       var card = _underscore2['default'].last(x);
-      console.log(card);
 
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
         getQuestion: card.question,
@@ -693,7 +692,7 @@ exports['default'] = _react2['default'].createClass({
             'label',
             null,
             'Your Password: ',
-            _react2['default'].createElement('input', { type: 'text', className: 'password', onChange: this.updatePassword })
+            _react2['default'].createElement('input', { type: 'password', className: 'password', onChange: this.updatePassword })
           ),
           _react2['default'].createElement(
             'button',

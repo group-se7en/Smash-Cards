@@ -347,8 +347,6 @@ let Router = Backbone.Router.extend({
       
       });
      let card = _.last(x);
-     console.log(card)
-
     
      ReactDom.render(<Play_View secondsRemaining={10} 
           getQuestion={card.question}

@@ -68,7 +68,7 @@ export default React.createClass({
             <label>Your Last Name: <input type="text" className="lastName" onChange={this.updateLast}/></label>
             <label>Your Email: <input type="text" className="email" onChange={this.updateEmail}/></label>
             <label>Your Username: <input type="text" className="user" onChange={this.updateUsername}/></label>
-            <label>Your Password: <input type="text" className="password" onChange={this.updatePassword}/></label>
+            <label>Your Password: <input type="password" className="password" onChange={this.updatePassword}/></label>
             <button onClick={this.createAccount}>Create Account</button>
             <button onClick={this.cancelHandler}>Cancel</button>
           </form>

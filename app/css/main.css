@@ -2144,16 +2144,10 @@ button {
   display: block;
   margin-right: 2.35765%;
   width: 48.82117%;
-<<<<<<< HEAD
-  border: 1px solid #344459;
-  height: 100%;
-  background-color: white; }
-=======
   border: 1px solid #ED715C;
   border-radius: 10px;
   height: 100%;
   background-color: #F7F7F7; }
->>>>>>> master
   .question:last-child {
     margin-right: 0; }
   .question:nth-child(3n) {
