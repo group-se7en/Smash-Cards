@@ -7,19 +7,24 @@ export default React.createClass({
 
  playDeck(){
   console.log('playDeck');
+  this.props.onPlay();
+
  },
  
  addDeck(){
   console.log('addDeck');
+  this.props.onAdd();
+
  },
 
  editDeck(){
   console.log('editDeck');
+  this.props.onEdit();
   
  },
  logOut(){
   console.log('logOut please');
-  this.props.onHome();
+  this.props.onLogOut();
 
  },
 
@@ -43,7 +48,7 @@ export default React.createClass({
       </div>
       <div className="deckList">
         <h2>Select a deck or create a custom one</h2>
-        <ul>{this.props.decks.map(this.formatData)}</ul>
+        <div>{this.props.decks.map(this.formatData)}</div>
         <button onClick={() => this.addDeck()}>Add a deck</button>
       </div>
 
