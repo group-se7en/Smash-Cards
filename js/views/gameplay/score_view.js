@@ -1,10 +1,38 @@
 import React from 'react';
-import Play_View from './play_view';
+
+import scoreValue from './play_view';
+import deckTitle from './play_view';
+
 
 let Score_View = React.createClass({
 
+
+//newgame
+//play again
+getInitialState() {
+    alert ("Thanks for playing!  Click OK to get your score")
+      return {
+      question: "Game Over"
+    };
+  },
+
   
 
+  playclickHandler() {
+    this.props.onPlayClick();
+  },
+
+  newclickHandler() {
+    this.props.onNewClick();
+  },
+
+  addclickHandler() {
+    this.props.onAddClick();
+  },
+
+  homeclickHandler() {
+    this.props.onHomeClick();
+  },
 
   render() {
     return (
@@ -13,15 +41,21 @@ let Score_View = React.createClass({
           Game Over
         </div>
 
-        <div className="finalScore">
-          Your score on the Hungarian Cabinet Making deck is ...<br/>
 
-          <p className="scoreNumber">{this.score}</p>
+        <div className="score">
+          Your score on the {this.deckTitle} deck is ...<br/>
+
+          <p className="scoreNumber">{this.scoreValue}</p>
+
         </div>
 
-        <button onClick={this.playAgain} className="playAgain">Play Again</button>
-        <button onClick={this.changeGame} className="changeGame">Play a different Game</button>
-        
+        <div className="after">
+          <button className="play" onClick={this.playclickHandler}>Play Again</button>
+          <button className="new" onClick={this.newclickHandler}>Play a New Game</button>
+          <button className="add" onClick={this.addclickHandler}>Add Your Own Game</button>
+          <button className="home" onClick={this.homeclickHandler}>Home Page</button>
+
+        </div>
 
       </div>
     );

@@ -6,6 +6,7 @@ let Play_View = React.createClass({
 
   getInitialState(event) {
     alert('are you ready?');
+
     return {
       secondsRemaining: 0,
       question: 'stringy string'

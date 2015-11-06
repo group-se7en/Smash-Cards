@@ -2080,6 +2080,10 @@ button {
   color: #344459;
   background-color: #1DABA5; }
 
+.deckTitle {
+  font-size: 1.5em;
+  margin: 1%; }
+
 .play {
   border: 1px solid #344459 #344459;
   border-radius: 2px;
@@ -2089,6 +2093,11 @@ button {
   border: 1px solid #344459 #344459;
   border-radius: 2px;
   box-shadow: 3px 3px 5px black; }
+
+.buttonTitle {
+  margin: 0;
+  margin-right: 5px;
+  padding: 0; }
 
 /******** Play View Styling ***********/
 .playViewWrapper {
@@ -2173,22 +2182,25 @@ button {
   margin: 20px;
   padding: 10px;
   text-align: center;
+  box-shadow: 5px 5px 5px black;
   border: 5px solid;
-  border-radius: 180px; }
+  border-radius: 180px;
+  background-color: #1DABA5; }
   .gameOverWrapper .gameOver {
     font-size: 3em;
-    color: red; }
+    color: #344459; }
 
 .scoreNumber {
   font-size: 3em;
-  color: red;
-  border: 3px solid red;
+  color: #344459;
+  border: 3px solid #ed715C;
   margin-left: 400px;
   margin-right: 400px;
   background-color: white; }
 
-.playAgain {
-  padding: 5pt; }
+button {
+  padding: 15pt;
+  box-shadow: 5px 5px 5px black; }
 
 .changeGame {
   padding: 5pt; }
