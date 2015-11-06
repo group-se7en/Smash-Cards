@@ -45,18 +45,19 @@ let Play_View = React.createClass({
     if (userAnswer === correctAnswer){
       score.innerHTML= timeNumber*10 + Number(score.innerHTML)
     } else{
-      alert ('wrong');
+      alert ('You are so wrong!');
     }
   },
 
   nextCard(){
-    alert('are you ready?');
     this.setState({
       secondsRemaining: 10,
       question: this.props.newQuestion
     })
+    this.componentWillUnmount();
+    clearInterval(this.state);
     this.componentDidMount();
-    // this.props.onNextCardClick();
+    document.querySelector('.answerField').value = '';
   },
 
 

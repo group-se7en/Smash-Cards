@@ -479,16 +479,10 @@ var Router = _backbone2['default'].Router.extend({
     (0, _jquery2['default'])('.app').html('loading...');
 
     request.then(function (data) {
-<<<<<<< HEAD
-      _jsCookie2['default'].set('user', data);
-      _jquery2['default'].ajaxSetup({
-        headers: {
-=======
       _jsCookie2['default'].set('user', data, { expires: 7 });
       _jquery2['default'].ajaxSetup({
         headers: {
           auth_token: data.auth_token,
->>>>>>> master
           id: data.id,
           question: data.question,
           answer: data.answer
@@ -1377,30 +1371,24 @@ var Play_View = _react2['default'].createClass({
     this.setState({
       secondsRemaining: 1
     });
-<<<<<<< HEAD
-    if (userAnswer === 'taco') {
-=======
+
     console.log(userAnswer);
     if (userAnswer === correctAnswer) {
->>>>>>> master
       score.innerHTML = timeNumber * 10 + Number(score.innerHTML);
     } else {
-      alert('wrong');
+      alert('You are so wrong!');
     }
   },
 
   nextCard: function nextCard() {
-    alert('are you ready?');
     this.setState({
       secondsRemaining: 10,
-<<<<<<< HEAD
-      question: 'you is so dumb'
-=======
       question: this.props.newQuestion
->>>>>>> master
     });
+    this.componentWillUnmount();
+    clearInterval(this.state);
     this.componentDidMount();
-    // this.props.onNextCardClick();
+    document.querySelector('.answerField').value = '';
   },
 
   render: function render() {
