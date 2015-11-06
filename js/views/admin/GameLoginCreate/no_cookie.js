@@ -1,20 +1,22 @@
 import React from 'react';
-import SignIn from './sign_in';
-import CreateAccount from './create_account';
 
 export default React.createClass({
 
-  SignIn() {
-    console.log('You got me signed in');
-  this.props.onSignInClick();
+  SignIn (event) {
+    event.preventDefault();
+    console.log("hallo");
+    this.props.onSignInClick();
   },
 
-  CreateAccount() {
-    console.log('You a newbie to the tribe');
-  this.props.onCreactAccountClick();
+  CreateAccount (event) {
+    event.preventDefault();
+    console.log("Bom Dia");
+    this.props.onCreateAccountClick();
   },
+
 
   render() {
+    console.dir(this.props);
     return (
       <div> 
         <div className="header">

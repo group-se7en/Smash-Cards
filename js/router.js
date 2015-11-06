@@ -114,11 +114,12 @@ let Router = Backbone.Router.extend({
   },
 
   home(){
-    this.render(<NoCookie/>, this.el)
-    // onSignInClick={(username, password) => this.logIn(username, password)}
+    this.render(<NoCookie
+      onSignInClick={() => {this.render(<SignIn/>)}}
+      onCreateAccountClick={() => {this.render(<CreateAccount/>)}}/>, this.el)
   },
 
-  logIn(username, password) {
+  login(username, password) {
     let userLogged = Cookies.getJSON('user');
     console.log(userLogged);
 

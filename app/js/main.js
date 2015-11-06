@@ -282,12 +282,19 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   home: function home() {
-    this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateNo_cookie2['default'], null), this.el);
-    // onSignInClick={(username, password) => this.logIn(username, password)}
+    var _this5 = this;
+
+    this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateNo_cookie2['default'], {
+      onSignInClick: function () {
+        _this5.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], null));
+      },
+      onCreateAccountClick: function () {
+        _this5.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], null));
+      } }), this.el);
   },
 
-  logIn: function logIn(username, password) {
-    var _this5 = this;
+  login: function login(username, password) {
+    var _this6 = this;
 
     var userLogged = _jsCookie2['default'].getJSON('user');
     console.log(userLogged);
@@ -315,26 +322,26 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this5.goto('user/' + data.username);
+      _this6.goto('user/' + data.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   createAccount: function createAccount() {
-    var _this6 = this;
+    var _this7 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], {
       onSubmitClick: function (first, last, email, user, password) {
-        return _this6.newUser(first, last, email, user, password);
+        return _this7.newUser(first, last, email, user, password);
       },
       onCancelClick: function () {
-        return _this6.goto('login');
+        return _this7.goto('login');
       } }), this.el);
   },
 
   newUser: function newUser(first, last, email, user, password) {
-    var _this7 = this;
+    var _this8 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/signup',
@@ -362,14 +369,14 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this7.goto('login');
+      _this8.goto('login');
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   selectDeck: function selectDeck() {
-    var _this8 = this;
+    var _this9 = this;
 
     var data = [{
       title: "Magic",
@@ -388,16 +395,16 @@ var Router = _backbone2['default'].Router.extend({
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
       onLogOut: function () {
-        return _this8.removeCookies();
+        return _this9.removeCookies();
       },
       onPlay: function () {
-        return _this8.goto('user/' + data.username);
+        return _this9.goto('user/' + data.username);
       },
       onAdd: function () {
-        return _this8.goto('user/' + data.username);
+        return _this9.goto('user/' + data.username);
       },
       onEdit: function () {
-        return _this8.goto('user/' + data.username);
+        return _this9.goto('user/' + data.username);
       } }));
   },
 
@@ -444,14 +451,14 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   score: function score() {
-    var _this9 = this;
+    var _this10 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
       onplayclick: function () {
-        return _this9.goto('play');
+        return _this10.goto('play');
       },
       onnewGameclick: function () {
-        return _this9.goto("user/:username");
+        return _this10.goto("user/:username");
       } }));
   },
 
@@ -644,67 +651,62 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 },{"react":178}],7:[function(require,module,exports){
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _sign_in = require('./sign_in');
+exports["default"] = _react2["default"].createClass({
+  displayName: "no_cookie",
 
-var _sign_in2 = _interopRequireDefault(_sign_in);
-
-var _create_account = require('./create_account');
-
-var _create_account2 = _interopRequireDefault(_create_account);
-
-exports['default'] = _react2['default'].createClass({
-  displayName: 'no_cookie',
-
-  SignIn: function SignIn() {
-    console.log('You got me signed in');
+  SignIn: function SignIn(event) {
+    event.preventDefault();
+    console.log("hallo");
     this.props.onSignInClick();
   },
 
-  CreateAccount: function CreateAccount() {
-    console.log('You a newbie to the tribe');
-    this.props.onCreactAccountClick();
+  CreateAccount: function CreateAccount(event) {
+    event.preventDefault();
+    console.log("Bom Dia");
+    this.props.onCreateAccountClick();
   },
 
   render: function render() {
-    return _react2['default'].createElement(
-      'div',
+    console.dir(this.props);
+    return _react2["default"].createElement(
+      "div",
       null,
-      _react2['default'].createElement(
-        'div',
-        { className: 'header' },
-        _react2['default'].createElement(
-          'h2',
+      _react2["default"].createElement(
+        "div",
+        { className: "header" },
+        _react2["default"].createElement(
+          "h2",
           null,
-          ' Welcome to Flashcard Game '
+          " Welcome to Flashcard Game "
         )
       ),
-      _react2['default'].createElement(
-        'div',
-        { className: 'welcome' },
-        _react2['default'].createElement(
-          'form',
+      _react2["default"].createElement(
+        "div",
+        { className: "welcome" },
+        _react2["default"].createElement(
+          "form",
           null,
-          _react2['default'].createElement(
-            'button',
+          _react2["default"].createElement(
+            "button",
             { onClick: this.SignIn },
-            'Sign In'
+            "Sign In"
           ),
-          _react2['default'].createElement(
-            'button',
+          _react2["default"].createElement(
+            "button",
             { onClick: this.CreateAccount },
-            'Create Account'
+            "Create Account"
           )
         )
       )
@@ -712,9 +714,9 @@ exports['default'] = _react2['default'].createClass({
   }
 
 });
-module.exports = exports['default'];
+module.exports = exports["default"];
 
-},{"./create_account":6,"./sign_in":8,"react":178}],8:[function(require,module,exports){
+},{"react":178}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
