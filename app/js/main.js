@@ -178,7 +178,7 @@ var Router = _backbone2['default'].Router.extend({
     "user/:username/decks": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
     "user/:username/decks/:id/edit": "editCard",
-    "play": "play",
+    "user/:username/play": "play",
     "score": "score"
   },
 
@@ -256,7 +256,7 @@ var Router = _backbone2['default'].Router.extend({
 
         }
       });
-      _this2.goto('user/' + data.username + '/decks/' + data.id + '/cards');
+      _this2.goto('user/' + user.username + '/decks/' + data.id + '/cards');
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
@@ -265,7 +265,7 @@ var Router = _backbone2['default'].Router.extend({
   addCard: function addCard() {
     var _this3 = this;
 
-    render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+    render(_react2['default'].createElement(_viewsAdminAdd_cards2['default'], {
       onSubmitClick: function (question, answer) {
         var newCard = new CardModel({
           card_question: question,
@@ -423,7 +423,7 @@ var Router = _backbone2['default'].Router.extend({
         return _this10.removeCookies();
       },
       onPlay: function () {
-        return _this10.goto('user/' + userData.username);
+        return _this10.goto('user/' + userData.username + '/play');
       },
       onAddDeck: function () {
         return _this10.goto('user/' + userData.username + '/decks');

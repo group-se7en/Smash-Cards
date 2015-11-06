@@ -24,7 +24,7 @@ let Router = Backbone.Router.extend({
     "user/:username/decks": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
     "user/:username/decks/:id/edit": "editCard",
-    "play": "play",
+    "user/:username/play": "play",
     "score": "score",
   },
 
@@ -100,7 +100,7 @@ let Router = Backbone.Router.extend({
           
         }
       });
-      this.goto(`user/${data.username}/decks/${data.id}/cards`);
+      this.goto(`user/${user.username}/decks/${data.id}/cards`);
     }).fail(() => {
       $('.app').html('Oops..');
     });
@@ -108,7 +108,7 @@ let Router = Backbone.Router.extend({
 
   addCard() {
     
-    render(<AddDeck_View 
+    render(<AddCard_View 
       onSubmitClick={(question, answer) => {
         let newCard = new CardModel ({
           card_question: question,
@@ -247,7 +247,7 @@ let Router = Backbone.Router.extend({
     <SelectDeck
       decks={data}
       onLogOut={() => this.removeCookies()}
-      onPlay={() => this.goto(`user/${userData.username}`)}
+      onPlay={() => this.goto(`user/${userData.username}/play`)}
       onAddDeck={() => this.goto(`user/${userData.username}/decks`)}
       onEdit={() => this.goto(`user/${userData.username}`)}/>,
     );
