@@ -2055,7 +2055,7 @@ button {
 .selectTitle {
   text-shadow: .3px .3px .3px white;
   border: 1px solid #344459;
-  font-size: 1.3em;
+  font-size: 1em;
   width: 50%;
   border-radius: 2px;
   display: inline-block;
@@ -2087,7 +2087,7 @@ button {
   background-color: #1DABA5; }
 
 .deckTitle {
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 1%; }
 
 .play {
