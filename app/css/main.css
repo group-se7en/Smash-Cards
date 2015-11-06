@@ -2030,7 +2030,8 @@ body {
 
 button {
   color: white;
-  background-color: #ED715C; }
+  background-color: #ED715C;
+  box-shadow: 3px 3px 5px black; }
 
 .app {
   height: 100%; }
@@ -2207,8 +2208,8 @@ button {
   margin-right: 400px;
   background-color: white; }
 
-button {
-  padding: 15pt;
+.after {
+  padding: 15px;
   box-shadow: 5px 5px 5px black; }
 
 .changeGame {

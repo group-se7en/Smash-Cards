@@ -15,7 +15,7 @@ export default React.createClass({
   console.log('addDeck');
   this.props.onAddDeck();
 
- },
+ }, 
 
  editDeck(){
   console.log('editDeck');
