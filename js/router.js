@@ -49,8 +49,9 @@ let Router = Backbone.Router.extend({
   redirectToWelcome() {
 
     let userLogged = Cookies.getJSON('user');
+    console.log(userLogged);
 
-    if (userLogged != undefined) {
+    if (userLogged) {
       this.navigate(`user/${userLogged.username}`, {
         replace: true,
         trigger: true
@@ -71,7 +72,6 @@ let Router = Backbone.Router.extend({
 
   addDeck() {
     let data = Cookies.getJSON('user');
-    console.log(data);
 
     this.render(<AddDeck_View 
       onSubmitClick={(title) => this.newDeck(title)}
@@ -81,7 +81,6 @@ let Router = Backbone.Router.extend({
 
   newDeck(title) {
     let user = Cookies.getJSON('user');
-    console.log(user.auth_token);
 
     let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -97,13 +96,13 @@ let Router = Backbone.Router.extend({
     $('.app').html('loading...');
 
     request.then((data) => {
-      
+
       $.ajaxSetup({
         headers: {
           id: data.id,
-          title: data.title
-          
-        }
+          title: data.title          
+        } 
+
       });
       this.goto(`user/${user.username}/decks/${data.id}/cards`);
     }).fail(() => {
@@ -111,38 +110,65 @@ let Router = Backbone.Router.extend({
     });
   },
 
-  addCard() {
-    
-    render(<AddCard_View 
-      onSubmitClick={(question, answer) => {
-        let newCard = new CardModel ({
-          card_question: question,
-          card_answer: answer
-        });
+  addCard() {    
+    let data = Cookies.getJSON('user');
 
-        newCard.save().then(() => {
-          this.goto('user/:username/decks/:id/cards');
-        });
-      }}
-      onFinishClick={() => goto(`user/${data.username}`)}/>, el);
+    this.render(<AddCard_View 
+      onSubmitClick={(question, answer) => this.newCard(question, answer)}
+      onCancelClick={() => this.goto(`user/${data.username}`)}/>, this.el);
+  },
+
+  newCard(question, answer) {
+    let user = Cookies.getJSON('user');
+
+    let request = $.ajax({
+      url: `https://morning-temple-4972.herokuapp.com/decks/${deck.id}`,
+      method: 'POST',
+      headers: {
+        auth_token: user.auth_token
+      },
+      data: {
+        question: question,
+        answer: answer
+      }
+    });
+    
+    $('.app').html('loading...');
+
+    request.then((data) => {
+     
+      $.ajaxSetup({
+        headers: {
+          id: data.id,
+          question: data.question,
+          answer: data.answer
+          
+        } 
+
+      });
+      console.log(data.id);
+      this.goto(`user/${user.username}/decks/${data.id}/cards`);
+    }).fail(() => {
+      $('.app').html('Oops..');
+    });
   },
 
   editCard(id) {
 
     let data = this.colletion.get(id);
     
-    render(<AddDeck_View 
+    render(<EditDeck_View 
       data={data.toJSON()}
-      onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
+      onSubmitClick={(question, answer) => this.saveCard(question, answer)}
       onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
   },
 
-  saveCard(question, answer, username) {
+  saveCard(question, answer) {
     this.collection.get(id).save({
       card_question: qustion,
       card_answer: answer
     }).then(() => {
-      this.goto('user/:username');
+      this.goto(`user/${data.username}`);
     });
   },
 
@@ -325,9 +351,9 @@ let Router = Backbone.Router.extend({
     this.render(
       <Score_View
       onNewClick={() => this.goto("user/:username")}
-      onAddClick={() => this.goto("addDeck")}
+      onAddClick={() => this.goto("user/:username/decks")}
       onHomeClick={() => this.goto("welcome")}
-      onPlayClick={() => this.goto('play')}/>
+      onPlayClick={() => this.goto("user/:username/play")}/>
       );
   },
 
