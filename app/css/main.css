@@ -2030,18 +2030,20 @@ body {
 
 button {
   color: white;
-  background-color: #ED715C; }
+  background-color: #ED715C;
+  box-shadow: 3px 3px 5px black; }
 
 .app {
   height: 100%; }
 
 .admin {
   border: 1px solid #344459;
+  text-shadow: .4px .4px .4px white;
   padding: 2%;
   float: left;
   width: 20%;
   height: 700px;
-  margin: 60px 30px;
+  margin: 4% 2%;
   color: #344459;
   box-shadow: 5px 5px 5px black;
   background-color: #1DABA5; }
@@ -2051,18 +2053,21 @@ button {
   width: 70%; }
 
 .selectTitle {
+  text-shadow: .3px .3px .3px white;
   border: 1px solid #344459;
+  font-size: 1.3em;
+  width: 50%;
   border-radius: 2px;
   display: inline-block;
-  margin: 60px 30px 20px 30px;
+  margin: 3% 2% 1% 2%;
   padding: 1% 1%;
   color: #344459;
   background-color: #1DABA5;
-  box-shadow: 5px 5px 5px black; }
+  box-shadow: 3px 3px 5px black; }
 
 .addDeckBtn {
   color: #ED715C;
-  margin: 30px 0 30px 200px;
+  margin: 7% 0 2% 20%;
   border: 2px solid #ED715C;
   border-radius: 2px;
   display: inline-block;
@@ -2070,9 +2075,10 @@ button {
   background-color: white; }
 
 .deck {
-  width: 200px;
+  width: 25%;
+  text-shadow: .3px .3px .3px white;
   height: 200px;
-  margin: 30px 30px;
+  margin: 2% 2%;
   border: 1px solid #344459;
   border-radius: 2px;
   float: left;
@@ -2085,12 +2091,12 @@ button {
   margin: 1%; }
 
 .play {
-  border: 1px solid #344459 #344459;
+  border: 1px solid #344459;
   border-radius: 2px;
   box-shadow: 3px 3px 5px black; }
 
 .edit {
-  border: 1px solid #344459 #344459;
+  border: 1px solid #344459;
   border-radius: 2px;
   box-shadow: 3px 3px 5px black; }
 
@@ -2098,6 +2104,11 @@ button {
   margin: 0;
   margin-right: 5px;
   padding: 0; }
+
+.logOutBtn {
+  border: 1px solid #344459;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black; }
 
 /******** Play View Styling ***********/
 .playViewWrapper {
@@ -2198,8 +2209,8 @@ button {
   margin-right: 400px;
   background-color: white; }
 
-button {
-  padding: 15pt;
+.after {
+  padding: 15px;
   box-shadow: 5px 5px 5px black; }
 
 .changeGame {

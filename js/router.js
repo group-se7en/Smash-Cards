@@ -62,8 +62,6 @@ let Router = Backbone.Router.extend({
         trigger: true
       });
     }
-
-
   },
 
   welcome(){
@@ -249,7 +247,13 @@ let Router = Backbone.Router.extend({
     }
   ];
 
+
+    
+
   let userData = Cookies.getJSON('user');
+  console.log(userData);
+
+
 
   this.render(
     <SelectDeck
@@ -302,7 +306,6 @@ let Router = Backbone.Router.extend({
       })
       
     }) 
-
 
   },
 

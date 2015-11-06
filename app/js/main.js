@@ -434,6 +434,7 @@ var Router = _backbone2['default'].Router.extend({
     }];
 
     var userData = _jsCookie2['default'].getJSON('user');
+    console.log(userData);
 
     this.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
       decks: data,
@@ -1071,7 +1072,8 @@ exports["default"] = _react2["default"].createClass({
       _react2["default"].createElement(
         "h1",
         null,
-        "Admin"
+        "Admin ",
+        _react2["default"].createElement("i", { className: "fa fa-lock" })
       ),
       _react2["default"].createElement(
         "h3",
@@ -1080,7 +1082,7 @@ exports["default"] = _react2["default"].createClass({
       ),
       _react2["default"].createElement(
         "button",
-        { onClick: this.adminLogOut },
+        { className: "logOutBtn", onClick: this.adminLogOut },
         _react2["default"].createElement(
           "p",
           { className: "buttonTitle" },
@@ -1276,7 +1278,8 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'h2',
           { className: 'selectTitle' },
-          'Select a deck or create a custom one'
+          'Select a deck or create a custom one      ',
+          _react2['default'].createElement('i', { className: 'fa fa-hand-pointer-o' })
         ),
         _react2['default'].createElement(
           'button',
