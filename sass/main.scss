@@ -25,11 +25,12 @@ button {
 //JESSE Edited existing 
 .admin {
   border: 1px solid $text-color;
+  text-shadow: .4px .4px .4px white;
   padding: 2%; 
   float: left;
   width: 20%;
   height: 700px;
-  margin: 60px 30px;
+  margin: 4% 2%;
   color: $text-color;
   box-shadow: 5px 5px 5px black;
   background-color: $adminBack-color;
@@ -41,20 +42,24 @@ button {
 
 }
 .selectTitle {
+  text-shadow: .3px .3px .3px white;
   border: 1px solid $text-color;
+  font-size: 1.3em;
+  width: 50%;
   border-radius: 2px;
   display: inline-block;
-  margin: 60px 30px 20px 30px;
+  margin: 3% 2% 1% 2%;
   padding: 1% 1%;
   color: $text-color;
   background-color: $adminBack-color;
-  box-shadow: 5px 5px 5px black;
+  box-shadow: 3px 3px 5px black;
+  
 
 }
 
 .addDeckBtn {
   color: $smallBtn-color;
-  margin: 30px 0 30px 200px;
+  margin: 7% 0 2% 20%;
   border: 2px solid $smallBtn-color;
   border-radius: 2px;
   display: inline-block;
@@ -62,9 +67,10 @@ button {
   background-color: $white;
 }
 .deck {
-  width: 200px;
+  width: 25%;
+  text-shadow: .3px .3px .3px white;
   height: 200px;
-  margin: 30px 30px;
+  margin: 2% 2%;
   border: 1px solid $text-color;
   border-radius: 2px;
   float: left;
@@ -78,12 +84,12 @@ button {
   margin: 1%;
 }
 .play {
-  border: 1px solid $text-color$text-color;
+  border: 1px solid $text-color;
   border-radius: 2px;
   box-shadow: 3px 3px 5px black;
 }
 .edit {
-  border: 1px solid $text-color$text-color;
+  border: 1px solid $text-color;
   border-radius: 2px;
   box-shadow: 3px 3px 5px black;
 }
@@ -91,7 +97,12 @@ button {
   margin: 0;
   margin-right: 5px;
   padding: 0;
- 
+}
+.logOutBtn {
+  border: 1px solid $text-color;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
+
 }
 // END JESSE SELECT PAGE
 
