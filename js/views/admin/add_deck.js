@@ -3,7 +3,7 @@ import AdminComponent from './admin_component';
 
 export default React.createClass({
 
-  submitHandler() {
+  submitHandler(event) {
     event.preventDefault();
     this.props.onSubmitClick(this.state.title);
   },

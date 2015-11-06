@@ -175,7 +175,6 @@ var _viewsAdminGameLoginCreateNo_cookie2 = _interopRequireDefault(_viewsAdminGam
 // Routes for page views
 var Router = _backbone2['default'].Router.extend({
   routes: {
-
     "": "redirectToWelcome",
     "welcome": "welcome",
     "login": "signIn",
@@ -290,7 +289,7 @@ var Router = _backbone2['default'].Router.extend({
       onSubmitClick: function (question, answer) {
         return _this4.newCard(question, answer);
       },
-      onCancelClick: function () {
+      onFinishClick: function () {
         return _this4.goto('user/' + data.username);
       } }), this.el);
   },
@@ -333,56 +332,66 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   editCard: function editCard(id) {
-    console.log('editCard:', id);
-    // let data = this.colletion.get(id);
+    var _this6 = this;
 
-    //   render(<EditDeck_View
-    //     data={data.toJSON()}
-    //     onSubmitClick={(question, answer) => this.saveCard(question, answer)}
-    //     onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
-    // },
-
-    // saveCard(question, answer) {
-    //   this.collection.get(id).save({
-    //     card_question: qustion,
-    //     card_answer: answer
-    //   }).then(() => {
-    //     this.goto(`user/${data.username}`);
-    //   });
-    // },
-
-    // render(<AddDeck_View
-    //   data={data.toJSON()}
-    //   onSubmitClick={(question, answer) => this.saveCard(question, answer, id)}
-    //   onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
+    render(_react2['default'].createElement(EditDeck_View, {
+      onSubmitClick: function (question, answer) {
+        return _this6.saveCard(question, answer);
+      },
+      onCancelClick: function () {
+        return _this6.goto('user/' + data.username);
+      } }), el);
   },
 
-  // saveCard(question, answer, username) {
-  //   this.collection.get(id).save({
-  //     card_question: qustion,
-  //     card_answer: answer
-  //   }).then(() => {
-  //     this.goto('user/:username');
-  //   });
-  // },
+  saveCard: function saveCard(question, answer) {
+    var _this7 = this;
+
+    var request = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/cards/' + cardId,
+      method: 'PUT',
+      headers: {
+        auth_token: user.auth_token
+      },
+      data: {
+        question: question,
+        answer: answer
+      }
+    });
+
+    (0, _jquery2['default'])('.app').html('loading...');
+
+    request.then(function (data) {
+
+      _jquery2['default'].ajaxSetup({
+        headers: {
+          id: data.id,
+          question: data.question,
+          answer: data.answer
+
+        }
+
+      });
+
+      _this7.goto('user/' + user.username);
+    }).fail(function () {
+      (0, _jquery2['default'])('.app').html('Oops..');
+    });
+  },
 
   signIn: function signIn() {
-    var _this6 = this;
+    var _this8 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateSign_in2['default'], {
       onSignInClick: function (username, password) {
-        return _this6.logIn(username, password);
+        return _this8.logIn(username, password);
       },
       onCancelClick: function () {
-        return _this6.goto('welcome');
+        return _this8.goto('welcome');
       } }), this.el);
   },
 
   logIn: function logIn(username, password) {
-    var _this7 = this;
-
-    var userLogged = _jsCookie2['default'].getJSON('user');
-    console.log(userLogged);
+    var _this9 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/login',
@@ -407,25 +416,26 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this7.goto('user/' + data.username);
+      _this9.goto('user/' + data.username);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
+
   createAccount: function createAccount() {
-    var _this8 = this;
+    var _this10 = this;
 
     this.render(_react2['default'].createElement(_viewsAdminGameLoginCreateCreate_account2['default'], {
       onSubmitClick: function (first, last, email, user, password) {
-        return _this8.newUser(first, last, email, user, password);
+        return _this10.newUser(first, last, email, user, password);
       },
       onCancelClick: function () {
-        return _this8.goto('welcome');
+        return _this10.goto('welcome');
       } }), this.el);
   },
 
   newUser: function newUser(first, last, email, user, password) {
-    var _this9 = this;
+    var _this11 = this;
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/signup',
@@ -442,7 +452,6 @@ var Router = _backbone2['default'].Router.extend({
     (0, _jquery2['default'])('.app').html('loading...');
 
     request.then(function (data) {
-      _jsCookie2['default'].set('user', data);
 
       _jquery2['default'].ajaxSetup({
         headers: {
@@ -453,16 +462,17 @@ var Router = _backbone2['default'].Router.extend({
           username: data.username
         }
       });
-      _this9.goto('login');
+      _this11.goto('login');
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
   selectDeck: function selectDeck() {
-    var _this10 = this;
+    var _this12 = this;
 
     var userData = _jsCookie2['default'].getJSON('user');
+
     console.log(userData);
 
     var request = _jquery2['default'].ajax({
@@ -474,24 +484,25 @@ var Router = _backbone2['default'].Router.extend({
 
     });
     request.then(function (data) {
-      // console.log(data);
-      var decks = data;
-      console.log("decks:", decks);
-      _jsCookie2['default'].set('user', data, { expires: 7 });
 
-      _this10.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
+      // // console.log(data);
+      var decks = data;
+      // console.log("decks:", decks);
+      // Cookies.set('user', data, { expires: 7 });
+
+      _this12.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
         decks: decks,
         onLogOut: function () {
-          return _this10.removeCookies();
+          return _this12.removeCookies();
         },
         onPlay: function (id) {
-          return _this10.goto('user/' + userData.username + '/play/' + id);
+          return _this12.goto('user/' + userData.username + '/play/' + id);
         },
         onAddDeck: function () {
-          return _this10.goto('user/' + userData.username + '/decks');
+          return _this12.goto('user/' + userData.username + '/decks');
         },
         onEdit: function (id) {
-          return _this10.goto('user/' + userData.username + '/decks/edit/' + id);
+          return _this12.goto('user/' + userData.username + '/decks/edit/' + id);
         } }));
     }); //fetch
   },
@@ -524,7 +535,8 @@ var Router = _backbone2['default'].Router.extend({
     (0, _jquery2['default'])('.app').html('loading...');
 
     request.then(function (data) {
-      _jsCookie2['default'].set('user', data, { expires: 7 });
+      // Cookies.set('user', data, {expires: 7});
+
       _jquery2['default'].ajaxSetup({
         headers: {
           auth_token: data.auth_token,
@@ -551,20 +563,21 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   score: function score() {
-    var _this11 = this;
+    var _this13 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
+
+      onPlayClick: function () {
+        return _this13.goto("user/:username/play/:id");
+      },
       onNewClick: function () {
-        return _this11.goto("user/:username");
+        return _this13.goto("user/:username");
       },
       onAddClick: function () {
-        return _this11.goto("user/:username/decks");
+        return _this13.goto("user/:username/decks");
       },
       onHomeClick: function () {
-        return _this11.goto("welcome");
-      },
-      onPlayClick: function () {
-        return _this11.goto("user/:username/play");
+        return _this13.goto("welcome");
       } }));
   },
 
@@ -791,66 +804,67 @@ var _react2 = _interopRequireDefault(_react);
 exports["default"] = _react2["default"].createClass({
   displayName: "sign_in",
 
-  getStatus: function getStatus() {
+  // getStatus() {
 
-    var user = this.props.user;
-    if (user) {
-      // add code here to check the username in the
-      // back-end and confirm that it is the same
-      // that the user is inputing into the form
-      return;
-    }
+  //   let user = this.props.user;
+  //   if (user) {
+  //     // add code here to check the username in the
+  //     // back-end and confirm that it is the same
+  //     // that the user is inputing into the form
+  //     return;
+  //   }
 
-    var password = this.props.password;
-    if (password) {
-      // add code here to check the password in the
-      // back-end and confirm that it is the same
-      // that the user is inputing into the form
-      return;
-    }
+  //   let password = this.props.password;
+  //    if (password) {
+  //     // add code here to check the password in the
+  //     // back-end and confirm that it is the same
+  //     // that the user is inputing into the form
+  //     return;
+  //   }
 
-    var goToAdminProfle = this.props.goToAdminProfle;
-    if (goToAdminProfle) {
-      // add code here to check with the back end if both the
-      // username and password match with what the
-      // user is typing
-      return;
-    }
+  //   let goToAdminProfle = this.props.goToAdminProfle;
+  //     if (goToAdminProfle) {
+  //       // add code here to check with the back end if both the
+  //       // username and password match with what the
+  //       // user is typing
+  //       return;
+  //     }
 
-    // request(){
-    //     let newName= document.querySelector('.userName').value;
-    //     let newPassword =document.querySelector('.passWord').value;
+  // // request(){
+  // //     let newName= document.querySelector('.userName').value;
+  // //     let newPassword =document.querySelector('.passWord').value;
 
-    //     $.ajax({
-    //     url: 'https://morning-temple-4972.herokuapp.com/login',
-    //     method: 'POST',
-    //     data: {
-    //       username: newName,
-    //       password: newPassword
-    //     }
-    //   });
+  // //     $.ajax({
+  // //     url: 'https://morning-temple-4972.herokuapp.com/login',
+  // //     method: 'POST',
+  // //     data: {
+  // //       username: newName,
+  // //       password: newPassword
+  // //     }
+  // //   });
 
-    //   $('.app').html('loading...');
+  // //   $('.app').html('loading...');
 
-    //   request.then((data) => {
-    //     Cookies.set('user', data);
+  // //   request.then((data) => {
+  // //     Cookies.set('user', data);
 
-    //     $.ajaxSetup({
-    //       headers: {
-    //         auth_token: data.access_token,
-    //         firstname: data.firstname,
-    //         lastname: data.lastname,
-    //         email: data.email,
-    //         username: data.username
-    //       }
-    //     });
-    //     this.goto(`user/${data.username}`);
-    //   }).fail(() => {
-    //     $('.app').html('Oops..');
-    //   });
-    //   }
-    // },
-  },
+  // //     $.ajaxSetup({
+  // //       headers: {
+  // //         auth_token: data.access_token,
+  // //         firstname: data.firstname,
+  // //         lastname: data.lastname,
+  // //         email: data.email,
+  // //         username: data.username
+  // //       }
+  // //     });
+  // //     this.goto(`user/${data.username}`);
+  // //   }).fail(() => {
+  // //     $('.app').html('Oops..');
+  // //   });
+  // //   }
+  // // },
+
+  // },
 
   updateUsername: function updateUsername(event) {
     var newName = event.currentTarget.value;
@@ -1024,7 +1038,7 @@ var _admin_component2 = _interopRequireDefault(_admin_component);
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_deck',
 
-  submitHandler: function submitHandler() {
+  submitHandler: function submitHandler(event) {
     event.preventDefault();
     this.props.onSubmitClick(this.state.title);
   },
