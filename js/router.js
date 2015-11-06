@@ -277,6 +277,7 @@ let Router = Backbone.Router.extend({
   selectDeck(){
 
   let userData = Cookies.getJSON('user');
+  // this.removeCookies();
 
   console.log(userData);
 
@@ -292,13 +293,8 @@ let Router = Backbone.Router.extend({
 
       // // console.log(data);
       let decks = data;
-
-
-      console.log("decks:", decks);
+      // console.log("decks:", decks);
       
-
-
-
 
   this.render(
     <SelectDeck
@@ -327,7 +323,9 @@ let Router = Backbone.Router.extend({
 
  
 
-  play() {
+  play(username, id) {
+    console.log(username, id);
+
     let x = Cookies.getJSON('user')
    
 
