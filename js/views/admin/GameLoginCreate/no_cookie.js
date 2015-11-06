@@ -4,12 +4,12 @@ import CreateAccount from './create_account';
 
 export default React.createClass({
 
-  signIn() {
+  SignIn() {
     console.log('You got me signed in');
   this.props.onSignInClick();
   },
 
-  createAccount() {
+  CreateAccount() {
     console.log('You a newbie to the tribe');
   this.props.onCreactAccountClick();
   },
@@ -22,8 +22,8 @@ export default React.createClass({
         </div>
         <div className="welcome">
           <form>
-            <button onClick={this.signIn}>Sign In</button>
-            <button onClick={this.createAccount}>Create Account</button>
+            <button onClick={this.SignIn}>Sign In</button>
+            <button onClick={this.CreateAccount}>Create Account</button>
           </form>
         </div>
       </div>

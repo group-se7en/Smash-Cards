@@ -13,12 +13,14 @@ import EditCard_View from './views/admin/edit_cards';
 import SignIn from './views/admin/GameLoginCreate/sign_in';
 import CreateAccount from './views/admin/GameLoginCreate/create_account';
 import UserAccount from './resources/user_model';
+import NoCookie from './views/admin/GameLoginCreate/no_cookie';
 
 // Routes for page views
 let Router = Backbone.Router.extend({
   routes: {
-    "" : "redirectToLogin",
-    "login": "home",  
+    "" : "home",
+    "welcome": "start",
+    "login": "signIn",  
     "register": "createAccount",  
     "user/:username": "selectDeck",
     "user/:username/decks/": "addDeck",
@@ -53,7 +55,7 @@ let Router = Backbone.Router.extend({
         trigger: true
       });
     } else {
-      this.navigate('login', {
+      this.navigate('welcome', {
         replace: true,
         trigger: true
       });
@@ -112,8 +114,8 @@ let Router = Backbone.Router.extend({
   },
 
   home(){
-    this.render(<SignIn
-      onSignInClick={(username, password) => this.logIn(username, password)}/>, this.el)
+    this.render(<NoCookie/>, this.el)
+    // onSignInClick={(username, password) => this.logIn(username, password)}
   },
 
   logIn(username, password) {
