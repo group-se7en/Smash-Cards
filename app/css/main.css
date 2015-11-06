@@ -2055,7 +2055,7 @@ button {
 .selectTitle {
   text-shadow: .3px .3px .3px white;
   border: 1px solid #344459;
-  font-size: 1.3em;
+  font-size: 1em;
   width: 50%;
   border-radius: 2px;
   display: inline-block;
@@ -2087,7 +2087,7 @@ button {
   background-color: #1DABA5; }
 
 .deckTitle {
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 1%; }
 
 .play {
@@ -2113,7 +2113,8 @@ button {
 /******** Play View Styling ***********/
 .playViewWrapper {
   margin: 20px auto;
-  text-align: center; }
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif; }
   .playViewWrapper .deckTitle {
     font-size: 3em; }
 
@@ -2130,13 +2131,31 @@ button {
     content: "";
     display: table; }
 
+.submitAnswer {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.submitAnswer:hover {
+  color: #344459;
+  border: 2px solid #F7F7F7; }
+
+.nextCard {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.nextCard:hover {
+  color: #344459;
+  border: 2px solid #F7F7F7; }
+
 .question {
   float: left;
   display: block;
   margin-right: 2.35765%;
   width: 48.82117%;
-  border: 1px solid #344459;
-  height: 100%; }
+  border: 1px solid #ED715C;
+  border-radius: 10px;
+  height: 100%;
+  background-color: #F7F7F7; }
   .question:last-child {
     margin-right: 0; }
   .question:nth-child(3n) {
@@ -2148,7 +2167,13 @@ button {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 23.23176%; }
+  width: 23.23176%;
+  border: 1px solid #344459;
+  border-radius: 10px;
+  color: white;
+  background-color: #344459;
+  box-shadow: 3px 3px 5px black;
+  color: #1DABA5; }
   .countDownTimerLeft:last-child {
     margin-right: 0; }
 
@@ -2156,17 +2181,32 @@ button {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 23.23176%; }
+  width: 23.23176%;
+  border: 1px solid #344459;
+  border-radius: 10px;
+  color: white;
+  background-color: #344459;
+  box-shadow: 3px 3px 5px black;
+  color: #1DABA5; }
   .countDownTimerRight:last-child {
     margin-right: 0; }
 
 .answerField {
   display: block;
   width: 40%;
-  margin: 20px auto; }
+  margin: 20px auto;
+  font-size: 1.5em;
+  border: 1px solid #1DABA5; }
 
-.score {
-  margin: 20px auto; }
+.scoreDiv {
+  margin-top: 10px;
+  margin-left: 450px;
+  margin-right: 450px;
+  padding: 10px;
+  border: 1px solid #344459;
+  border-radius: 10px;
+  color: #1DABA5;
+  background-color: #F7F7F7; }
 
 .timeValue {
   font-size: 8em; }
@@ -2192,13 +2232,16 @@ button {
   margin: 20px;
   padding: 10px;
   text-align: center;
-  box-shadow: 5px 5px 5px black;
-  border: 5px solid;
+  border: 5px solid #ED715C;
   border-radius: 180px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1em;
   background-color: #1DABA5; }
   .gameOverWrapper .gameOver {
-    font-size: 3em;
+    font-size: 4em;
     color: #344459; }
+  .gameOverWrapper span {
+    font-size: 1.5em; }
 
 .scoreNumber {
   font-size: 3em;
@@ -2208,11 +2251,18 @@ button {
   margin-right: 400px;
   background-color: white; }
 
-.after {
-  padding: 15px;
-  box-shadow: 5px 5px 5px black; }
+.gameOverWrapper button {
+  padding: 15pt;
+  margin: 5pt;
+  border-radius: 20px;
+  box-shadow: none; }
 
-.changeGame {
-  padding: 5pt; }
+.gameOverWrapper button:hover {
+  padding: 15pt;
+  margin: 5pt;
+  border-radius: 20px;
+  box-shadow: none;
+  color: #344459;
+  border: 2px solid #F7F7F7; }
 
 /*# sourceMappingURL=main.css.map */

@@ -5,9 +5,9 @@ import AdminComponent from './admin_component';
 
 export default React.createClass({
 
- playDeck(){
+ playDeck(id){
   console.log('playDeck');
-  this.props.onPlay();
+  this.props.onPlay(id);
 
  },
  
@@ -17,9 +17,9 @@ export default React.createClass({
 
  }, 
 
- editDeck(){
-  console.log('editDeck');
-  this.props.onEdit();
+ editDeck(id){
+  console.log('editDeckCOMP:', id);
+  this.props.onEdit(id);
   
  },
  logOut(){
@@ -31,12 +31,18 @@ export default React.createClass({
  formatData(deck){
   return (
     <div key={deck.id} className="deck">
-      <div className="deckTitle" onClick={() => this.playDeck()}>{deck.title}
+      <div className="deckTitle">{deck.title}
+      <p>{deck.id}</p>
       </div>
-      <button className="play" onClick={() => this.playDeck()}>
-      <p className="buttonTitle">Play</p><i className="fa fa-play"></i>
+
+      <button className="play" onClick={() => this.playDeck(deck.id)}>
+      <p className="buttonTitle">Play</p>
+      <i className="fa fa-play"></i>
       </button>
-      <button className="edit" onClick={() => this.editDeck()}><p className="buttonTitle">Edit Deck</p><i className="fa fa-pencil"></i></button>    
+
+      <button className="edit" onClick={() => this.editDeck(deck.id)}><p className="buttonTitle">Edit Deck</p>
+      <i className="fa fa-pencil"></i>
+      </button>    
     </div>
     );
  },

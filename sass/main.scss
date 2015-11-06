@@ -2,6 +2,7 @@
 @import "neat";
 @import "font-awesome";
 
+
 $background-color: #E9E0D5;
 $adminBack-color: #1DABA5;
 $text-color: #344459;
@@ -46,7 +47,7 @@ button {
 .selectTitle {
   text-shadow: .3px .3px .3px white;
   border: 1px solid $text-color;
-  font-size: 1.3em;
+  font-size: 1em;
   width: 50%;
   border-radius: 2px;
   display: inline-block;
@@ -82,7 +83,7 @@ button {
    
 }
 .deckTitle{
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 1%;
 }
 .play {
@@ -113,6 +114,7 @@ button {
 .playViewWrapper {
   margin: 20px auto;
   text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
   .deckTitle{
     font-size: 3em;
   }
@@ -123,27 +125,72 @@ button {
   width: 100%;
   height: 300px;
   margin-top: 20px;
+
 }
+.submitAnswer{
+    margin-left: 10px;
+    margin-right: 10px;
+
+  }
+  .submitAnswer:hover{
+    color: $text-color;
+    border: 2px solid #F7F7F7;
+
+  }
+
+.nextCard{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .nextCard:hover{
+    color: $text-color;
+    border: 2px solid #F7F7F7;
+  }
 
 .question{
   @include span-columns(6);
   @include omega(3n);
-  border: 1px solid $text-color;
+  border: 1px solid $smallBtn-color;
+  border-radius: 10px;
   height: 100%;
+  background-color: #F7F7F7;
 }
 .countDownTimerLeft{
   @include span-columns(3);
+  border: 1px solid $text-color;
+  border-radius: 10px;
+  color: $white;
+  background-color: $text-color;
+  box-shadow: 3px 3px 5px black;
+  color: $adminBack-color;
 }
+
 .countDownTimerRight{
-  @include span-columns(3);
+ @include span-columns(3);
+  border: 1px solid $text-color;
+  border-radius: 10px;
+  color: $white;
+  background-color: $text-color;
+  box-shadow: 3px 3px 5px black;
+  color: $adminBack-color;
 }
 .answerField{
   display: block;
   width: 40%;
   margin: 20px auto;
+  font-size: 1.5em;
+  border: 1px solid $adminBack-color;
+
 }
-.score{
-  margin: 20px auto;
+.scoreDiv{
+  margin-top: 10px;
+  margin-left: 450px;
+  margin-right: 450px;
+  padding: 10px;
+  border: 1px solid $text-color;
+  border-radius: 10px;
+  color: $adminBack-color;
+  background-color: #F7F7F7;
 }
 .timeValue{
   font-size: 8em;
@@ -175,15 +222,18 @@ button {
 .gameOverWrapper {
   margin: 20px;
   padding: 10px;
-  text-align: center;
-  box-shadow: 5px 5px 5px black;
-  border: 5px solid;
+  text-align: center; 
+  border: 5px solid $smallBtn-color;
   border-radius: 180px;
-  
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1em;
   background-color: $adminBack-color;
   .gameOver{
-    font-size: 3em;
+    font-size: 4em;
     color: #344459;
+  }
+  span{
+    font-size: 1.5em;
   }
 }
 .scoreNumber {
@@ -195,12 +245,20 @@ button {
   background-color: white;
 
 }
-.after {
-  padding: 15px;
-  box-shadow: 5px 5px 5px black;
+
+.gameOverWrapper button{
+  padding: 15pt;
+  margin: 5pt;
+  border-radius: 20px;
+  box-shadow: none;
 }
-.changeGame {
-  padding: 5pt;
+.gameOverWrapper button:hover{
+  padding: 15pt;
+  margin: 5pt;
+  border-radius: 20px;
+  box-shadow: none;
+  color: $text-color;
+  border: 2px solid #F7F7F7;
 }
 
 
