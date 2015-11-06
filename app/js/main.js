@@ -472,7 +472,7 @@ var Router = _backbone2['default'].Router.extend({
     var _this12 = this;
 
     var userData = _jsCookie2['default'].getJSON('user');
-
+    // this.removeCookies();
     console.log(userData);
 
     var request = _jquery2['default'].ajax({

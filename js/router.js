@@ -278,7 +278,7 @@ let Router = Backbone.Router.extend({
   selectDeck(){
 
   let userData = Cookies.getJSON('user');
-
+  // this.removeCookies();
   console.log(userData);
 
   let request = $.ajax({
