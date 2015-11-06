@@ -24,8 +24,8 @@ let Router = Backbone.Router.extend({
     "register": "createAccount",  
     "user/:username": "selectDeck",
     "user/:username/decks": "addDeck",
-    "user/:username/decks/:id/cards": "addCard",
-    "user/:username/decks/edit/:id": "editCard",
+    "user/:username/decks/:id/edit": "editCard",
+    "user/:username/decks/:id/add": "addCard",
     "user/:username/play/:id": "play",
     "score": "score"
   },
@@ -100,7 +100,6 @@ let Router = Backbone.Router.extend({
     $('.app').html('loading...');
 
     request.then((data) => {
-      Cookies.set('deck', data);
 
       $.ajaxSetup({
         headers: {
@@ -125,7 +124,6 @@ let Router = Backbone.Router.extend({
 
   newCard(question, answer) {
     let user = Cookies.getJSON('user');
-    let deck = Cookies.getJSON('deck');
     
     let request = $.ajax({
       url: `https://morning-temple-4972.herokuapp.com/decks/${deck.id}`,
@@ -138,22 +136,10 @@ let Router = Backbone.Router.extend({
         answer: answer
       }
     });
-    
-
-    this.render(<AddCard_View 
-      onSubmitClick={(question, answer) => {
-        let newCard = new CardModel ({
-          card_question: question,
-          card_answer: answer
-        });
-
-        newCard.save().then(() => {
-          this.goto('user/:username/decks/:id/cards');
-        });
-      }}
-      onFinishClick={() => goto(`user/${data.username}`)}/>, this.el);
 
     $('.app').html('loading...');
+
+    Cookies.set('card', data);
 
     request.then((data) => {
      
@@ -166,7 +152,7 @@ let Router = Backbone.Router.extend({
         } 
 
       });
-      console.log(data.id);
+
       this.goto(`user/${user.username}/decks/${data.id}/cards`);
     }).fail(() => {
       $('.app').html('Oops..');
@@ -174,11 +160,28 @@ let Router = Backbone.Router.extend({
 
   },
 
-  editCard(id) {
+  editCard(un, id) {
+    let userData = Cookies.getJSON('user');
 
-    this.render(<EditCard_View 
-      onSubmitClick={(question, answer) => this.saveCard(question, answer)}
-      onCancelClick={() => this.goto(`user/${data.username}`)}/>, this.el);
+    let request = $.ajax({
+      url: `https://morning-temple-4972.herokuapp.com/decks/${id}`,
+      method: 'GET',
+      headers: {
+        auth_token: userData.auth_token
+      },
+    
+    });
+    request.then((data) => {
+      let deck = data;
+      this.render(<EditCard_View 
+          data={deck}
+          onSubmitClick={(question, answer) => this.saveCard(question, answer)}
+          onCancelClick={() => this.goto(`user/${userData.username}`)}
+          onAddClick={(did) => this.goto(`user/${userData.username}/decks/${did}/add`)}/>, this.el);
+    });
+    
+
+    
   },
 
   saveCard(question, answer) {
@@ -322,7 +325,7 @@ let Router = Backbone.Router.extend({
       onLogOut={() => this.removeCookies()}
       onPlay={(id) => this.goto(`user/${userData.username}/play/${id}`)}
       onAddDeck={() => this.goto(`user/${userData.username}/decks`)}
-      onEdit={(id) => this.goto(`user/${userData.username}/decks/edit/${id}`)}/>,
+      onEdit={(id) => this.goto(`user/${userData.username}/decks/${id}/edit`)}/>,
 
     );
   });//fetch

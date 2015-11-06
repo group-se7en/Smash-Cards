@@ -181,8 +181,8 @@ var Router = _backbone2['default'].Router.extend({
     "register": "createAccount",
     "user/:username": "selectDeck",
     "user/:username/decks": "addDeck",
-    "user/:username/decks/:id/cards": "addCard",
-    "user/:username/decks/edit/:id": "editCard",
+    "user/:username/decks/:id/edit": "editCard",
+    "user/:username/decks/:id/add": "addCard",
     "user/:username/play/:id": "play",
     "score": "score"
   },
@@ -267,7 +267,6 @@ var Router = _backbone2['default'].Router.extend({
     (0, _jquery2['default'])('.app').html('loading...');
 
     request.then(function (data) {
-      _jsCookie2['default'].set('deck', data);
 
       _jquery2['default'].ajaxSetup({
         headers: {
@@ -300,7 +299,6 @@ var Router = _backbone2['default'].Router.extend({
     var _this5 = this;
 
     var user = _jsCookie2['default'].getJSON('user');
-    var deck = _jsCookie2['default'].getJSON('deck');
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks/' + deck.id,
@@ -314,22 +312,9 @@ var Router = _backbone2['default'].Router.extend({
       }
     });
 
-    this.render(_react2['default'].createElement(_viewsAdminAdd_cards2['default'], {
-      onSubmitClick: function (question, answer) {
-        var newCard = new CardModel({
-          card_question: question,
-          card_answer: answer
-        });
-
-        newCard.save().then(function () {
-          _this5.goto('user/:username/decks/:id/cards');
-        });
-      },
-      onFinishClick: function () {
-        return goto('user/' + data.username);
-      } }), this.el);
-
     (0, _jquery2['default'])('.app').html('loading...');
+
+    _jsCookie2['default'].set('card', data);
 
     request.then(function (data) {
 
@@ -342,23 +327,40 @@ var Router = _backbone2['default'].Router.extend({
         }
 
       });
-      console.log(data.id);
+
       _this5.goto('user/' + user.username + '/decks/' + data.id + '/cards');
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
   },
 
-  editCard: function editCard(id) {
+  editCard: function editCard(un, id) {
     var _this6 = this;
 
-    this.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
-      onSubmitClick: function (question, answer) {
-        return _this6.saveCard(question, answer);
-      },
-      onCancelClick: function () {
-        return _this6.goto('user/' + data.username);
-      } }), this.el);
+    var userData = _jsCookie2['default'].getJSON('user');
+
+    var request = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks/' + id,
+      method: 'GET',
+      headers: {
+        auth_token: userData.auth_token
+      }
+
+    });
+    request.then(function (data) {
+      var deck = data;
+      _this6.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
+        data: deck,
+        onSubmitClick: function (question, answer) {
+          return _this6.saveCard(question, answer);
+        },
+        onCancelClick: function () {
+          return _this6.goto('user/' + userData.username);
+        },
+        onAddClick: function (did) {
+          return _this6.goto('user/' + userData.username + '/decks/' + did + '/add');
+        } }), _this6.el);
+    });
   },
 
   saveCard: function saveCard(question, answer) {
@@ -520,7 +522,7 @@ var Router = _backbone2['default'].Router.extend({
           return _this12.goto('user/' + userData.username + '/decks');
         },
         onEdit: function (id) {
-          return _this12.goto('user/' + userData.username + '/decks/edit/' + id);
+          return _this12.goto('user/' + userData.username + '/decks/' + id + '/edit');
         } }));
     }); //fetch
   },
@@ -1186,15 +1188,19 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _admin_component = require('./admin_component');
+
+var _admin_component2 = _interopRequireDefault(_admin_component);
+
 exports['default'] = _react2['default'].createClass({
   displayName: 'edit_cards',
 
-  getInitialState: function getInitialState() {
-    return {
-      card_question: this.props.data.card_question,
-      card_answer: this.props.data.card_answer
-    };
-  },
+  // getInitialState() {
+  //   return {
+  //     question: this.props.data.card_question,
+  //     answer: this.props.data.card_answer
+  //   };
+  // },
 
   submitHandler: function submitHandler(event) {
     event.preventDefault();
@@ -1203,6 +1209,10 @@ exports['default'] = _react2['default'].createClass({
 
   cancelClickHandler: function cancelClickHandler() {
     this.props.onCancelClick();
+  },
+
+  addClickHandler: function addClickHandler(id) {
+    this.props.onAddClick(id);
   },
 
   updateQuestion: function updateQuestion(event) {
@@ -1225,11 +1235,11 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       null,
-      _react2['default'].createElement(AdminComponent, null),
+      _react2['default'].createElement(_admin_component2['default'], null),
       _react2['default'].createElement(
         'h2',
         null,
-        'Add Card'
+        'Edit Cards'
       ),
       _react2['default'].createElement('input', { onChange: this.updateQuestion }),
       _react2['default'].createElement('input', { onChange: this.updateAnswer }),
@@ -1240,8 +1250,13 @@ exports['default'] = _react2['default'].createClass({
       ),
       _react2['default'].createElement(
         'button',
-        { onClick: this.cancelHandler },
+        { onClick: this.cancelClickHandler },
         'Cancel'
+      ),
+      _react2['default'].createElement(
+        'button',
+        { onClick: this.addClickHandler(this.props.data.id) },
+        'Add'
       )
     );
   }
@@ -1249,7 +1264,7 @@ exports['default'] = _react2['default'].createClass({
 });
 module.exports = exports['default'];
 
-},{"react":177}],13:[function(require,module,exports){
+},{"./admin_component":11,"react":177}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
