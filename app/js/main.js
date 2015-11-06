@@ -488,6 +488,7 @@ var Router = _backbone2['default'].Router.extend({
     var _this12 = this;
 
     var userData = _jsCookie2['default'].getJSON('user');
+    // this.removeCookies();
 
     console.log(userData);
 
@@ -503,8 +504,7 @@ var Router = _backbone2['default'].Router.extend({
 
       // // console.log(data);
       var decks = data;
-
-      console.log("decks:", decks);
+      // console.log("decks:", decks);
 
       _this12.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
         decks: decks,
@@ -535,8 +535,10 @@ var Router = _backbone2['default'].Router.extend({
     this.goto('login');
   },
 
-  play: function play() {
+  play: function play(username, id) {
     var _this13 = this;
+
+    console.log(username, id);
 
     var x = _jsCookie2['default'].getJSON('user');
 
@@ -1270,8 +1272,8 @@ exports['default'] = _react2['default'].createClass({
   displayName: 'select_deck',
 
   playDeck: function playDeck(id) {
-    this.props.onPlay(id);
     console.log('playDeck:', id);
+    this.props.onPlay(id);
   },
 
   addDeck: function addDeck() {
