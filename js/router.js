@@ -27,7 +27,7 @@ let Router = Backbone.Router.extend({
     "user/:username/decks": "addDeck",
     "user/:username/decks/:id/cards": "addCard",
     "user/:username/decks/:id/edit": "editCard",
-    "user/:username/play": "play",
+    "user/:username/play/:id": "play",
     "score": "score",
   },
 
@@ -225,42 +225,54 @@ let Router = Backbone.Router.extend({
 
   selectDeck(){
 
-    let data = [
-    {
-      title  :"Magic",
-       id    :1
-    },
-     {
-      title  :"Math",
-       id    :2
-    },
-     {
-      title  :"History",
-       id    :3
-    },
+ //    let data = [
+ //    {
+ //      title  :"Magic",
+ //       id    :1
+ //    },
+ //     {
+ //      title  :"Math",
+ //       id    :2
+ //    },
+ //     {
+ //      title  :"History",
+ //       id    :3
+ //    },
 
-    {
-      title   : "Japanese", 
-      id      :4
-    }
- ];
-
-
-    
+ //    {
+ //      title   : "Japanese", 
+ //      id      :4
+ //    }
+ // ];
 
   let userData = Cookies.getJSON('user');
   console.log(userData);
 
+  let request = $.ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      method: 'GET',
+      headers: {
+        auth_token: userData.auth_token
+      },
+    
+    });
+    request.then((data) => {
+      // console.log(data);
+      let decks = data;
+      console.log("decks:", decks);
+
+      Cookies.set('user', data, { expires: 7 });
 
 
   this.render(
     <SelectDeck
-      decks={data}
+      decks={decks}
       onLogOut={() => this.removeCookies()}
-      onPlay={() => this.goto(`user/${userData.username}/play`)}
+      onPlay={(id) => this.goto(`user/${userData.username}/play/${id}`)}
       onAddDeck={() => this.goto(`user/${userData.username}/decks`)}
-      onEdit={() => this.goto(`user/${userData.username}`)}/>,
+      onEdit={(id) => this.goto(`user/${userData.username}/decks/${id}/edit`)}/>,
     );
+   });//fetch
   
   },
 
