@@ -189,6 +189,7 @@ var Router = _backbone2['default'].Router.extend({
 
   initialize: function initialize(appElement) {
     this.el = appElement;
+    var router = this;
     // this.on('route', console.log.bind(console))
   },
 
@@ -310,6 +311,21 @@ var Router = _backbone2['default'].Router.extend({
         answer: answer
       }
     });
+
+    this.render(_react2['default'].createElement(_viewsAdminAdd_cards2['default'], {
+      onSubmitClick: function (question, answer) {
+        var newCard = new CardModel({
+          card_question: question,
+          card_answer: answer
+        });
+
+        newCard.save().then(function () {
+          _this5.goto('user/:username/decks/:id/cards');
+        });
+      },
+      onFinishClick: function () {
+        return goto('user/' + data.username);
+      } }), this.el);
 
     (0, _jquery2['default'])('.app').html('loading...');
 
@@ -520,6 +536,8 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play() {
+    var _this13 = this;
+
     var x = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
@@ -546,39 +564,50 @@ var Router = _backbone2['default'].Router.extend({
         }
 
       });
-      var card = _underscore2['default'].last(x);
-      console.log(card);
 
+      var card = _underscore2['default'].last(x);
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
-        getQuestion: card.question,
+        questionOne: card.question,
+        onNextCardClick: function () {
+          x.pop();
+          var card = _underscore2['default'].last(x);
+          if (!card) {
+            alert('out of cards');
+            _this13.goto('score');
+          }
+        },
+        newQuestion: card.question,
         answer: card.answer }), document.querySelector('.app'));
-      (0, _jquery2['default'])('.nextCard').on('click', function () {
-        x.pop();
-        console.log(x);
-        var card = _underscore2['default'].last(x);
-        _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
-          getQuestion: card.question,
-          answer: card.answer }), document.querySelector('.app'));
-      });
+
+      // $('.nextCard').on('click', function(){
+
+      //      }
+      //      ReactDom.render(<Play_View secondsRemaining={10}
+      //      getQuestion={card.question}
+      //      answer={card.answer}/>, document.querySelector('.app'));
+      //    })
+      // $('.submitAnswer').on('click', function(){
+
+      // });
     });
   },
 
   score: function score() {
-    var _this13 = this;
+    var _this14 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
 
       onPlayClick: function () {
-        return _this13.goto("user/:username/play/:id");
+        return _this14.goto("user/:username/play/:id");
       },
       onNewClick: function () {
-        return _this13.goto("user/:username");
+        return _this14.goto("user/:username");
       },
       onAddClick: function () {
-        return _this13.goto("user/:username/decks");
+        return _this14.goto("user/:username/decks");
       },
       onHomeClick: function () {
-        return _this13.goto("welcome");
+        return _this14.goto("welcome");
       } }));
   },
 
@@ -1367,7 +1396,7 @@ var Play_View = _react2['default'].createClass({
     alert('Are You Ready?');
     return {
       secondsRemaining: 0,
-      question: ''
+      question: this.props.questionOne
     };
   },
 
@@ -1393,7 +1422,7 @@ var Play_View = _react2['default'].createClass({
     var timeNumber = Number(time);
     var userAnswer = document.querySelector('.answerField').value;
     var correctAnswer = this.props.answer;
-    var score = document.querySelector('.score');
+    var score = this.refs.score;
     var scoreValue = score.value;
     this.setState({
       secondsRemaining: 1
@@ -1404,6 +1433,7 @@ var Play_View = _react2['default'].createClass({
     } else {
       alert('wrong');
     }
+    console.log('props', this.props);
   },
 
   nextCard: function nextCard() {
@@ -1441,11 +1471,10 @@ var Play_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'div',
           { className: 'question' },
-          this.state.question,
           _react2['default'].createElement(
             'span',
             null,
-            this.props.getQuestion
+            this.state.question
           )
         ),
         _react2['default'].createElement(
@@ -1480,7 +1509,7 @@ var Play_View = _react2['default'].createClass({
         'Score Value: ',
         _react2['default'].createElement(
           'span',
-          { className: 'score' },
+          { ref: 'score', className: 'score' },
           '0'
         )
       )
