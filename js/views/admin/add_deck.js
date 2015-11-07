@@ -27,7 +27,7 @@ export default React.createClass({
   render() {
     return (
       <div className="addDeckPage">
-        <AdminComponent onLogOut={this.logOut}/>
+        <AdminComponent onLogOut={this.logOut} userName={this.props.user}/>
         <h2>Create a deck!</h2>
         <input onChange={this.updateTitle}></input>
         <button onClick={this.submitHandler}>Submit</button>

@@ -242,6 +242,7 @@ var Router = _backbone2['default'].Router.extend({
       onLogOut: function () {
         return _this2.removeCookies();
       },
+      user: data,
 
       onSubmitClick: function (title) {
         return _this2.newDeck(title);
@@ -362,6 +363,7 @@ var Router = _backbone2['default'].Router.extend({
 
       _this5.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
         data: deck,
+        user: userData,
 
         onLogOut: function () {
           return _this5.removeCookies();
@@ -526,6 +528,7 @@ var Router = _backbone2['default'].Router.extend({
       var decks = data;
 
       _this10.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
+        user: userData,
         decks: decks,
         onLogOut: function () {
           return _this10.removeCookies();
@@ -1141,7 +1144,7 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       { className: 'addDeckPage' },
-      _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut }),
+      _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user }),
       _react2['default'].createElement(
         'h2',
         null,
@@ -1191,7 +1194,7 @@ exports["default"] = _react2["default"].createClass({
       _react2["default"].createElement(
         "h1",
         null,
-        "Username"
+        this.props.userName.username
       ),
       _react2["default"].createElement(
         "h3",
@@ -1308,7 +1311,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         null,
-        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut })
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user })
       ),
       _react2['default'].createElement(
         'div',
@@ -1451,7 +1454,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'admin' },
-        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut })
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user })
       ),
       _react2['default'].createElement(
         'div',

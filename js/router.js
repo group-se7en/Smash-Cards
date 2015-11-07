@@ -76,9 +76,10 @@ let Router = Backbone.Router.extend({
   addDeck() {
     let data = Cookies.getJSON('user');
 
-
+ 
     this.render(<AddDeck_View 
       onLogOut={() => this.removeCookies()}
+      user={data}
 
       onSubmitClick={(title) => this.newDeck(title)}
       onCancelClick={() => this.goto(`user/${data.username}`)}/>, this.el);
@@ -189,6 +190,7 @@ let Router = Backbone.Router.extend({
 
       this.render(<EditCard_View 
           data={deck}
+          user={userData}
 
           onLogOut={() => this.removeCookies()}
 
@@ -335,6 +337,7 @@ let Router = Backbone.Router.extend({
       
   this.render(
     <SelectDeck
+      user={userData}
       decks={decks}
       onLogOut={() => this.removeCookies()}
       onDeleteDeck={(id) => this.deleteDeck(id)}

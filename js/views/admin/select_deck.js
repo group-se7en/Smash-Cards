@@ -53,7 +53,7 @@ export default React.createClass({
     return (
     <div>
       <div className="admin">
-        <AdminComponent onLogOut={this.logOut}/>
+        <AdminComponent onLogOut={this.logOut} userName={this.props.user}/>
       </div>
 
       <div className="deckList">
