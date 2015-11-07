@@ -362,6 +362,7 @@ var Router = _backbone2['default'].Router.extend({
       console.log('data:', data);
       _this5.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
         data: deck,
+        addCard: deck.id,
         onSubmitClick: function (question, answer) {
           return _this5.saveCard(question, answer);
         },

@@ -190,6 +190,7 @@ let Router = Backbone.Router.extend({
       console.log('data:', data);
       this.render(<EditCard_View 
           data={deck}
+          addCard={deck.id}
           onSubmitClick={(question, answer) => this.saveCard(question, answer)}
           onCancelClick={() => this.goto(`user/${userData.username}`)}
           onAddClick={(did) => this.goto(`user/${userData.username}/decks/${did}/add`)}/>, this.el);
