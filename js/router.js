@@ -25,7 +25,7 @@ let Router = Backbone.Router.extend({
     "user/:username": "selectDeck",
     "user/:username/decks": "addDeck",
     "user/:username/decks/:id/:title/edit": "editCard",
-    "user/:username/decks/:id/add": "addCard",
+    "user/:username/decks/:id/:title/add": "addCard",
     "user/:username/play/:id": "play",
     "score": "score"
   },
@@ -190,10 +190,9 @@ let Router = Backbone.Router.extend({
       console.log('data:', data);
       this.render(<EditCard_View 
           data={deck}
-          addCard={deck.id}
           onSubmitClick={(question, answer) => this.saveCard(question, answer)}
           onCancelClick={() => this.goto(`user/${userData.username}`)}
-          onAddClick={(did) => this.goto(`user/${userData.username}/decks/${did}/add`)}/>, this.el);
+          onAddClick={() => this.goto(`user/${userData.username}/decks/${id}/${title}/add`)}/>, this.el);
     });
   },
 
