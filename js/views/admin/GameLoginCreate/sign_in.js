@@ -93,18 +93,18 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="logInPage">
         <div className="header">
-          <h2> Welcome to Flashcard Game </h2>
+          <h2 className="title"> SmashCard </h2>
         </div>
         <div className="sign-in">
           <h2>Enter Your Login Credentials</h2>
           <form>
-            <label>Your Username: <input id="userName" type="text" className="user" onChange={this.updateUsername}/></label>
-            <label>Your Password: <input id="passWord" type="text" className="password" onChange={this.updatePassword}/></label>
+            <label>Username: <input id="userName" type="text" className="user" onChange={this.updateUsername}/></label>
+            <label>Password: <input id="passWord" type="password" className="password" onChange={this.updatePassword}/></label>
+          </form>
             <button onClick={this.signIn}>Sign In</button>
             <button onClick={this.cancelHandler}>Cancel</button>
-          </form>
         </div>
       </div>
     );

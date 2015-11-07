@@ -2033,6 +2033,60 @@ button {
   background-color: #ED715C;
   box-shadow: 3px 3px 5px black; }
 
+/*no_cookie welcome page*/
+.welcomeScreen {
+  color: #344459;
+  text-align: center; }
+  .welcomeScreen .title {
+    font-size: 4em; }
+  .welcomeScreen .tagLine {
+    font-size: 3em; }
+  .welcomeScreen .welcome button {
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5em;
+    margin-right: 2%; }
+    .welcomeScreen .welcome button:hover {
+      color: #344459; }
+
+/*sign_in page*/
+.logInPage {
+  color: #344459;
+  text-align: center; }
+  .logInPage .title {
+    font-size: 4em; }
+  .logInPage input {
+    margin-right: 2%; }
+  .logInPage button {
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-right: 2%; }
+    .logInPage button:hover {
+      color: #344459; }
+
+/* register for new account page */
+.registration {
+  color: #344459;
+  text-align: center; }
+  .registration .title {
+    font-size: 4em; }
+  .registration label {
+    display: block;
+    margin-bottom: 20px;
+    margin-right: 20px; }
+  .registration input {
+    width: 20%; }
+  .registration button {
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-right: 2%; }
+    .registration button:hover {
+      color: #344459; }
+
 .app {
   height: 100%; }
 
@@ -2048,9 +2102,20 @@ button {
   box-shadow: 5px 5px 5px black;
   background-color: #1DABA5; }
 
+.admin-items {
+  text-align: center; }
+
 .deckList {
   float: right;
   width: 70%; }
+  .deckList .title {
+    text-align: center;
+    font-size: 4em;
+    color: #344459;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    position: relative;
+    right: 6%; }
 
 .selectTitle {
   text-shadow: .3px .3px .3px white;
@@ -2067,7 +2132,7 @@ button {
 
 .addDeckBtn {
   color: #ED715C;
-  margin: 7% 0 2% 20%;
+  margin: 3% 0 2% 26%;
   border: 2px solid #ED715C;
   border-radius: 2px;
   display: inline-block;
@@ -2084,10 +2149,15 @@ button {
   float: left;
   box-shadow: 5px 5px 5px black;
   color: #344459;
-  background-color: #1DABA5; }
+  background-color: #1DABA5;
+  text-align: center; }
+  .deck button {
+    margin-right: 5%; }
+    .deck button:hover {
+      color: #344459; }
 
 .deckTitle {
-  font-size: 1em;
+  font-size: 1.2em;
   margin: 1%; }
 
 .play {

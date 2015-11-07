@@ -1,12 +1,13 @@
 import Backbone from 'backbone';
 import React from 'react';
 import ReactDom from 'react-dom';
-import Play_View from './views/gameplay/play_view';
 import Cookies from 'js-cookie';
 import $ from 'jquery';
+import _ from 'underscore';
+
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
-import _ from 'underscore';
+import Play_View from './views/gameplay/play_view';
 import Score_View from './views/gameplay/score_view';
 import AddCard_View from './views/admin/add_cards';
 import EditCard_View from './views/admin/edit_cards';
@@ -51,7 +52,6 @@ let Router = Backbone.Router.extend({
   redirectToWelcome() {
 
     let userLogged = Cookies.getJSON('user');
-    console.log(userLogged);
 
     if (userLogged) {
 
@@ -302,8 +302,6 @@ let Router = Backbone.Router.extend({
   let userData = Cookies.getJSON('user');
   // this.removeCookies();
 
-  console.log(userData);
-
   let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
       method: 'GET',
@@ -347,13 +345,13 @@ let Router = Backbone.Router.extend({
  
 
   play(username, id) {
-    console.log(username, id);
 
     let x = Cookies.getJSON('user')
+    console.log(x);
    
 
      let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
+      url: `https://morning-temple-4972.herokuapp.com/username/deck/${id}`,
       method: 'GET',
       headers: {
         auth_token: x.auth_token,
@@ -378,6 +376,7 @@ let Router = Backbone.Router.extend({
       });
      
      let card = _.last(x);
+
       ReactDom.render(<Play_View secondsRemaining={10} 
           questionOne={card.question}
           onNextCardClick={()=>{

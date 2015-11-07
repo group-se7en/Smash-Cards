@@ -4,8 +4,9 @@ import moment from 'moment';
 
 let Play_View = React.createClass({
 
-  getInitialState() {
-    alert ('Are You Ready?')
+  getInitialState(event) {
+    alert('are you ready?');
+
     return {
       secondsRemaining: 0,
       question: this.props.questionOne
@@ -40,15 +41,13 @@ let Play_View = React.createClass({
     this.setState({
       secondsRemaining: 1
     })
+
     console.log(userAnswer);
     if (userAnswer === correctAnswer){
       score.innerHTML= timeNumber*10 + Number(score.innerHTML)
     } else{
-      alert ('wrong');
+      alert ('You are so wrong!');
     }
-    console.log('props', this.props);
-    
-    
   },
 
   nextCard(){
@@ -56,9 +55,10 @@ let Play_View = React.createClass({
       secondsRemaining: 10,
       question: this.props.newQuestion
     })
+    this.componentWillUnmount();
+    clearInterval(this.state);
     this.componentDidMount();
-    // this.props.onNextCardClick();
-
+    document.querySelector('.answerField').value = '';
 
   },
 

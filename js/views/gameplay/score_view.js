@@ -1,10 +1,12 @@
 import React from 'react';
+
 import scoreValue from './play_view';
 import deckTitle from './play_view';
 
+
 let Score_View = React.createClass({
 
-  
+
 //newgame
 //play again
 getInitialState() {
@@ -32,8 +34,6 @@ getInitialState() {
     this.props.onHomeClick();
   },
 
-  
-
   render() {
     return (
       <div className="gameOverWrapper">
@@ -41,10 +41,12 @@ getInitialState() {
           Game Over
         </div>
 
+
         <div className="score">
           Your score on the {this.deckTitle} deck is ...<br/>
 
           <p className="scoreNumber">{this.scoreValue}</p>
+
         </div>
 
         <div className="after">

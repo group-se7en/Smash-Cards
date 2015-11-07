@@ -22,6 +22,84 @@ button {
   
 }
 
+/*no_cookie welcome page*/
+
+.welcomeScreen{
+  color: $text-color;
+  text-align: center;
+  .title{
+    font-size: 4em;
+  }
+  .tagLine{
+    font-size: 3em;
+  }
+  .welcome{
+    button {
+      border: none;
+      border-radius: 5px;
+      font-size: 1.5em;
+      margin-right: 2%;
+      &:hover{
+        color: $text-color;
+      }
+    }
+  }
+}
+
+/*sign_in page*/
+
+.logInPage{
+  color: $text-color;
+  text-align: center;
+  .title{
+    font-size: 4em;
+  }
+  input {
+    margin-right: 2%;
+  }
+  button {
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-right: 2%;
+    &:hover{
+      color: $text-color;
+    }
+  }
+}
+
+/* register for new account page */
+
+.registration{
+  color: $text-color;
+  text-align: center;
+  .title{
+    font-size: 4em;
+  }
+  label{
+    display: block;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  input{
+    width: 20%;
+  }
+  button {
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-right: 2%;
+    &:hover{
+      color: $text-color;
+    }
+  }
+}
+
+
+
+
 .app {
   height: 100%;
 }
@@ -39,9 +117,24 @@ button {
   background-color: $adminBack-color;
 //JESSE SELECT PAGE
 }
+
+.admin-items{
+  text-align: center;
+}
+
 .deckList {
   float: right;
   width: 70%;
+
+.title{
+  text-align: center;
+  font-size: 4em;
+  color: $text-color;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  position: relative;
+  right: 6%;
+}
 
 }
 .selectTitle {
@@ -56,13 +149,11 @@ button {
   color: $text-color;
   background-color: $adminBack-color;
   box-shadow: 3px 3px 5px black;
-  
-
 }
 
 .addDeckBtn {
   color: $smallBtn-color;
-  margin: 7% 0 2% 20%;
+  margin: 3% 0 2% 26%;
   border: 2px solid $smallBtn-color;
   border-radius: 2px;
   display: inline-block;
@@ -80,10 +171,16 @@ button {
   box-shadow: 5px 5px 5px black;
   color: $text-color;
   background-color: $adminBack-color;
-   
+  text-align: center;
+  button {
+    margin-right: 5%;
+    &:hover{
+      color: $text-color;
+    }
+  }
 }
 .deckTitle{
-  font-size: 1em;
+  font-size: 1.2em;
   margin: 1%;
 }
 .play {
@@ -108,6 +205,10 @@ button {
 
 }
 // END JESSE SELECT PAGE
+
+
+
+
 
 /******** Play View Styling ***********/
 
@@ -154,6 +255,7 @@ button {
   border-radius: 10px;
   height: 100%;
   background-color: #F7F7F7;
+
 }
 .countDownTimerLeft{
   @include span-columns(3);
