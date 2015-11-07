@@ -40,13 +40,13 @@ let Play_View = React.createClass({
     this.setState({
       secondsRemaining: 1
     })
-    console.log(userAnswer);
+  
     if (userAnswer === correctAnswer){
       score.innerHTML= timeNumber*10 + Number(score.innerHTML)
     } else{
       alert ('wrong');
     }
-    console.log('props', this.props);
+
     
     
   },
@@ -61,7 +61,6 @@ let Play_View = React.createClass({
 
 
   },
-
 
   render() {
    
@@ -81,7 +80,7 @@ let Play_View = React.createClass({
 
           <div className="question">
             
-            <span>{this.state.question}</span>
+            <span>{this.props.question}</span>
           </div>
 
           <div className="countDownTimerRight">
