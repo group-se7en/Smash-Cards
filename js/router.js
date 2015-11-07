@@ -361,12 +361,12 @@ let Router = Backbone.Router.extend({
 
     // console.log(username, id);
 
-
+    console.log(id)
     let x = Cookies.getJSON('user')
     // console.log(x)
 
      let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/${deck}/cards',
+      url: `https://morning-temple-4972.herokuapp.com/decks/${id}/cards`,
       method: 'GET',
       headers: {
         auth_token: x.auth_token,

@@ -554,11 +554,12 @@ var Router = _backbone2['default'].Router.extend({
 
     // console.log(username, id);
 
+    console.log(id);
     var x = _jsCookie2['default'].getJSON('user');
     // console.log(x)
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/${deck}/cards',
+      url: 'https://morning-temple-4972.herokuapp.com/decks/' + id + '/cards',
       method: 'GET',
       headers: {
         auth_token: x.auth_token
