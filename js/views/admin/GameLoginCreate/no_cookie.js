@@ -17,9 +17,10 @@ export default React.createClass({
 
   render() {
     return (
-      <div> 
+      <div className="welcomeScreen"> 
         <div className="header">
-          <h2> Welcome to Flashcard Game </h2>
+          <h2 className="title"> SmashCard </h2>
+          <h3 className="tagLine"> Improve Your Memory. Smash Your Opponents </h3>
         </div>
         <div className="welcome">
           <form>

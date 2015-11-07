@@ -206,7 +206,6 @@ var Router = _backbone2['default'].Router.extend({
   redirectToWelcome: function redirectToWelcome() {
 
     var userLogged = _jsCookie2['default'].getJSON('user');
-    console.log(userLogged);
 
     if (userLogged) {
 
@@ -494,8 +493,6 @@ var Router = _backbone2['default'].Router.extend({
     var userData = _jsCookie2['default'].getJSON('user');
     // this.removeCookies();
 
-    console.log(userData);
-
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
       method: 'GET',
@@ -542,12 +539,11 @@ var Router = _backbone2['default'].Router.extend({
   play: function play(username, id) {
     var _this13 = this;
 
-    console.log(username, id);
-
     var x = _jsCookie2['default'].getJSON('user');
+    console.log(x);
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
+      url: 'https://morning-temple-4972.herokuapp.com/username/deck/' + id,
       method: 'GET',
       headers: {
         auth_token: x.auth_token
@@ -693,14 +689,14 @@ exports['default'] = _react2['default'].createClass({
   render: function render() {
     return _react2['default'].createElement(
       'div',
-      null,
+      { className: 'registration' },
       _react2['default'].createElement(
         'div',
         { className: 'header' },
         _react2['default'].createElement(
           'h2',
-          null,
-          ' Welcome to Flashcard Game '
+          { className: 'title' },
+          ' Welcome to SmashCard '
         )
       ),
       _react2['default'].createElement(
@@ -717,43 +713,43 @@ exports['default'] = _react2['default'].createClass({
           _react2['default'].createElement(
             'label',
             null,
-            'Your First Name: ',
+            'First Name: ',
             _react2['default'].createElement('input', { type: 'text', className: 'firstName', onChange: this.updateFirst })
           ),
           _react2['default'].createElement(
             'label',
             null,
-            'Your Last Name: ',
+            'Last Name: ',
             _react2['default'].createElement('input', { type: 'text', className: 'lastName', onChange: this.updateLast })
           ),
           _react2['default'].createElement(
             'label',
             null,
             'Your Email: ',
-            _react2['default'].createElement('input', { type: 'text', className: 'email', onChange: this.updateEmail })
+            _react2['default'].createElement('input', { type: 'email', className: 'email', onChange: this.updateEmail })
           ),
           _react2['default'].createElement(
             'label',
             null,
-            'Your Username: ',
+            'Username: ',
             _react2['default'].createElement('input', { type: 'text', className: 'user', onChange: this.updateUsername })
           ),
           _react2['default'].createElement(
             'label',
             null,
-            'Your Password: ',
+            'Password: ',
             _react2['default'].createElement('input', { type: 'password', className: 'password', onChange: this.updatePassword })
-          ),
-          _react2['default'].createElement(
-            'button',
-            { onClick: this.createAccount },
-            'Create Account'
-          ),
-          _react2['default'].createElement(
-            'button',
-            { onClick: this.cancelHandler },
-            'Cancel'
           )
+        ),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.createAccount },
+          'Create Account'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.cancelHandler },
+          'Cancel'
         )
       )
     );
@@ -791,14 +787,19 @@ exports["default"] = _react2["default"].createClass({
   render: function render() {
     return _react2["default"].createElement(
       "div",
-      null,
+      { className: "welcomeScreen" },
       _react2["default"].createElement(
         "div",
         { className: "header" },
         _react2["default"].createElement(
           "h2",
-          null,
-          " Welcome to Flashcard Game "
+          { className: "title" },
+          " SmashCard "
+        ),
+        _react2["default"].createElement(
+          "h3",
+          { className: "tagLine" },
+          " Improve Your Memory. Smash Your Opponents "
         )
       ),
       _react2["default"].createElement(
@@ -931,14 +932,14 @@ exports["default"] = _react2["default"].createClass({
   render: function render() {
     return _react2["default"].createElement(
       "div",
-      null,
+      { className: "logInPage" },
       _react2["default"].createElement(
         "div",
         { className: "header" },
         _react2["default"].createElement(
           "h2",
-          null,
-          " Welcome to Flashcard Game "
+          { className: "title" },
+          " SmashCard "
         )
       ),
       _react2["default"].createElement(
@@ -955,25 +956,25 @@ exports["default"] = _react2["default"].createClass({
           _react2["default"].createElement(
             "label",
             null,
-            "Your Username: ",
+            "Username: ",
             _react2["default"].createElement("input", { id: "userName", type: "text", className: "user", onChange: this.updateUsername })
           ),
           _react2["default"].createElement(
             "label",
             null,
-            "Your Password: ",
-            _react2["default"].createElement("input", { id: "passWord", type: "text", className: "password", onChange: this.updatePassword })
-          ),
-          _react2["default"].createElement(
-            "button",
-            { onClick: this.signIn },
-            "Sign In"
-          ),
-          _react2["default"].createElement(
-            "button",
-            { onClick: this.cancelHandler },
-            "Cancel"
+            "Password: ",
+            _react2["default"].createElement("input", { id: "passWord", type: "password", className: "password", onChange: this.updatePassword })
           )
+        ),
+        _react2["default"].createElement(
+          "button",
+          { onClick: this.signIn },
+          "Sign In"
+        ),
+        _react2["default"].createElement(
+          "button",
+          { onClick: this.cancelHandler },
+          "Cancel"
         )
       )
     );
@@ -1095,7 +1096,7 @@ exports['default'] = _react2['default'].createClass({
   render: function render() {
     return _react2['default'].createElement(
       'div',
-      null,
+      { className: 'addDeckPage' },
       _react2['default'].createElement(_admin_component2['default'], null),
       _react2['default'].createElement(
         'h2',
@@ -1146,14 +1147,38 @@ exports["default"] = _react2["default"].createClass({
       _react2["default"].createElement(
         "h1",
         null,
-        "Admin ",
-        _react2["default"].createElement("i", { className: "fa fa-lock" })
+        "Username"
       ),
       _react2["default"].createElement(
         "h3",
         null,
-        "User Name"
+        "Start Smashing"
       ),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement("br", null),
       _react2["default"].createElement(
         "button",
         { className: "logOutBtn", onClick: this.adminLogOut },
@@ -1290,21 +1315,18 @@ exports['default'] = _react2['default'].createClass({
   displayName: 'select_deck',
 
   playDeck: function playDeck(id) {
-    console.log('playDeck:', id);
     this.props.onPlay(id);
   },
 
   addDeck: function addDeck() {
-    console.log('addDeck');
     this.props.onAddDeck();
   },
 
   editDeck: function editDeck(id) {
-    console.log('editDeckCOMP:', id);
     this.props.onEdit(id);
   },
+
   logOut: function logOut() {
-    console.log('logOut please');
     this.props.onLogOut();
   },
 
@@ -1321,6 +1343,7 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'p',
           null,
+          'Deck ID: ',
           deck.id
         )
       ),
@@ -1366,10 +1389,14 @@ exports['default'] = _react2['default'].createClass({
         'div',
         { className: 'deckList' },
         _react2['default'].createElement(
+          'h1',
+          { className: 'title' },
+          'SmashCard'
+        ),
+        _react2['default'].createElement(
           'h2',
           { className: 'selectTitle' },
-          'Select a deck or create a custom one      ',
-          _react2['default'].createElement('i', { className: 'fa fa-hand-pointer-o' })
+          'Select a deck or create a custom one'
         ),
         _react2['default'].createElement(
           'button',

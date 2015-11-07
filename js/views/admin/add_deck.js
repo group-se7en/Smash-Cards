@@ -22,7 +22,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="addDeckPage">
         <AdminComponent/>
         <h2>Create a deck!</h2>
         <input onChange={this.updateTitle}></input>

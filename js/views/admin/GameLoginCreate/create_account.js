@@ -57,21 +57,21 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="registration">
         <div className="header">
-          <h2> Welcome to Flashcard Game </h2>
+          <h2 className="title"> Welcome to SmashCard </h2>
         </div>
         <div className="sign-in">
           <h2>Create an Account</h2>
           <form>
-            <label>Your First Name: <input type="text" className="firstName" onChange={this.updateFirst}/></label>
-            <label>Your Last Name: <input type="text" className="lastName" onChange={this.updateLast}/></label>
-            <label>Your Email: <input type="text" className="email" onChange={this.updateEmail}/></label>
-            <label>Your Username: <input type="text" className="user" onChange={this.updateUsername}/></label>
-            <label>Your Password: <input type="password" className="password" onChange={this.updatePassword}/></label>
+            <label>First Name: <input type="text" className="firstName" onChange={this.updateFirst}/></label>
+            <label>Last Name: <input type="text" className="lastName" onChange={this.updateLast}/></label>
+            <label>Your Email: <input type="email" className="email" onChange={this.updateEmail}/></label>
+            <label>Username: <input type="text" className="user" onChange={this.updateUsername}/></label>
+            <label>Password: <input type="password" className="password" onChange={this.updatePassword}/></label>
+          </form>
             <button onClick={this.createAccount}>Create Account</button>
             <button onClick={this.cancelHandler}>Cancel</button>
-          </form>
         </div>
       </div>
     );
