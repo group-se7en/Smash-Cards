@@ -13,6 +13,10 @@ export default React.createClass({
   this.props.onAddDeck();
  }, 
 
+ deleteDeck(id) {
+  this.props.onDeleteDeck(id);
+ },
+
  editDeck(id, title){
   this.props.onEdit(id, title);
   
@@ -37,6 +41,10 @@ export default React.createClass({
       <button className="edit" onClick={() => this.editDeck(deck.id, deck.title)}><p className="buttonTitle">Edit Deck</p>
       <i className="fa fa-pencil"></i>
       </button>    
+
+      <button className="delete" onClick={() => this.deleteDeck(deck.id)}><p className="buttonTitle">Delete Deck</p>
+      <i className="fa fa-pencil"></i>
+      </button>  
     </div>
     );
  },
