@@ -5,14 +5,14 @@ export default React.createClass({
 
   // getInitialState() {
   //   return {
-  //     question: this.props.data.card_question,
-  //     answer: this.props.data.card_answer
+  //     question: this.props.data.question,
+  //     answer: this.props.data.answer
   //   };
   // }, 
 
   submitHandler(event) {
     event.preventDefault();
-    this.props.onSubmit(this.state.card_question, this.state.card_answer);
+    this.props.onSubmit(this.state.question, this.state.answer);
   },
 
   cancelClickHandler() {
@@ -30,7 +30,7 @@ export default React.createClass({
     let newQuestion = event.currentTarget.value;
     
     this.setState({
-      card_question: newQuestion
+      question: newQuestion
     });
   },
 
@@ -38,7 +38,7 @@ export default React.createClass({
     let newAnswer = event.currentTarget.value;
 
     this.setState({
-      card_answer: newAnswer
+      answer: newAnswer
     });
   },
 
