@@ -553,6 +553,7 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play(username, id) {
+    var _this11 = this;
 
     // console.log(username, id);
 
@@ -590,7 +591,10 @@ var Router = _backbone2['default'].Router.extend({
 
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
         question: card.question,
-        answer: card.answer }), document.querySelector('.app'));
+        answer: card.answer,
+        goAway: function () {
+          return _this11.goto('');
+        } }), document.querySelector('.app'));
 
       (0, _jquery2['default'])('.nextCard').on('click', function () {
         console.log(cardDeck);
@@ -608,21 +612,21 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   score: function score() {
-    var _this11 = this;
+    var _this12 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
 
       onPlayClick: function () {
-        return _this11.goto("user/:username/play/:id");
+        return _this12.goto("user/:username/play/:id");
       },
       onNewClick: function () {
-        return _this11.goto("user/:username");
+        return _this12.goto("user/:username");
       },
       onAddClick: function () {
-        return _this11.goto("user/:username/decks");
+        return _this12.goto("user/:username/decks");
       },
       onHomeClick: function () {
-        return _this11.goto("welcome");
+        return _this12.goto("welcome");
       } }));
   },
 
@@ -1512,6 +1516,9 @@ var Play_View = _react2['default'].createClass({
     this.componentDidMount();
     document.querySelector('.answerField').value = '';
   },
+  goHome: function goHome() {
+    this.props.goAway();
+  },
 
   render: function render() {
 
@@ -1570,6 +1577,11 @@ var Play_View = _react2['default'].createClass({
         'button',
         { onClick: this.nextCard, className: 'nextCard' },
         'Next Card'
+      ),
+      _react2['default'].createElement(
+        'button',
+        { onClick: this.goHome },
+        'Go Home'
       ),
       _react2['default'].createElement(
         'div',
