@@ -2138,7 +2138,8 @@ button {
   text-align: center; }
   .deck .deckTitle {
     font-size: 1.2em;
-    margin: 1%; }
+    margin: 1%;
+    margin-top: 20px; }
   .deck .play {
     border: 1px solid #344459;
     border-radius: 2px;
