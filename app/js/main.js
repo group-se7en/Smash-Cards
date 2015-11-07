@@ -608,6 +608,8 @@ var Router = _backbone2['default'].Router.extend({
         } }), document.querySelector('.app'));
 
       (0, _jquery2['default'])('.nextCard').on('click', function () {
+        var _this13 = this;
+
         console.log(cardDeck);
         cardDeck.pop();
         var card = _underscore2['default'].last(cardDeck);
@@ -617,27 +619,30 @@ var Router = _backbone2['default'].Router.extend({
         }
         _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
           question: card.question,
-          answer: card.answer }), document.querySelector('.app'));
+          answer: card.answer,
+          goAway: function () {
+            return _this13.goto('');
+          } }), document.querySelector('.app'));
       });
     });
   },
 
   score: function score() {
-    var _this13 = this;
+    var _this14 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
 
       onPlayClick: function () {
-        return _this13.goto("user/:username/play/:id");
+        return _this14.goto("user/:username/play/:id");
       },
       onNewClick: function () {
-        return _this13.goto("user/:username");
+        return _this14.goto("user/:username");
       },
       onAddClick: function () {
-        return _this13.goto("user/:username/decks");
+        return _this14.goto("user/:username/decks");
       },
       onHomeClick: function () {
-        return _this13.goto("welcome");
+        return _this14.goto("welcome");
       } }));
   },
 
