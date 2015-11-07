@@ -1,13 +1,12 @@
 import Backbone from 'backbone';
 import React from 'react';
 import ReactDom from 'react-dom';
+import Play_View from './views/gameplay/play_view';
 import Cookies from 'js-cookie';
 import $ from 'jquery';
-import _ from 'underscore';
-
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
-import Play_View from './views/gameplay/play_view';
+import _ from 'underscore';
 import Score_View from './views/gameplay/score_view';
 import AddCard_View from './views/admin/add_cards';
 import EditCard_View from './views/admin/edit_cards';
@@ -25,8 +24,8 @@ let Router = Backbone.Router.extend({
     "register": "createAccount",  
     "user/:username": "selectDeck",
     "user/:username/decks": "addDeck",
-    "user/:username/decks/:id/cards": "addCard",
-    "user/:username/decks/edit/:id": "editCard",
+    "user/:username/decks/:id/:title/edit": "editCard",
+    "user/:username/decks/:id/add": "addCard",
     "user/:username/play/:id": "play",
     "score": "score"
   },
@@ -52,7 +51,7 @@ let Router = Backbone.Router.extend({
   redirectToWelcome() {
 
     let userLogged = Cookies.getJSON('user');
-    console.log(userLogged);
+    
 
     if (userLogged) {
 
@@ -109,110 +108,128 @@ let Router = Backbone.Router.extend({
         } 
 
       });
-      this.goto(`user/${user.username}/decks/${data.id}/cards`);
-    }).fail(() => {
-      $('.app').html('Oops..');
-    });
-  },
-
-  addCard() {    
-    let data = Cookies.getJSON('user');
-
-    this.render(<AddCard_View 
-      onSubmitClick={(question, answer) => this.newCard(question, answer)}
-      onFinishClick={() => this.goto(`user/${data.username}`)}/>, this.el);
-  },
-
-  newCard(question, answer) {
-    let user = Cookies.getJSON('user');
-    
-    let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/decks/${deck.id}`,
-      method: 'POST',
-      headers: {
-        auth_token: user.auth_token
-      },
-      data: {
-        question: question,
-        answer: answer
-      }
-    });
-    
-
-    this.render(<AddCard_View 
-      onSubmitClick={(question, answer) => {
-        let newCard = new CardModel ({
-          card_question: question,
-          card_answer: answer
-        });
-
-        newCard.save().then(() => {
-          this.goto('user/:username/decks/:id/cards');
-        });
-      }}
-      onFinishClick={() => goto(`user/${data.username}`)}/>, this.el);
-
-    $('.app').html('loading...');
-
-    request.then((data) => {
-     
-      $.ajaxSetup({
-        headers: {
-          id: data.id,
-          question: data.question,
-          answer: data.answer
-          
-        } 
-
-      });
-      console.log(data.id);
-      this.goto(`user/${user.username}/decks/${data.id}/cards`);
-    }).fail(() => {
-      $('.app').html('Oops..');
-    });
-
-  },
-
-  editCard(id) {
-
-    render(<EditDeck_View 
-      onSubmitClick={(question, answer) => this.saveCard(question, answer)}
-      onCancelClick={() => this.goto(`user/${data.username}`)}/>, el);
-  },
-
-  saveCard(question, answer) {
-    let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/cards/${cardId}`,
-      method: 'PUT',
-      headers: {
-        auth_token: user.auth_token
-      },
-      data: {
-        question: question,
-        answer: answer
-      }
-    });
-    
-    $('.app').html('loading...');
-
-    request.then((data) => {
-     
-      $.ajaxSetup({
-        headers: {
-          id: data.id,
-          question: data.question,
-          answer: data.answer
-          
-        } 
-
-      });
-
       this.goto(`user/${user.username}`);
     }).fail(() => {
       $('.app').html('Oops..');
     });
-
   },
+
+  addCard(id) {   
+    
+    let data = Cookies.getJSON('user');
+    
+
+    this.render(<AddCard_View 
+      onSubmitClick={(question, answer) => this.newCard(question, answer, id)}
+      onFinishClick={() => this.goto(`user/${data.username}`)}/>, this.el);
+  },
+
+  // newCard(question, answer) {
+  //   let user = Cookies.getJSON('user');
+    
+  //   let request = $.ajax({
+  //     url: `https://morning-temple-4972.herokuapp.com/decks/${deck.id}`,
+  //     method: 'POST',
+  //     headers: {
+  //       auth_token: user.auth_token
+  //     },
+  //     data: {
+  //       question: question,
+  //       answer: answer
+  //     }
+  //   });
+
+  //   $('.app').html('loading...');
+
+  //   Cookies.set('card', data);
+
+  //   request.then((data) => {
+     
+  //     $.ajaxSetup({
+  //       headers: {
+  //         id: data.id,
+  //         question: data.question,
+  //         answer: data.answer
+          
+  //       } 
+
+  //     });
+
+  //     this.goto(`user/${user.username}/decks/${data.id}/cards`);
+  //   }).fail(() => {
+  //     $('.app').html('Oops..');
+  //   });
+
+  // },
+
+  editCard(un, id, title) {
+    let userData = Cookies.getJSON('user');
+    console.log(userData)
+
+    let request = $.ajax({
+      url: `https://morning-temple-4972.herokuapp.com/decks/${id}`,
+      method: 'PUT',
+      headers: {
+        auth_token: userData.auth_token
+      },
+      data: {
+        title: title
+      }
+    
+    });
+    
+    request.then((data) => {
+      $.ajaxSetup({
+        headers: {
+          id: data.id,
+          title: data.title
+        } 
+      })
+      console.log(data);
+      let deck = data;
+      console.log('data:', data);
+      this.render(<EditCard_View 
+          data={deck}
+          addCard={deck.id}
+          onSubmitClick={(question, answer) => this.saveCard(question, answer)}
+          onCancelClick={() => this.goto(`user/${userData.username}`)}
+          onAddClick={(did) => this.goto(`user/${userData.username}/decks/${did}/add`)}/>, this.el);
+    });
+  },
+
+  // saveCard(question, answer) {
+  //   let request = $.ajax({
+  //     url: `https://morning-temple-4972.herokuapp.com/cards/${cardId}`,
+  //     method: 'PUT',
+  //     headers: {
+  //       auth_token: user.auth_token
+  //     },
+  //     data: {
+  //       question: question,
+  //       answer: answer
+  //     }
+  //   });
+    
+  //   $('.app').html('loading...');
+
+  //   request.then((data) => {
+     
+  //     $.ajaxSetup({
+  //       headers: {
+  //         id: data.id,
+  //         question: data.question,
+  //         answer: data.answer
+          
+  //       } 
+
+  //     });
+
+  //     this.goto(`user/${user.username}`);
+  //   }).fail(() => {
+  //     $('.app').html('Oops..');
+  //   });
+
+  // },
 
 
   signIn(){
@@ -296,7 +313,8 @@ let Router = Backbone.Router.extend({
   selectDeck(){
 
   let userData = Cookies.getJSON('user');
-  // this.removeCookies();
+
+  console.log(userData);
 
   let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -308,23 +326,18 @@ let Router = Backbone.Router.extend({
     });
     request.then((data) => {
 
-      // // console.log(data);
       let decks = data;
-      // console.log("decks:", decks);
-      // Cookies.set('user', data, { expires: 7 });
-
-
-
+      
   this.render(
     <SelectDeck
       decks={decks}
       onLogOut={() => this.removeCookies()}
-      onPlay={(id) => this.goto(`user/${userData.username}/play/${id}`)}
+      onPlay={(x) => this.goto(`user/${userData.username}/play/${x}`)}
       onAddDeck={() => this.goto(`user/${userData.username}/decks`)}
-      onEdit={(id) => this.goto(`user/${userData.username}/decks/edit/${id}`)}/>,
+      onEdit={(id, title) => this.goto(`user/${userData.username}/decks/${id}/${title}/edit`)}/>,
 
     );
-  });//fetch
+  });
   
   },
 
@@ -340,14 +353,16 @@ let Router = Backbone.Router.extend({
     this.goto('login');
   },
 
- 
-
   play(username, id) {
 
-    let x = Cookies.getJSON('user')
+    // console.log(username, id);
 
-     let deckRequest = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/`${id}`',
+
+    let x = Cookies.getJSON('user')
+    // console.log(x)
+
+     let request = $.ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks/${deck}/cards',
       method: 'GET',
       headers: {
         auth_token: x.auth_token,
@@ -358,9 +373,8 @@ let Router = Backbone.Router.extend({
     });
     $('.app').html('loading...');
 
-      deckRequest.then((data) => {
-
-        let decks = data;
+      request.then((data) => {
+        // Cookies.set('user', data, {expires: 7});
 
      $.ajaxSetup({
         headers: {
@@ -371,37 +385,30 @@ let Router = Backbone.Router.extend({
         }
       
       });
+     console.log(data);
+     let card = _.last(data);
+     let cardDeck= data;
      
-     let card = _.last(x);
       ReactDom.render(<Play_View secondsRemaining={10} 
-          questionOne={card.question}
-          onNextCardClick={()=>{
-            x.pop();
-            let card =_.last(x);
-            if (!card) {
-              alert('out of cards');
-              this.goto('score')}}}
-          newQuestion={card.question}
+          question={card.question}
           answer={card.answer}/>, document.querySelector('.app'));
 
-     // $('.nextCard').on('click', function(){
+     $('.nextCard').on('click', function(){
+          console.log(cardDeck)
+          cardDeck.pop()
+          let card =_.last(cardDeck);
+          if (!card) {
+              alert('out of cards');
+              this.goto('score')
+            }
+            ReactDom.render(<Play_View secondsRemaining={10} 
+          question={card.question}
+          answer={card.answer}/>, document.querySelector('.app'));
+        })
           
-     //      }
-     //      ReactDom.render(<Play_View secondsRemaining={10} 
-     //      getQuestion={card.question}
-     //      answer={card.answer}/>, document.querySelector('.app'));
-     //    })
-     // $('.submitAnswer').on('click', function(){
-            
-     // });
-    }) 
+     }); 
         
-        
-
-  },
-        
-
-        
+  },     
 
   score() {
     this.render(
