@@ -166,7 +166,7 @@ let Router = Backbone.Router.extend({
     let userData = Cookies.getJSON('user');
     console.log(title)
     let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/${id}',
+      url: `https://morning-temple-4972.herokuapp.com/decks/${id}`,
       method: 'PUT',
       headers: {
         auth_token: userData.auth_token
@@ -188,7 +188,7 @@ let Router = Backbone.Router.extend({
       let deck = data;
       this.render(<EditCard_View 
           data={deck}
-          onSubmitClick={(question, answer) => this.saveCard(question, answer)}
+          onSubmit={(question, answer) => this.saveCard(question, answer)}
           onCancelClick={() => this.goto(`user/${userData.username}`)}
           onAddClick={(did) => this.goto(`user/${userData.username}/decks/${did}/add`)}/>, this.el);
     });

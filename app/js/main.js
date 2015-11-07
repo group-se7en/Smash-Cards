@@ -339,7 +339,7 @@ var Router = _backbone2['default'].Router.extend({
     var userData = _jsCookie2['default'].getJSON('user');
     console.log(title);
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/${id}',
+      url: 'https://morning-temple-4972.herokuapp.com/decks/' + id,
       method: 'PUT',
       headers: {
         auth_token: userData.auth_token
@@ -361,7 +361,7 @@ var Router = _backbone2['default'].Router.extend({
       var deck = data;
       _this6.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
         data: deck,
-        onSubmitClick: function (question, answer) {
+        onSubmit: function (question, answer) {
           return _this6.saveCard(question, answer);
         },
         onCancelClick: function () {
