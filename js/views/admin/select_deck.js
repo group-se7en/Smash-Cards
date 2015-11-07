@@ -52,8 +52,7 @@ export default React.createClass({
         <h1 className="title">SmashCard</h1>
         <h2 className="selectTitle">Select a deck or create a custom one</h2>
         <button className="addDeckBtn" onClick={() => this.addDeck()}><i className="fa fa-plus fa-2x"></i></button>
-        <div>{this.props.decks.map(this.formatData)}</div>
-        
+        <div>{this.props.decks.map(this.formatData)}</div>   
       </div>
 
     </div>

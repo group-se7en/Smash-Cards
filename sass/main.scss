@@ -22,6 +22,13 @@ button {
   
 }
 
+.app {
+  height: 100%;
+}
+
+
+
+
 /*no_cookie welcome page*/
 
 .welcomeScreen{
@@ -98,12 +105,8 @@ button {
 }
 
 
+/* Bar on Left for all pages */
 
-
-.app {
-  height: 100%;
-}
-//JESSE Edited existing 
 .admin {
   border: 1px solid $text-color;
   text-shadow: .4px .4px .4px white;
@@ -115,28 +118,78 @@ button {
   color: $text-color;
   box-shadow: 5px 5px 5px black;
   background-color: $adminBack-color;
-//JESSE SELECT PAGE
+  .admin-items{
+    text-align: center;
+  }
 }
 
-.admin-items{
-  text-align: center;
+.logOutBtn {
+  border: 1px solid $text-color;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
 }
+
+/* Edit Cards Page */
+
+
+
+/* List of all playable decks for each user */
 
 .deckList {
   float: right;
   width: 70%;
+  .title{
+    text-align: center;
+    font-size: 4em;
+    color: $text-color;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    position: relative;
+    right: 6%;
+  }
+}
 
-.title{
-  text-align: center;
-  font-size: 4em;
+.deck {
+  width: 25%;
+  text-shadow: .3px .3px .3px white;
+  height: 200px;
+  margin: 2% 2%;
+  border: 1px solid $text-color;
+  border-radius: 2px;
+  float: left;
+  box-shadow: 5px 5px 5px black;
   color: $text-color;
-  padding-bottom: 0;
-  margin-bottom: 0;
-  position: relative;
-  right: 6%;
+  background-color: $adminBack-color;
+  text-align: center;
+  .deckTitle{
+    font-size: 1.2em;
+    margin: 1%;
+  }
+  .play {
+    border: 1px solid $text-color;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black;
+  }
+  .edit {
+    border: 1px solid $text-color;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black;
+  }
+  .buttonTitle {
+    margin: 0;
+    margin-right: 5px;
+    padding: 0;
+  }
+  button {
+    margin-right: 5%;
+    &:hover{
+      color: $text-color;
+    }
+  }
 }
 
-}
+/* Styling for tagLine on main deck selection page */
+
 .selectTitle {
   text-shadow: .3px .3px .3px white;
   border: 1px solid $text-color;
@@ -160,51 +213,7 @@ button {
   box-shadow: 3px 3px 5px black;
   background-color: $white;
 }
-.deck {
-  width: 25%;
-  text-shadow: .3px .3px .3px white;
-  height: 200px;
-  margin: 2% 2%;
-  border: 1px solid $text-color;
-  border-radius: 2px;
-  float: left;
-  box-shadow: 5px 5px 5px black;
-  color: $text-color;
-  background-color: $adminBack-color;
-  text-align: center;
-  button {
-    margin-right: 5%;
-    &:hover{
-      color: $text-color;
-    }
-  }
-}
-.deckTitle{
-  font-size: 1.2em;
-  margin: 1%;
-}
-.play {
-  border: 1px solid $text-color;
-  border-radius: 2px;
-  box-shadow: 3px 3px 5px black;
-}
-.edit {
-  border: 1px solid $text-color;
-  border-radius: 2px;
-  box-shadow: 3px 3px 5px black;
-}
-.buttonTitle {
-  margin: 0;
-  margin-right: 5px;
-  padding: 0;
-}
-.logOutBtn {
-  border: 1px solid $text-color;
-  border-radius: 2px;
-  box-shadow: 3px 3px 5px black;
 
-}
-// END JESSE SELECT PAGE
 
 
 
@@ -320,6 +329,12 @@ button {
     font-size: 6em;
   }
 }
+
+
+
+
+
+
 /******** Score View Styling ***********/
 .gameOverWrapper {
   margin: 20px;
