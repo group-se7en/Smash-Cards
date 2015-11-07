@@ -12,6 +12,10 @@ export default React.createClass({
     this.props.onCancelClick();
   },
 
+  logOut(){
+  this.props.onLogOut();
+ },
+
   updateTitle(event) {
     let newTitle = event.currentTarget.value;
 
@@ -23,7 +27,7 @@ export default React.createClass({
   render() {
     return (
       <div className="addDeckPage">
-        <AdminComponent/>
+        <AdminComponent onLogOut={this.logOut}/>
         <h2>Create a deck!</h2>
         <input onChange={this.updateTitle}></input>
         <button onClick={this.submitHandler}>Submit</button>

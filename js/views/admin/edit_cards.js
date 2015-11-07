@@ -9,6 +9,9 @@ export default React.createClass({
   //     answer: this.props.data.answer
   //   };
   // }, 
+ logOut(){
+   this.props.onLogOut();
+ },
 
   submitHandler(event) {
     event.preventDefault();
@@ -46,7 +49,7 @@ export default React.createClass({
     return (
       <div>
         <div>
-          <AdminComponent/>
+          <AdminComponent onLogOut={this.logOut}/>
         </div>
         <div>
           <h2>Edit Cards</h2>

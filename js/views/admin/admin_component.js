@@ -13,7 +13,7 @@ export default React.createClass({
          <h1>Username</h1>
          <h3>Start Smashing</h3>
          <br/><br/><br/><br/><br/>
-         <br/><br/><br/><br/><br/>
+         <br/><br/><br/><br/><br/> 
          <br/><br/><br/><br/><br/>
          <br/><br/><br/><br/><br/>
          <br/><br/>

@@ -21,7 +21,7 @@ export default React.createClass({
   this.props.onEdit(id, title);
   
  },
-
+ 
  logOut(){
   this.props.onLogOut();
  },

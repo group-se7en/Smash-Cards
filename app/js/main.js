@@ -239,6 +239,10 @@ var Router = _backbone2['default'].Router.extend({
     var data = _jsCookie2['default'].getJSON('user');
 
     this.render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      onLogOut: function () {
+        return _this2.removeCookies();
+      },
+
       onSubmitClick: function (title) {
         return _this2.newDeck(title);
       },
@@ -358,6 +362,10 @@ var Router = _backbone2['default'].Router.extend({
 
       _this5.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
         data: deck,
+
+        onLogOut: function () {
+          return _this5.removeCookies();
+        },
 
         addCard: deck.id,
 
@@ -1112,6 +1120,10 @@ exports['default'] = _react2['default'].createClass({
     this.props.onCancelClick();
   },
 
+  logOut: function logOut() {
+    this.props.onLogOut();
+  },
+
   updateTitle: function updateTitle(event) {
     var newTitle = event.currentTarget.value;
 
@@ -1124,7 +1136,7 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       { className: 'addDeckPage' },
-      _react2['default'].createElement(_admin_component2['default'], null),
+      _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut }),
       _react2['default'].createElement(
         'h2',
         null,
@@ -1251,6 +1263,9 @@ exports['default'] = _react2['default'].createClass({
   //     answer: this.props.data.answer
   //   };
   // },
+  logOut: function logOut() {
+    this.props.onLogOut();
+  },
 
   submitHandler: function submitHandler(event) {
     event.preventDefault();
@@ -1288,7 +1303,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         null,
-        _react2['default'].createElement(_admin_component2['default'], null)
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut })
       ),
       _react2['default'].createElement(
         'div',
