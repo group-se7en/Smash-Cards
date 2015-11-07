@@ -280,57 +280,59 @@ var Router = _backbone2['default'].Router.extend({
     });
   },
 
-  addCard: function addCard(id) {
+  addCard: function addCard(un, id, title) {
     var _this4 = this;
+
+    console.log(un, id, title);
 
     var data = _jsCookie2['default'].getJSON('user');
 
     this.render(_react2['default'].createElement(_viewsAdminAdd_cards2['default'], {
       onSubmitClick: function (question, answer) {
-        return _this4.newCard(question, answer, id);
+        return _this4.newCard(question, answer, id, title);
       },
       onFinishClick: function () {
         return _this4.goto('user/' + data.username);
       } }), this.el);
   },
 
-  // newCard(question, answer) {
-  //   let user = Cookies.getJSON('user');
+  newCard: function newCard(question, answer, id, title) {
+    var user = _jsCookie2['default'].getJSON('user');
+    console.log(id);
 
-  //   let request = $.ajax({
-  //     url: `https://morning-temple-4972.herokuapp.com/decks/${deck.id}`,
-  //     method: 'POST',
-  //     headers: {
-  //       auth_token: user.auth_token
-  //     },
-  //     data: {
-  //       question: question,
-  //       answer: answer
-  //     }
-  //   });
+    var request = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks/' + id + '/cards',
+      method: 'POST',
+      headers: {
+        auth_token: user.auth_token
+      },
+      data: {
+        question: question,
+        answer: answer
+      }
+    });
 
-  //   $('.app').html('loading...');
+    (0, _jquery2['default'])('.app').html('loading...');
 
-  //   Cookies.set('card', data);
+    // Cookies.set('card', data);
 
-  //   request.then((data) => {
+    request.then(function (data) {
+      console.log(data);
+      _jquery2['default'].ajaxSetup({
+        headers: {
+          id: data.id,
+          question: data.question,
+          answer: data.answer
 
-  //     $.ajaxSetup({
-  //       headers: {
-  //         id: data.id,
-  //         question: data.question,
-  //         answer: data.answer
+        }
 
-  //       }
+      });
 
-  //     });
-
-  //     this.goto(`user/${user.username}/decks/${data.id}/cards`);
-  //   }).fail(() => {
-  //     $('.app').html('Oops..');
-  //   });
-
-  // },
+      // this.goto(`user/${user.username}/decks/${id}/${title}/add`);
+    }).fail(function () {
+      (0, _jquery2['default'])('.app').html('Oops..');
+    });
+  },
 
   editCard: function editCard(un, id, title) {
     var _this5 = this;
@@ -1007,13 +1009,6 @@ var _admin_component2 = _interopRequireDefault(_admin_component);
 
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_cards',
-
-  getInitialState: function getInitialState(event) {
-    return {
-      card_question: '',
-      card_answer: ''
-    };
-  },
 
   submitHandler: function submitHandler(deck) {
     event.preventDefault();
