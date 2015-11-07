@@ -294,7 +294,6 @@ var Router = _backbone2['default'].Router.extend({
       } }), this.el);
   },
 
-<<<<<<< HEAD
   // newCard(question, answer) {
   //   let user = Cookies.getJSON('user');
 
@@ -313,24 +312,6 @@ var Router = _backbone2['default'].Router.extend({
   //   $('.app').html('loading...');
 
   //   Cookies.set('card', data);
-=======
-  newCard: function newCard(question, answer, id) {
-    var _this5 = this;
-
-    var user = _jsCookie2['default'].getJSON('user');
-    console.log(id);
-    var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/${deck.id}',
-      method: 'POST',
-      headers: {
-        auth_token: user.auth_token
-      },
-      data: {
-        question: question,
-        answer: answer
-      }
-    });
->>>>>>> d425af64f117379b35170a40fc97009f3447a7da
 
   //   request.then((data) => {
 
@@ -351,13 +332,8 @@ var Router = _backbone2['default'].Router.extend({
 
   // },
 
-<<<<<<< HEAD
-  editCard: function editCard(un, id) {
-    var _this5 = this;
-=======
   editCard: function editCard(un, id, title) {
-    var _this6 = this;
->>>>>>> d425af64f117379b35170a40fc97009f3447a7da
+    var _this5 = this;
 
     var userData = _jsCookie2['default'].getJSON('user');
     console.log(userData);
@@ -525,12 +501,8 @@ var Router = _backbone2['default'].Router.extend({
     var _this10 = this;
 
     var userData = _jsCookie2['default'].getJSON('user');
-<<<<<<< HEAD
-    console.log(userData);
-=======
 
-    // this.removeCookies();
->>>>>>> d425af64f117379b35170a40fc97009f3447a7da
+    console.log(userData);
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -555,13 +527,8 @@ var Router = _backbone2['default'].Router.extend({
         onAddDeck: function () {
           return _this10.goto('user/' + userData.username + '/decks');
         },
-<<<<<<< HEAD
-        onEdit: function (id) {
-          return _this10.goto('user/' + userData.username + '/decks/' + id + '/edit');
-=======
         onEdit: function (id, title) {
-          return _this12.goto('user/' + userData.username + '/decks/' + id + '/' + title + '/edit');
->>>>>>> d425af64f117379b35170a40fc97009f3447a7da
+          return _this10.goto('user/' + userData.username + '/decks/' + id + '/' + title + '/edit');
         } }));
     });
   },
@@ -578,14 +545,9 @@ var Router = _backbone2['default'].Router.extend({
     this.goto('login');
   },
 
-<<<<<<< HEAD
   play: function play(username, id) {
 
     // console.log(username, id);
-=======
-  play: function play(id, deck) {
-    console.log(deck);
->>>>>>> d425af64f117379b35170a40fc97009f3447a7da
 
     var x = _jsCookie2['default'].getJSON('user');
     // console.log(x)
