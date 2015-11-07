@@ -398,7 +398,8 @@ let Router = Backbone.Router.extend({
      
       ReactDom.render(<Play_View secondsRemaining={10} 
           question={card.question}
-          answer={card.answer}/>, document.querySelector('.app'));
+          answer={card.answer}
+          goAway={()=>this.goto('')}/>, document.querySelector('.app'));
 
      $('.nextCard').on('click', function(){
           console.log(cardDeck)

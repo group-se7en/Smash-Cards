@@ -64,6 +64,9 @@ let Play_View = React.createClass({
     document.querySelector('.answerField').value = '';
 
   },
+  goHome(){
+    this.props.goAway();
+  },
 
   render() {
    
@@ -96,8 +99,9 @@ let Play_View = React.createClass({
 
         <button onClick={this.submitAnswer} className="submitAnswer">Submit Answer</button>
         <button onClick={this.nextCard} className="nextCard">Next Card</button>
+        <button onClick={this.goHome}>Go Home</button>
         <div className="scoreDiv">
-          Score Value: <span ref='score' className="score">0</span>
+          Total Score: <span ref='score' className="score">0</span>
         </div>
 
       </div>
