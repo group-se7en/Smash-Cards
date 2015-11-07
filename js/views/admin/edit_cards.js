@@ -23,6 +23,9 @@ export default React.createClass({
   addClickHandler(id) {
     this.props.onAddClick(id);
 
+  },
+
+  addCard() {
 
   },
 
@@ -33,6 +36,7 @@ export default React.createClass({
       question: newQuestion
     });
   },
+
 
   updateAnswer(event) {
     let newAnswer = event.currentTarget.value;
@@ -45,13 +49,17 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <AdminComponent/>
-        <h2>Edit Cards</h2>
-        <input onChange={this.updateQuestion}></input>
-        <input onChange={this.updateAnswer}></input>
-        <button onClick={this.submitHandler}>Submit</button>
-        <button onClick={this.cancelClickHandler}>Cancel</button>
-        <button onClick={this.addClickHandler(this.props.data.id)}>Add</button>
+        <div>
+          <AdminComponent/>
+        </div>
+        <div>
+          <h2>Edit Cards</h2>
+          <input onChange={this.updateQuestion}></input>
+          <input onChange={this.updateAnswer}></input>
+          <button onClick={this.submitHandler}>Submit</button>
+          <button onClick={this.cancelClickHandler}>Cancel</button>
+          <button onClick={this.addClickHandler(this.addCard())}>Add</button>
+        </div>
       </div>
     );
   }

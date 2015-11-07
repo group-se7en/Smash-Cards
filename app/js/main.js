@@ -337,8 +337,9 @@ var Router = _backbone2['default'].Router.extend({
 
     var userData = _jsCookie2['default'].getJSON('user');
     console.log(userData);
+
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/${id}',
+      url: 'https://morning-temple-4972.herokuapp.com/decks/' + id,
       method: 'PUT',
       headers: {
         auth_token: userData.auth_token
@@ -1252,6 +1253,8 @@ exports['default'] = _react2['default'].createClass({
     this.props.onAddClick(id);
   },
 
+  addCard: function addCard() {},
+
   updateQuestion: function updateQuestion(event) {
     var newQuestion = event.currentTarget.value;
 
@@ -1272,28 +1275,36 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       null,
-      _react2['default'].createElement(_admin_component2['default'], null),
       _react2['default'].createElement(
-        'h2',
+        'div',
         null,
-        'Edit Cards'
-      ),
-      _react2['default'].createElement('input', { onChange: this.updateQuestion }),
-      _react2['default'].createElement('input', { onChange: this.updateAnswer }),
-      _react2['default'].createElement(
-        'button',
-        { onClick: this.submitHandler },
-        'Submit'
+        _react2['default'].createElement(_admin_component2['default'], null)
       ),
       _react2['default'].createElement(
-        'button',
-        { onClick: this.cancelClickHandler },
-        'Cancel'
-      ),
-      _react2['default'].createElement(
-        'button',
-        { onClick: this.addClickHandler(this.props.data.id) },
-        'Add'
+        'div',
+        null,
+        _react2['default'].createElement(
+          'h2',
+          null,
+          'Edit Cards'
+        ),
+        _react2['default'].createElement('input', { onChange: this.updateQuestion }),
+        _react2['default'].createElement('input', { onChange: this.updateAnswer }),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.submitHandler },
+          'Submit'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.cancelClickHandler },
+          'Cancel'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.addClickHandler(this.addCard()) },
+          'Add'
+        )
       )
     );
   }

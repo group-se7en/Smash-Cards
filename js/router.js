@@ -165,8 +165,9 @@ let Router = Backbone.Router.extend({
   editCard(un, id, title) {
     let userData = Cookies.getJSON('user');
     console.log(userData)
+
     let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/${id}',
+      url: `https://morning-temple-4972.herokuapp.com/decks/${id}`,
       method: 'PUT',
       headers: {
         auth_token: userData.auth_token
@@ -404,15 +405,9 @@ let Router = Backbone.Router.extend({
           answer={card.answer}/>, document.querySelector('.app'));
         })
           
-     });
-   
+     }); 
         
-        
-
-  },
-        
-
-        
+  },     
 
   score() {
     this.render(
