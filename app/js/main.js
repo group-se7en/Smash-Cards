@@ -537,14 +537,14 @@ var Router = _backbone2['default'].Router.extend({
     this.goto('login');
   },
 
-  play: function play(username, id) {
-    // console.log(username, id);
+  play: function play(id, deck) {
+    console.log(deck);
 
     var x = _jsCookie2['default'].getJSON('user');
     // console.log(x)
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
+      url: 'https://morning-temple-4972.herokuapp.com/decks/${deck}/cards',
       method: 'GET',
       headers: {
         auth_token: x.auth_token
@@ -567,10 +567,10 @@ var Router = _backbone2['default'].Router.extend({
         }
 
       });
-
+      console.log(data);
       var card = _underscore2['default'].last(data);
       var cardDeck = data;
-      console.log("cards", cardDeck);
+
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
         question: card.question,
         answer: card.answer }), document.querySelector('.app'));

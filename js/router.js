@@ -343,14 +343,14 @@ let Router = Backbone.Router.extend({
 
  
 
-  play(username, id) {
-    // console.log(username, id);
+  play(id, deck) {
+    console.log(deck);
 
     let x = Cookies.getJSON('user')
     // console.log(x)
 
      let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
+      url: 'https://morning-temple-4972.herokuapp.com/decks/${deck}/cards',
       method: 'GET',
       headers: {
         auth_token: x.auth_token,
@@ -360,7 +360,7 @@ let Router = Backbone.Router.extend({
       }
     });
     $('.app').html('loading...');
-
+    
       request.then((data) => {
         // Cookies.set('user', data, {expires: 7});
 
@@ -373,10 +373,10 @@ let Router = Backbone.Router.extend({
         }
       
       });
-     
+     console.log(data);
      let card = _.last(data);
      let cardDeck= data;
-     console.log("cards", cardDeck)
+     
       ReactDom.render(<Play_View secondsRemaining={10} 
           question={card.question}
           answer={card.answer}/>, document.querySelector('.app'));
