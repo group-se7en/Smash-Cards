@@ -20,12 +20,8 @@ export default React.createClass({
 
   },
 
-  addClickHandler(id) {
-    this.props.onAddClick(id);
-
-  },
-
-  addCard() {
+  addClickHandler() {
+    this.props.onAddClick();
 
   },
 
@@ -58,7 +54,7 @@ export default React.createClass({
           <input onChange={this.updateAnswer}></input>
           <button onClick={this.submitHandler}>Submit</button>
           <button onClick={this.cancelClickHandler}>Cancel</button>
-          <button onClick={this.addClickHandler(this.addCard())}>Add</button>
+          <button onClick={this.addClickHandler}>Add</button>
         </div>
       </div>
     );

@@ -182,7 +182,7 @@ var Router = _backbone2['default'].Router.extend({
     "user/:username": "selectDeck",
     "user/:username/decks": "addDeck",
     "user/:username/decks/:id/:title/edit": "editCard",
-    "user/:username/decks/:id/add": "addCard",
+    "user/:username/decks/:id/:title/add": "addCard",
     "user/:username/play/:id": "play",
     "score": "score"
   },
@@ -364,6 +364,7 @@ var Router = _backbone2['default'].Router.extend({
         data: deck,
 
         addCard: deck.id,
+
         onSubmitClick: function (question, answer) {
           return _this5.saveCard(question, answer);
         },
@@ -371,8 +372,8 @@ var Router = _backbone2['default'].Router.extend({
         onCancelClick: function () {
           return _this5.goto('user/' + userData.username);
         },
-        onAddClick: function (did) {
-          return _this5.goto('user/' + userData.username + '/decks/' + did + '/add');
+        onAddClick: function () {
+          return _this5.goto('user/' + userData.username + '/decks/' + id + '/' + title + '/add');
         } }), _this5.el);
     });
   },
@@ -1252,11 +1253,9 @@ exports['default'] = _react2['default'].createClass({
     this.props.onCancelClick();
   },
 
-  addClickHandler: function addClickHandler(id) {
-    this.props.onAddClick(id);
+  addClickHandler: function addClickHandler() {
+    this.props.onAddClick();
   },
-
-  addCard: function addCard() {},
 
   updateQuestion: function updateQuestion(event) {
     var newQuestion = event.currentTarget.value;
@@ -1305,7 +1304,7 @@ exports['default'] = _react2['default'].createClass({
         ),
         _react2['default'].createElement(
           'button',
-          { onClick: this.addClickHandler(this.addCard()) },
+          { onClick: this.addClickHandler },
           'Add'
         )
       )
