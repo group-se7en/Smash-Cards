@@ -17,13 +17,10 @@ export default React.createClass({
 
   cancelClickHandler() {
     this.props.onCancelClick();
-
   },
 
   addClickHandler(id) {
     this.props.onAddClick(id);
-
-
   },
 
   updateQuestion(event) {
@@ -44,7 +41,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="editPage">
         <AdminComponent/>
         <h2>Edit Cards</h2>
         <input onChange={this.updateQuestion}></input>

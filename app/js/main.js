@@ -1170,9 +1170,6 @@ exports["default"] = _react2["default"].createClass({
       _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
       _react2["default"].createElement(
         "button",
         { className: "logOutBtn", onClick: this.adminLogOut },
@@ -1254,7 +1251,7 @@ exports['default'] = _react2['default'].createClass({
   render: function render() {
     return _react2['default'].createElement(
       'div',
-      null,
+      { className: 'editPage' },
       _react2['default'].createElement(_admin_component2['default'], null),
       _react2['default'].createElement(
         'h2',

@@ -2033,6 +2033,9 @@ button {
   background-color: #ED715C;
   box-shadow: 3px 3px 5px black; }
 
+.app {
+  height: 100%; }
+
 /*no_cookie welcome page*/
 .welcomeScreen {
   color: #344459;
@@ -2087,9 +2090,7 @@ button {
     .registration button:hover {
       color: #344459; }
 
-.app {
-  height: 100%; }
-
+/* Bar on Left for all pages */
 .admin {
   border: 1px solid #344459;
   text-shadow: .4px .4px .4px white;
@@ -2101,10 +2102,16 @@ button {
   color: #344459;
   box-shadow: 5px 5px 5px black;
   background-color: #1DABA5; }
+  .admin .admin-items {
+    text-align: center; }
 
-.admin-items {
-  text-align: center; }
+.logOutBtn {
+  border: 1px solid #344459;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black; }
 
+/* Edit Cards Page */
+/* List of all playable decks for each user */
 .deckList {
   float: right;
   width: 70%; }
@@ -2117,6 +2124,39 @@ button {
     position: relative;
     right: 6%; }
 
+.deck {
+  width: 25%;
+  text-shadow: .3px .3px .3px white;
+  height: 200px;
+  margin: 2% 2%;
+  border: 1px solid #344459;
+  border-radius: 2px;
+  float: left;
+  box-shadow: 5px 5px 5px black;
+  color: #344459;
+  background-color: #1DABA5;
+  text-align: center; }
+  .deck .deckTitle {
+    font-size: 1.2em;
+    margin: 1%; }
+  .deck .play {
+    border: 1px solid #344459;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black; }
+  .deck .edit {
+    border: 1px solid #344459;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black; }
+  .deck .buttonTitle {
+    margin: 0;
+    margin-right: 5px;
+    padding: 0; }
+  .deck button {
+    margin-right: 5%; }
+    .deck button:hover {
+      color: #344459; }
+
+/* Styling for tagLine on main deck selection page */
 .selectTitle {
   text-shadow: .3px .3px .3px white;
   border: 1px solid #344459;
@@ -2138,47 +2178,6 @@ button {
   display: inline-block;
   box-shadow: 3px 3px 5px black;
   background-color: white; }
-
-.deck {
-  width: 25%;
-  text-shadow: .3px .3px .3px white;
-  height: 200px;
-  margin: 2% 2%;
-  border: 1px solid #344459;
-  border-radius: 2px;
-  float: left;
-  box-shadow: 5px 5px 5px black;
-  color: #344459;
-  background-color: #1DABA5;
-  text-align: center; }
-  .deck button {
-    margin-right: 5%; }
-    .deck button:hover {
-      color: #344459; }
-
-.deckTitle {
-  font-size: 1.2em;
-  margin: 1%; }
-
-.play {
-  border: 1px solid #344459;
-  border-radius: 2px;
-  box-shadow: 3px 3px 5px black; }
-
-.edit {
-  border: 1px solid #344459;
-  border-radius: 2px;
-  box-shadow: 3px 3px 5px black; }
-
-.buttonTitle {
-  margin: 0;
-  margin-right: 5px;
-  padding: 0; }
-
-.logOutBtn {
-  border: 1px solid #344459;
-  border-radius: 2px;
-  box-shadow: 3px 3px 5px black; }
 
 /******** Play View Styling ***********/
 .playViewWrapper {
