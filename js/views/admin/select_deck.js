@@ -30,7 +30,7 @@ export default React.createClass({
   return (
     <div key={deck.id} className="deck">
       <div className="deckTitle">{deck.title}
-      <p>Deck ID: {deck.id}</p>
+     
       </div>
 
       <button className="play" onClick={() => this.playDeck(deck.id)}>

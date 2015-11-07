@@ -13,10 +13,7 @@ export default React.createClass({
          <h1>{this.props.userName.username}</h1>
          <h3>Start Smashing</h3>
          <br/><br/><br/><br/><br/>
-         <br/><br/><br/><br/><br/> 
-         <br/><br/><br/><br/><br/>
-         <br/><br/><br/><br/><br/>
-         <br/><br/>
+        
          <button className="logOutBtn" onClick={this.adminLogOut}><p className="buttonTitle">Log out</p><i className="fa fa-sign-out"></i></button>
          <p><i className="fa fa-copyright"></i>copyright 2015</p>
       </div>

@@ -1144,11 +1144,19 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       { className: 'addDeckPage' },
-      _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user }),
       _react2['default'].createElement(
-        'h2',
-        null,
-        'Create a deck!'
+        'div',
+        { className: 'admin short' },
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user })
+      ),
+      _react2['default'].createElement(
+        'div',
+        { className: 'titleTop' },
+        _react2['default'].createElement(
+          'h2',
+          null,
+          'Create a deck!'
+        )
       ),
       _react2['default'].createElement('input', { onChange: this.updateTitle }),
       _react2['default'].createElement(
@@ -1201,23 +1209,6 @@ exports["default"] = _react2["default"].createClass({
         null,
         "Start Smashing"
       ),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
@@ -1310,16 +1301,20 @@ exports['default'] = _react2['default'].createClass({
       null,
       _react2['default'].createElement(
         'div',
-        null,
+        { className: 'admin short' },
         _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user })
       ),
       _react2['default'].createElement(
         'div',
         null,
         _react2['default'].createElement(
-          'h2',
-          null,
-          'Edit Cards'
+          'div',
+          { className: 'titleTop' },
+          _react2['default'].createElement(
+            'h2',
+            null,
+            'Edit Cards'
+          )
         ),
         _react2['default'].createElement('input', { onChange: this.updateQuestion }),
         _react2['default'].createElement('input', { onChange: this.updateAnswer }),
@@ -1398,13 +1393,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'deckTitle' },
-        deck.title,
-        _react2['default'].createElement(
-          'p',
-          null,
-          'Deck ID: ',
-          deck.id
-        )
+        deck.title
       ),
       _react2['default'].createElement(
         'button',

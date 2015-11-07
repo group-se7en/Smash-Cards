@@ -2098,12 +2098,16 @@ button {
   float: left;
   width: 20%;
   height: 700px;
-  margin: 4% 2%;
+  margin: 10% 2%;
   color: #344459;
   box-shadow: 5px 5px 5px black;
   background-color: #1DABA5; }
   .admin .admin-items {
     text-align: center; }
+
+.short {
+  height: 400px;
+  margin-top: 4%; }
 
 .logOutBtn {
   border: 1px solid #344459;
@@ -2111,6 +2115,10 @@ button {
   box-shadow: 3px 3px 5px black; }
 
 /* Edit Cards Page */
+.titleTop {
+  margin: 5% 0 0 30%;
+  width: 30%; }
+
 /* List of all playable decks for each user */
 .deckList {
   float: right;

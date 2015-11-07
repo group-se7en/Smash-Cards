@@ -48,11 +48,13 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <div>
+        <div className="admin short">
           <AdminComponent onLogOut={this.logOut} userName={this.props.user}/>
         </div>
         <div>
+        <div className="titleTop">
           <h2>Edit Cards</h2>
+        </div>
           <input onChange={this.updateQuestion}></input>
           <input onChange={this.updateAnswer}></input>
           <button onClick={this.submitHandler}>Submit</button>
