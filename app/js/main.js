@@ -337,7 +337,7 @@ var Router = _backbone2['default'].Router.extend({
     var _this6 = this;
 
     var userData = _jsCookie2['default'].getJSON('user');
-    console.log(userData);
+    console.log(title);
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks/${id}',
       method: 'PUT',
@@ -345,7 +345,7 @@ var Router = _backbone2['default'].Router.extend({
         auth_token: userData.auth_token
       },
       data: {
-        title: title
+        title: 'title'
       }
 
     });
