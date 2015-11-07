@@ -2,12 +2,6 @@ import React from 'react';
 import AdminComponent from './admin_component';
 
 export default React.createClass({
-  getInitialState(event){
-    return{
-      card_question: '',
-      card_answer: ''
-    }
-  },
 
   submitHandler(deck) {
     event.preventDefault();

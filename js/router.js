@@ -114,53 +114,56 @@ let Router = Backbone.Router.extend({
     });
   },
 
-  addCard(id) {   
+  addCard(un, id, title) {   
+    console.log(un, id, title);
     
     let data = Cookies.getJSON('user');
     
 
     this.render(<AddCard_View 
-      onSubmitClick={(question, answer) => this.newCard(question, answer, id)}
+      onSubmitClick={(question, answer) => this.newCard(question, answer, id, title)}
       onFinishClick={() => this.goto(`user/${data.username}`)}/>, this.el);
   },
 
-  // newCard(question, answer) {
-  //   let user = Cookies.getJSON('user');
-    
-  //   let request = $.ajax({
-  //     url: `https://morning-temple-4972.herokuapp.com/decks/${deck.id}`,
-  //     method: 'POST',
-  //     headers: {
-  //       auth_token: user.auth_token
-  //     },
-  //     data: {
-  //       question: question,
-  //       answer: answer
-  //     }
-  //   });
+  newCard(question, answer, id, title) {
+    let user = Cookies.getJSON('user');
+    console.log(id);
 
-  //   $('.app').html('loading...');
 
-  //   Cookies.set('card', data);
+    let request = $.ajax({
+      url: `https://morning-temple-4972.herokuapp.com/decks/${id}/cards`,
+      method: 'POST',
+      headers: {
+        auth_token: user.auth_token
+      },
+      data: {
+        question: question,
+        answer: answer
+      }
+    });
 
-  //   request.then((data) => {
-     
-  //     $.ajaxSetup({
-  //       headers: {
-  //         id: data.id,
-  //         question: data.question,
-  //         answer: data.answer
+    $('.app').html('loading...');
+
+    // Cookies.set('card', data);
+
+    request.then((data) => {
+     console.log(data);
+      $.ajaxSetup({
+        headers: {
+          id: data.id,
+          question: data.question,
+          answer: data.answer
           
-  //       } 
+        } 
 
-  //     });
+      });
 
-  //     this.goto(`user/${user.username}/decks/${data.id}/cards`);
-  //   }).fail(() => {
-  //     $('.app').html('Oops..');
-  //   });
+      // this.goto(`user/${user.username}/decks/${id}/${title}/add`);
+    }).fail(() => {
+      $('.app').html('Oops..');
+    });
 
-  // },
+  },
 
   editCard(un, id, title) {
     let userData = Cookies.getJSON('user');
