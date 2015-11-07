@@ -344,6 +344,10 @@ var Router = _backbone2['default'].Router.extend({
       method: 'GET',
       headers: {
         auth_token: userData.auth_token
+      },
+
+      data: {
+        title: 'title'
       }
 
     });

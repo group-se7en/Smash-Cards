@@ -169,8 +169,12 @@ let Router = Backbone.Router.extend({
       headers: {
         auth_token: userData.auth_token
       },
+
+      data: {
+        title: 'title'
+      }
     
-    });
+    }); 
     request.then((data) => {
       let deck = data;
       this.render(<EditCard_View 
