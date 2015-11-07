@@ -6,34 +6,26 @@ import AdminComponent from './admin_component';
 export default React.createClass({
 
  playDeck(id){
-  console.log('playDeck:',id);
   this.props.onPlay(id);
-  
-
  },
  
  addDeck(){
-  console.log('addDeck');
   this.props.onAddDeck();
-
  }, 
 
  editDeck(id){
-  console.log('editDeckCOMP:', id);
   this.props.onEdit(id);
-  
  },
- logOut(){
-  console.log('logOut please');
-  this.props.onLogOut();
 
+ logOut(){
+  this.props.onLogOut();
  },
 
  formatData(deck){
   return (
     <div key={deck.id} className="deck">
       <div className="deckTitle">{deck.title}
-      <p>{deck.id}</p>
+      <p>Deck ID: {deck.id}</p>
       </div>
 
       <button className="play" onClick={() => this.playDeck(deck.id)}>
@@ -56,9 +48,8 @@ export default React.createClass({
       </div>
 
       <div className="deckList">
-       
-         <h2 className="selectTitle">Select a deck or create a custom one      <i className="fa fa-hand-pointer-o"></i></h2>
-     
+        <h1 className="title">SmashCard</h1>
+        <h2 className="selectTitle">Select a deck or create a custom one</h2>
         <button className="addDeckBtn" onClick={() => this.addDeck()}><i className="fa fa-plus fa-2x"></i></button>
         <div>{this.props.decks.map(this.formatData)}</div>
         
