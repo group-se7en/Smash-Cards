@@ -13,8 +13,9 @@ export default React.createClass({
   this.props.onAddDeck();
  }, 
 
- editDeck(id){
-  this.props.onEdit(id);
+ editDeck(id, title){
+  this.props.onEdit(id, title);
+  
  },
 
  logOut(){
@@ -33,7 +34,7 @@ export default React.createClass({
       <i className="fa fa-play"></i>
       </button>
 
-      <button className="edit" onClick={() => this.editDeck(deck.id)}><p className="buttonTitle">Edit Deck</p>
+      <button className="edit" onClick={() => this.editDeck(deck.id, deck.title)}><p className="buttonTitle">Edit Deck</p>
       <i className="fa fa-pencil"></i>
       </button>    
     </div>
