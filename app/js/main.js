@@ -1188,9 +1188,6 @@ exports["default"] = _react2["default"].createClass({
       _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
       _react2["default"].createElement(
         "button",
         { className: "logOutBtn", onClick: this.adminLogOut },
