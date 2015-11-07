@@ -120,6 +120,10 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _viewsGameplayPlay_view = require('./views/gameplay/play_view');
+
+var _viewsGameplayPlay_view2 = _interopRequireDefault(_viewsGameplayPlay_view);
+
 var _jsCookie = require('js-cookie');
 
 var _jsCookie2 = _interopRequireDefault(_jsCookie);
@@ -127,10 +131,6 @@ var _jsCookie2 = _interopRequireDefault(_jsCookie);
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
-
-var _underscore = require('underscore');
-
-var _underscore2 = _interopRequireDefault(_underscore);
 
 var _viewsAdminSelect_deck = require('./views/admin/select_deck');
 
@@ -140,9 +140,9 @@ var _viewsAdminAdd_deck = require('./views/admin/add_deck');
 
 var _viewsAdminAdd_deck2 = _interopRequireDefault(_viewsAdminAdd_deck);
 
-var _viewsGameplayPlay_view = require('./views/gameplay/play_view');
+var _underscore = require('underscore');
 
-var _viewsGameplayPlay_view2 = _interopRequireDefault(_viewsGameplayPlay_view);
+var _underscore2 = _interopRequireDefault(_underscore);
 
 var _viewsGameplayScore_view = require('./views/gameplay/score_view');
 
@@ -206,6 +206,7 @@ var Router = _backbone2['default'].Router.extend({
   redirectToWelcome: function redirectToWelcome() {
 
     var userLogged = _jsCookie2['default'].getJSON('user');
+    console.log(userLogged);
 
     if (userLogged) {
 
@@ -491,7 +492,10 @@ var Router = _backbone2['default'].Router.extend({
     var _this12 = this;
 
     var userData = _jsCookie2['default'].getJSON('user');
+
     // this.removeCookies();
+
+    console.log(userData);
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -502,18 +506,15 @@ var Router = _backbone2['default'].Router.extend({
 
     });
     request.then(function (data) {
-
-      // // console.log(data);
       var decks = data;
-      // console.log("decks:", decks);
 
       _this12.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
         decks: decks,
         onLogOut: function () {
           return _this12.removeCookies();
         },
-        onPlay: function (id) {
-          return _this12.goto('user/' + userData.username + '/play/' + id);
+        onPlay: function (x) {
+          return _this12.goto('user/' + userData.username + '/play/' + x);
         },
         onAddDeck: function () {
           return _this12.goto('user/' + userData.username + '/decks');
@@ -537,12 +538,13 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play(username, id) {
+    // console.log(username, id);
 
     var x = _jsCookie2['default'].getJSON('user');
-    console.log(x);
+    // console.log(x)
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/username/deck/' + id,
+      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
       method: 'GET',
       headers: {
         auth_token: x.auth_token
@@ -569,7 +571,6 @@ var Router = _backbone2['default'].Router.extend({
       var card = _underscore2['default'].last(data);
       var cardDeck = data;
       console.log("cards", cardDeck);
-
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
         question: card.question,
         answer: card.answer }), document.querySelector('.app'));
