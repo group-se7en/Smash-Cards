@@ -537,7 +537,6 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play(username, id) {
-    var _this13 = this;
 
     var x = _jsCookie2['default'].getJSON('user');
     console.log(x);
@@ -567,50 +566,45 @@ var Router = _backbone2['default'].Router.extend({
 
       });
 
-      var card = _underscore2['default'].last(x);
+      var card = _underscore2['default'].last(data);
+      var cardDeck = data;
+      console.log("cards", cardDeck);
 
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
-        questionOne: card.question,
-        onNextCardClick: function () {
-          x.pop();
-          var card = _underscore2['default'].last(x);
-          if (!card) {
-            alert('out of cards');
-            _this13.goto('score');
-          }
-        },
-        newQuestion: card.question,
+        question: card.question,
         answer: card.answer }), document.querySelector('.app'));
 
-      // $('.nextCard').on('click', function(){
-
-      //      }
-      //      ReactDom.render(<Play_View secondsRemaining={10}
-      //      getQuestion={card.question}
-      //      answer={card.answer}/>, document.querySelector('.app'));
-      //    })
-      // $('.submitAnswer').on('click', function(){
-
-      // });
+      (0, _jquery2['default'])('.nextCard').on('click', function () {
+        console.log(cardDeck);
+        cardDeck.pop();
+        var card = _underscore2['default'].last(cardDeck);
+        if (!card) {
+          alert('out of cards');
+          this.goto('score');
+        }
+        _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
+          question: card.question,
+          answer: card.answer }), document.querySelector('.app'));
+      });
     });
   },
 
   score: function score() {
-    var _this14 = this;
+    var _this13 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
 
       onPlayClick: function () {
-        return _this14.goto("user/:username/play/:id");
+        return _this13.goto("user/:username/play/:id");
       },
       onNewClick: function () {
-        return _this14.goto("user/:username");
+        return _this13.goto("user/:username");
       },
       onAddClick: function () {
-        return _this14.goto("user/:username/decks");
+        return _this13.goto("user/:username/decks");
       },
       onHomeClick: function () {
-        return _this14.goto("welcome");
+        return _this13.goto("welcome");
       } }));
   },
 
@@ -1477,6 +1471,7 @@ var Play_View = _react2['default'].createClass({
     });
 
     console.log(userAnswer);
+
     if (userAnswer === correctAnswer) {
       score.innerHTML = timeNumber * 10 + Number(score.innerHTML);
     } else {
@@ -1524,7 +1519,7 @@ var Play_View = _react2['default'].createClass({
           _react2['default'].createElement(
             'span',
             null,
-            this.state.question
+            this.props.question
           )
         ),
         _react2['default'].createElement(

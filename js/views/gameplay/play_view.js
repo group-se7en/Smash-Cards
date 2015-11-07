@@ -42,12 +42,15 @@ let Play_View = React.createClass({
       secondsRemaining: 1
     })
 
+
     console.log(userAnswer);
+
     if (userAnswer === correctAnswer){
       score.innerHTML= timeNumber*10 + Number(score.innerHTML)
     } else{
       alert ('You are so wrong!');
     }
+
   },
 
   nextCard(){
@@ -61,7 +64,6 @@ let Play_View = React.createClass({
     document.querySelector('.answerField').value = '';
 
   },
-
 
   render() {
    
@@ -81,7 +83,7 @@ let Play_View = React.createClass({
 
           <div className="question">
             
-            <span>{this.state.question}</span>
+            <span>{this.props.question}</span>
           </div>
 
           <div className="countDownTimerRight">
