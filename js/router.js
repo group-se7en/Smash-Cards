@@ -1,13 +1,12 @@
 import Backbone from 'backbone';
 import React from 'react';
 import ReactDom from 'react-dom';
+import Play_View from './views/gameplay/play_view';
 import Cookies from 'js-cookie';
 import $ from 'jquery';
-import _ from 'underscore';
-
 import SelectDeck from './views/admin/select_deck';
 import AddDeck_View from './views/admin/add_deck';
-import Play_View from './views/gameplay/play_view';
+import _ from 'underscore';
 import Score_View from './views/gameplay/score_view';
 import AddCard_View from './views/admin/add_cards';
 import EditCard_View from './views/admin/edit_cards';
@@ -52,6 +51,7 @@ let Router = Backbone.Router.extend({
   redirectToWelcome() {
 
     let userLogged = Cookies.getJSON('user');
+    console.log(userLogged);
 
     if (userLogged) {
 
@@ -300,7 +300,10 @@ let Router = Backbone.Router.extend({
   selectDeck(){
 
   let userData = Cookies.getJSON('user');
+
   // this.removeCookies();
+
+  console.log(userData);
 
   let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -311,17 +314,13 @@ let Router = Backbone.Router.extend({
     
     });
     request.then((data) => {
-
-      // // console.log(data);
       let decks = data;
-      // console.log("decks:", decks);
       
-
   this.render(
     <SelectDeck
       decks={decks}
       onLogOut={() => this.removeCookies()}
-      onPlay={(id) => this.goto(`user/${userData.username}/play/${id}`)}
+      onPlay={(x) => this.goto(`user/${userData.username}/play/${x}`)}
       onAddDeck={() => this.goto(`user/${userData.username}/decks`)}
       onEdit={(id) => this.goto(`user/${userData.username}/decks/${id}/edit`)}/>,
 
@@ -345,15 +344,13 @@ let Router = Backbone.Router.extend({
  
 
   play(username, id) {
-
+    // console.log(username, id);
 
     let x = Cookies.getJSON('user')
-    console.log(x);
-   
-
+    // console.log(x)
 
      let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/username/deck/${id}`,
+      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
       method: 'GET',
       headers: {
         auth_token: x.auth_token,
@@ -377,11 +374,9 @@ let Router = Backbone.Router.extend({
       
       });
      
-
      let card = _.last(data);
      let cardDeck= data;
      console.log("cards", cardDeck)
-
       ReactDom.render(<Play_View secondsRemaining={10} 
           question={card.question}
           answer={card.answer}/>, document.querySelector('.app'));
