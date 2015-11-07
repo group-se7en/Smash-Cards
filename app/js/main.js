@@ -538,7 +538,6 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play(username, id) {
-    var _this13 = this;
 
     var x = _jsCookie2['default'].getJSON('user');
 
@@ -568,53 +567,43 @@ var Router = _backbone2['default'].Router.extend({
 
       var card = _underscore2['default'].last(data);
       var cardDeck = data;
-      console.log(cardDeck);
 
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], {
-        onNextClick: function (card, cardDeck) {
-          console.log(cardDeck);
-          cardDeck.pop();
-          if (!card) {
-            alert('out of cards');
-            _this13.goto('score');
-          }
-        },
         secondsRemaining: 10,
         question: card.question,
         answer: card.answer }), document.querySelector('.app'));
 
-      // $('.nextCard').on('click', function(x){
-      //   cardDeck.pop()
-      //   if (!card) {
+      (0, _jquery2['default'])('.nextCard').on('click', function (x) {
+        cardDeck.pop();
+        var card = _underscore2['default'].last(cardDeck);
+        if (!card) {
+          alert('out of cards');
+        }
 
-      //     alert('out of cards');
-      //     }
-      //   let card =_.last(cardDeck);
-      //   ReactDom.render(<Play_View
-      //     secondsRemaining={10}
-      //     question={card.question}
-      //     answer={card.answer}/>, document.querySelector('.app')
-      //   );
-      // })
+        _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], {
+          secondsRemaining: 10,
+          question: card.question,
+          answer: card.answer }), document.querySelector('.app'));
+      });
     });
   },
 
   score: function score() {
-    var _this14 = this;
+    var _this13 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
 
       onPlayClick: function () {
-        return _this14.goto("user/:username/play/:id");
+        return _this13.goto("user/:username/play/:id");
       },
       onNewClick: function () {
-        return _this14.goto("user/:username");
+        return _this13.goto("user/:username");
       },
       onAddClick: function () {
-        return _this14.goto("user/:username/decks");
+        return _this13.goto("user/:username/decks");
       },
       onHomeClick: function () {
-        return _this14.goto("welcome");
+        return _this13.goto("welcome");
       } }));
   },
 
@@ -1007,9 +996,16 @@ var _admin_component2 = _interopRequireDefault(_admin_component);
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_cards',
 
-  submitHandler: function submitHandler() {
+  getInitialState: function getInitialState(event) {
+    return {
+      card_question: '',
+      card_answer: ''
+    };
+  },
+
+  submitHandler: function submitHandler(deck) {
     event.preventDefault();
-    this.props.onSubmitClick(this.state.card_question, this.state.card_answer);
+    this.props.onSubmitClick(this.state.card_question, this.state.card_answer, deck);
   },
 
   finishHandler: function finishHandler() {
@@ -1042,11 +1038,11 @@ exports['default'] = _react2['default'].createClass({
         null,
         'Add Card'
       ),
-      _react2['default'].createElement('input', { onChange: this.updateQuestion }),
-      _react2['default'].createElement('input', { onChange: this.updateAnswer }),
+      _react2['default'].createElement('input', { className: 'addQuestion', onChange: this.updateQuestion }),
+      _react2['default'].createElement('input', { className: 'addAnswer', onChange: this.updateAnswer }),
       _react2['default'].createElement(
         'button',
-        { onClick: this.submitHandler },
+        { className: 'submitNew', onClick: this.submitHandler },
         'Submit'
       ),
       _react2['default'].createElement(
@@ -1323,8 +1319,8 @@ exports['default'] = _react2['default'].createClass({
     this.props.onAddDeck();
   },
 
-  editDeck: function editDeck(id) {
-    this.props.onEdit(id);
+  editDeck: function editDeck(id, title) {
+    this.props.onEdit(id, title);
   },
 
   logOut: function logOut() {
@@ -1363,7 +1359,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'button',
         { className: 'edit', onClick: function () {
-            return _this.editDeck(deck.id);
+            return _this.editDeck(deck.id, deck.title);
           } },
         _react2['default'].createElement(
           'p',

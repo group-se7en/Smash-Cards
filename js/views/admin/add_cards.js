@@ -2,10 +2,16 @@ import React from 'react';
 import AdminComponent from './admin_component';
 
 export default React.createClass({
+  getInitialState(event){
+    return{
+      card_question: '',
+      card_answer: ''
+    }
+  },
 
-  submitHandler() {
+  submitHandler(deck) {
     event.preventDefault();
-    this.props.onSubmitClick(this.state.card_question, this.state.card_answer);
+    this.props.onSubmitClick(this.state.card_question, this.state.card_answer, deck);
   },
 
   finishHandler() {
@@ -33,9 +39,9 @@ export default React.createClass({
       <div>
         <AdminComponent/>
         <h2>Add Card</h2>
-        <input onChange={this.updateQuestion}></input>
-        <input onChange={this.updateAnswer}></input>
-        <button onClick={this.submitHandler}>Submit</button>
+        <input className="addQuestion" onChange={this.updateQuestion}></input>
+        <input className="addAnswer" onChange={this.updateAnswer}></input>
+        <button className= "submitNew" onClick={this.submitHandler}>Submit</button>
         <button onClick={this.finishHandler}>Done</button>
       </div>
     );

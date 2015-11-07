@@ -373,35 +373,26 @@ let Router = Backbone.Router.extend({
      
       let card = _.last(data);
       let cardDeck= data;
-      console.log(cardDeck);
 
       ReactDom.render(<Play_View 
-        onNextClick={(card, cardDeck)=> {
-          console.log(cardDeck);
-          cardDeck.pop();
-          if (!card) {
-            alert('out of cards');
-            this.goto('score');
-          }
-        }}
         secondsRemaining={10} 
         question={card.question}
         answer={card.answer}/>, document.querySelector('.app')
       );
 
-      // $('.nextCard').on('click', function(x){
-      //   cardDeck.pop()
-      //   if (!card) {
-
-      //     alert('out of cards');
-      //     }
-      //   let card =_.last(cardDeck);
-      //   ReactDom.render(<Play_View 
-      //     secondsRemaining={10} 
-      //     question={card.question}
-      //     answer={card.answer}/>, document.querySelector('.app')
-      //   );
-      // })
+      $('.nextCard').on('click', function(x){
+        cardDeck.pop()
+        let card =_.last(cardDeck);
+        if (!card) {
+          alert('out of cards');
+        }
+        
+        ReactDom.render(<Play_View 
+          secondsRemaining={10} 
+          question={card.question}
+          answer={card.answer}/>, document.querySelector('.app')
+        );
+      })
     });
   },
         
