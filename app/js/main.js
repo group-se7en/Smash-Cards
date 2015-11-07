@@ -1586,7 +1586,7 @@ var Play_View = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'scoreDiv' },
-        'Score Value: ',
+        'Total Score: ',
         _react2['default'].createElement(
           'span',
           { ref: 'score', className: 'score' },
