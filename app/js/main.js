@@ -498,8 +498,11 @@ var Router = _backbone2['default'].Router.extend({
     var userData = _jsCookie2['default'].getJSON('user');
 
     // this.removeCookies();
+<<<<<<< Updated upstream
 
     console.log(userData);
+=======
+>>>>>>> Stashed changes
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
@@ -542,11 +545,15 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   play: function play(username, id) {
+<<<<<<< Updated upstream
+=======
+    var _this13 = this;
+>>>>>>> Stashed changes
 
     var x = _jsCookie2['default'].getJSON('user');
 
-    var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
+    var deckRequest = _jquery2['default'].ajax({
+      url: 'https://morning-temple-4972.herokuapp.com/decks/`${id}`',
       method: 'GET',
       headers: {
         auth_token: x.auth_token
@@ -558,7 +565,13 @@ var Router = _backbone2['default'].Router.extend({
 
     (0, _jquery2['default'])('.app').html('loading...');
 
+<<<<<<< Updated upstream
     request.then(function (data) {
+=======
+    deckRequest.then(function (data) {
+
+      var decks = data;
+>>>>>>> Stashed changes
 
       _jquery2['default'].ajaxSetup({
         headers: {
@@ -569,12 +582,27 @@ var Router = _backbone2['default'].Router.extend({
         }
       });
 
+<<<<<<< Updated upstream
       var card = _underscore2['default'].last(data);
       var cardDeck = data;
 
       _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], {
         secondsRemaining: 10,
         question: card.question,
+=======
+      var card = _underscore2['default'].last(x);
+      _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
+        questionOne: card.question,
+        onNextCardClick: function () {
+          x.pop();
+          var card = _underscore2['default'].last(x);
+          if (!card) {
+            alert('out of cards');
+            _this13.goto('score');
+          }
+        },
+        newQuestion: card.question,
+>>>>>>> Stashed changes
         answer: card.answer }), document.querySelector('.app'));
 
       (0, _jquery2['default'])('.nextCard').on('click', function (x) {
