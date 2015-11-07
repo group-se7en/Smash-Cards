@@ -344,25 +344,23 @@ let Router = Backbone.Router.extend({
  
 
   play(username, id) {
-    // console.log(username, id);
 
     let x = Cookies.getJSON('user')
-    // console.log(x)
 
-     let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
-      method: 'GET',
-      headers: {
-        auth_token: x.auth_token,
-      },
-      data: {
-        title: x.title
-      }
-    });
+      let request = $.ajax({
+        url: 'https://morning-temple-4972.herokuapp.com/decks/2/cards',
+        method: 'GET',
+        headers: {
+          auth_token: x.auth_token,
+        },
+        data: {
+          title: x.title
+        }
+      });
+    
     $('.app').html('loading...');
 
-      request.then((data) => {
-        // Cookies.set('user', data, {expires: 7});
+    request.then((data) => {
 
      $.ajaxSetup({
         headers: {
@@ -371,34 +369,40 @@ let Router = Backbone.Router.extend({
           question: data.question,
           answer: data.answer
         }
-      
       });
      
-     let card = _.last(data);
-     let cardDeck= data;
-     console.log("cards", cardDeck)
-      ReactDom.render(<Play_View secondsRemaining={10} 
-          question={card.question}
-          answer={card.answer}/>, document.querySelector('.app'));
+      let card = _.last(data);
+      let cardDeck= data;
+      console.log(cardDeck);
 
-     $('.nextCard').on('click', function(){
-          console.log(cardDeck)
-          cardDeck.pop()
-          let card =_.last(cardDeck);
+      ReactDom.render(<Play_View 
+        onNextClick={(card, cardDeck)=> {
+          console.log(cardDeck);
+          cardDeck.pop();
           if (!card) {
-              alert('out of cards');
-              this.goto('score')
-            }
-            ReactDom.render(<Play_View secondsRemaining={10} 
-          question={card.question}
-          answer={card.answer}/>, document.querySelector('.app'));
-        })
-          
-     });
-   
-        
-        
+            alert('out of cards');
+            this.goto('score');
+          }
+        }}
+        secondsRemaining={10} 
+        question={card.question}
+        answer={card.answer}/>, document.querySelector('.app')
+      );
 
+      // $('.nextCard').on('click', function(x){
+      //   cardDeck.pop()
+      //   if (!card) {
+
+      //     alert('out of cards');
+      //     }
+      //   let card =_.last(cardDeck);
+      //   ReactDom.render(<Play_View 
+      //     secondsRemaining={10} 
+      //     question={card.question}
+      //     answer={card.answer}/>, document.querySelector('.app')
+      //   );
+      // })
+    });
   },
         
 
