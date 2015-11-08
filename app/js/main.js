@@ -1166,21 +1166,29 @@ exports['default'] = _react2['default'].createClass({
           { className: 'titleTop' },
           _react2['default'].createElement(
             'h2',
-            null,
+            { className: 'siteTitle' },
             'Add Card'
           )
         ),
-        _react2['default'].createElement('input', { className: 'addQuestion', onChange: this.updateQuestion }),
-        _react2['default'].createElement('input', { className: 'addAnswer', onChange: this.updateAnswer }),
         _react2['default'].createElement(
-          'button',
-          { className: 'submitNew', onClick: this.submitHandler },
-          'Submit'
+          'div',
+          { className: 'siteInputWrapper' },
+          _react2['default'].createElement('input', { className: 'siteInput', placeholder: '   Question', onChange: this.updateQuestion }),
+          _react2['default'].createElement('input', { className: 'siteInput', placeholder: '   Answer', onChange: this.updateAnswer })
         ),
         _react2['default'].createElement(
-          'button',
-          { onClick: this.finishHandler },
-          'Done'
+          'div',
+          { className: 'sitButtonWrapper' },
+          _react2['default'].createElement(
+            'button',
+            { className: 'submitNew siteButton', onClick: this.submitHandler },
+            'Submit'
+          ),
+          _react2['default'].createElement(
+            'button',
+            { className: 'siteButton', onClick: this.finishHandler },
+            'Done'
+          )
         )
       )
     );
@@ -1244,21 +1252,25 @@ exports['default'] = _react2['default'].createClass({
         { className: 'editWrapper' },
         _react2['default'].createElement(
           'h2',
-          null,
+          { className: 'siteTitle' },
           'Create a deck!'
         ),
-        _react2['default'].createElement('input', { className: 'inputAddDeck', onChange: this.updateTitle }),
         _react2['default'].createElement(
           'div',
-          { className: 'buttonAddDeck' },
+          { className: 'siteInputWrapper' },
+          _react2['default'].createElement('input', { placeholder: '   Deck Name', className: 'siteInput', onChange: this.updateTitle })
+        ),
+        _react2['default'].createElement(
+          'div',
+          { className: 'sitButtonWrapper' },
           _react2['default'].createElement(
             'button',
-            { onClick: this.submitHandler },
+            { className: 'siteButton', onClick: this.submitHandler },
             'Submit'
           ),
           _react2['default'].createElement(
             'button',
-            { onClick: this.cancelClickHandler },
+            { className: 'siteButton', onClick: this.cancelClickHandler },
             'Cancel'
           )
         )
@@ -1299,8 +1311,15 @@ exports["default"] = _react2["default"].createClass({
         _react2["default"].createElement(
           "h1",
           null,
-          this.props.userName.username
+          this.props.userName.firstname + " ",
+          this.props.userName.lastname
         )
+      ),
+      _react2["default"].createElement(
+        "p",
+        null,
+        "Logged in as:",
+        " " + this.props.userName.username
       ),
       _react2["default"].createElement(
         "h3",
@@ -1435,18 +1454,22 @@ exports['default'] = _react2['default'].createClass({
           { className: 'titleTop' },
           _react2['default'].createElement(
             'h2',
-            null,
+            { className: 'siteTitle' },
             'List of Cards'
           ),
           _react2['default'].createElement(
-            'button',
-            { onClick: this.cancelClickHandler },
-            'Back'
-          ),
-          _react2['default'].createElement(
-            'button',
-            { onClick: this.addClickHandler },
-            'Add'
+            'div',
+            { className: 'sitButtonWrapper' },
+            _react2['default'].createElement(
+              'button',
+              { className: 'siteButton', onClick: this.cancelClickHandler },
+              'Back'
+            ),
+            _react2['default'].createElement(
+              'button',
+              { className: 'siteButton', onClick: this.addClickHandler },
+              'Add'
+            )
           )
         ),
         _react2['default'].createElement(
@@ -1538,21 +1561,29 @@ exports['default'] = _react2['default'].createClass({
           { className: 'titleTop' },
           _react2['default'].createElement(
             'h2',
-            null,
+            { className: 'siteTitle' },
             'Edit Cards'
           )
         ),
-        _react2['default'].createElement('input', { onChange: this.updateQuestion, value: this.state.question }),
-        _react2['default'].createElement('input', { onChange: this.updateAnswer, value: this.state.answer }),
         _react2['default'].createElement(
-          'button',
-          { onClick: this.submitHandler },
-          'Submit'
+          'div',
+          { className: 'siteInputWrapper' },
+          _react2['default'].createElement('input', { className: 'siteInput', onChange: this.updateQuestion, value: this.state.question }),
+          _react2['default'].createElement('input', { className: 'siteInput', onChange: this.updateAnswer, value: this.state.answer })
         ),
         _react2['default'].createElement(
-          'button',
-          { onClick: this.cancelClickHandler },
-          'Back'
+          'div',
+          { className: 'sitButtonWrapper' },
+          _react2['default'].createElement(
+            'button',
+            { className: 'siteButton', onClick: this.submitHandler },
+            'Submit'
+          ),
+          _react2['default'].createElement(
+            'button',
+            { className: 'siteButton', onClick: this.cancelClickHandler },
+            'Back'
+          )
         )
       )
     );
@@ -1654,7 +1685,7 @@ exports['default'] = _react2['default'].createClass({
           { className: 'buttonTitle' },
           'Cards'
         ),
-        _react2['default'].createElement('i', { className: 'fa fa-arrow-right' })
+        _react2['default'].createElement('i', { className: 'fa fa-calendar-plus-o' })
       )
     );
   },

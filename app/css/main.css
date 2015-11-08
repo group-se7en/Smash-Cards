@@ -2036,22 +2036,47 @@ button {
 .app {
   height: 100%; }
 
+.siteTitle {
+  margin-left: 1%;
+  text-shadow: 3px 3px 5px #ED715C; }
+
+.siteInputWrapper {
+  width: 80%;
+  float: left; }
+  .siteInputWrapper .siteInput {
+    margin: 1%;
+    width: 40%;
+    line-height: 2em;
+    border-radius: 2px;
+    border: 2px solid #ED715C;
+    box-shadow: 3px 3px 5px black;
+    float: left; }
+
+.sitButtonWrapper {
+  float: left;
+  width: 80%; }
+  .sitButtonWrapper .siteButton {
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+    float: left; }
+
 /*no_cookie welcome page*/
 .welcomeScreen {
   color: #344459;
   text-align: center; }
   .welcomeScreen .banner {
     width: 1000;
-    height: 400px;
+    height: 300px;
     margin: 0 auto;
     margin-bottom: 20px;
     overflow: hidden; }
   .welcomeScreen .bannerBackdrop {
     position: relative;
-    background-image: url("../img/straw.jpg");
+    background-image: url("../img/orange2.jpg");
     background-repeat: repeat-x;
-    width: 1620px;
-    height: 400px;
+    width: 1600px;
+    height: 260px;
     animation: backdrop_roll linear 12s infinite; }
 
 @keyframes backdrop_roll {
@@ -2062,7 +2087,7 @@ button {
   .welcomeScreen .postionText {
     position: absolute;
     z-index: 2000;
-    top: 10px;
+    top: 0;
     left: 70px; }
     .welcomeScreen .postionText .title {
       font-size: 4em;
@@ -2165,16 +2190,6 @@ button {
   background-image: url("../img/sumo.gif"); }
 
 /* Add Deck Page */
-.inputAddDeck {
-  width: 300px;
-  line-height: 2em;
-  border-radius: 2px;
-  border: 2px solid #ED715C;
-  box-shadow: 3px 3px 5px black; }
-
-.buttonAddDeck {
-  margin-top: 3%; }
-
 /* Edit Cards Page */
 .editWrapper {
   width: 70%;
@@ -2243,6 +2258,14 @@ button {
     margin: 0;
     margin-right: 5px;
     padding: 0; }
+  .deck .cards {
+    margin-top: 5%;
+    border: 1px solid #344459;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em; }
   .deck button {
     margin-right: 5%; }
     .deck button:hover {

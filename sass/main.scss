@@ -27,10 +27,40 @@ button {
 .app {
   height: 100%;
 }
+//Site Titles
+.siteTitle {
+  margin-left: 1%;
+  text-shadow: 3px 3px 5px $smallBtn-color;
+}
+//Site Inputs
+.siteInputWrapper {
+  width: 80%;
+  float: left;
 
+  .siteInput {
+    margin: 1%;
+    width: 40%;
+    line-height: 2em;
+    border-radius: 2px;
+    border: 2px solid $smallBtn-color;
+    box-shadow: 3px 3px 5px black;
+    float: left;
+  }
+ } 
+//Site Buttons
+.sitButtonWrapper {
+  float: left;
+  width: 80%;
 
+  .siteButton {
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+    float: left;
+  }
+}
 
-
+  
 /*no_cookie welcome page*/
 
 .welcomeScreen{
@@ -38,7 +68,7 @@ button {
   text-align: center;
   .banner {
     width: 1000;
-    height: 400px;
+    height: 300px;
     margin: 0 auto;
     margin-bottom: 20px;
     overflow: hidden;
@@ -46,17 +76,17 @@ button {
   }
   .bannerBackdrop {
     position: relative;
-    background-image: url("../img/straw.jpg");
+    background-image: url("../img/orange2.jpg");
     background-repeat: repeat-x;
-    width: 1620px;
-    height: 400px;
+    width: 1600px;
+    height: 260px;
     animation: backdrop_roll linear 12s infinite;
   }
   @keyframes backdrop_roll {from {right: 0px; } to { right:300px; }}
   .postionText {
     position: absolute;
     z-index: 2000;
-    top: 10px;
+    top: 0;
     left: 70px;
 
     .title{
@@ -193,18 +223,6 @@ button {
 
 /* Add Deck Page */
 
-.inputAddDeck{
-  width: 300px;
-  line-height: 2em;
-  border-radius: 2px;
-  border: 2px solid $smallBtn-color;
-  box-shadow: 3px 3px 5px black;
-
-}
-.buttonAddDeck {
-  margin-top: 3%;
-  
-}
 
 /* Edit Cards Page */
 .editWrapper {
@@ -218,7 +236,7 @@ button {
   }
  
 }
-
+// 
 
 /* List of all playable decks for each user */
 
@@ -288,6 +306,16 @@ button {
     margin: 0;
     margin-right: 5px;
     padding: 0;
+  }
+  .cards {
+    margin-top: 5%;
+    border: 1px solid $text-color;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em;
+   
   }
 
   button {
