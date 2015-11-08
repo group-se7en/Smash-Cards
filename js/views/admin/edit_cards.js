@@ -9,6 +9,9 @@ export default React.createClass({
   //     answer: this.props.data.answer
   //   };
   // }, 
+ logOut(){
+   this.props.onLogOut();
+ },
 
   submitHandler(event) {
     event.preventDefault();
@@ -45,11 +48,13 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <div>
-          <AdminComponent/>
+        <div className="admin short">
+          <AdminComponent onLogOut={this.logOut} userName={this.props.user}/>
         </div>
-        <div>
+        <div className="editWrapper">
+        <div className="titleTop">
           <h2>Edit Cards</h2>
+        </div>
           <input onChange={this.updateQuestion}></input>
           <input onChange={this.updateAnswer}></input>
           <button onClick={this.submitHandler}>Submit</button>

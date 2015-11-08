@@ -239,6 +239,11 @@ var Router = _backbone2['default'].Router.extend({
     var data = _jsCookie2['default'].getJSON('user');
 
     this.render(_react2['default'].createElement(_viewsAdminAdd_deck2['default'], {
+      onLogOut: function () {
+        return _this2.removeCookies();
+      },
+      user: data,
+
       onSubmitClick: function (title) {
         return _this2.newDeck(title);
       },
@@ -358,6 +363,11 @@ var Router = _backbone2['default'].Router.extend({
 
       _this5.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
         data: deck,
+        user: userData,
+
+        onLogOut: function () {
+          return _this5.removeCookies();
+        },
 
         addCard: deck.id,
 
@@ -518,6 +528,7 @@ var Router = _backbone2['default'].Router.extend({
       var decks = data;
 
       _this10.render(_react2['default'].createElement(_viewsAdminSelect_deck2['default'], {
+        user: userData,
         decks: decks,
         onLogOut: function () {
           return _this10.removeCookies();
@@ -608,6 +619,8 @@ var Router = _backbone2['default'].Router.extend({
         } }), document.querySelector('.app'));
 
       (0, _jquery2['default'])('.nextCard').on('click', function () {
+        var _this13 = this;
+
         console.log(cardDeck);
         cardDeck.pop();
         var card = _underscore2['default'].last(cardDeck);
@@ -617,27 +630,30 @@ var Router = _backbone2['default'].Router.extend({
         }
         _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
           question: card.question,
-          answer: card.answer }), document.querySelector('.app'));
+          answer: card.answer,
+          goAway: function () {
+            return _this13.goto('');
+          } }), document.querySelector('.app'));
       });
     });
   },
 
   score: function score() {
-    var _this13 = this;
+    var _this14 = this;
 
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
 
       onPlayClick: function () {
-        return _this13.goto("user/:username/play/:id");
+        return _this14.goto("user/:username/play/:id");
       },
       onNewClick: function () {
-        return _this13.goto("user/:username");
+        return _this14.goto("user/:username");
       },
       onAddClick: function () {
-        return _this13.goto("user/:username/decks");
+        return _this14.goto("user/:username/decks");
       },
       onHomeClick: function () {
-        return _this13.goto("welcome");
+        return _this14.goto("welcome");
       } }));
   },
 
@@ -1112,6 +1128,10 @@ exports['default'] = _react2['default'].createClass({
     this.props.onCancelClick();
   },
 
+  logOut: function logOut() {
+    this.props.onLogOut();
+  },
+
   updateTitle: function updateTitle(event) {
     var newTitle = event.currentTarget.value;
 
@@ -1124,22 +1144,30 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       { className: 'addDeckPage' },
-      _react2['default'].createElement(_admin_component2['default'], null),
       _react2['default'].createElement(
-        'h2',
-        null,
-        'Create a deck!'
-      ),
-      _react2['default'].createElement('input', { onChange: this.updateTitle }),
-      _react2['default'].createElement(
-        'button',
-        { onClick: this.submitHandler },
-        'Submit'
+        'div',
+        { className: 'admin short' },
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user })
       ),
       _react2['default'].createElement(
-        'button',
-        { onClick: this.cancelClickHandler },
-        'Cancel'
+        'div',
+        { className: 'editWrapper' },
+        _react2['default'].createElement(
+          'h2',
+          null,
+          'Create a deck!'
+        ),
+        _react2['default'].createElement('input', { onChange: this.updateTitle }),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.submitHandler },
+          'Submit'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.cancelClickHandler },
+          'Cancel'
+        )
       )
     );
   }
@@ -1172,32 +1200,19 @@ exports["default"] = _react2["default"].createClass({
       "div",
       { className: "admin-items" },
       _react2["default"].createElement(
-        "h1",
-        null,
-        "Username"
+        "div",
+        { className: "username" },
+        _react2["default"].createElement(
+          "h1",
+          null,
+          this.props.userName.username
+        )
       ),
       _react2["default"].createElement(
         "h3",
         null,
         "Start Smashing"
       ),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
-      _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
       _react2["default"].createElement("br", null),
@@ -1213,6 +1228,7 @@ exports["default"] = _react2["default"].createClass({
         ),
         _react2["default"].createElement("i", { className: "fa fa-sign-out" })
       ),
+      _react2["default"].createElement("div", { className: "selectImg editImg addImg" }),
       _react2["default"].createElement(
         "p",
         null,
@@ -1251,6 +1267,9 @@ exports['default'] = _react2['default'].createClass({
   //     answer: this.props.data.answer
   //   };
   // },
+  logOut: function logOut() {
+    this.props.onLogOut();
+  },
 
   submitHandler: function submitHandler(event) {
     event.preventDefault();
@@ -1287,16 +1306,20 @@ exports['default'] = _react2['default'].createClass({
       null,
       _react2['default'].createElement(
         'div',
-        null,
-        _react2['default'].createElement(_admin_component2['default'], null)
+        { className: 'admin short' },
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user })
       ),
       _react2['default'].createElement(
         'div',
-        null,
+        { className: 'editWrapper' },
         _react2['default'].createElement(
-          'h2',
-          null,
-          'Edit Cards'
+          'div',
+          { className: 'titleTop' },
+          _react2['default'].createElement(
+            'h2',
+            null,
+            'Edit Cards'
+          )
         ),
         _react2['default'].createElement('input', { onChange: this.updateQuestion }),
         _react2['default'].createElement('input', { onChange: this.updateAnswer }),
@@ -1375,13 +1398,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'deckTitle' },
-        deck.title,
-        _react2['default'].createElement(
-          'p',
-          null,
-          'Deck ID: ',
-          deck.id
-        )
+        deck.title
       ),
       _react2['default'].createElement(
         'button',
@@ -1403,7 +1420,7 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'p',
           { className: 'buttonTitle' },
-          'Edit Deck'
+          'Edit'
         ),
         _react2['default'].createElement('i', { className: 'fa fa-pencil' })
       ),
@@ -1415,9 +1432,9 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'p',
           { className: 'buttonTitle' },
-          'Delete Deck'
+          'Delete'
         ),
-        _react2['default'].createElement('i', { className: 'fa fa-pencil' })
+        _react2['default'].createElement('i', { className: 'fa fa-trash' })
       )
     );
   },
@@ -1431,7 +1448,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'admin' },
-        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut })
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user })
       ),
       _react2['default'].createElement(
         'div',
@@ -1444,14 +1461,15 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'h2',
           { className: 'selectTitle' },
-          'Select a deck or create a custom one'
-        ),
-        _react2['default'].createElement(
-          'button',
-          { className: 'addDeckBtn', onClick: function () {
-              return _this2.addDeck();
-            } },
-          _react2['default'].createElement('i', { className: 'fa fa-plus fa-2x' })
+          'Select a deck or create a custom one  --------',
+          _react2['default'].createElement('i', { className: 'fa fa-arrow-right' }),
+          _react2['default'].createElement(
+            'button',
+            { className: 'addDeckBtn', onClick: function () {
+                return _this2.addDeck();
+              } },
+            _react2['default'].createElement('i', { className: 'fa fa-plus fa-2x' })
+          )
         ),
         _react2['default'].createElement(
           'div',

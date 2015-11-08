@@ -2098,19 +2098,47 @@ button {
   float: left;
   width: 20%;
   height: 700px;
-  margin: 4% 2%;
+  margin: 10% 2%;
   color: #344459;
   box-shadow: 5px 5px 5px black;
   background-color: #1DABA5; }
   .admin .admin-items {
     text-align: center; }
 
+.username {
+  text-shadow: 3px 3px 3px #ED715C; }
+
+.short {
+  margin-top: 4%; }
+
 .logOutBtn {
   border: 1px solid #344459;
   border-radius: 2px;
+  width: 60%;
+  font-size: 1.4em;
+  padding: 2%;
   box-shadow: 3px 3px 5px black; }
 
+.selectImg {
+  margin-top: 30%;
+  margin-bottom: 30%;
+  width: 200px;
+  height: 180px;
+  background-size: 140%;
+  overflow: hidden;
+  border: 2px solid black;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
+  background-repeat: no-repeat;
+  background-position: left 40% top 4%;
+  background-image: url("../img/sumo.gif"); }
+
 /* Edit Cards Page */
+.editWrapper {
+  width: 70%;
+  margin-top: 3%;
+  float: right; }
+
 /* List of all playable decks for each user */
 .deckList {
   float: right;
@@ -2118,6 +2146,7 @@ button {
   .deckList .title {
     text-align: center;
     font-size: 4em;
+    text-shadow: 3px 3px 3px #ED715C;
     color: #344459;
     padding-bottom: 0;
     margin-bottom: 0;
@@ -2138,16 +2167,37 @@ button {
   text-align: center; }
   .deck .deckTitle {
     font-size: 1.2em;
+<<<<<<< HEAD
     margin: 1%;
     margin-top: 20px; }
+=======
+    font-weight: bolder;
+    margin: 3% 1.5% 0 1.5%; }
+>>>>>>> master
   .deck .play {
+    margin-top: 9%;
     border: 1px solid #344459;
     border-radius: 2px;
-    box-shadow: 3px 3px 5px black; }
+    box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em; }
   .deck .edit {
+    margin-top: 9%;
     border: 1px solid #344459;
     border-radius: 2px;
-    box-shadow: 3px 3px 5px black; }
+    box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em; }
+  .deck .delete {
+    margin-top: 5%;
+    border: 1px solid #344459;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em; }
   .deck .buttonTitle {
     margin: 0;
     margin-right: 5px;
@@ -2161,19 +2211,21 @@ button {
 .selectTitle {
   text-shadow: .3px .3px .3px white;
   border: 1px solid #344459;
-  font-size: 1em;
-  width: 50%;
+  font-size: 1.3em;
+  width: 80%;
+  margin-left: 2%;
   border-radius: 2px;
-  display: inline-block;
-  margin: 3% 2% 1% 2%;
-  padding: 1% 1%;
+  float: left;
+  vertical-align: middle;
+  padding: 1% 0 0 3%;
   color: #344459;
   background-color: #1DABA5;
   box-shadow: 3px 3px 5px black; }
 
 .addDeckBtn {
   color: #ED715C;
-  margin: 3% 0 2% 26%;
+  float: right;
+  margin: 0 4% 1% 0;
   border: 2px solid #ED715C;
   border-radius: 2px;
   display: inline-block;

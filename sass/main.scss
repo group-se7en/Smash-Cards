@@ -114,23 +114,55 @@ button {
   float: left;
   width: 20%;
   height: 700px;
-  margin: 4% 2%;
+  margin: 10% 2%;
   color: $text-color;
   box-shadow: 5px 5px 5px black;
   background-color: $adminBack-color;
   .admin-items{
     text-align: center;
   }
+
+}
+ .username {
+  text-shadow: 3px 3px 3px $smallBtn-color;
+    
+  }
+.short {
+
+  margin-top: 4%;
 }
 
 .logOutBtn {
   border: 1px solid $text-color;
   border-radius: 2px;
+  width: 60%;
+  font-size: 1.4em;
+  padding: 2%;
   box-shadow: 3px 3px 5px black;
 }
 
-/* Edit Cards Page */
+.selectImg {
+  margin-top: 30%;
+  margin-bottom: 30%;
+  width: 200px;
+  height: 180px;
+  background-size: 140%;
+  overflow: hidden;
+  border: 2px solid black;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
+  background-repeat: no-repeat;
+  background-position: left 40% top 4%;
+  background-image: url("../img/sumo.gif");
+}
 
+
+/* Edit Cards Page */
+.editWrapper {
+  width: 70%;
+  margin-top: 3%;
+  float: right;
+}
 
 
 /* List of all playable decks for each user */
@@ -141,12 +173,14 @@ button {
   .title{
     text-align: center;
     font-size: 4em;
+    text-shadow: 3px 3px 3px $smallBtn-color;
     color: $text-color;
     padding-bottom: 0;
     margin-bottom: 0;
     position: relative;
     right: 6%;
   }
+
 }
 
 .deck {
@@ -163,24 +197,48 @@ button {
   text-align: center;
   .deckTitle{
     font-size: 1.2em;
+/*<<<<<<< HEAD*/
     margin: 1%;
     margin-top: 20px;
+/*=======
+    font-weight: bolder;
+    margin: 3% 1.5% 0 1.5%;
+>>>>>>> master*/
   }
   .play {
+    margin-top: 9%;
     border: 1px solid $text-color;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em;
   }
   .edit {
+    margin-top: 9%;
     border: 1px solid $text-color;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em;
   }
+  .delete {
+    margin-top: 5%;
+    border: 1px solid $text-color;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em;
+  }
+
   .buttonTitle {
     margin: 0;
     margin-right: 5px;
     padding: 0;
   }
+
   button {
     margin-right: 5%;
     &:hover{
@@ -190,16 +248,18 @@ button {
 }
 
 /* Styling for tagLine on main deck selection page */
+ 
 
 .selectTitle {
   text-shadow: .3px .3px .3px white;
   border: 1px solid $text-color;
-  font-size: 1em;
-  width: 50%;
+  font-size: 1.3em;
+  width: 80%;
+  margin-left: 2%;
   border-radius: 2px;
-  display: inline-block;
-  margin: 3% 2% 1% 2%;
-  padding: 1% 1%;
+  float: left;
+  vertical-align: middle;
+  padding: 1% 0 0 3%;
   color: $text-color;
   background-color: $adminBack-color;
   box-shadow: 3px 3px 5px black;
@@ -207,7 +267,8 @@ button {
 
 .addDeckBtn {
   color: $smallBtn-color;
-  margin: 3% 0 2% 26%;
+  float: right;
+  margin: 0 4% 1% 0;
   border: 2px solid $smallBtn-color;
   border-radius: 2px;
   display: inline-block;
