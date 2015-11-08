@@ -897,16 +897,21 @@ exports["default"] = _react2["default"].createClass({
       { className: "welcomeScreen" },
       _react2["default"].createElement(
         "div",
-        { className: "header" },
+        { className: "banner header" },
+        _react2["default"].createElement("div", { className: "bannerBackdrop" }),
         _react2["default"].createElement(
-          "h2",
-          { className: "title" },
-          " SmashCard "
-        ),
-        _react2["default"].createElement(
-          "h3",
-          { className: "tagLine" },
-          " Improve Your Memory. Smash Your Opponents "
+          "div",
+          { className: "postionText" },
+          _react2["default"].createElement(
+            "h2",
+            { className: "title" },
+            " SmashCard "
+          ),
+          _react2["default"].createElement(
+            "h3",
+            { className: "tagLine" },
+            " Improve Your Memory. Smash Your Opponents "
+          )
         )
       ),
       _react2["default"].createElement(

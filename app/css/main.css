@@ -2040,10 +2040,36 @@ button {
 .welcomeScreen {
   color: #344459;
   text-align: center; }
-  .welcomeScreen .title {
-    font-size: 4em; }
-  .welcomeScreen .tagLine {
-    font-size: 3em; }
+  .welcomeScreen .banner {
+    width: 1000;
+    height: 400px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    overflow: hidden; }
+  .welcomeScreen .bannerBackdrop {
+    position: relative;
+    background-image: url("../img/brain01.png");
+    background-repeat: repeat-x;
+    width: 1620px;
+    height: 400px;
+    animation: backdrop_roll linear 12s infinite; }
+
+@keyframes backdrop_roll {
+  from {
+    right: 0px; }
+  to {
+    right: 300px; } }
+  .welcomeScreen .postionText {
+    position: absolute;
+    z-index: 2000;
+    top: 10px;
+    left: 70px; }
+    .welcomeScreen .postionText .title {
+      font-size: 4em;
+      text-shadow: 5px 5px 5px black; }
+    .welcomeScreen .postionText .tagLine {
+      font-size: 3em;
+      text-shadow: 3px 3px 3px black; }
   .welcomeScreen .welcome button {
     border: none;
     border-radius: 5px;

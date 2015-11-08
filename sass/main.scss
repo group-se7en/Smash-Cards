@@ -34,11 +34,38 @@ button {
 .welcomeScreen{
   color: $text-color;
   text-align: center;
-  .title{
-    font-size: 4em;
+  .banner {
+    width: 1000;
+    height: 400px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    overflow: hidden;
+ 
   }
-  .tagLine{
-    font-size: 3em;
+  .bannerBackdrop {
+    position: relative;
+    background-image: url("../img/brain01.png");
+    background-repeat: repeat-x;
+    width: 1620px;
+    height: 400px;
+    animation: backdrop_roll linear 12s infinite;
+  }
+  @keyframes backdrop_roll {from {right: 0px; } to { right:300px; }}
+  .postionText {
+    position: absolute;
+    z-index: 2000;
+    top: 10px;
+    left: 70px;
+
+    .title{
+      font-size: 4em;
+      text-shadow: 5px 5px 5px black;
+    }
+    .tagLine{
+      font-size: 3em;
+      text-shadow: 3px 3px 3px black;
+
+    }
   }
   .welcome{
     button {
