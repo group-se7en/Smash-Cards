@@ -2167,13 +2167,13 @@ button {
   text-align: center; }
   .deck .deckTitle {
     font-size: 1.2em;
-<<<<<<< HEAD
+    /*<<<<<<< HEAD*/
     margin: 1%;
-    margin-top: 20px; }
-=======
+    margin-top: 20px;
+    /*=======
     font-weight: bolder;
-    margin: 3% 1.5% 0 1.5%; }
->>>>>>> master
+    margin: 3% 1.5% 0 1.5%;
+>>>>>>> master*/ }
   .deck .play {
     margin-top: 9%;
     border: 1px solid #344459;
