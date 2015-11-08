@@ -1403,12 +1403,22 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { className: 'cardsQuestion' },
-        cards.question
+        _react2['default'].createElement(
+          'h5',
+          { className: 'questionH5' },
+          _react2['default'].createElement('i', { className: 'fa fa-question' }),
+          ":    " + cards.question
+        )
       ),
       _react2['default'].createElement(
         'div',
-        { className: 'cardsQuestion' },
-        cards.answer
+        { className: 'cardsAnswerH5' },
+        _react2['default'].createElement(
+          'h5',
+          { className: 'answerH5' },
+          _react2['default'].createElement('i', { className: 'fa fa-pencil' }),
+          ":    " + cards.answer
+        )
       ),
       _react2['default'].createElement(
         'button',

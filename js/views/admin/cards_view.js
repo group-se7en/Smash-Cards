@@ -29,20 +29,27 @@ export default React.createClass({
   formatData(cards){
   return (
     <div key={cards.id} className="deck">
-      <div className="cardsQuestion">{cards.question}
-     
-      </div>
-      <div className="cardsQuestion">{cards.answer}
-     
+
+      <div className="cardsQuestion">
+       <h5 className="questionH5"><i className="fa fa-question"></i>
+       {":    "+cards.question}</h5>
       </div>
 
-      <button className="edit" onClick={() => this.editCard(cards.id)}><p className="buttonTitle">Edit</p>
-      <i className="fa fa-pencil"></i>
+      <div className="cardsAnswerH5">
+        <h5 className="answerH5"><i className="fa fa-pencil"></i>
+        {":    "+cards.answer}</h5>
+      </div>
+
+      <button className="edit" onClick={() => this.editCard(cards.id)}>
+        <p className="buttonTitle">Edit</p>
+        <i className="fa fa-pencil"></i>
       </button>    
 
-      <button className="delete" onClick={() => this.deleteCard(cards.id)}><p className="buttonTitle">Delete</p>
-      <i className="fa fa-trash"></i>
+      <button className="delete" onClick={() => this.deleteCard(cards.id)}>
+       <p className="buttonTitle">Delete</p>
+       <i className="fa fa-trash"></i>
       </button>  
+
     </div>
     );
  },
