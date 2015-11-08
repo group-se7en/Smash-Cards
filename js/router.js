@@ -118,7 +118,7 @@ let Router = Backbone.Router.extend({
     $('.app').html('loading...');
 
     request.then((data) => {
-      this.goto(`user/${user.username}`)
+      document.location.reload(true);
     }); 
   },
 
@@ -174,7 +174,7 @@ let Router = Backbone.Router.extend({
       user={data}
       onLogOut={() => this.removeCookies()}
       onSubmitClick={(question, answer) => this.newCard(question, answer, id, title)}
-      onFinishClick={() => this.goto(`user/${data.username}`)}/>, this.el);
+      onFinishClick={() => this.goto(`user/${data.username}/decks/${id}/${title}`)}/>, this.el);
   },
 
   newCard(question, answer, id, title) {
@@ -250,6 +250,8 @@ let Router = Backbone.Router.extend({
   saveCard(question, answer, cardId) {
     let user = Cookies.getJSON('user');
     console.log(question, answer, cardId);
+    let thisdeck = Cookies.getJSON('thisdeck');
+
     let request = $.ajax({
       url: `https://morning-temple-4972.herokuapp.com/cards/${cardId}`,
       method: 'PUT',
@@ -276,7 +278,7 @@ let Router = Backbone.Router.extend({
 
       });
 
-      this.goto(`user/${user.username}`);
+      this.goto(`user/${user.username}/decks/${thisdeck.id}/${thisdeck.title}`);
     }).fail(() => {
       $('.app').html('Oops..');
     });
@@ -409,7 +411,7 @@ let Router = Backbone.Router.extend({
     $('.app').html('loading...');
 
     request.then((data) => {
-      this.goto(`user/${user.username}`)
+      document.location.reload(true);
     }); 
   },
 
