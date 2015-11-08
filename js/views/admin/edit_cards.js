@@ -52,9 +52,9 @@ export default React.createClass({
           <AdminComponent onLogOut={this.logOut} userName={this.props.user}/>
         </div>
         <div className="editWrapper">
-        <div className="titleTop">
-          <h2>Edit Cards</h2>
-        </div>
+          <div className="titleTop">
+            <h2>Edit Cards</h2>
+          </div>
           <input onChange={this.updateQuestion}></input>
           <input onChange={this.updateAnswer}></input>
           <button onClick={this.submitHandler}>Submit</button>

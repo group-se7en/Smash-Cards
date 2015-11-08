@@ -123,6 +123,8 @@ let Router = Backbone.Router.extend({
     
 
     this.render(<AddCard_View 
+      user={data}
+      onLogOut={() => this.removeCookies()}
       onSubmitClick={(question, answer) => this.newCard(question, answer, id, title)}
       onFinishClick={() => this.goto(`user/${data.username}`)}/>, this.el);
   },
@@ -191,14 +193,9 @@ let Router = Backbone.Router.extend({
       this.render(<EditCard_View 
           data={deck}
           user={userData}
-
           onLogOut={() => this.removeCookies()}
-
-
           addCard={deck.id}
-
           onSubmitClick={(question, answer) => this.saveCard(question, answer)}
-
           onCancelClick={() => this.goto(`user/${userData.username}`)}
           onAddClick={() => this.goto(`user/${userData.username}/decks/${id}/${title}/add`)}/>, this.el);
     });

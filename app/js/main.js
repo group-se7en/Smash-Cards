@@ -291,6 +291,10 @@ var Router = _backbone2['default'].Router.extend({
     var data = _jsCookie2['default'].getJSON('user');
 
     this.render(_react2['default'].createElement(_viewsAdminAdd_cards2['default'], {
+      user: data,
+      onLogOut: function () {
+        return _this4.removeCookies();
+      },
       onSubmitClick: function (question, answer) {
         return _this4.newCard(question, answer, id, title);
       },
@@ -364,17 +368,13 @@ var Router = _backbone2['default'].Router.extend({
       _this5.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
         data: deck,
         user: userData,
-
         onLogOut: function () {
           return _this5.removeCookies();
         },
-
         addCard: deck.id,
-
         onSubmitClick: function (question, answer) {
           return _this5.saveCard(question, answer);
         },
-
         onCancelClick: function () {
           return _this5.goto('user/' + userData.username);
         },
@@ -1046,6 +1046,10 @@ var _admin_component2 = _interopRequireDefault(_admin_component);
 exports['default'] = _react2['default'].createClass({
   displayName: 'add_cards',
 
+  logOut: function logOut() {
+    this.props.onLogOut();
+  },
+
   submitHandler: function submitHandler(deck) {
     event.preventDefault();
     this.props.onSubmitClick(this.state.card_question, this.state.card_answer, deck);
@@ -1075,23 +1079,35 @@ exports['default'] = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       null,
-      _react2['default'].createElement(_admin_component2['default'], null),
       _react2['default'].createElement(
-        'h2',
-        null,
-        'Add Card'
-      ),
-      _react2['default'].createElement('input', { className: 'addQuestion', onChange: this.updateQuestion }),
-      _react2['default'].createElement('input', { className: 'addAnswer', onChange: this.updateAnswer }),
-      _react2['default'].createElement(
-        'button',
-        { className: 'submitNew', onClick: this.submitHandler },
-        'Submit'
+        'div',
+        { className: 'admin short' },
+        _react2['default'].createElement(_admin_component2['default'], { onLogOut: this.logOut, userName: this.props.user })
       ),
       _react2['default'].createElement(
-        'button',
-        { onClick: this.finishHandler },
-        'Done'
+        'div',
+        { className: 'editWrapper' },
+        _react2['default'].createElement(
+          'div',
+          { className: 'titleTop' },
+          _react2['default'].createElement(
+            'h2',
+            null,
+            'Add Card'
+          )
+        ),
+        _react2['default'].createElement('input', { className: 'addQuestion', onChange: this.updateQuestion }),
+        _react2['default'].createElement('input', { className: 'addAnswer', onChange: this.updateAnswer }),
+        _react2['default'].createElement(
+          'button',
+          { className: 'submitNew', onClick: this.submitHandler },
+          'Submit'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.finishHandler },
+          'Done'
+        )
       )
     );
   }
