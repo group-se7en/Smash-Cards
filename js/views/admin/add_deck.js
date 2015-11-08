@@ -30,12 +30,13 @@ export default React.createClass({
         <div className="admin short">
          <AdminComponent  onLogOut={this.logOut} userName={this.props.user}/>
         </div>
-        <div className="titleTop">
+        <div className="editWrapper">
          <h2>Create a deck!</h2>
-        </div> 
+        
         <input onChange={this.updateTitle}></input>
         <button onClick={this.submitHandler}>Submit</button>
         <button onClick={this.cancelClickHandler}>Cancel</button>
+        </div> 
       </div>
     );
   }

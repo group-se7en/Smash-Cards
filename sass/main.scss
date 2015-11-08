@@ -128,7 +128,7 @@ button {
     
   }
 .short {
-  height: 400px;
+
   margin-top: 4%;
 }
 
@@ -141,12 +141,29 @@ button {
   box-shadow: 3px 3px 5px black;
 }
 
-/* Edit Cards Page */
-
-.titleTop {
-  margin: 5% 0 0 30%;
-  width: 30%;
+.selectImg {
+  margin-top: 30%;
+  margin-bottom: 30%;
+  width: 200px;
+  height: 180px;
+  background-size: 140%;
+  overflow: hidden;
+  border: 2px solid black;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px black;
+  background-repeat: no-repeat;
+  background-position: left 40% top 4%;
+  background-image: url("../img/sumo.gif");
 }
+
+
+/* Edit Cards Page */
+.editWrapper {
+  width: 70%;
+  margin-top: 3%;
+  float: right;
+}
+
 
 /* List of all playable decks for each user */
 

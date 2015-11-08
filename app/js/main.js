@@ -1151,23 +1151,23 @@ exports['default'] = _react2['default'].createClass({
       ),
       _react2['default'].createElement(
         'div',
-        { className: 'titleTop' },
+        { className: 'editWrapper' },
         _react2['default'].createElement(
           'h2',
           null,
           'Create a deck!'
+        ),
+        _react2['default'].createElement('input', { onChange: this.updateTitle }),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.submitHandler },
+          'Submit'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { onClick: this.cancelClickHandler },
+          'Cancel'
         )
-      ),
-      _react2['default'].createElement('input', { onChange: this.updateTitle }),
-      _react2['default'].createElement(
-        'button',
-        { onClick: this.submitHandler },
-        'Submit'
-      ),
-      _react2['default'].createElement(
-        'button',
-        { onClick: this.cancelClickHandler },
-        'Cancel'
       )
     );
   }
@@ -1228,6 +1228,7 @@ exports["default"] = _react2["default"].createClass({
         ),
         _react2["default"].createElement("i", { className: "fa fa-sign-out" })
       ),
+      _react2["default"].createElement("div", { className: "selectImg editImg addImg" }),
       _react2["default"].createElement(
         "p",
         null,
@@ -1310,7 +1311,7 @@ exports['default'] = _react2['default'].createClass({
       ),
       _react2['default'].createElement(
         'div',
-        null,
+        { className: 'editWrapper' },
         _react2['default'].createElement(
           'div',
           { className: 'titleTop' },
@@ -1460,7 +1461,8 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'h2',
           { className: 'selectTitle' },
-          'Select a deck or create a custom one',
+          'Select a deck or create a custom one  --------',
+          _react2['default'].createElement('i', { className: 'fa fa-arrow-right' }),
           _react2['default'].createElement(
             'button',
             { className: 'addDeckBtn', onClick: function () {

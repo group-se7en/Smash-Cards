@@ -51,7 +51,7 @@ export default React.createClass({
         <div className="admin short">
           <AdminComponent onLogOut={this.logOut} userName={this.props.user}/>
         </div>
-        <div>
+        <div className="editWrapper">
         <div className="titleTop">
           <h2>Edit Cards</h2>
         </div>
