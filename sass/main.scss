@@ -120,6 +120,7 @@ button {
   background-color: $adminBack-color;
   .admin-items{
     text-align: center;
+
   }
 
 }
@@ -149,12 +150,14 @@ button {
   .title{
     text-align: center;
     font-size: 4em;
+    text-shadow: 3px 3px 3px $smallBtn-color;
     color: $text-color;
     padding-bottom: 0;
     margin-bottom: 0;
     position: relative;
     right: 6%;
   }
+
 }
 
 .deck {
@@ -174,20 +177,36 @@ button {
     margin: 1%;
   }
   .play {
+    margin-top: 15%;
     border: 1px solid $text-color;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
+    width: 30%;
+    font-size: .8em;
   }
   .edit {
+    margin-top: 15%;
     border: 1px solid $text-color;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
+    width: 30%;
+    font-size: .8em;
   }
+  .delete {
+    margin-top: 5%;
+    border: 1px solid $text-color;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black;
+    width: 30%;
+    font-size: .8em;
+  }
+
   .buttonTitle {
     margin: 0;
     margin-right: 5px;
     padding: 0;
   }
+
   button {
     margin-right: 5%;
     &:hover{
@@ -197,16 +216,18 @@ button {
 }
 
 /* Styling for tagLine on main deck selection page */
+ 
 
 .selectTitle {
   text-shadow: .3px .3px .3px white;
   border: 1px solid $text-color;
-  font-size: 1em;
-  width: 50%;
+  font-size: 1.3em;
+  width: 80%;
+  margin-left: 2%;
   border-radius: 2px;
-  display: inline-block;
-  margin: 3% 2% 1% 2%;
-  padding: 1% 1%;
+  float: left;
+  vertical-align: middle;
+  padding: 1% 0 0 3%;
   color: $text-color;
   background-color: $adminBack-color;
   box-shadow: 3px 3px 5px black;
@@ -214,7 +235,8 @@ button {
 
 .addDeckBtn {
   color: $smallBtn-color;
-  margin: 3% 0 2% 26%;
+  float: right;
+  margin: 0 4% 1% 0;
   border: 2px solid $smallBtn-color;
   border-radius: 2px;
   display: inline-block;
