@@ -2069,6 +2069,11 @@ button {
     .logInPage button:hover {
       color: #344459; }
 
+.hulk {
+  margin-top: 5%; }
+  .hulk img {
+    width: 40%; }
+
 /* register for new account page */
 .registration {
   color: #344459;

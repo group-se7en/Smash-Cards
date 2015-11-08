@@ -105,6 +105,9 @@ export default React.createClass({
           </form>
             <button onClick={this.signIn}>Sign In</button>
             <button onClick={this.cancelHandler}>Cancel</button>
+            <div className="hulk">
+             <img src="./img/hulk.gif"/>
+            </div> 
         </div>
       </div>
     );
