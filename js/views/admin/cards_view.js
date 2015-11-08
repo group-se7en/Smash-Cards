@@ -21,8 +21,9 @@ export default React.createClass({
     this.props.onEditCard(id, title);
   },
 
-  deleteCard() {
-    this.props.onAddClick();
+  deleteCard(id) {
+    this.props.onDeleteCard(id);
+
   },
 
   formatData(cards){

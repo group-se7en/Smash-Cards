@@ -77,7 +77,7 @@ let Router = Backbone.Router.extend({
 
   cards(un, deckid, title) {
     let user = Cookies.getJSON('user');
-    console.log(un, deckid, title);
+
     let request = $.ajax({
       url: `https://morning-temple-4972.herokuapp.com/decks/${deckid}/cards`,
       method: 'GET',
@@ -98,10 +98,28 @@ let Router = Backbone.Router.extend({
       onLogOut={() => this.removeCookies()}
       onCancelClick={() => this.goto(`user/${user.username}`)}
       onEditCard={(id) => this.goto(`user/${user.username}/cards/${id}/edit`)}
+      onDeleteCard={(id) => this.deleteCard(id)}
       />, this.el);
 
-  });
+    });
 
+  },
+
+  deleteCard(id) {
+    let user = Cookies.getJSON('user');
+
+    let request = $.ajax({
+      url: `https://morning-temple-4972.herokuapp.com/cards/${id}`,
+      method: 'DELETE',
+      headers: {
+        auth_token: user.auth_token,
+      },
+    });
+    $('.app').html('loading...');
+
+    request.then((data) => {
+      this.goto(`user/${user.username}`)
+    }); 
   },
 
   addDeck() {
