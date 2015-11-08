@@ -2241,6 +2241,9 @@ button {
   text-align: center; }
   .deck .deckTitle {
     font-size: 1.2em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     /*<<<<<<< HEAD*/
     margin: 1%;
     margin-top: 20px;

@@ -1722,8 +1722,7 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'h2',
           { className: 'selectTitle' },
-          'Select a deck or create a custom one  --------',
-          _react2['default'].createElement('i', { className: 'fa fa-arrow-right' }),
+          'Select a deck below or create a custom one',
           _react2['default'].createElement(
             'button',
             { className: 'addDeckBtn', onClick: function () {
