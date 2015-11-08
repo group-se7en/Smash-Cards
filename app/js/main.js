@@ -1018,6 +1018,11 @@ exports["default"] = _react2["default"].createClass({
           "button",
           { onClick: this.cancelHandler },
           "Cancel"
+        ),
+        _react2["default"].createElement(
+          "div",
+          { className: "hulk" },
+          _react2["default"].createElement("img", { src: "./img/hulk.gif" })
         )
       )
     );
