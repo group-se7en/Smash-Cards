@@ -1247,16 +1247,20 @@ exports['default'] = _react2['default'].createClass({
           null,
           'Create a deck!'
         ),
-        _react2['default'].createElement('input', { onChange: this.updateTitle }),
+        _react2['default'].createElement('input', { className: 'inputAddDeck', onChange: this.updateTitle }),
         _react2['default'].createElement(
-          'button',
-          { onClick: this.submitHandler },
-          'Submit'
-        ),
-        _react2['default'].createElement(
-          'button',
-          { onClick: this.cancelClickHandler },
-          'Cancel'
+          'div',
+          { className: 'buttonAddDeck' },
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.submitHandler },
+            'Submit'
+          ),
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.cancelClickHandler },
+            'Cancel'
+          )
         )
       )
     );
@@ -1433,22 +1437,22 @@ exports['default'] = _react2['default'].createClass({
             'h2',
             null,
             'List of Cards'
+          ),
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.cancelClickHandler },
+            'Back'
+          ),
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.addClickHandler },
+            'Add'
           )
         ),
         _react2['default'].createElement(
           'div',
-          { className: 'deckList' },
+          null,
           this.props.cards.map(this.formatData)
-        ),
-        _react2['default'].createElement(
-          'button',
-          { onClick: this.cancelClickHandler },
-          'Back'
-        ),
-        _react2['default'].createElement(
-          'button',
-          { onClick: this.addClickHandler },
-          'Add'
         )
       )
     );

@@ -33,9 +33,11 @@ export default React.createClass({
         <div className="editWrapper">
          <h2>Create a deck!</h2>
         
-        <input onChange={this.updateTitle}></input>
-        <button onClick={this.submitHandler}>Submit</button>
-        <button onClick={this.cancelClickHandler}>Cancel</button>
+         <input className="inputAddDeck" onChange={this.updateTitle}></input>
+          <div className="buttonAddDeck">
+            <button onClick={this.submitHandler}>Submit</button>
+            <button onClick={this.cancelClickHandler}>Cancel</button>
+          </div>
         </div> 
       </div>
     );

@@ -2048,7 +2048,7 @@ button {
     overflow: hidden; }
   .welcomeScreen .bannerBackdrop {
     position: relative;
-    background-image: url("../img/brain01.png");
+    background-image: url("../img/straw.jpg");
     background-repeat: repeat-x;
     width: 1620px;
     height: 400px;
@@ -2129,7 +2129,7 @@ button {
   float: left;
   width: 20%;
   height: 700px;
-  margin: 10% 2%;
+  margin: 4% 2%;
   color: #344459;
   box-shadow: 5px 5px 5px black;
   background-color: #1DABA5; }
@@ -2164,11 +2164,25 @@ button {
   background-position: left 40% top 4%;
   background-image: url("../img/sumo.gif"); }
 
+/* Add Deck Page */
+.inputAddDeck {
+  width: 300px;
+  line-height: 2em;
+  border-radius: 2px;
+  border: 2px solid #ED715C;
+  box-shadow: 3px 3px 5px black; }
+
+.buttonAddDeck {
+  margin-top: 3%; }
+
 /* Edit Cards Page */
 .editWrapper {
   width: 70%;
   margin-top: 3%;
-  float: right; }
+  float: left; }
+  .editWrapper .titleTop {
+    margin-left: 5%;
+    margin-bottom: 3%; }
 
 /* List of all playable decks for each user */
 .deckList {

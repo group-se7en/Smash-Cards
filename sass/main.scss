@@ -9,7 +9,9 @@ $text-color: #344459;
 $smallBtn-color: #ED715C;
 $bigBtn-color: #1DABA5;
 $white: white;
-
+// html {
+//   border: 2px solid #344459;
+// }
 body {
   background: $background-color;
   height: 100%;
@@ -20,7 +22,7 @@ button {
   background-color: $smallBtn-color;
   box-shadow: 3px 3px 5px black;
   
-}
+} 
 
 .app {
   height: 100%;
@@ -44,7 +46,7 @@ button {
   }
   .bannerBackdrop {
     position: relative;
-    background-image: url("../img/brain01.png");
+    background-image: url("../img/straw.jpg");
     background-repeat: repeat-x;
     width: 1620px;
     height: 400px;
@@ -146,7 +148,7 @@ button {
   float: left;
   width: 20%;
   height: 700px;
-  margin: 10% 2%;
+  margin: 4% 2%;
   color: $text-color;
   box-shadow: 5px 5px 5px black;
   background-color: $adminBack-color;
@@ -189,12 +191,32 @@ button {
   background-image: url("../img/sumo.gif");
 }
 
+/* Add Deck Page */
+
+.inputAddDeck{
+  width: 300px;
+  line-height: 2em;
+  border-radius: 2px;
+  border: 2px solid $smallBtn-color;
+  box-shadow: 3px 3px 5px black;
+
+}
+.buttonAddDeck {
+  margin-top: 3%;
+  
+}
 
 /* Edit Cards Page */
 .editWrapper {
   width: 70%;
   margin-top: 3%;
-  float: right;
+  float: left;
+
+  .titleTop {
+    margin-left: 5%;
+    margin-bottom: 3%;
+  }
+ 
 }
 
 
