@@ -184,7 +184,7 @@ var Router = _backbone2['default'].Router.extend({
     "user/:username/decks/:id/cards": "addCard",
     "user/:username/decks/edit/:id": "editCard",
     "user/:username/play/:id": "play",
-    "score": "score"
+    "user/:username/score/:id": "score"
   },
 
   initialize: function initialize(appElement) {
@@ -566,14 +566,17 @@ var Router = _backbone2['default'].Router.extend({
   score: function score() {
     var _this13 = this;
 
+    var user = _jsCookie2['default'].getJSON('user');
+
     this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
 
       onPlayClick: function () {
         return _this13.goto("user/:username/play/:id");
       },
       onNewClick: function () {
-        return _this13.goto("user/:username");
+        return _this13.goto('user/' + user.username + '/decks/' + data.id + '/cards');
       },
+
       onAddClick: function () {
         return _this13.goto("user/:username/decks");
       },
