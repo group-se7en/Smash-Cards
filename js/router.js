@@ -27,7 +27,7 @@ let Router = Backbone.Router.extend({
     "user/:username/decks/:id/:title/edit": "editCard",
     "user/:username/decks/:id/:title/add": "addCard",
     "user/:username/play/:id": "play",
-    "score": "score"
+    "user/:username/score/:id": "score"
   },
 
 
@@ -431,11 +431,15 @@ let Router = Backbone.Router.extend({
   },     
 
   score() {
+    let user = Cookies.getJSON('user');
+
     this.render(
       <Score_View
 
       onPlayClick={() => this.goto("user/:username/play/:id")}
-      onNewClick={() => this.goto("user/:username")}
+      onNewClick={() => this.goto(`user/${user.username}/decks/${data.id}/cards`)}
+
+
       onAddClick={() => this.goto("user/:username/decks")}
       onHomeClick={() => this.goto("welcome")}/>
       );
