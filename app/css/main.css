@@ -2223,7 +2223,8 @@ button {
     padding: 5% 0;
     font-size: .8em; }
   .deck .edit {
-    margin-top: 9%;
+    margin-top: 32%;
+    margin-left: 4%;
     border: 1px solid #344459;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
