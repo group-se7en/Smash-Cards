@@ -1200,9 +1200,13 @@ exports["default"] = _react2["default"].createClass({
       "div",
       { className: "admin-items" },
       _react2["default"].createElement(
-        "h1",
-        null,
-        this.props.userName.username
+        "div",
+        { className: "username" },
+        _react2["default"].createElement(
+          "h1",
+          null,
+          this.props.userName.username
+        )
       ),
       _react2["default"].createElement(
         "h3",

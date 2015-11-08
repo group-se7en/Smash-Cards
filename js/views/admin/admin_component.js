@@ -10,7 +10,9 @@ export default React.createClass({
   render() {
     return (
       <div className="admin-items">
+        <div className="username">
          <h1>{this.props.userName.username}</h1>
+        </div>
          <h3>Start Smashing</h3>
          <br/><br/><br/><br/><br/>
         

@@ -2105,6 +2105,9 @@ button {
   .admin .admin-items {
     text-align: center; }
 
+.username {
+  text-shadow: 3px 3px 3px #ED715C; }
+
 .short {
   height: 400px;
   margin-top: 4%; }
@@ -2112,6 +2115,9 @@ button {
 .logOutBtn {
   border: 1px solid #344459;
   border-radius: 2px;
+  width: 60%;
+  font-size: 1.4em;
+  padding: 2%;
   box-shadow: 3px 3px 5px black; }
 
 /* Edit Cards Page */
@@ -2147,27 +2153,31 @@ button {
   text-align: center; }
   .deck .deckTitle {
     font-size: 1.2em;
-    margin: 1%; }
+    font-weight: bolder;
+    margin: 3% 1.5% 0 1.5%; }
   .deck .play {
-    margin-top: 15%;
+    margin-top: 9%;
     border: 1px solid #344459;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
-    width: 30%;
+    width: 35%;
+    padding: 5% 0;
     font-size: .8em; }
   .deck .edit {
-    margin-top: 15%;
+    margin-top: 9%;
     border: 1px solid #344459;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
-    width: 30%;
+    width: 35%;
+    padding: 5% 0;
     font-size: .8em; }
   .deck .delete {
     margin-top: 5%;
     border: 1px solid #344459;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
-    width: 30%;
+    width: 35%;
+    padding: 5% 0;
     font-size: .8em; }
   .deck .buttonTitle {
     margin: 0;
