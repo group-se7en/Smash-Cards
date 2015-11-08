@@ -54,12 +54,17 @@ export default React.createClass({
         </div>
         <div className="editWrapper">
           <div className="titleTop">
-            <h2>Edit Cards</h2>
+            <h2 className="siteTitle">Edit Cards</h2>
           </div>
-          <input onChange={this.updateQuestion} value={this.state.question}></input>
-          <input onChange={this.updateAnswer} value={this.state.answer}></input>
-          <button onClick={this.submitHandler}>Submit</button>
-          <button onClick={this.cancelClickHandler}>Back</button>
+          <div className="siteInputWrapper">
+            <input className="siteInput" onChange={this.updateQuestion} value={this.state.question}></input>
+            <input className="siteInput" onChange={this.updateAnswer} value={this.state.answer}></input>
+            </div>
+          <div className="sitButtonWrapper"> 
+            <button className="siteButton" onClick={this.submitHandler}>Submit</button>
+            <button className="siteButton" onClick={this.cancelClickHandler}>Back</button>
+          </div>
+
         </div>
       </div>
     );

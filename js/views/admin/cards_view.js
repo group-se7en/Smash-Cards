@@ -56,9 +56,11 @@ export default React.createClass({
 
         <div className="editWrapper">
           <div className="titleTop">
-            <h2>List of Cards</h2>
-            <button onClick={this.cancelClickHandler}>Back</button>
-            <button onClick={this.addClickHandler}>Add</button>
+            <h2 className="siteTitle">List of Cards</h2>
+            <div className="sitButtonWrapper">
+              <button className="siteButton" onClick={this.cancelClickHandler}>Back</button>
+              <button className="siteButton" onClick={this.addClickHandler}>Add</button>
+            </div>
           </div>
           <div>                      
             {this.props.cards.map(this.formatData)}

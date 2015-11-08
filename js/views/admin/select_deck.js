@@ -47,7 +47,7 @@ export default React.createClass({
       </button>  
 
       <button className="cards" onClick={() => this.showCards(deck.id, deck.title)}><p className="buttonTitle">Cards</p>
-      <i className="fa fa-arrow-right"></i>
+      <i className="fa fa-calendar-plus-o"></i>
       </button> 
     </div>
     );
