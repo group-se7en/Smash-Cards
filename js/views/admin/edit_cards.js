@@ -3,19 +3,20 @@ import AdminComponent from './admin_component';
 
 export default React.createClass({
 
-  // getInitialState() {
-  //   return {
-  //     question: this.props.data.question,
-  //     answer: this.props.data.answer
-  //   };
-  // }, 
+  getInitialState() {
+    return {
+      question: this.props.data.question,
+      answer: this.props.data.answer
+    };
+  }, 
+
  logOut(){
    this.props.onLogOut();
  },
 
   submitHandler(event) {
     event.preventDefault();
-    this.props.onSubmit(this.state.question, this.state.answer);
+    this.props.onSubmitClick(this.state.question, this.state.answer);
   },
 
   cancelClickHandler() {
@@ -52,14 +53,18 @@ export default React.createClass({
           <AdminComponent onLogOut={this.logOut} userName={this.props.user}/>
         </div>
         <div className="editWrapper">
-        <div className="titleTop">
-          <h2>Edit Cards</h2>
-        </div>
-          <input onChange={this.updateQuestion}></input>
-          <input onChange={this.updateAnswer}></input>
-          <button onClick={this.submitHandler}>Submit</button>
-          <button onClick={this.cancelClickHandler}>Cancel</button>
-          <button onClick={this.addClickHandler}>Add</button>
+          <div className="titleTop">
+            <h2 className="siteTitle">Edit Cards</h2>
+          </div>
+          <div className="siteInputWrapper">
+            <input className="siteInput" onChange={this.updateQuestion} value={this.state.question}></input>
+            <input className="siteInput" onChange={this.updateAnswer} value={this.state.answer}></input>
+            </div>
+          <div className="sitButtonWrapper"> 
+            <button className="siteButton" onClick={this.submitHandler}>Submit</button>
+            <button className="siteButton" onClick={this.cancelClickHandler}>Back</button>
+          </div>
+
         </div>
       </div>
     );

@@ -5,26 +5,30 @@ import AdminComponent from './admin_component';
 
 export default React.createClass({
 
- playDeck(id){
-  this.props.onPlay(id);
- },
+  playDeck(id){
+    this.props.onPlay(id);
+  },
  
- addDeck(){
-  this.props.onAddDeck();
- }, 
+  addDeck(){
+    this.props.onAddDeck();
+  }, 
 
- deleteDeck(id) {
-  this.props.onDeleteDeck(id);
- },
+  showCards(id, title){
+    this.props.onShowCards(id, title);
+  }, 
 
- editDeck(id, title){
-  this.props.onEdit(id, title);
+  deleteDeck(id) {
+    this.props.onDeleteDeck(id);
+  },
+
+  editDeck(id, title){
+    this.props.onEdit(id, title);
   
- },
+  },
  
- logOut(){
-  this.props.onLogOut();
- },
+  logOut(){
+    this.props.onLogOut();
+  },
 
  formatData(deck){
   return (
@@ -36,15 +40,15 @@ export default React.createClass({
       <button className="play" onClick={() => this.playDeck(deck.id)}>
       <p className="buttonTitle">Play</p>
       <i className="fa fa-play"></i>
-      </button>
-
-      <button className="edit" onClick={() => this.editDeck(deck.id, deck.title)}><p className="buttonTitle">Edit</p>
-      <i className="fa fa-pencil"></i>
       </button>    
 
       <button className="delete" onClick={() => this.deleteDeck(deck.id)}><p className="buttonTitle">Delete</p>
       <i className="fa fa-trash"></i>
       </button>  
+
+      <button className="cards" onClick={() => this.showCards(deck.id, deck.title)}><p className="buttonTitle">Cards</p>
+      <i className="fa fa-calendar-plus-o"></i>
+      </button> 
     </div>
     );
  },

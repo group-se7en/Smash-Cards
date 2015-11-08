@@ -18,9 +18,15 @@ export default React.createClass({
   render() {
     return (
       <div className="welcomeScreen"> 
-        <div className="header">
-          <h2 className="title"> SmashCard </h2>
-          <h3 className="tagLine"> Improve Your Memory. Smash Your Opponents </h3>
+
+        <div className="banner header">
+          <div className="bannerBackdrop">
+           </div>
+            <div className="postionText">
+              <h2 className="title"> SmashCard </h2>
+              <h3 className="tagLine"> Improve Your Memory. Smash Your Opponents </h3>
+             </div> 
+         
         </div>
         <div className="welcome">
           <form>

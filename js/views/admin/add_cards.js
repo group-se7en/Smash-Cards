@@ -3,6 +3,10 @@ import AdminComponent from './admin_component';
 
 export default React.createClass({
 
+  logOut(){
+    this.props.onLogOut();
+  },
+
   submitHandler(deck) {
     event.preventDefault();
     this.props.onSubmitClick(this.state.card_question, this.state.card_answer, deck);
@@ -31,12 +35,24 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <AdminComponent/>
-        <h2>Add Card</h2>
-        <input className="addQuestion" onChange={this.updateQuestion}></input>
-        <input className="addAnswer" onChange={this.updateAnswer}></input>
-        <button className= "submitNew" onClick={this.submitHandler}>Submit</button>
-        <button onClick={this.finishHandler}>Done</button>
+        <div className="admin short">
+          <AdminComponent onLogOut={this.logOut} userName={this.props.user}/>
+        </div>
+
+        <div className="editWrapper">
+          <div className="titleTop">
+            <h2 className="siteTitle">Add Card</h2>
+          </div>
+          <div className="siteInputWrapper">
+
+            <input className="siteInput" placeholder="   Question" onChange={this.updateQuestion}></input>
+            <input className="siteInput" placeholder="   Answer" onChange={this.updateAnswer}></input>
+          </div>
+          <div className="sitButtonWrapper">
+            <button className="submitNew siteButton" onClick={this.submitHandler}>Submit</button>
+            <button className="siteButton"onClick={this.finishHandler}>Done</button>
+          </div>  
+        </div>
       </div>
     );
   }

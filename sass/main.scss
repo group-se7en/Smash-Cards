@@ -9,7 +9,9 @@ $text-color: #344459;
 $smallBtn-color: #ED715C;
 $bigBtn-color: #1DABA5;
 $white: white;
-
+// html {
+//   border: 2px solid #344459;
+// }
 body {
   background: $background-color;
   height: 100%;
@@ -20,25 +22,82 @@ button {
   background-color: $smallBtn-color;
   box-shadow: 3px 3px 5px black;
   
-}
+} 
 
 .app {
   height: 100%;
 }
+//Site Titles
+.siteTitle {
+  margin-left: 1%;
+  text-shadow: 3px 3px 5px $smallBtn-color;
+}
+//Site Inputs
+.siteInputWrapper {
+  width: 80%;
+  float: left;
 
+  .siteInput {
+    margin: 1%;
+    width: 40%;
+    line-height: 2em;
+    border-radius: 2px;
+    border: 2px solid $smallBtn-color;
+    box-shadow: 3px 3px 5px black;
+    float: left;
+  }
+ } 
+//Site Buttons
+.sitButtonWrapper {
+  float: left;
+  width: 80%;
 
+  .siteButton {
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+    float: left;
+  }
+}
 
-
+  
 /*no_cookie welcome page*/
 
 .welcomeScreen{
   color: $text-color;
   text-align: center;
-  .title{
-    font-size: 4em;
+  .banner {
+    width: 1000;
+    height: 300px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    overflow: hidden;
+ 
   }
-  .tagLine{
-    font-size: 3em;
+  .bannerBackdrop {
+    position: relative;
+    background-image: url("../img/orange2.jpg");
+    background-repeat: repeat-x;
+    width: 1600px;
+    height: 260px;
+    animation: backdrop_roll linear 12s infinite;
+  }
+  @keyframes backdrop_roll {from {right: 0px; } to { right:300px; }}
+  .postionText {
+    position: absolute;
+    z-index: 2000;
+    top: 0;
+    left: 70px;
+
+    .title{
+      font-size: 4em;
+      text-shadow: 5px 5px 5px black;
+    }
+    .tagLine{
+      font-size: 3em;
+      text-shadow: 3px 3px 3px black;
+
+    }
   }
   .welcome{
     button {
@@ -75,7 +134,12 @@ button {
     }
   }
 }
-
+.hulk {
+  margin-top: 5%;
+  img {
+    width: 40%;
+  }
+}
 /* register for new account page */
 
 .registration{
@@ -114,7 +178,7 @@ button {
   float: left;
   width: 20%;
   height: 700px;
-  margin: 10% 2%;
+  margin: 4% 2%;
   color: $text-color;
   box-shadow: 5px 5px 5px black;
   background-color: $adminBack-color;
@@ -123,10 +187,11 @@ button {
   }
 
 }
- .username {
+
+.username {
   text-shadow: 3px 3px 3px $smallBtn-color;
     
-  }
+}
 .short {
 
   margin-top: 4%;
@@ -156,14 +221,39 @@ button {
   background-image: url("../img/sumo.gif");
 }
 
+/* Add Deck Page */
+
+// List Cards Page
+
+.questionH5 {
+  margin: 3%;
+  padding: 1%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+.answerH5 {
+  margin: 1%;
+  padding: 1%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 /* Edit Cards Page */
 .editWrapper {
   width: 70%;
   margin-top: 3%;
-  float: right;
-}
+  float: left;
 
+  .titleTop {
+    margin-left: 5%;
+    margin-bottom: 3%;
+  }
+ 
+}
+// 
 
 /* List of all playable decks for each user */
 
@@ -215,7 +305,8 @@ button {
     font-size: .8em;
   }
   .edit {
-    margin-top: 9%;
+    margin-top: 32%;
+    margin-left: 4%;
     border: 1px solid $text-color;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
@@ -237,6 +328,16 @@ button {
     margin: 0;
     margin-right: 5px;
     padding: 0;
+  }
+  .cards {
+    margin-top: 5%;
+    border: 1px solid $text-color;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px black;
+    width: 35%;
+    padding: 5% 0;
+    font-size: .8em;
+   
   }
 
   button {
@@ -275,10 +376,6 @@ button {
   box-shadow: 3px 3px 5px black;
   background-color: $white;
 }
-
-
-
-
 
 
 /******** Play View Styling ***********/
@@ -391,8 +488,6 @@ button {
     font-size: 6em;
   }
 }
-
-
 
 
 

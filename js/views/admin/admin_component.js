@@ -11,8 +11,12 @@ export default React.createClass({
     return (
       <div className="admin-items">
         <div className="username">
-         <h1>{this.props.userName.username}</h1>
+         <h1>
+         {this.props.userName.firstname+" "}
+         {this.props.userName.lastname}
+         </h1>
         </div>
+        <p>Logged in as:{" "+this.props.userName.username}</p>
          <h3>Start Smashing</h3>
          <br/><br/><br/><br/><br/>
         

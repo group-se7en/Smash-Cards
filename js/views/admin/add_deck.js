@@ -27,16 +27,22 @@ export default React.createClass({
   render() {
     return (
       <div className="addDeckPage">
-        <div className="admin short">
-         <AdminComponent  onLogOut={this.logOut} userName={this.props.user}/>
+       <div className="admin short">
+        <AdminComponent  onLogOut={this.logOut} userName={this.props.user}/>
+       </div>
+
+       <div className="editWrapper">
+        <h2 className="siteTitle">Create a deck!</h2>
+        <div className="siteInputWrapper">
+         <input placeholder="   Deck Name" className="siteInput" onChange={this.updateTitle}>
+         </input>
         </div>
-        <div className="editWrapper">
-         <h2>Create a deck!</h2>
-        
-        <input onChange={this.updateTitle}></input>
-        <button onClick={this.submitHandler}>Submit</button>
-        <button onClick={this.cancelClickHandler}>Cancel</button>
-        </div> 
+        <div className="sitButtonWrapper">
+          <button className="siteButton" onClick={this.submitHandler}>Submit</button>
+          <button className="siteButton" onClick={this.cancelClickHandler}>Cancel
+          </button>
+        </div>
+       </div>
       </div>
     );
   }
