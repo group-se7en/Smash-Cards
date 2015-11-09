@@ -29,7 +29,7 @@ let Router = Backbone.Router.extend({
     "user/:username/cards/:id/edit": "editCard",
     "user/:username/decks/:id/:title/add": "addCard",
     "user/:username/play/:id": "play",
-    "user/:username/score/:id": "score"
+    "user/:username/play/:id/score": "score"
   },
 
 
@@ -167,8 +167,7 @@ let Router = Backbone.Router.extend({
 
   addCard(un, id, title) {   
     
-    let data = Cookies.getJSON('user');
-    
+    let data = Cookies.getJSON('user');    
 
     this.render(<AddCard_View 
       user={data}
@@ -204,7 +203,7 @@ let Router = Backbone.Router.extend({
 
       });
       document.location.reload(true);
-      // this.goto(`user/${user.username}/decks/${id}/${title}/add`);
+      
     }).fail(() => {
       $('.app').html('Oops..');
     });
@@ -213,7 +212,6 @@ let Router = Backbone.Router.extend({
 
   editCard(un, id) {
     let userData = Cookies.getJSON('user');
-    console.log(un, id);
     let thisdeck = Cookies.getJSON('thisdeck');
 
     let request = $.ajax({
@@ -235,7 +233,7 @@ let Router = Backbone.Router.extend({
       })
 
       let card = data;
-      console.log(card);
+
       this.render(<EditCard_View 
           data={card}
           user={userData}
@@ -249,7 +247,7 @@ let Router = Backbone.Router.extend({
 
   saveCard(question, answer, cardId) {
     let user = Cookies.getJSON('user');
-    console.log(question, answer, cardId);
+
     let thisdeck = Cookies.getJSON('thisdeck');
 
     let request = $.ajax({
@@ -368,8 +366,6 @@ let Router = Backbone.Router.extend({
 
   let userData = Cookies.getJSON('user');
 
-  console.log(userData);
-
   let request = $.ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
       method: 'GET',
@@ -429,8 +425,9 @@ let Router = Backbone.Router.extend({
 
   play(username, id) {
 
-    let x = Cookies.getJSON('user')
-
+    let x = Cookies.getJSON('user');
+    let deck = Cookies.getJSON('thisdeck');
+    
      let request = $.ajax({
       url: `https://morning-temple-4972.herokuapp.com/decks/${id}/cards`,
       method: 'GET',
@@ -454,7 +451,7 @@ let Router = Backbone.Router.extend({
         }
       
       });
-     console.log(data);
+
      let card = _.last(data);
      let cardDeck= data;
      
@@ -464,17 +461,20 @@ let Router = Backbone.Router.extend({
           goAway={()=>this.goto('')}/>, document.querySelector('.app'));
 
      $('.nextCard').on('click', function(){
-          console.log(cardDeck)
+
           cardDeck.pop()
           let card =_.last(cardDeck);
+
           if (!card) {
               alert('out of cards');
-              this.goto('score')
-            }
-            ReactDom.render(<Play_View secondsRemaining={10} 
-          question={card.question}
-          answer={card.answer}
-          goAway={()=>this.goto('')}/>, document.querySelector('.app'));
+              this.goto(`user/${x.username}/play/${deck.id}/score`);
+          } else {
+
+          ReactDom.render(<Play_View secondsRemaining={10} 
+            question={card.question}
+            answer={card.answer}
+            goAway={()=>this.goto('')}/>, document.querySelector('.app'));
+          }
         })
           
      }); 
@@ -491,7 +491,7 @@ let Router = Backbone.Router.extend({
       onNewClick={() => this.goto(`user/${user.username}/decks/${data.id}/cards`)}
 
 
-      onAddClick={() => this.goto("user/:username/decks")}
+      onAddClick={() => this.goto(`user/${user.username}/decks`)}
       onHomeClick={() => this.goto("welcome")}/>
       );
 

@@ -189,7 +189,7 @@ var Router = _backbone2['default'].Router.extend({
     "user/:username/cards/:id/edit": "editCard",
     "user/:username/decks/:id/:title/add": "addCard",
     "user/:username/play/:id": "play",
-    "user/:username/score/:id": "score"
+    "user/:username/play/:id/score": "score"
   },
 
   initialize: function initialize(appElement) {
@@ -391,7 +391,6 @@ var Router = _backbone2['default'].Router.extend({
 
       });
       document.location.reload(true);
-      // this.goto(`user/${user.username}/decks/${id}/${title}/add`);
     }).fail(function () {
       (0, _jquery2['default'])('.app').html('Oops..');
     });
@@ -401,7 +400,6 @@ var Router = _backbone2['default'].Router.extend({
     var _this6 = this;
 
     var userData = _jsCookie2['default'].getJSON('user');
-    console.log(un, id);
     var thisdeck = _jsCookie2['default'].getJSON('thisdeck');
 
     var request = _jquery2['default'].ajax({
@@ -423,7 +421,7 @@ var Router = _backbone2['default'].Router.extend({
       });
 
       var card = data;
-      console.log(card);
+
       _this6.render(_react2['default'].createElement(_viewsAdminEdit_cards2['default'], {
         data: card,
         user: userData,
@@ -445,7 +443,7 @@ var Router = _backbone2['default'].Router.extend({
     var _this7 = this;
 
     var user = _jsCookie2['default'].getJSON('user');
-    console.log(question, answer, cardId);
+
     var thisdeck = _jsCookie2['default'].getJSON('thisdeck');
 
     var request = _jquery2['default'].ajax({
@@ -575,8 +573,6 @@ var Router = _backbone2['default'].Router.extend({
 
     var userData = _jsCookie2['default'].getJSON('user');
 
-    console.log(userData);
-
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks',
       method: 'GET',
@@ -644,6 +640,7 @@ var Router = _backbone2['default'].Router.extend({
     var _this13 = this;
 
     var x = _jsCookie2['default'].getJSON('user');
+    var deck = _jsCookie2['default'].getJSON('thisdeck');
 
     var request = _jquery2['default'].ajax({
       url: 'https://morning-temple-4972.herokuapp.com/decks/' + id + '/cards',
@@ -668,7 +665,7 @@ var Router = _backbone2['default'].Router.extend({
         }
 
       });
-      console.log(data);
+
       var card = _underscore2['default'].last(data);
       var cardDeck = data;
 
@@ -682,19 +679,21 @@ var Router = _backbone2['default'].Router.extend({
       (0, _jquery2['default'])('.nextCard').on('click', function () {
         var _this14 = this;
 
-        console.log(cardDeck);
         cardDeck.pop();
         var card = _underscore2['default'].last(cardDeck);
+
         if (!card) {
           alert('out of cards');
-          this.goto('score');
+          this.goto('user/' + x.username + '/play/' + deck.id + '/score');
+        } else {
+
+          _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
+            question: card.question,
+            answer: card.answer,
+            goAway: function () {
+              return _this14.goto('');
+            } }), document.querySelector('.app'));
         }
-        _reactDom2['default'].render(_react2['default'].createElement(_viewsGameplayPlay_view2['default'], { secondsRemaining: 10,
-          question: card.question,
-          answer: card.answer,
-          goAway: function () {
-            return _this14.goto('');
-          } }), document.querySelector('.app'));
       });
     });
   },
@@ -714,7 +713,7 @@ var Router = _backbone2['default'].Router.extend({
       },
 
       onAddClick: function () {
-        return _this15.goto("user/:username/decks");
+        return _this15.goto('user/' + user.username + '/decks');
       },
       onHomeClick: function () {
         return _this15.goto("welcome");
@@ -1801,8 +1800,6 @@ var Play_View = _react2['default'].createClass({
     this.setState({
       secondsRemaining: 1
     });
-
-    console.log(userAnswer);
 
     if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
       score.innerHTML = timeNumber * 10 + Number(score.innerHTML);
