@@ -23,6 +23,9 @@ button {
   box-shadow: 3px 3px 5px black;
   
 } 
+input {
+  padding-left: 10px;
+}
 
 .app {
   height: 100%;
@@ -184,6 +187,10 @@ button {
   background-color: $adminBack-color;
   .admin-items{
     text-align: center;
+
+    p {
+      margin: 0;
+    }
   }
 
 }
@@ -209,6 +216,7 @@ button {
 .selectImg {
   margin-top: 30%;
   margin-bottom: 30%;
+  margin-left: 6%;
   width: 200px;
   height: 180px;
   background-size: 140%;
@@ -231,6 +239,7 @@ button {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 18px;
 
 }
 .answerH5 {
@@ -239,6 +248,7 @@ button {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 18px;
 }
 
 /* Edit Cards Page */
@@ -308,7 +318,7 @@ button {
     font-size: .8em;
   }
   .edit {
-    margin-top: 32%;
+    margin-top: 20%;
     margin-left: 4%;
     border: 1px solid $text-color;
     border-radius: 2px;
@@ -333,12 +343,12 @@ button {
     padding: 0;
   }
   .cards {
-    margin-top: 5%;
+    margin-top: 4%;
     border: 1px solid $text-color;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
-    width: 35%;
-    padding: 5% 0;
+    width: 75%;
+    padding: 4% 0;
     font-size: .8em;
    
   }

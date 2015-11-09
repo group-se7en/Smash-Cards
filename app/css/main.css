@@ -2033,6 +2033,9 @@ button {
   background-color: #ED715C;
   box-shadow: 3px 3px 5px black; }
 
+input {
+  padding-left: 10px; }
+
 .app {
   height: 100%; }
 
@@ -2136,6 +2139,8 @@ button {
   background-color: #1DABA5; }
   .admin .admin-items {
     text-align: center; }
+    .admin .admin-items p {
+      margin: 0; }
 
 .username {
   text-shadow: 3px 3px 3px #ED715C; }
@@ -2154,6 +2159,7 @@ button {
 .selectImg {
   margin-top: 30%;
   margin-bottom: 30%;
+  margin-left: 6%;
   width: 200px;
   height: 180px;
   background-size: 140%;
@@ -2171,14 +2177,16 @@ button {
   padding: 1%;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  font-size: 18px; }
 
 .answerH5 {
   margin: 1%;
   padding: 1%;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  font-size: 18px; }
 
 /* Edit Cards Page */
 .editWrapper {
@@ -2236,7 +2244,7 @@ button {
     padding: 5% 0;
     font-size: .8em; }
   .deck .edit {
-    margin-top: 32%;
+    margin-top: 20%;
     margin-left: 4%;
     border: 1px solid #344459;
     border-radius: 2px;
@@ -2257,12 +2265,12 @@ button {
     margin-right: 5px;
     padding: 0; }
   .deck .cards {
-    margin-top: 5%;
+    margin-top: 4%;
     border: 1px solid #344459;
     border-radius: 2px;
     box-shadow: 3px 3px 5px black;
-    width: 35%;
-    padding: 5% 0;
+    width: 75%;
+    padding: 4% 0;
     font-size: .8em; }
   .deck button {
     margin-right: 5%; }

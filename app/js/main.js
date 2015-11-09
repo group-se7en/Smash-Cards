@@ -1727,7 +1727,8 @@ exports['default'] = _react2['default'].createClass({
             { className: 'addDeckBtn', onClick: function () {
                 return _this2.addDeck();
               } },
-            _react2['default'].createElement('i', { className: 'fa fa-plus fa-2x' })
+            _react2['default'].createElement('i', { className: 'fa fa-plus fa-2x' }),
+            'Add Deck'
           )
         ),
         _react2['default'].createElement(
