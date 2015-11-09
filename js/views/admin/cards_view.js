@@ -31,12 +31,12 @@ export default React.createClass({
     <div key={cards.id} className="deck">
 
       <div className="cardsQuestion">
-       <h5 className="questionH5"><i className="fa fa-question"></i>
+       <h5 className="questionH5">Question
        {":    "+cards.question}</h5>
       </div>
 
       <div className="cardsAnswerH5">
-        <h5 className="answerH5"><i className="fa fa-pencil"></i>
+        <h5 className="answerH5">Answer
         {":    "+cards.answer}</h5>
       </div>
 

@@ -1406,7 +1406,7 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'h5',
           { className: 'questionH5' },
-          _react2['default'].createElement('i', { className: 'fa fa-question' }),
+          'Question',
           ":    " + cards.question
         )
       ),
@@ -1416,7 +1416,7 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'h5',
           { className: 'answerH5' },
-          _react2['default'].createElement('i', { className: 'fa fa-pencil' }),
+          'Answer',
           ":    " + cards.answer
         )
       ),
