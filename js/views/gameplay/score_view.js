@@ -45,7 +45,7 @@ getInitialState() {
         <div className="score">
           Your score on the {this.deckTitle} deck is ...<br/>
 
-          <p className="scoreNumber">{this.scoreValue}</p>
+          <p className="scoreNumber">{this.scoreValue}78</p>
 
         </div>
 
@@ -53,7 +53,7 @@ getInitialState() {
           <button className="play" onClick={this.playclickHandler}>Play Again</button>
           <button className="new" onClick={this.newclickHandler}>Play a New Game</button>
           <button className="add" onClick={this.addclickHandler}>Add Your Own Game</button>
-          <button className="home" onClick={this.homeclickHandler}>Home Page</button>
+          <button className="home" onClick={this.homeclickHandler}>Home Page (Log Out)</button>
 
         </div>
 
