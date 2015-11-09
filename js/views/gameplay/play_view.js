@@ -42,9 +42,6 @@ let Play_View = React.createClass({
       secondsRemaining: 1
     })
 
-
-    console.log(userAnswer);
-
     if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()){
       score.innerHTML= timeNumber*10 + Number(score.innerHTML)
     } else{
