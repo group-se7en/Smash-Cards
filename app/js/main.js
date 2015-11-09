@@ -1804,7 +1804,7 @@ var Play_View = _react2['default'].createClass({
 
     console.log(userAnswer);
 
-    if (userAnswer === correctAnswer) {
+    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
       score.innerHTML = timeNumber * 10 + Number(score.innerHTML);
     } else {
       alert('You are so wrong!');
