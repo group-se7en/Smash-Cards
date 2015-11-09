@@ -2065,36 +2065,12 @@ button {
 .welcomeScreen {
   color: #344459;
   text-align: center; }
-  .welcomeScreen .banner {
-    width: 1000;
-    height: 300px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    overflow: hidden; }
-  .welcomeScreen .bannerBackdrop {
-    position: relative;
-    background-image: url("../img/orange2.jpg");
-    background-repeat: repeat-x;
-    width: 1600px;
-    height: 260px;
-    animation: backdrop_roll linear 12s infinite; }
-
-@keyframes backdrop_roll {
-  from {
-    right: 0px; }
-  to {
-    right: 300px; } }
-  .welcomeScreen .postionText {
-    position: absolute;
-    z-index: 2000;
-    top: 0;
-    left: 70px; }
-    .welcomeScreen .postionText .title {
-      font-size: 4em;
-      text-shadow: 5px 5px 5px black; }
-    .welcomeScreen .postionText .tagLine {
-      font-size: 3em;
-      text-shadow: 3px 3px 3px black; }
+  .welcomeScreen .postionText .title {
+    font-size: 4em;
+    text-shadow: 5px 5px 5px black; }
+  .welcomeScreen .postionText .tagLine {
+    font-size: 3em;
+    text-shadow: 3px 3px 3px black; }
   .welcomeScreen .welcome button {
     border: none;
     border-radius: 5px;

@@ -66,28 +66,28 @@ button {
 .welcomeScreen{
   color: $text-color;
   text-align: center;
-  .banner {
-    width: 1000;
-    height: 300px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    overflow: hidden;
+  // .banner {
+  //   width: 1000;
+  //   height: 300px;
+  //   margin: 0 auto;
+  //   margin-bottom: 20px;
+  //   overflow: hidden;
  
-  }
-  .bannerBackdrop {
-    position: relative;
-    background-image: url("../img/orange2.jpg");
-    background-repeat: repeat-x;
-    width: 1600px;
-    height: 260px;
-    animation: backdrop_roll linear 12s infinite;
-  }
-  @keyframes backdrop_roll {from {right: 0px; } to { right:300px; }}
+  // }
+  // .bannerBackdrop {
+  //   position: relative;
+  //   background-image: url("../img/orange2.jpg");
+  //   background-repeat: repeat-x;
+  //   width: 1600px;
+  //   height: 260px;
+  //   animation: backdrop_roll linear 12s infinite;
+  // }
+  // @keyframes backdrop_roll {from {right: 0px; } to { right:300px; }}
   .postionText {
-    position: absolute;
-    z-index: 2000;
-    top: 0;
-    left: 70px;
+    // position: absolute;
+    // z-index: 2000;
+    // top: 0;
+    // left: 70px;
 
     .title{
       font-size: 4em;
