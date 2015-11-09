@@ -703,14 +703,17 @@ var Router = _backbone2['default'].Router.extend({
 
     var user = _jsCookie2['default'].getJSON('user');
 
-    this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'], {
+    this.render(_react2['default'].createElement(_viewsGameplayScore_view2['default'],
+    //  onPlayClick={() => this.goto(`user/${user.username}/play/${data.id}`)}
 
-      onPlayClick: function () {
+    { onPlayClick: function () {
         return _this15.goto("user/:username/play/:id");
       },
+      //  onNewClick={() => this.goto(`user/${user.username}`)}
       onNewClick: function () {
-        return _this15.goto('user/' + user.username + '/decks/' + data.id + '/cards');
+        return _this15.goto("user/:username");
       },
+      //onAddClick={() => this.goto(`user/${user.username}/decks`)}
 
       onAddClick: function () {
         return _this15.goto('user/' + user.username + '/decks');
@@ -1969,7 +1972,8 @@ var Score_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'p',
           { className: 'scoreNumber' },
-          this.scoreValue
+          this.scoreValue,
+          '78'
         )
       ),
       _react2['default'].createElement(
@@ -1993,7 +1997,7 @@ var Score_View = _react2['default'].createClass({
         _react2['default'].createElement(
           'button',
           { className: 'home', onClick: this.homeclickHandler },
-          'Home Page'
+          'Home Page (Log Out)'
         )
       )
     );
