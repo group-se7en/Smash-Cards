@@ -1,6 +1,21 @@
-## Welcome to My Project
+## Smash Cards
 
-> I am your Readme.md file, you should probably update me.
+Smash Cards is a flash-card game built with Reactjs and Backbonejs. 
+
+#### How To Play
+
+
+
+#### Team Members
+
+* Luke Griffith
+* Kevin Mooney
+* Isaac Hardy
+* Jesse Soldat
+* Jeffrey Martín
+* Thomas Heaton
+* Sepehr Vakili
+* Darryl Cooper
 
 
 ## Usage

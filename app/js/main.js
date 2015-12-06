@@ -39,7 +39,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 var APP_ID = 'fRSjenryVsTgdJ8VwoUuSLlbE4tIFQ5xyuGFh8hO';
 var API_KEY = 'Zme0nXlBe6zFrdauItl9IOEmTXJon2lN2e99mht0';
-var APP_URL_User = 'https://morning-temple-4972.herokuapp.com/login';
+var APP_URL_User = 'https://tiysmashcards.herokuapp.com/login';
 
 exports.APP_ID = APP_ID;
 exports.API_KEY = API_KEY;
@@ -92,7 +92,7 @@ var _backbone2 = _interopRequireDefault(_backbone);
 
 exports['default'] = _backbone2['default'].Model.extend({
 
-  urlRoot: 'https://morning-temple-4972.herokuapp.com/signup',
+  urlRoot: 'https://tiysmashcards.herokuapp.com/signup',
 
   idAttribute: 'auth_token'
 
@@ -244,7 +244,7 @@ var Router = _backbone2['default'].Router.extend({
     var user = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/' + deckid + '/cards',
+      url: 'https://tiysmashcards.herokuapp.com/decks/' + deckid + '/cards',
       method: 'GET',
       headers: {
         auth_token: user.auth_token
@@ -282,7 +282,7 @@ var Router = _backbone2['default'].Router.extend({
     var user = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/cards/' + id,
+      url: 'https://tiysmashcards.herokuapp.com/cards/' + id,
       method: 'DELETE',
       headers: {
         auth_token: user.auth_token
@@ -319,7 +319,7 @@ var Router = _backbone2['default'].Router.extend({
     var user = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      url: 'https://tiysmashcards.herokuapp.com/decks',
       method: 'POST',
       headers: {
         auth_token: user.auth_token
@@ -368,7 +368,7 @@ var Router = _backbone2['default'].Router.extend({
     var user = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/' + id + '/cards',
+      url: 'https://tiysmashcards.herokuapp.com/decks/' + id + '/cards',
       method: 'POST',
       headers: {
         auth_token: user.auth_token
@@ -403,7 +403,7 @@ var Router = _backbone2['default'].Router.extend({
     var thisdeck = _jsCookie2['default'].getJSON('thisdeck');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/cards/' + id,
+      url: 'https://tiysmashcards.herokuapp.com/cards/' + id,
       method: 'GET',
       headers: {
         auth_token: userData.auth_token
@@ -447,7 +447,7 @@ var Router = _backbone2['default'].Router.extend({
     var thisdeck = _jsCookie2['default'].getJSON('thisdeck');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/cards/' + cardId,
+      url: 'https://tiysmashcards.herokuapp.com/cards/' + cardId,
       method: 'PUT',
       headers: {
         auth_token: user.auth_token
@@ -494,7 +494,7 @@ var Router = _backbone2['default'].Router.extend({
     var _this9 = this;
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/login',
+      url: 'https://tiysmashcards.herokuapp.com/login',
       method: 'POST',
       data: {
         username: username,
@@ -538,7 +538,7 @@ var Router = _backbone2['default'].Router.extend({
     var _this11 = this;
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/signup',
+      url: 'https://tiysmashcards.herokuapp.com/signup',
       method: 'POST',
       data: {
         firstname: first,
@@ -574,7 +574,7 @@ var Router = _backbone2['default'].Router.extend({
     var userData = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      url: 'https://tiysmashcards.herokuapp.com/decks',
       method: 'GET',
       headers: {
         auth_token: userData.auth_token
@@ -611,7 +611,7 @@ var Router = _backbone2['default'].Router.extend({
     var user = _jsCookie2['default'].getJSON('user');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/' + id,
+      url: 'https://tiysmashcards.herokuapp.com/decks/' + id,
       method: 'DELETE',
       headers: {
         auth_token: user.auth_token
@@ -643,7 +643,7 @@ var Router = _backbone2['default'].Router.extend({
     var deck = _jsCookie2['default'].getJSON('thisdeck');
 
     var request = _jquery2['default'].ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks/' + id + '/cards',
+      url: 'https://tiysmashcards.herokuapp.com/decks/' + id + '/cards',
       method: 'GET',
       headers: {
         auth_token: x.auth_token
@@ -884,12 +884,10 @@ exports["default"] = _react2["default"].createClass({
   displayName: "no_cookie",
 
   signIn: function signIn(event) {
-    console.log("hallo");
     this.props.onSignInClick();
   },
 
   createAccount: function createAccount(event) {
-    console.log("Bom Dia");
     this.props.onCreateAccountClick();
   },
 
@@ -955,68 +953,6 @@ var _react2 = _interopRequireDefault(_react);
 
 exports["default"] = _react2["default"].createClass({
   displayName: "sign_in",
-
-  // getStatus() {
-
-  //   let user = this.props.user;
-  //   if (user) {
-  //     // add code here to check the username in the
-  //     // back-end and confirm that it is the same
-  //     // that the user is inputing into the form
-  //     return;
-  //   }
-
-  //   let password = this.props.password;
-  //    if (password) {
-  //     // add code here to check the password in the
-  //     // back-end and confirm that it is the same
-  //     // that the user is inputing into the form
-  //     return;
-  //   }
-
-  //   let goToAdminProfle = this.props.goToAdminProfle;
-  //     if (goToAdminProfle) {
-  //       // add code here to check with the back end if both the
-  //       // username and password match with what the
-  //       // user is typing
-  //       return;
-  //     }
-
-  // // request(){
-  // //     let newName= document.querySelector('.userName').value;
-  // //     let newPassword =document.querySelector('.passWord').value;
-
-  // //     $.ajax({
-  // //     url: 'https://morning-temple-4972.herokuapp.com/login',
-  // //     method: 'POST',
-  // //     data: {
-  // //       username: newName,
-  // //       password: newPassword
-  // //     }
-  // //   });
-
-  // //   $('.app').html('loading...');
-
-  // //   request.then((data) => {
-  // //     Cookies.set('user', data);
-
-  // //     $.ajaxSetup({
-  // //       headers: {
-  // //         auth_token: data.access_token,
-  // //         firstname: data.firstname,
-  // //         lastname: data.lastname,
-  // //         email: data.email,
-  // //         username: data.username
-  // //       }
-  // //     });
-  // //     this.goto(`user/${data.username}`);
-  // //   }).fail(() => {
-  // //     $('.app').html('Oops..');
-  // //   });
-  // //   }
-  // // },
-
-  // },
 
   updateUsername: function updateUsername(event) {
     var newName = event.currentTarget.value;
