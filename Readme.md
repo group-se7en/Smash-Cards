@@ -4,7 +4,13 @@ Smash Cards is a flash-card game built with Reactjs and Backbonejs.
 
 #### How To Play
 
-
+1. Create an account
+2. Log in
+3. Create a new deck by clickign the "add deck" button
+4. Add new cards to that deck by submiting a question and answer
+5. Once you're done adding cards, select "done" and head back to the deck view
+6. Press play!
+7. If you want to log in with a new user, select the "log out" button.
 
 #### Team Members
 
