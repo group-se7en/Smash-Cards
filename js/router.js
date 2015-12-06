@@ -79,7 +79,7 @@ let Router = Backbone.Router.extend({
     let user = Cookies.getJSON('user');
 
     let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/decks/${deckid}/cards`,
+      url: `https://tiysmashcards.herokuapp.com/decks/${deckid}/cards`,
       method: 'GET',
       headers: {
         auth_token: user.auth_token
@@ -109,7 +109,7 @@ let Router = Backbone.Router.extend({
     let user = Cookies.getJSON('user');
 
     let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/cards/${id}`,
+      url: `https://tiysmashcards.herokuapp.com/cards/${id}`,
       method: 'DELETE',
       headers: {
         auth_token: user.auth_token,
@@ -138,7 +138,7 @@ let Router = Backbone.Router.extend({
     let user = Cookies.getJSON('user');
 
     let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      url: 'https://tiysmashcards.herokuapp.com/decks',
       method: 'POST',
       headers: {
         auth_token: user.auth_token
@@ -180,7 +180,7 @@ let Router = Backbone.Router.extend({
     let user = Cookies.getJSON('user');
 
     let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/decks/${id}/cards`,
+      url: `https://tiysmashcards.herokuapp.com/decks/${id}/cards`,
       method: 'POST',
       headers: {
         auth_token: user.auth_token
@@ -215,7 +215,7 @@ let Router = Backbone.Router.extend({
     let thisdeck = Cookies.getJSON('thisdeck');
 
     let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/cards/${id}`,
+      url: `https://tiysmashcards.herokuapp.com/cards/${id}`,
       method: 'GET',
       headers: {
         auth_token: userData.auth_token
@@ -251,7 +251,7 @@ let Router = Backbone.Router.extend({
     let thisdeck = Cookies.getJSON('thisdeck');
 
     let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/cards/${cardId}`,
+      url: `https://tiysmashcards.herokuapp.com/cards/${cardId}`,
       method: 'PUT',
       headers: {
         auth_token: user.auth_token
@@ -294,7 +294,7 @@ let Router = Backbone.Router.extend({
   logIn(username, password) {
 
     let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/login',
+      url: 'https://tiysmashcards.herokuapp.com/login',
       method: 'POST',
       data: {
         username: username,
@@ -331,7 +331,7 @@ let Router = Backbone.Router.extend({
 
   newUser(first, last, email, user, password) {
     let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/signup',
+      url: 'https://tiysmashcards.herokuapp.com/signup',
       method: 'POST',
       data: {
         firstname: first,
@@ -367,7 +367,7 @@ let Router = Backbone.Router.extend({
   let userData = Cookies.getJSON('user');
 
   let request = $.ajax({
-      url: 'https://morning-temple-4972.herokuapp.com/decks',
+      url: 'https://tiysmashcards.herokuapp.com/decks',
       method: 'GET',
       headers: {
         auth_token: userData.auth_token
@@ -398,7 +398,7 @@ let Router = Backbone.Router.extend({
     let user = Cookies.getJSON('user');
 
     let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/decks/${id}`,
+      url: `https://tiysmashcards.herokuapp.com/decks/${id}`,
       method: 'DELETE',
       headers: {
         auth_token: user.auth_token,
@@ -429,7 +429,7 @@ let Router = Backbone.Router.extend({
     let deck = Cookies.getJSON('thisdeck');
     
      let request = $.ajax({
-      url: `https://morning-temple-4972.herokuapp.com/decks/${id}/cards`,
+      url: `https://tiysmashcards.herokuapp.com/decks/${id}/cards`,
       method: 'GET',
       headers: {
         auth_token: x.auth_token,
